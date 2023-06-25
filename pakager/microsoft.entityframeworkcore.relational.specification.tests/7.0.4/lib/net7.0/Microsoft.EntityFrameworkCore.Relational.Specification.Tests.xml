@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.EntityFrameworkCore.Relational.Specification.Tests</name>
+    </assembly>
+    <members>
+        <member name="F:Microsoft.EntityFrameworkCore.TestUtilities.TestSqlLoggerFactory.QueryBaselineRewritingFileInfo.LineDisplacements">
+            <summary>
+                Contains information on where previous baseline rewriting caused line numbers to shift; this is used in adjusting line
+                numbers for later errors. The keys are (pre-rewriting) line numbers, and the values are offsets that have been applied to
+                them.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Update.StoredProcedureUpdateTestBase.ConfigureStoreGeneratedConcurrencyToken(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder,System.String)">
+            <summary>
+                A method to be implement by the provider, to set up a store-generated concurrency token shadow property with the given name.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Update.StoreValueGenerationTestBase`1.ShouldCreateImplicitTransaction(Microsoft.EntityFrameworkCore.EntityState,System.Nullable{Microsoft.EntityFrameworkCore.EntityState},Microsoft.EntityFrameworkCore.Update.StoreValueGenerationTestBase{`0}.GeneratedValues,System.Boolean)">
+            <summary>
+                Providers can override this to specify when <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> should create a transaction, and when not.
+                By default, it's assumed that multiple updates always require a transaction, whereas a single update never does.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Update.StoreValueGenerationTestBase`1.ShouldExecuteInNumberOfCommands(Microsoft.EntityFrameworkCore.EntityState,System.Nullable{Microsoft.EntityFrameworkCore.EntityState},Microsoft.EntityFrameworkCore.Update.StoreValueGenerationTestBase{`0}.GeneratedValues,System.Boolean)">
+            <summary>
+                Providers can override this to specify how many commands (batches) are used to execute the update.
+                By default, it's assumed all operations are batched in one command.
+            </summary>
+        </member>
+        <member name="M:System.SharedTypeExtensions.DisplayName(System.Type,System.Boolean,System.Boolean)">
+            <summary>
+                This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                the same compatibility standards as public APIs. It may be changed or removed without notice in
+                any release. You should only use it directly in your code with extreme caution and knowing that
+                doing so can result in application failures when updating to a new Entity Framework Core release.
+            </summary>
+        </member>
+    </members>
+</doc>
