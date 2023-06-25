@@ -1,0 +1,15 @@
+D:\GitHub\Apartment-Manager\ApartmentManager\Data\bin\Debug\net7.0-windows\Data.deps.json
+D:\GitHub\Apartment-Manager\ApartmentManager\Data\bin\Debug\net7.0-windows\Data.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\Data\bin\Debug\net7.0-windows\Data.pdb
+D:\GitHub\Apartment-Manager\ApartmentManager\Data\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\Data\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.xml
+D:\GitHub\Apartment-Manager\ApartmentManager\Data\obj\Debug\net7.0-windows\Data.csproj.AssemblyReference.cache
+D:\GitHub\Apartment-Manager\ApartmentManager\Data\obj\Debug\net7.0-windows\Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub\Apartment-Manager\ApartmentManager\Data\obj\Debug\net7.0-windows\Data.AssemblyInfoInputs.cache
+D:\GitHub\Apartment-Manager\ApartmentManager\Data\obj\Debug\net7.0-windows\Data.AssemblyInfo.cs
+D:\GitHub\Apartment-Manager\ApartmentManager\Data\obj\Debug\net7.0-windows\Data.csproj.CoreCompileInputs.cache
+D:\GitHub\Apartment-Manager\ApartmentManager\Data\obj\Debug\net7.0-windows\Data.csproj.CopyComplete
+D:\GitHub\Apartment-Manager\ApartmentManager\Data\obj\Debug\net7.0-windows\Data.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\Data\obj\Debug\net7.0-windows\refint\Data.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\Data\obj\Debug\net7.0-windows\Data.pdb
+D:\GitHub\Apartment-Manager\ApartmentManager\Data\obj\Debug\net7.0-windows\ref\Data.dll
