@@ -7,40 +7,14 @@
   "targets": {
     ".NETCoreApp,Version=v7.0": {
       "UI/1.0.0": {
-        "dependencies": {
-          "Services": "1.0.0"
-        },
         "runtime": {
           "UI.dll": {}
-        }
-      },
-      "Data/1.0.0": {
-        "runtime": {
-          "Data.dll": {}
-        }
-      },
-      "Services/1.0.0": {
-        "dependencies": {
-          "Data": "1.0.0"
-        },
-        "runtime": {
-          "Services.dll": {}
         }
       }
     }
   },
   "libraries": {
     "UI/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Data/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
