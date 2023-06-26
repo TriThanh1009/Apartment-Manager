@@ -7,13 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="Microsoft.EntityFrameworkCore">
-      <HintPath>..\..\pakager\microsoft.entityframeworkcore\7.0.8\lib\net6.0\Microsoft.EntityFrameworkCore.dll</HintPath>
-    </Reference>
+    <None Include="Entity\Entity.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
+    <Reference Include="Microsoft.EntityFrameworkCore">
+      <HintPath>..\..\pakager\microsoft.entityframeworkcore\7.0.8\lib\net6.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
