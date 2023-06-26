@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data
+namespace Data.Entities
 {
-    internal class Test
+    public class Account
     {
     }
 }
