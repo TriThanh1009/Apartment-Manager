@@ -17,12 +17,11 @@ namespace Entity
 
         public ICollection<RoomImage> RoomImages { get; } = new List<RoomImage>();
 
-        public People? Peoplee { get; set; }
-
         public ICollection<People> People { get; } = new List<People>();
 
-        public DepositsContract? DepositsContract { get; set; }
-
+        public ICollection<RentalContract> RentalContracts { get; } = new List<RentalContract>();
         public ICollection<DepositsContract> DepositsContracts { get; } = new List<DepositsContract>();
+
+
     }
 }

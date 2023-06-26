@@ -19,7 +19,8 @@ namespace Entity
         public string Address { get; set; }
 
         public Room? Room { get; set; }
-       // public ICollection<Room> Room { get; } = new List<Room>();
+       
+        public ICollection<RentalContract> RentalContracts { get; } = new List<RentalContract>();
 
     }
 }

@@ -13,7 +13,17 @@ namespace Data.Configurations
     {
         public void Configure(EntityTypeBuilder<RentalContract> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("ID");
+            builder.HasKey("ID");
+            builder.Property(x => x.ID).IsRequired();
+            builder.HasOne(x=>x.Room).WithMany(x=>x.RentalContracts).HasForeignKey(x=>x.IDroom);
+            builder.Property(x=>x.IDLeader).IsRequired();
+            builder.Property(x=>x.ReceiveDate).HasDefaultValue(DateTime.Now);
+            builder.Property(x=>x.CheckOutDate).HasDefaultValue(DateTime.Now);
+            builder.Property(x=>x.RoomMoney).HasMaxLength(50).IsRequired();
+            builder.Property(x=>x.ElectricMoney).HasMaxLength(50).IsRequired();
+            builder.Property(x=>x.WaterMoney).HasMaxLength(50).IsRequired();
+            builder.Property(x=>x.ServiceMoney).HasMaxLength(50).IsRequired();
         }
     }
 }
