@@ -15,6 +15,14 @@ namespace Data.Configurations
         {
             builder.ToTable("People");
             builder.HasKey(x => x.ID);
+            builder.Property(x=>x.ID).IsRequired();
+            builder.HasOne(x=>x.Room).WithMany(x=>x.People).HasForeignKey(x=>x.IDroom);
+            builder.Property(x=>x.Name).IsRequired().HasMaxLength(50);
+            builder.Property(x=>x.Birthday).HasDefaultValue(DateTime.Now);
+            builder.Property(x=>x.Email).HasMaxLength(50);
+            builder.Property(x=>x.PhoneNumber).IsRequired().HasMaxLength(50);
+            builder.Property(x=>x.IDCard).IsRequired().HasMaxLength(50);
+            builder.Property(x=>x.Address).IsRequired().HasMaxLength(50);
         }
     }
 }

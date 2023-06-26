@@ -13,7 +13,12 @@ namespace Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Room> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("Room");
+            builder.HasKey(x => x.ID);
+            builder.Property(x=>x.ID).IsRequired();
+            builder.Property(x=>x.IDLeader).IsRequired();
+            builder.Property(x=>x.Quantity).IsRequired();
+            builder.Property(x=>x.IDImage).IsRequired();
         }
     }
 }

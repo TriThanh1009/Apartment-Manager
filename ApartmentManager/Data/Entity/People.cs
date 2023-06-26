@@ -15,7 +15,11 @@ namespace Entity
         public string PhoneNumber {  get; set; }
         public string Email { get; set; }
 
+        public string IDCard { get; set; }
+        public string Address { get; set; }
+
         public Room? Room { get; set; }
+       // public ICollection<Room> Room { get; } = new List<Room>();
 
     }
 }
