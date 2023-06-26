@@ -10,3 +10,6 @@ D:\GitHub\Apartment-Manager\ApartmentManager\Services\obj\Debug\net7.0-windows\S
 D:\GitHub\Apartment-Manager\ApartmentManager\Services\obj\Debug\net7.0-windows\refint\Services.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\Services\obj\Debug\net7.0-windows\Services.pdb
 D:\GitHub\Apartment-Manager\ApartmentManager\Services\obj\Debug\net7.0-windows\ref\Services.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\Services\bin\Debug\net7.0-windows\Data.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\Services\bin\Debug\net7.0-windows\Data.pdb
+D:\GitHub\Apartment-Manager\ApartmentManager\Services\obj\Debug\net7.0-windows\Services.csproj.CopyComplete
