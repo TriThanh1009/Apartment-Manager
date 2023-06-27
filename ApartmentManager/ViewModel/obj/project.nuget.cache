@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "X9vy+F8v30lDoITBK11K1DR9vFi50rZlFHCigGOgnJB21IRocVC+4RSuYHI90/au3Fzd+H7pPSMNpsmLskI3DA==",
+  "dgSpecHash": "bU56mhHmdaPqUYxeWy1X4E9sCEfuRfbZnCRdtkt3KXons50Pj5G9WSalru+ZCsOdsl0tzSiJgUrGRvQdfg6tkw==",
   "success": true,
-  "projectFilePath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj",
+  "projectFilePath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\GitHub\\Apartment-Manager\\ApartmentManager\\ViewModel\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
