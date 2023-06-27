@@ -1,4 +1,5 @@
 ﻿using Data.Configurations;
+using Data.Relationships;
 using Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
