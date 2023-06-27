@@ -1183,6 +1183,16 @@
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WPF"
         ]
+      },
+      "ViewModel/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/ViewModel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ViewModel.dll": {}
+        }
       }
     }
   },
@@ -3552,6 +3562,11 @@
       "type": "project",
       "path": "../Data/Data.csproj",
       "msbuildProject": "../Data/Data.csproj"
+    },
+    "ViewModel/1.0.0": {
+      "type": "project",
+      "path": "../ViewModel/ViewModel.csproj",
+      "msbuildProject": "../ViewModel/ViewModel.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3559,7 +3574,8 @@
       "Data >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.8",
-      "Microsoft.Extensions.Configuration.Json >= 7.0.0"
+      "Microsoft.Extensions.Configuration.Json >= 7.0.0",
+      "ViewModel >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3591,6 +3607,9 @@
           "projectReferences": {
             "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj": {
               "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj"
+            },
+            "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj": {
+              "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj"
             }
           }
         }
