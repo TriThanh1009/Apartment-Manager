@@ -8,6 +8,9 @@
     ".NETCoreApp,Version=v7.0": {
       "UI/1.0.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.8",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.8",
+          "Microsoft.Extensions.Configuration.Json": "7.0.0",
           "Services": "1.0.0"
         },
         "runtime": {
@@ -626,10 +629,19 @@
       },
       "Services/1.0.0": {
         "dependencies": {
-          "Data": "1.0.0"
+          "Data": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "7.0.8",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.8",
+          "Microsoft.Extensions.Configuration.Json": "7.0.0",
+          "ViewModel": "1.0.0"
         },
         "runtime": {
           "Services.dll": {}
+        }
+      },
+      "ViewModel/1.0.0": {
+        "runtime": {
+          "ViewModel.dll": {}
         }
       }
     }
@@ -1115,6 +1127,11 @@
       "sha512": ""
     },
     "Services/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ViewModel/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

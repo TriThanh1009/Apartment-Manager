@@ -1,5 +1,4 @@
 using Data.Configurations;
-using DataAccess.Configurations;
 using Data.Relationships;
 using Entity;
 using Microsoft.EntityFrameworkCore;
