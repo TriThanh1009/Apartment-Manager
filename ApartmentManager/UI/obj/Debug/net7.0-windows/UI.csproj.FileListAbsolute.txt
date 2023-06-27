@@ -66,3 +66,5 @@ D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Service
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Services.pdb
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Data.pdb
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\UI.csproj.CopyComplete
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\ViewModel.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\ViewModel.pdb
