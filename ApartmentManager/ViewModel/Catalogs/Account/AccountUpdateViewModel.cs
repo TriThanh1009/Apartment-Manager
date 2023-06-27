@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel.Catalogs.Account
 {
-    public class AccountCreateViewModel
+    public class AccountUpdateViewModel
     {
         public int ID { get; set; }
         public string Acc { get; set; }
