@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Services.Interface
 {
-    internal interface Bill
+    public interface IBill
     {
+        Task<int> Add(string i);
     }
 }

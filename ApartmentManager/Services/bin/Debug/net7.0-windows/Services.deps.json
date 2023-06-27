@@ -629,6 +629,9 @@
         }
       },
       "ViewModel/1.0.0": {
+        "dependencies": {
+          "Data": "1.0.0"
+        },
         "runtime": {
           "ViewModel.dll": {}
         }
