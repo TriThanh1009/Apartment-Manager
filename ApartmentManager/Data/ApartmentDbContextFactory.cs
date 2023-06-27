@@ -18,7 +18,7 @@ namespace Data
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .Build();
-            var connectionString = configuration.GetConnectionString("ApartmentSQL");
+            var connectionString = configuration.GetConnectionString("ApartmentDB");
             var optionsBuilder = new DbContextOptionsBuilder<AparmentDbContext>();
             optionsBuilder.UseSqlServer(connectionString);
             return new AparmentDbContext(optionsBuilder.Options);
