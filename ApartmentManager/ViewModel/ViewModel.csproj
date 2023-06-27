@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Catalogs\NewFolder1\" />
+    <Folder Include="Catalogs\RoomImage\" />
+  </ItemGroup>
+
 </Project>
