@@ -1,4 +1,5 @@
-﻿using Entity;
+﻿using Data.Enum;
+using Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -18,6 +19,7 @@ namespace Data.Configurations
             builder.Property(x=>x.ID).IsRequired();
             builder.HasOne(x=>x.Room).WithMany(x=>x.People).HasForeignKey(x=>x.IDroom);
             builder.Property(x=>x.Name).IsRequired().HasMaxLength(50);
+            builder.Property(x => x.Sex).HasDefaultValue(Sex.Male);
             builder.Property(x=>x.Birthday).HasDefaultValue(DateTime.Now);
             builder.Property(x=>x.Email).HasMaxLength(50);
             builder.Property(x=>x.PhoneNumber).IsRequired().HasMaxLength(50);
