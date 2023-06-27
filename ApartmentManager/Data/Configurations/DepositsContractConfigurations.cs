@@ -13,7 +13,14 @@ namespace Data
     {
         public void Configure(EntityTypeBuilder<DepositsContract> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("DepositsContract");
+            builder.HasKey(x => x.ID);
+            builder.Property(x => x.ID).IsRequired();
+            builder.HasOne(x => x.Room).WithMany(x => x.DepositsContracts).HasForeignKey(x => x.IDRoom);
+            builder.Property(x => x.DepositsDate).HasDefaultValue(DateTime.Now);
+            builder.Property(x=>x.ReceiveDate).HasDefaultValue(DateTime.Now);
+            builder.Property(x=>x.CheckOutDate).HasDefaultValue(DateTime.Now);
+            builder.Property(x=>x.Money).HasMaxLength(50).HasMaxLength(50);
         }
     }
 }

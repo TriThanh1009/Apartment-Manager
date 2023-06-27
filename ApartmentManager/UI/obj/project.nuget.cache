@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uWOKAfuIy3lZTGT84a8X/Wr4I7rKb0DI43/lbrnLZdlGc7ieLUOIs1uH6QHKM1PgFe7QH299lhrULruD3zVnSw==",
+  "dgSpecHash": "pFU0xMCz8KY42hVC1wYBM/P725kqpOmHeUTU+/2ShU+ArHYKNtmvSc4SjhlV8r3mZauFUt0kdpOW5KBshNG40g==",
   "success": true,
   "projectFilePath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\UI\\UI.csproj",
   "expectedPackageFiles": [
@@ -72,5 +72,12 @@
     "C:\\Users\\84768\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\84768\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\GitHub\\Apartment-Manager\\ApartmentManager\\UI\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

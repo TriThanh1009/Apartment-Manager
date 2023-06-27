@@ -18,6 +18,7 @@ namespace Entity
         public int WaterMoney { get; set; }
         public int ServiceMoney { get; set; }
         public Room? Room { get; set; }
-        public People? People { get; set; }
+
+        public ICollection<Bill> Bills { get; } = new List<Bill>();
     }
 }

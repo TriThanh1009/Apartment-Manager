@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity
+namespace Data.Enum
 {
-    public class RoomDetails
+    public enum Sex
     {
-        public Furniture? IDfur { get; set; }
-        public Room? IDroom { get; set; }
+        Male,Female
     }
 }
