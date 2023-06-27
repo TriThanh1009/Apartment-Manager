@@ -23,6 +23,9 @@ namespace Data.Extensions
                 new Furniture { ID = 1, Name="Chair"});
             modelbuilder.Entity<PaymentExtension>().HasData(
                 new PaymentExtension { ID = 1, IDBill = 1, Days = DateTime.Now });
+            modelbuilder.Entity<People>().HasData(new
+                People() {ID=1,IDroom=1,Name = "Jonhny Deep", Birthday = DateTime.Now, Email = "thanh@gmail.com",PhoneNumber="1234",IDCard="1234123",Address="Vietnam"});
+
         }
     }
 }
