@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace Entity
         public int ID { get; set; }
         public int IDRTC {  get; set; }
         public int ElectricQuantity { get; set; }
-        public string Active {  get; set; }
+        public Active Active {  get; set; }
         public DateTime PayDate { get; set; }
         public int TotalMoney { get; set; }
 
