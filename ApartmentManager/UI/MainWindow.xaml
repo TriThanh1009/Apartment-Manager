@@ -37,19 +37,19 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="228" />
-                <ColumnDefinition Width="800" />
+                <ColumnDefinition Width="773" />
             </Grid.ColumnDefinitions>
 
             <!--// Navigation Panel //-->
 
             <Grid HorizontalAlignment="Left"
-                  Width="228">
+                  Width="230">
 
                 <Border Background="#272B2F"
                         CornerRadius="20,0,0,20" />
 
                 <StackPanel
-                            Width="228" Margin="0,100,0,160">
+                            Width="230" Margin="0,100,0,160">
 
                     <!--// Home //-->
 
@@ -59,8 +59,8 @@
 
                         <Grid>
 
-                            <Image Source="Images/img_home.png"
-                                   Style="{StaticResource Image_Style}" />
+                            <Image
+                                   Style="{StaticResource Image_Style}" Source="/Images/img_home.png" />
 
                             <TextBlock Text="Home"
                                        Style="{StaticResource Text_Style}" />
@@ -90,7 +90,7 @@
                         <Grid>
 
                             <Image
-                                   Style="{StaticResource Image_Style}" Source="/image/img_customer.png" />
+                                   Style="{StaticResource Image_Style}" Source="/Images/img_product.png" />
 
                             <TextBlock Text="Products"
                                        Style="{StaticResource Text_Style}" />
