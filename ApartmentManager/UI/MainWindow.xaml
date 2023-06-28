@@ -13,8 +13,8 @@
         xmlns:Menu="clr-namespace:UI.Utilities"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="600"
-        Width="850"
+        Height="680"
+        Width="1000"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
@@ -37,7 +37,7 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="228" />
-                <ColumnDefinition Width="622" />
+                <ColumnDefinition Width="800" />
             </Grid.ColumnDefinitions>
 
             <!--// Navigation Panel //-->
@@ -48,8 +48,8 @@
                 <Border Background="#272B2F"
                         CornerRadius="20,0,0,20" />
 
-                <StackPanel Height="400"
-                            Width="228">
+                <StackPanel
+                            Width="228" Margin="0,100,0,160">
 
                     <!--// Home //-->
 
