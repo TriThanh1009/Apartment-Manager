@@ -74,7 +74,7 @@
 
                         <Grid>
 
-                            <Image Source="\Images\img_customer.png"
+                            <Image Source="Images/icon/img_customer.png"
                                    Style="{StaticResource Image_Style}" HorizontalAlignment="Right" Margin="0,0,176,0" />
 
                             <TextBlock Text="Customer"
@@ -90,7 +90,7 @@
                         <Grid>
 
                             <Image
-                                   Style="{StaticResource Image_Style}" Source="/Images/img_product.png" />
+                                   Style="{StaticResource Image_Style}" Source="/image/img_customer.png" />
 
                             <TextBlock Text="Products"
                                        Style="{StaticResource Text_Style}" />
