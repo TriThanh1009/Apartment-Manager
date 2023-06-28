@@ -25,11 +25,6 @@ namespace UI
     {
         private readonly IBill _Ibill = new BillServices();
 
-        public MainWindow(IBill Ibill)
-        {
-            _Ibill = Ibill;
-        }
-
         public MainWindow()
         {
             InitializeComponent();
