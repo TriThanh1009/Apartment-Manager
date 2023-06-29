@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UI.Utilities;
 using System.Windows.Input;
+using ViewModel.People;
 
 namespace UI.ViewModel
 {

@@ -12,15 +12,4 @@
     <UserControl.DataContext>
         <vm:ProductVM />
     </UserControl.DataContext>
-
-    <Grid Margin="15">
-
-        <TextBlock Text="{Binding ProductAvailability}"
-                   Foreground="#F25E68"
-                   FontSize="12"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontFamily="/Fonts/#Rubik Medium"
-                   Margin="261,300,0,0" />
-    </Grid>
 </UserControl>

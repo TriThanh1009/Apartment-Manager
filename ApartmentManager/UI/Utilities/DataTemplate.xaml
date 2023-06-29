@@ -1,13 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:UI.ViewModel"
+                    xmlns:people="clr-namespace:ViewModel.People;assembly=ViewModel"
                     xmlns:view="clr-namespace:UI.View">
 
     <DataTemplate DataType="{x:Type vm:HomeVM}">
         <view:Home />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:CustomerVM}">
+    <DataTemplate DataType="{x:Type people:CustomerVM}">
         <view:Customers />
     </DataTemplate>
 
