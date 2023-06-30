@@ -1,7 +1,4 @@
-﻿using Services;
-using Services.Implement;
-using Services.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,21 +20,14 @@ namespace UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly IBill _Ibill = new BillServices();
-
-        public MainWindow(IBill Ibill)
-        {
-            _Ibill = Ibill;
-        }
-
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void CloseApp_Click(object sender, RoutedEventArgs e)
         {
-            ad.Content = _Ibill.Add("t").ToString();
+            Close();
         }
     }
 }

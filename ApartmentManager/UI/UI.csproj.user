@@ -10,5 +10,41 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\Button.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Image.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Text.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Utilities\DataTemplate.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Customers.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Home.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Orders.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Products.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Settings.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Shipments.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Transactions.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>
