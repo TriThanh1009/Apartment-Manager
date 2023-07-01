@@ -72,10 +72,8 @@ D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\Styles\
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\Styles\Image.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\Styles\Page.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\Styles\Text.baml
-D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Home.g.cs
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\App.baml
-D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Home.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Customers.g.cs
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Orders.g.cs
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Products.g.cs
@@ -89,6 +87,7 @@ D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Pr
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Settings.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Shipments.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Transactions.baml
+<<<<<<< Updated upstream
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\UI.exe
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\UI.deps.json
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\UI.runtimeconfig.json
@@ -184,3 +183,11 @@ D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\UserControl2.g.cs
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomHome.baml
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\UserControl2.baml
+=======
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Homes\Home.g.cs
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Homes\Home.baml
+>>>>>>> Stashed changes
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomAdd.g.cs
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomHome.g.cs
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomAdd.baml
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomHome.baml

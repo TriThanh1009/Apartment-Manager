@@ -6,6 +6,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Update="View\Rooms\RoomAdd.xaml.cs">
       <SubType>Code</SubType>
@@ -36,7 +37,7 @@
     <Page Update="View\Customers.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\Home.xaml">
+    <Page Update="View\Homes\Home.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Orders.xaml">

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UI.View
+namespace UI.View.Homes
 {
     /// <summary>
     /// Interaction logic for Home.xaml
@@ -23,6 +23,10 @@ namespace UI.View
         public Home()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
