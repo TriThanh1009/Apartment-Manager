@@ -7,6 +7,14 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="View\Rooms\RoomHome.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Rooms\UserControl2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -35,6 +43,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Products.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Rooms\RoomHome.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Rooms\UserControl2.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Settings.xaml">

@@ -85,14 +85,14 @@
                     <!--// Products //-->
 
                     <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding ProductsCommand}">
+                              Command="{Binding RoomCommand}">
 
                         <Grid>
 
                             <Image
                                    Style="{StaticResource Image_Style}" Source="/Images/img_product.png" />
 
-                            <TextBlock Text="Products"
+                            <TextBlock Text="Rooms"
                                        Style="{StaticResource Text_Style}" />
                         </Grid>
                     </Menu:Btn>
