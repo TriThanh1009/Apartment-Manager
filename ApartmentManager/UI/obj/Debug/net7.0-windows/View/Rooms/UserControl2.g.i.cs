@@ -53,7 +53,7 @@ namespace UI.View.Rooms {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/UI;V1.0.0.0;component/view/rooms/usercontrol2.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/UI;component/view/rooms/usercontrol2.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\Rooms\UserControl2.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -21,7 +21,7 @@ namespace UI.View.Rooms
     public partial class RoomHome : UserControl
     {
         public RoomHome()
-        {
+        { 
             InitializeComponent();
         }
 

@@ -8,11 +8,24 @@
              d:DesignHeight="630" d:DesignWidth="730">
 
     <Grid Margin="0,0,29,169">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="410*"/>
+            <RowDefinition Height="51*"/>
+        </Grid.RowDefinitions>
         <Button Style="{StaticResource ActionButton}" Content="Add" HorizontalAlignment="Left" Margin="484,61,0,0" VerticalAlignment="Top"/>
         <Button Style="{StaticResource ActionButton}" Content="Update" HorizontalAlignment="Left" Margin="484,115,0,0" VerticalAlignment="Top"/>
         <Button Style="{StaticResource ActionButton}" Content="Delete" HorizontalAlignment="Left" Margin="484,168,0,0" VerticalAlignment="Top"/>
-        <Button Style="{StaticResource DetailsButton}" Content="Room Details" HorizontalAlignment="Left" Margin="457,276,0,0" VerticalAlignment="Top"/>
-        <Button Style="{StaticResource DetailsButton}" Content="Contract" HorizontalAlignment="Left" Margin="257,276,0,0" VerticalAlignment="Top"/>
-        <Button Style="{StaticResource DetailsButton}" Content="Bill" HorizontalAlignment="Left" Margin="457,368,0,0" VerticalAlignment="Top"/>
+        <Button Style="{StaticResource DetailsButton}" Content="Room Details" HorizontalAlignment="Left" Margin="409,309,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.489,0.409"/>
+        <Button Style="{StaticResource DetailsButton}" Content="Contract" HorizontalAlignment="Left" Margin="27,309,0,0" VerticalAlignment="Top"/>
+        <Button Style="{StaticResource DetailsButton}" Content="Bill" HorizontalAlignment="Left" Margin="220,309,0,0" VerticalAlignment="Top"/>
+
+        <DataGrid x:Name="roomDataGrid" Margin="10,31,331,180">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="100"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"  Width="*"/>
+                <DataGridTextColumn Header="Leader" Binding="{Binding NameLeader}" Width="*"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

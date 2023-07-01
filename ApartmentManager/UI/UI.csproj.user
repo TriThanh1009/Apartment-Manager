@@ -7,10 +7,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="View\Rooms\RoomHome.xaml.cs">
+    <Compile Update="View\Rooms\RoomAdd.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\Rooms\UserControl2.xaml.cs">
+    <Compile Update="View\Rooms\RoomHome.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -45,10 +45,10 @@
     <Page Update="View\Products.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\Rooms\RoomHome.xaml">
+    <Page Update="View\Rooms\RoomAdd.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\Rooms\UserControl2.xaml">
+    <Page Update="View\Rooms\RoomHome.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Settings.xaml">
