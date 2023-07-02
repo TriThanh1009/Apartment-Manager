@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Services.Interface
 {
-    internal interface IPeople
+    public interface IPeople
     {
     }
 }
