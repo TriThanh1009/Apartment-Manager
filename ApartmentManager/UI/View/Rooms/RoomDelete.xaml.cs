@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace UI.View.Rooms
 {
     /// <summary>
-    /// Interaction logic for RoomAdd.xaml
+    /// Interaction logic for RoomDelete.xaml
     /// </summary>
-    public partial class RoomAdd : UserControl
+    public partial class RoomDelete : UserControl
     {
-        public RoomAdd()
+        public RoomDelete()
         {
             InitializeComponent();
         }

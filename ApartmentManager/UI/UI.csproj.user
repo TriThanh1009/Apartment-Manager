@@ -14,7 +14,13 @@
     <Compile Update="View\Rooms\RoomAdd.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Rooms\RoomDelete.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\Rooms\RoomHome.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Rooms\RoomUpdate.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -52,16 +58,16 @@
     <Page Update="View\Products.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\Rooms\RoomDelete.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\Rooms\RoomUpdate.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="View\Rooms\RoomAdd.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\Rooms\RoomDelete.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\Rooms\RoomHome.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Rooms\RoomUpdate.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Settings.xaml">
