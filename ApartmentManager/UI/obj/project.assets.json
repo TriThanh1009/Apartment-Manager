@@ -3613,19 +3613,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\THANH\\.nuget\\packages\\": {}
+    "C:\\Users\\vumin\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\UI\\UI.csproj",
+      "projectUniqueName": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\UI\\UI.csproj",
       "projectName": "UI",
-      "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\UI\\UI.csproj",
-      "packagesPath": "C:\\Users\\THANH\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\UI\\obj\\",
+      "projectPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\UI\\UI.csproj",
+      "packagesPath": "C:\\Users\\vumin\\.nuget\\packages\\",
+      "outputPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\UI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\THANH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\vumin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3633,14 +3638,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
-            "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj": {
-              "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj"
+            "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj": {
+              "projectPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj"
             }
           }
         }
