@@ -191,3 +191,7 @@ D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Ro
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomHome.g.cs
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomAdd.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomHome.baml
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Homes\Home.g.cs
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomAdd.g.cs
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomDelete.g.cs
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomUpdate.g.cs
