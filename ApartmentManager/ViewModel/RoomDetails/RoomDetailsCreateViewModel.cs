@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ViewModel.RoomDetails
 {
-    internal class RoomDetailsCreateViewModel
+    public class RoomDetailsCreateViewModel
     {
+        public string IDFur { get; set; }
+        public string IDRoom { get; set; }
     }
 }

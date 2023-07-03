@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UI.View.ConfirmForm
+namespace UI.View.Furniture
 {
     /// <summary>
-    /// Interaction logic for AddConfirm.xaml
+    /// Interaction logic for FurnitureUpdate.xaml
     /// </summary>
-    public partial class AddConfirm : UserControl
+    public partial class FurnitureUpdate : UserControl
     {
-        public AddConfirm()
+        public FurnitureUpdate()
         {
             InitializeComponent();
         }

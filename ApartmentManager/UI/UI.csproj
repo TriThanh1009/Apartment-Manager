@@ -27,8 +27,4 @@
     <Resource Include="Styles\shutdown_mo.png" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="View\ConfirmForm\" />
-  </ItemGroup>
-
 </Project>

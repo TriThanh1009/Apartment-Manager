@@ -8,7 +8,43 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Compile Update="View\ConfirmForm\AddConfirm.xaml.cs">
+    <Compile Update="View\Bills\BillAdd.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Bills\BillDelete.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Bills\BillHome.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Bills\BillUpdate.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ConfirmForm\Confirm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Furniture\FurnitureAdd.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Furniture\FurnitureDelete.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Furniture\FurnitureHome.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Furniture\FurnitureUpdate.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\RoomDetails\RoomDetailsAdd.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\RoomDetails\RoomDetailsDelete.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\RoomDetails\RoomDetailsHome.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\RoomDetails\RoomDetailsUpdate.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\Rooms\RoomAdd.xaml.cs">
@@ -43,10 +79,34 @@
     <Page Update="Utilities\DataTemplate.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\ConfirmForm\AddConfirm.xaml">
+    <Page Update="View\Bills\BillAdd.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Bills\BillDelete.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Bills\BillHome.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Bills\BillUpdate.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ConfirmForm\Confirm.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Customers.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Furniture\FurnitureAdd.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Furniture\FurnitureDelete.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Furniture\FurnitureHome.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Furniture\FurnitureUpdate.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Homes\Home.xaml">
@@ -56,6 +116,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Products.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\RoomDetails\RoomDetailsAdd.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\RoomDetails\RoomDetailsDelete.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\RoomDetails\RoomDetailsHome.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\RoomDetails\RoomDetailsUpdate.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Rooms\RoomAdd.xaml">
