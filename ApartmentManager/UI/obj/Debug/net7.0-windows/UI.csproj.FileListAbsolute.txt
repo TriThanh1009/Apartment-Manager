@@ -201,3 +201,9 @@ D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomAdd.baml
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomDelete.baml
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomUpdate.baml
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\ConfirmForm\AddConfirm.g.cs
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomDelete.g.cs
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomUpdate.g.cs
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\ConfirmForm\AddConfirm.baml
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomDelete.baml
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomUpdate.baml
