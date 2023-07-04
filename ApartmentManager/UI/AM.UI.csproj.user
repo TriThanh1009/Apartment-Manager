@@ -35,6 +35,15 @@
     <Compile Update="View\Furniture\FurnitureUpdate.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\RentalContract\RentalContactDelete.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\RentalContract\RentalContractAdd.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\RentalContract\RentalContractUpdate.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\RoomDetails\RoomDetailsAdd.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -116,6 +125,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Products.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\RentalContract\RentalContactDelete.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\RentalContract\RentalContractAdd.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\RentalContract\RentalContractUpdate.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\RoomDetails\RoomDetailsAdd.xaml">
