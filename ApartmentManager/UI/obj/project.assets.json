@@ -3606,6 +3606,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
+      "Data >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.8",
       "Microsoft.Extensions.Configuration.Json >= 7.0.0",
@@ -3639,6 +3640,9 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
+            "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj": {
+              "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj"
+            },
             "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj": {
               "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj"
             }
