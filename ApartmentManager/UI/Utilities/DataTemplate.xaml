@@ -5,6 +5,7 @@
                     xmlns:room="clr-namespace:ViewModel.Room;assembly=ViewModel"
                     xmlns:roomview="clr-namespace:UI.View.Rooms"
                     xmlns:view="clr-namespace:UI.View"
+                    xmlns:vp="clr-namespace:AM.UI.View.People"
                     xmlns:vh="clr-namespace:UI.View.Homes">
 
     <DataTemplate DataType="{x:Type vm:HomeVM}">
@@ -12,7 +13,7 @@
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type people:CustomerVM}">
-        <view:Customers />
+        <vp:Home />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type room:RoomVm}">

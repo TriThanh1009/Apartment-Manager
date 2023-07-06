@@ -35,6 +35,9 @@
     <Compile Update="View\Furniture\FurnitureUpdate.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\People\Home.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\RentalContract\RentalContactDelete.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -103,9 +106,6 @@
     <Page Update="View\ConfirmForm\Confirm.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\Customers.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="View\Furniture\FurnitureAdd.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -124,7 +124,7 @@
     <Page Update="View\Orders.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\Products.xaml">
+    <Page Update="View\People\Home.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\RentalContract\RentalContactDelete.xaml">

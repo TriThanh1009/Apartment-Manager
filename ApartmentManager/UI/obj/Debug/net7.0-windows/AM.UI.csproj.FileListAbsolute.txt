@@ -57,10 +57,8 @@ D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\Styles\
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\Styles\Page.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\Styles\Text.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\MainWindow.g.cs
-D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Customers.g.cs
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Homes\Home.g.cs
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Orders.g.cs
-D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Products.g.cs
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomAdd.g.cs
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomDelete.g.cs
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomHome.g.cs
@@ -75,10 +73,8 @@ D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\AM.UI_M
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\App.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\MainWindow.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\Utilities\DataTemplate.baml
-D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Customers.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Homes\Home.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Orders.baml
-D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Products.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomAdd.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomDelete.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Rooms\RoomHome.baml
@@ -257,3 +253,7 @@ D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Ro
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Caliburn.Micro.Core.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\MahApps.Metro.IconPacks.Core.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\MahApps.Metro.IconPacks.Material.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\People\Home.g.cs
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\People\Home.baml
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Unity.Abstractions.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Unity.Container.dll

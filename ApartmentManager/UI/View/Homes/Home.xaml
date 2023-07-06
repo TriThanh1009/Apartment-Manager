@@ -92,8 +92,8 @@
             <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
                 <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 50 0 0" x:Name="homedata">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="40"  Binding="{Binding ID}" />
-                        <DataGridTemplateColumn Header="Nember" IsReadOnly="True" Width="*">
+                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto"  Binding="{Binding ID}" />
+                        <DataGridTemplateColumn Header="Nember"  IsReadOnly="True" Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
