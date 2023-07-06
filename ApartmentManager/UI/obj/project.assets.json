@@ -46,44 +46,6 @@
           }
         }
       },
-      "Caliburn.Micro.Core/4.0.212": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime.Serialization.Primitives": "4.3.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Caliburn.Micro.Core.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/Caliburn.Micro.Core.dll": {
-            "related": ".pdb;.xml"
-          }
-        }
-      },
-      "MahApps.Metro.IconPacks.Material/4.11.0": {
-        "type": "package",
-        "compile": {
-          "lib/net5.0-windows7.0/MahApps.Metro.IconPacks.Core.dll": {
-            "related": ".pdb;.xml"
-          },
-          "lib/net5.0-windows7.0/MahApps.Metro.IconPacks.Material.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "runtime": {
-          "lib/net5.0-windows7.0/MahApps.Metro.IconPacks.Core.dll": {
-            "related": ".pdb;.xml"
-          },
-          "lib/net5.0-windows7.0/MahApps.Metro.IconPacks.Material.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WPF"
-        ]
-      },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "type": "package",
         "compile": {
@@ -979,34 +941,6 @@
           }
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/4.5.2": {
-        "type": "package",
-        "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "System.Runtime.Serialization.Primitives/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.3/System.Runtime.Serialization.Primitives.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.Serialization.Primitives.dll": {}
-        }
-      },
       "System.Security.AccessControl/5.0.0": {
         "type": "package",
         "dependencies": {
@@ -1351,77 +1285,6 @@
         "azureicon.png",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml"
-      ]
-    },
-    "Caliburn.Micro.Core/4.0.212": {
-      "sha512": "A/17oTTu/oYFSrahT9S6BxDnel/AIhOMSqEOG6MsG/MfchwuOrf144+2IIttu0k2UuSPFjIDKlPoSL5DTniwiw==",
-      "type": "package",
-      "path": "caliburn.micro.core/4.0.212",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "caliburn.micro.core.4.0.212.nupkg.sha512",
-        "caliburn.micro.core.nuspec",
-        "lib/netstandard2.0/Caliburn.Micro.Core.dll",
-        "lib/netstandard2.0/Caliburn.Micro.Core.pdb",
-        "lib/netstandard2.0/Caliburn.Micro.Core.xml"
-      ]
-    },
-    "MahApps.Metro.IconPacks.Material/4.11.0": {
-      "sha512": "ZCuuxWHvXxl39XBYXk4PCMUVtw1pevT5AE1qsj7VRy2tRtDYbzHWYW0FbnH+Vf0rP7BogZrRlKns3zFEkDEjFQ==",
-      "type": "package",
-      "path": "mahapps.metro.iconpacks.material/4.11.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net45/MahApps.Metro.IconPacks.Core.dll",
-        "lib/net45/MahApps.Metro.IconPacks.Core.pdb",
-        "lib/net45/MahApps.Metro.IconPacks.Core.xml",
-        "lib/net45/MahApps.Metro.IconPacks.Material.dll",
-        "lib/net45/MahApps.Metro.IconPacks.Material.pdb",
-        "lib/net45/MahApps.Metro.IconPacks.Material.xml",
-        "lib/net46/MahApps.Metro.IconPacks.Core.dll",
-        "lib/net46/MahApps.Metro.IconPacks.Core.pdb",
-        "lib/net46/MahApps.Metro.IconPacks.Core.xml",
-        "lib/net46/MahApps.Metro.IconPacks.Material.dll",
-        "lib/net46/MahApps.Metro.IconPacks.Material.pdb",
-        "lib/net46/MahApps.Metro.IconPacks.Material.xml",
-        "lib/net47/MahApps.Metro.IconPacks.Core.dll",
-        "lib/net47/MahApps.Metro.IconPacks.Core.pdb",
-        "lib/net47/MahApps.Metro.IconPacks.Core.xml",
-        "lib/net47/MahApps.Metro.IconPacks.Material.dll",
-        "lib/net47/MahApps.Metro.IconPacks.Material.pdb",
-        "lib/net47/MahApps.Metro.IconPacks.Material.xml",
-        "lib/net5.0-windows7.0/MahApps.Metro.IconPacks.Core.dll",
-        "lib/net5.0-windows7.0/MahApps.Metro.IconPacks.Core.pdb",
-        "lib/net5.0-windows7.0/MahApps.Metro.IconPacks.Core.xml",
-        "lib/net5.0-windows7.0/MahApps.Metro.IconPacks.Material.dll",
-        "lib/net5.0-windows7.0/MahApps.Metro.IconPacks.Material.pdb",
-        "lib/net5.0-windows7.0/MahApps.Metro.IconPacks.Material.xml",
-        "lib/netcoreapp3.0/MahApps.Metro.IconPacks.Core.dll",
-        "lib/netcoreapp3.0/MahApps.Metro.IconPacks.Core.pdb",
-        "lib/netcoreapp3.0/MahApps.Metro.IconPacks.Core.xml",
-        "lib/netcoreapp3.0/MahApps.Metro.IconPacks.Material.dll",
-        "lib/netcoreapp3.0/MahApps.Metro.IconPacks.Material.pdb",
-        "lib/netcoreapp3.0/MahApps.Metro.IconPacks.Material.xml",
-        "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Core.dll",
-        "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Core.pdb",
-        "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Core.xml",
-        "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Material.dll",
-        "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Material.pdb",
-        "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Material.xml",
-        "lib/uap10.0.16299/MahApps.Metro.IconPacks.Core.dll",
-        "lib/uap10.0.16299/MahApps.Metro.IconPacks.Core.pdb",
-        "lib/uap10.0.16299/MahApps.Metro.IconPacks.Core.pri",
-        "lib/uap10.0.16299/MahApps.Metro.IconPacks.Core.xml",
-        "lib/uap10.0.16299/MahApps.Metro.IconPacks.Material.dll",
-        "lib/uap10.0.16299/MahApps.Metro.IconPacks.Material.pdb",
-        "lib/uap10.0.16299/MahApps.Metro.IconPacks.Material.pri",
-        "lib/uap10.0.16299/MahApps.Metro.IconPacks.Material.xml",
-        "lib/uap10.0.16299/MahApps.Metro.IconPacks.Material/MahApps.Metro.IconPacks.Material.xr.xml",
-        "logo_small.png",
-        "mahapps.metro.iconpacks.material.4.11.0.nupkg.sha512",
-        "mahapps.metro.iconpacks.material.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
@@ -3148,104 +3011,6 @@
         "version.txt"
       ]
     },
-    "System.Runtime.CompilerServices.Unsafe/4.5.2": {
-      "sha512": "wprSFgext8cwqymChhrBLu62LMg/1u92bU+VOwyfBimSPVFXtsNqEWC92Pf9ofzJFlk4IHmJA75EDJn1b2goAQ==",
-      "type": "package",
-      "path": "system.runtime.compilerservices.unsafe/4.5.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
-        "system.runtime.compilerservices.unsafe.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
-      ]
-    },
-    "System.Runtime.Serialization.Primitives/4.3.0": {
-      "sha512": "Wz+0KOukJGAlXjtKr+5Xpuxf8+c8739RI1C+A2BoQZT+wMCCoMDDdO8/4IRHfaVINqL78GO8dW8G2lW/e45Mcw==",
-      "type": "package",
-      "path": "system.runtime.serialization.primitives/4.3.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net45/_._",
-        "lib/net46/System.Runtime.Serialization.Primitives.dll",
-        "lib/netcore50/System.Runtime.Serialization.Primitives.dll",
-        "lib/netstandard1.3/System.Runtime.Serialization.Primitives.dll",
-        "lib/portable-net45+win8+wp8+wpa81/_._",
-        "lib/win8/_._",
-        "lib/wp80/_._",
-        "lib/wpa81/_._",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "lib/xamarintvos10/_._",
-        "lib/xamarinwatchos10/_._",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net45/_._",
-        "ref/net46/System.Runtime.Serialization.Primitives.dll",
-        "ref/netcore50/System.Runtime.Serialization.Primitives.dll",
-        "ref/netcore50/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/de/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/es/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/fr/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/it/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/ja/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/ko/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/ru/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/zh-hans/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/zh-hant/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/System.Runtime.Serialization.Primitives.dll",
-        "ref/netstandard1.0/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/de/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/es/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/fr/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/it/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/ja/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/ko/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/ru/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/zh-hans/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/zh-hant/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/System.Runtime.Serialization.Primitives.dll",
-        "ref/netstandard1.3/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/de/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/es/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/fr/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/it/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/ja/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/ko/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/ru/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/zh-hans/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/zh-hant/System.Runtime.Serialization.Primitives.xml",
-        "ref/portable-net45+win8+wp8+wpa81/_._",
-        "ref/win8/_._",
-        "ref/wp80/_._",
-        "ref/wpa81/_._",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._",
-        "runtimes/aot/lib/netcore50/System.Runtime.Serialization.Primitives.dll",
-        "system.runtime.serialization.primitives.4.3.0.nupkg.sha512",
-        "system.runtime.serialization.primitives.nuspec"
-      ]
-    },
     "System.Security.AccessControl/5.0.0": {
       "sha512": "dagJ1mHZO3Ani8GH0PHpPEe/oYO+rVdbQjvjJkBRNQkX4t0r1iaeGn8+/ybkSLEan3/slM0t59SVdHzuHf2jmw==",
       "type": "package",
@@ -3914,8 +3679,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
-      "Caliburn.Micro.Core >= 4.0.212",
-      "MahApps.Metro.IconPacks.Material >= 4.11.0",
+      "Data >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.8",
       "Microsoft.Extensions.Configuration.Json >= 7.0.0",
@@ -3924,19 +3688,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\84768\\.nuget\\packages\\": {}
+    "C:\\Users\\THANH\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\UI\\AM.UI.csproj",
+      "projectUniqueName": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\UI\\AM.UI.csproj",
       "projectName": "AM.UI",
-      "projectPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\UI\\AM.UI.csproj",
-      "packagesPath": "C:\\Users\\84768\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\UI\\obj\\",
+      "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\UI\\AM.UI.csproj",
+      "packagesPath": "C:\\Users\\THANH\\.nuget\\packages\\",
+      "outputPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\UI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\84768\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\THANH\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3950,8 +3714,11 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
-            "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj": {
-              "projectPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj"
+            "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj": {
+              "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj"
+            },
+            "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj": {
+              "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj"
             }
           }
         }
@@ -3966,14 +3733,6 @@
       "net7.0-windows7.0": {
         "targetAlias": "net7.0-windows",
         "dependencies": {
-          "Caliburn.Micro.Core": {
-            "target": "Package",
-            "version": "[4.0.212, )"
-          },
-          "MahApps.Metro.IconPacks.Material": {
-            "target": "Package",
-            "version": "[4.11.0, )"
-          },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[7.0.8, )"
@@ -4010,7 +3769,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
   }
