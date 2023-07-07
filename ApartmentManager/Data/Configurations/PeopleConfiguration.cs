@@ -1,5 +1,5 @@
 ﻿using Data.Enum;
-using Entity;
+using Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
