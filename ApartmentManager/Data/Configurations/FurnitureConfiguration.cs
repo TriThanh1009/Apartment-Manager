@@ -15,9 +15,8 @@ namespace Data.Configurations
         {
             builder.ToTable("Furniture");
             builder.HasKey("ID");
-            builder.Property(x=>x.ID).IsRequired();
-            builder.Property(x=>x.Name).IsRequired().HasMaxLength(50);
-
+            builder.Property(x => x.ID).IsRequired();
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
         }
     }
 }

@@ -15,10 +15,9 @@ namespace Data.Configurations
         {
             builder.ToTable("PaymentExtension");
             builder.HasKey(x => x.ID);
-            builder.Property(x=>x.ID).IsRequired();
-            builder.HasOne(x=>x.Bill).WithMany(x=>x.PaymentExtensions).HasForeignKey(x=>x.IDBill);
+            builder.Property(x => x.ID).IsRequired();
+            builder.HasOne(x => x.Bill).WithMany(x => x.PaymentExtensions).HasForeignKey(x => x.IDBill);
             builder.Property(x => x.Days).HasDefaultValue(DateTime.Now);
-
         }
     }
 }

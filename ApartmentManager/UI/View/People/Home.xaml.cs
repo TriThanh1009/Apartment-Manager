@@ -39,13 +39,17 @@ namespace AM.UI.View.People
             pagingbutton.Children.Add(button);
             pagingLeft.IsEnabled = false;
             current = button;
-            for (int i = 2; i <= 8; i++)
+            for (int i = 2; i <= 10; i++)
             {
-                button = new Button();
-                button.Content = i.ToString();
-                button.Name = "button"+ i.ToString();
-                button.Style = (Style)FindResource("pagingButton");
-                button.Click += Button_Click;
+                if (i<5)
+                {
+                    button = new Button();
+                    button.Content = i.ToString();
+                    button.Name = "button"+ i.ToString();
+                    button.Style = (Style)FindResource("pagingButton");
+                    button.Click += Button_Click;
+                }
+                if (i<10) { }
                 pagingbutton.Children.Add(button);
             }
         }

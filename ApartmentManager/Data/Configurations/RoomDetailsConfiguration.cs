@@ -1,4 +1,5 @@
-﻿using Data.Relationships;
+﻿using Data.Entity;
+using Data.Relationships;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
