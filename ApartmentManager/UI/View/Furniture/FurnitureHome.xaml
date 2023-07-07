@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:UI.View.Furniture"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" x:Class="UI.View.Furniture.FurnitureHome"
              mc:Ignorable="d" 
+            
              d:DesignHeight="630" d:DesignWidth="730">
     <Grid>
         <Button Style="{StaticResource ActionButton}" Content="Add" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top"/>
