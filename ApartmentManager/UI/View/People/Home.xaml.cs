@@ -17,6 +17,7 @@ using System.Collections.ObjectModel;
 using UI.Utilities;
 using Unity.Policy;
 using AM.UI.Utilities;
+using AM.UI.ViewModelUI;
 
 namespace AM.UI.View.People
 {
@@ -36,6 +37,7 @@ namespace AM.UI.View.People
         public Home()
         {
             InitializeComponent();
+            DataContext = new SreachModel();
             Button button = new Button();
             button.Content = 1;
             button.Name = "button1";
