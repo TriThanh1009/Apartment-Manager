@@ -38,9 +38,9 @@ namespace AM.UI.Utilities
             return true;
         }
 
-        public bool EnableRight(Button a)
+        public bool EnableRight(Button a, string last)
         {
-            if (a.Name.Equals("button5"))
+            if (a.Name.Equals(last))
                 return false;
             return true;
         }

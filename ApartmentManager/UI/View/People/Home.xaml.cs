@@ -26,7 +26,12 @@ namespace AM.UI.View.People
     public partial class Home : UserControl
     {
         private Button current = null;
+        private Regex regex = new Regex();
         private ControlObject co = new ControlObject();
+        private int Pagecount = 16;
+        private int Pagesize = 8;
+        private int PageIndex = 1;
+        private string keyword;
 
         public Home()
         {
@@ -39,19 +44,28 @@ namespace AM.UI.View.People
             pagingbutton.Children.Add(button);
             pagingLeft.IsEnabled = false;
             current = button;
-            for (int i = 2; i <= 10; i++)
+            for (int i = 2; i <= Pagecount; i++)
             {
-                if (i<5)
-                {
-                    button = new Button();
-                    button.Content = i.ToString();
-                    button.Name = "button"+ i.ToString();
-                    button.Style = (Style)FindResource("pagingButton");
-                    button.Click += Button_Click;
-                }
-                if (i<10) { }
+                button = new Button();
+                button.Content = i.ToString();
+                button.Name = "button"+ i.ToString();
+                button.Style = (Style)FindResource("pagingButton");
+                button.Click += Button_Click;
                 pagingbutton.Children.Add(button);
             }
+        }
+
+        private Button FindButtonByIndex(int index)
+        {
+            if (index >= 0 && index < pagingbutton.Children.Count)
+            {
+                if (pagingbutton.Children[index] is Button button)
+                {
+                    return button;
+                }
+            }
+
+            return null;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -63,9 +77,41 @@ namespace AM.UI.View.People
 
             Button clickedButton = sender as Button;
             pagingLeft.IsEnabled = co.EnableLeft(clickedButton);
-            pagingRight.IsEnabled = co.EnableRight(clickedButton);
+            pagingRight.IsEnabled = co.EnableRight(clickedButton, "button"+Pagecount.ToString());
             clickedButton.Style =(Style)FindResource("pagingButtonchange");
             current = clickedButton;
+            // int so = pagingbutton.Children.IndexOf(clickedButton);
+            PageIndex = Convert.ToInt32(clickedButton.Content);
+            /*  if (PageIndex>2 && PageIndex< Pagecount-2)
+              {
+                  for (int i = 1; i<=2; i++)
+                  {
+                      if (FindButtonByIndex(so+i).Name != ("button"+(PageIndex+i).ToString()))
+                      {
+                          if (so<6)
+                              pagingbutton.Children.RemoveAt(so+i);
+                          Button button = new Button();
+                          button.Content = (Convert.ToInt32(clickedButton.Content)+i).ToString();
+                          button.Name = "button"+ (Convert.ToInt32(clickedButton.Content)+i).ToString();
+                          button.Style = (Style)FindResource("pagingButton");
+                          button.Click += Button_Click;
+
+                          pagingbutton.Children.Insert(so+i, button);
+                      }
+                      if (FindButtonByIndex(so-i).Name != ("button"+(PageIndex-i).ToString()))
+                      {
+                          if (so>2)
+                              pagingbutton.Children.RemoveAt(so-i);
+                          Button button = new Button();
+                          button.Content = (Convert.ToInt32(clickedButton.Content)-i).ToString();
+                          button.Name = "button"+ (Convert.ToInt32(clickedButton.Content)-i).ToString();
+                          button.Style = (Style)FindResource("pagingButton");
+                          button.Click += Button_Click;
+                          pagingbutton.Children.Insert(so-i, button);
+                      }
+                  }
+              }*/
+
             // code  trang
 
             //code trang
@@ -75,17 +121,17 @@ namespace AM.UI.View.People
         {
             Button clickedButton = sender as Button;
             string buttonValue = clickedButton.Tag as string;
-
+            string sosanh = "button"+Pagecount.ToString();
             if (buttonValue.Equals("right"))
             {
-                if (!current.Name.Equals("button5"))
+                if (!current.Name.Equals(sosanh))
                 {
                     string temp = "button"+ (Convert.ToInt32(current.Content)+1).ToString();
                     Button button = co.FindChildButton(this, temp);
                     if (button != null)
                     {
                         pagingLeft.IsEnabled = co.EnableLeft(button);
-                        pagingRight.IsEnabled = co.EnableRight(button);
+                        pagingRight.IsEnabled = co.EnableRight(button, "button"+Pagecount.ToString());
                         button.Style =(Style)FindResource("pagingButtonchange");
                         current.Style = (Style)FindResource("pagingButton");
                         current = button;
@@ -104,7 +150,7 @@ namespace AM.UI.View.People
                     if (button != null)
                     {
                         pagingLeft.IsEnabled = co.EnableLeft(button);
-                        pagingRight.IsEnabled = co.EnableRight(button);
+                        pagingRight.IsEnabled = co.EnableRight(button, "button"+Pagecount.ToString());
                         button.Style =(Style)FindResource("pagingButtonchange");
                         current.Style = (Style)FindResource("pagingButton");
                         current = button;
