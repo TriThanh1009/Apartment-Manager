@@ -8,9 +8,7 @@ namespace Data.Entity
 {
     public class Account
     {
-        public int ID { get; set; }
         public string Acc { get; set; }
         public string Pass { get; set; }
-        public int Permission { get; set; }
     }
 }

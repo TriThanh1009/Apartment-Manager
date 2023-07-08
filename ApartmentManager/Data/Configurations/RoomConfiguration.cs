@@ -18,7 +18,6 @@ namespace Data.Configurations
             builder.Property(x => x.ID).IsRequired();
             builder.Property(x => x.IDLeader).IsRequired();
             builder.Property(x => x.Quantity).IsRequired();
-            builder.Property(x => x.IDImage).IsRequired();
         }
     }
 }

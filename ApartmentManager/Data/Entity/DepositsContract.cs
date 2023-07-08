@@ -12,7 +12,7 @@ namespace Data.Entity
         public int IDRoom { get; set; }
         public DateTime DepositsDate { get; set; }
         public DateTime ReceiveDate { get; set; }
-        public int CheckOutDate { get; set; }
+        public DateTime CheckOutDate { get; set; }
         public int Money { get; set; }
         public Room? Room { get; set; }
     }
