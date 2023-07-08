@@ -15,6 +15,9 @@ namespace Data.Entity
         public int Quantity { get; set; }
 
         public List<RoomDetails> RoomDeltails { get; } = new ();
+
+        public ICollection<RoomImage> RoomImage { get; } = new List<RoomImage>();
+
         public ICollection<People> People { get; } = new List<People>();
 
         public ICollection<RentalContract> RentalContracts { get; } = new List<RentalContract>();

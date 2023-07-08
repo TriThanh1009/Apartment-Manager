@@ -145,7 +145,7 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ID",
+                name: "RentalContract",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)

@@ -13,7 +13,7 @@ namespace Data.Configurations
     {
         public void Configure(EntityTypeBuilder<RentalContract> builder)
         {
-            builder.ToTable("ID");
+            builder.ToTable("RentalContract");
             builder.HasKey("ID");
             builder.Property(x => x.ID).IsRequired();
             builder.HasOne(x=>x.Room).WithMany(x=>x.RentalContracts).HasForeignKey(x=>x.IDroom);
