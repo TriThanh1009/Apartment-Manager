@@ -59,7 +59,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("PayDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 8, 17, 53, 36, 298, DateTimeKind.Local).AddTicks(721));
+                        .HasDefaultValue(new DateTime(2023, 7, 8, 19, 12, 20, 964, DateTimeKind.Local).AddTicks(4203));
 
                     b.Property<int>("TotalMoney")
                         .HasColumnType("int");
@@ -85,7 +85,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("DepositsDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 8, 17, 53, 36, 298, DateTimeKind.Local).AddTicks(5134));
+                        .HasDefaultValue(new DateTime(2023, 7, 8, 19, 12, 20, 964, DateTimeKind.Local).AddTicks(8169));
 
                     b.Property<int>("IDRoom")
                         .HasColumnType("int");
@@ -97,7 +97,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("ReceiveDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 8, 17, 53, 36, 298, DateTimeKind.Local).AddTicks(5536));
+                        .HasDefaultValue(new DateTime(2023, 7, 8, 19, 12, 20, 964, DateTimeKind.Local).AddTicks(8713));
 
                     b.HasKey("ID");
 
@@ -135,7 +135,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("Days")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 8, 17, 53, 36, 299, DateTimeKind.Local).AddTicks(510));
+                        .HasDefaultValue(new DateTime(2023, 7, 8, 19, 12, 20, 965, DateTimeKind.Local).AddTicks(2915));
 
                     b.Property<int>("IDBill")
                         .HasColumnType("int");
@@ -163,7 +163,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("Birthday")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 8, 17, 53, 36, 299, DateTimeKind.Local).AddTicks(5305));
+                        .HasDefaultValue(new DateTime(2023, 7, 8, 19, 12, 20, 965, DateTimeKind.Local).AddTicks(6713));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -211,7 +211,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("CheckOutDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 8, 17, 53, 36, 300, DateTimeKind.Local).AddTicks(530));
+                        .HasDefaultValue(new DateTime(2023, 7, 8, 19, 12, 20, 966, DateTimeKind.Local).AddTicks(873));
 
                     b.Property<int>("ElectricMoney")
                         .HasMaxLength(50)
@@ -229,7 +229,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("ReceiveDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 8, 17, 53, 36, 300, DateTimeKind.Local).AddTicks(63));
+                        .HasDefaultValue(new DateTime(2023, 7, 8, 19, 12, 20, 966, DateTimeKind.Local).AddTicks(565));
 
                     b.Property<int>("RoomMoney")
                         .HasMaxLength(50)
@@ -249,7 +249,7 @@ namespace Data.Migrations
 
                     b.HasIndex("PeopleID");
 
-                    b.ToTable("ID", (string)null);
+                    b.ToTable("RentalContract", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entity.Room", b =>
@@ -291,9 +291,6 @@ namespace Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("RoomID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -301,7 +298,7 @@ namespace Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("RoomID");
+                    b.HasIndex("IDroom");
 
                     b.ToTable("RoomImage", (string)null);
                 });
@@ -383,8 +380,10 @@ namespace Data.Migrations
             modelBuilder.Entity("Data.Entity.RoomImage", b =>
                 {
                     b.HasOne("Data.Entity.Room", "Room")
-                        .WithMany()
-                        .HasForeignKey("RoomID");
+                        .WithMany("RoomImage")
+                        .HasForeignKey("IDroom")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Room");
                 });
@@ -437,6 +436,8 @@ namespace Data.Migrations
                     b.Navigation("RentalContracts");
 
                     b.Navigation("RoomDeltails");
+
+                    b.Navigation("RoomImage");
                 });
 #pragma warning restore 612, 618
         }
