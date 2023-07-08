@@ -14,7 +14,5 @@ namespace Data.Entity
         public string Name { get; set; }
         public string Url { get; set; }
         public Room? Room { get; set; }
-
-        public List<RoomDetails> RoomDeltails { get; } = new();
     }
 }

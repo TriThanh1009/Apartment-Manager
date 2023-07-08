@@ -1,6 +1,8 @@
 ﻿using Data.Entity;
 using Data.Relationships;
+
 using Data.Entity;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -16,9 +18,9 @@ namespace Data.Configurations
         public void Configure(EntityTypeBuilder<RoomDetails> builder)
         {
             builder.ToTable("RoomDetails");
+            builder.HasKey(x => new { x.IDFur, x.IDRoom });
             builder.HasOne(x => x.Furniture).WithMany(x => x.RoomDeltails).HasForeignKey(x => x.IDFur);
             builder.HasOne(x => x.Room).WithMany(x => x.RoomDeltails).HasForeignKey(x => x.IDRoom);
-            builder.HasOne(x => x.RoomImage).WithMany(x => x.RoomDeltails).HasForeignKey(x => x.IDImage);
         }
     }
 }

@@ -14,7 +14,8 @@ namespace Data.Configurations
         public void Configure(EntityTypeBuilder<Account> builder)
         {
             builder.ToTable("Account");
-            builder.Property(x=>x.Acc).HasMaxLength(50).IsRequired();
+            builder.HasNoKey();
+            builder.Property(x => x.Acc).HasMaxLength(50).IsRequired();
             builder.Property(x => x.Pass).HasMaxLength(50).IsRequired();
         }
     }
