@@ -12,8 +12,11 @@ namespace Services.Interface
     public interface IPaymentExtension
     {
         Task<int> CreatePaymentExtension(PaymentExtensionCreateViewModel model);
+
         Task<int> UpdatePaymentExtension(PaymentExtensionUpdateViewModel model);
+
         Task<int> DeletePaymentExtension(int PeID);
-        Task<PagedResult<PaymentExtensionVm>> GetAllPage(RequestPaging request)
+
+        Task<PagedResult<PaymentExtensionVm>> GetAllPage(RequestPaging request);
     }
 }

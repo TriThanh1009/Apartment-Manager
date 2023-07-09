@@ -13,8 +13,11 @@ namespace Services.Interface
     public interface IRoomImage
     {
         Task<int> CreateRoom(RoomImageCreateViewModel model);
+
         Task<int> UpdateRoom(RoomImageUpdateViewModel model);
+
         Task<int> DeleteRoom(int ImageId);
-        Task<PagedResult<RoomVm>> GetAllPage(RequestPaging request)
+
+        Task<PagedResult<RoomVm>> GetAllPage(RequestPaging request);
     }
 }

@@ -12,8 +12,11 @@ namespace Services.Interface
     public interface IBill
     {
         Task<int> CreateBill(BillCreateViewModel model);
+
         Task<int> UpdateBill(BillUpdateViewModel model);
+
         Task<int> DeleteBill(int BillID);
-        Task<PagedResult<BillVm>> GetAllPage(RequestPaging request)
+
+        Task<PagedResult<BillVm>> GetAllPage(RequestPaging request);
     }
 }

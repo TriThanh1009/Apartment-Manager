@@ -12,8 +12,11 @@ namespace Services.Interface
     public interface IFurniture
     {
         Task<int> CreateFurniture(FurnitureCreateViewModel model);
+
         Task<int> UpdateFurniture(FurnitureUpdateViewModel model);
+
         Task<int> DeleteFurniture(int FurnitureId);
-        Task<PagedResult<FurnitureVm>> GetAllPage(RequestPaging request)
+
+        Task<PagedResult<FurnitureVm>> GetAllPage(RequestPaging request);
     }
 }

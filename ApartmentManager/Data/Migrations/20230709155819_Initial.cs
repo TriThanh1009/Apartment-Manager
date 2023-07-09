@@ -57,8 +57,8 @@ namespace Data.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IDRoom = table.Column<int>(type: "int", nullable: false),
-                    DepositsDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 8, 19, 12, 20, 964, DateTimeKind.Local).AddTicks(8169)),
-                    ReceiveDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 8, 19, 12, 20, 964, DateTimeKind.Local).AddTicks(8713)),
+                    DepositsDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 9, 22, 58, 19, 699, DateTimeKind.Local).AddTicks(8345)),
+                    ReceiveDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 9, 22, 58, 19, 699, DateTimeKind.Local).AddTicks(9152)),
                     CheckOutDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Money = table.Column<int>(type: "int", maxLength: 50, nullable: false)
                 },
@@ -82,7 +82,7 @@ namespace Data.Migrations
                     IDroom = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Sex = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
-                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 8, 19, 12, 20, 965, DateTimeKind.Local).AddTicks(6713)),
+                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 9, 22, 58, 19, 701, DateTimeKind.Local).AddTicks(527)),
                     PhoneNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     IDCard = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -152,8 +152,8 @@ namespace Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IDroom = table.Column<int>(type: "int", nullable: false),
                     IDLeader = table.Column<int>(type: "int", nullable: false),
-                    ReceiveDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 8, 19, 12, 20, 966, DateTimeKind.Local).AddTicks(565)),
-                    CheckOutDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 8, 19, 12, 20, 966, DateTimeKind.Local).AddTicks(873)),
+                    ReceiveDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 9, 22, 58, 19, 701, DateTimeKind.Local).AddTicks(4671)),
+                    CheckOutDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 9, 22, 58, 19, 701, DateTimeKind.Local).AddTicks(5011)),
                     RoomMoney = table.Column<int>(type: "int", maxLength: 50, nullable: false),
                     ElectricMoney = table.Column<int>(type: "int", maxLength: 50, nullable: false),
                     WaterMoney = table.Column<int>(type: "int", maxLength: 50, nullable: false),
@@ -185,7 +185,7 @@ namespace Data.Migrations
                     IDRTC = table.Column<int>(type: "int", nullable: false),
                     ElectricQuantity = table.Column<int>(type: "int", maxLength: 50, nullable: false),
                     Active = table.Column<int>(type: "int", maxLength: 50, nullable: false),
-                    PayDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 8, 19, 12, 20, 964, DateTimeKind.Local).AddTicks(4203)),
+                    PayDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 9, 22, 58, 19, 698, DateTimeKind.Local).AddTicks(7552)),
                     TotalMoney = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -206,7 +206,7 @@ namespace Data.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IDBill = table.Column<int>(type: "int", nullable: false),
-                    Days = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 8, 19, 12, 20, 965, DateTimeKind.Local).AddTicks(2915))
+                    Days = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 9, 22, 58, 19, 700, DateTimeKind.Local).AddTicks(6439))
                 },
                 constraints: table =>
                 {

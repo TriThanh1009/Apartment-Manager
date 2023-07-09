@@ -12,10 +12,11 @@ namespace Services.Interface
     public interface IDepositsContract
     {
         Task<int> CreateDepositsContract(DepositsContractCreateViewModel model);
+
         Task<int> UpdateDepositsContract(DepositsContractUpdateViewModel model);
+
         Task<int> DeleteDepositsContract(int depositsId);
-        Task<PagedResult<DepositsContractVm>> GetAllPage(RequestPaging request)
 
-
+        Task<PagedResult<DepositsContractVm>> GetAllPage(RequestPaging request);
     }
 }

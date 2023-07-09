@@ -12,8 +12,11 @@ namespace Services.Interface
     public interface IRentalContract
     {
         Task<int> CreateRentalContract(RentalContractCreateViewModel model);
+
         Task<int> UpdateRentalContract(RentalContractUpdateViewModel model);
+
         Task<int> DeleteRentalContract(int RcID);
-        Task<PagedResult<RentalContractVm>> GetAllPage(RequestPaging request)
+
+        Task<PagedResult<RentalContractVm>> GetAllPage(RequestPaging request);
     }
 }
