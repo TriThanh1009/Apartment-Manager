@@ -8,5 +8,6 @@ namespace Services.Interface
 {
     public interface IRoomDetails
     {
+        Task<int> CreateDetails()
     }
 }
