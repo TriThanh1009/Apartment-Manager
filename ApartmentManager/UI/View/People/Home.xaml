@@ -4,9 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             xmlns:local="clr-namespace:AM.UI.View.People"
+
              mc:Ignorable="d"
              Style="{StaticResource Page_Style}">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -27,6 +31,26 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="3">
             <TextBlock Text="Customer" Style="{StaticResource TextTitle}"  FontSize="38" Margin=" 0 30 50 0" FontWeight="Bold" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="4">
+            <TextBlock Text="Search here :" HorizontalAlignment="Left" FontSize="15" Margin="10 2 0 0" Foreground="#b0b9c6" />
+            <Grid Width="300" HorizontalAlignment="Left" Margin="10 2 0 0">
+                <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
+                           Panel.ZIndex="1"  Text=""
+                           Visibility="{Binding ElementName=txtSearch,Converter={StaticResource BoolToVis}}" />
+
+                <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}" />
+                <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
+                                       Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right" />
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3">
+            <Button Style="{StaticResource AddButton}">
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0" />
+                    <TextBlock Text="Add New Customer" />
+                </StackPanel>
+            </Button>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="4" x:Name="main">
             <DataGrid Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
