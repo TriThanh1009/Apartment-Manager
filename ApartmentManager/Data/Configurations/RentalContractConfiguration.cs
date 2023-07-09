@@ -14,7 +14,7 @@ namespace Data.Configurations
         public void Configure(EntityTypeBuilder<RentalContract> builder)
         {
             builder.ToTable("RentalContract");
-            builder.HasKey("ID");
+            builder.HasKey(x=>x.ID);
             builder.Property(x => x.ID).IsRequired();
             builder.HasOne(x=>x.Room).WithMany(x=>x.RentalContracts).HasForeignKey(x=>x.IDroom);
             builder.Property(x=>x.IDLeader).IsRequired();

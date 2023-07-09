@@ -59,7 +59,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("PayDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 9, 22, 58, 19, 698, DateTimeKind.Local).AddTicks(7552));
+                        .HasDefaultValue(new DateTime(2023, 7, 9, 23, 2, 43, 686, DateTimeKind.Local).AddTicks(8129));
 
                     b.Property<int>("TotalMoney")
                         .HasColumnType("int");
@@ -85,7 +85,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("DepositsDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 9, 22, 58, 19, 699, DateTimeKind.Local).AddTicks(8345));
+                        .HasDefaultValue(new DateTime(2023, 7, 9, 23, 2, 43, 687, DateTimeKind.Local).AddTicks(1625));
 
                     b.Property<int>("IDRoom")
                         .HasColumnType("int");
@@ -97,7 +97,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("ReceiveDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 9, 22, 58, 19, 699, DateTimeKind.Local).AddTicks(9152));
+                        .HasDefaultValue(new DateTime(2023, 7, 9, 23, 2, 43, 687, DateTimeKind.Local).AddTicks(1974));
 
                     b.HasKey("ID");
 
@@ -135,7 +135,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("Days")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 9, 22, 58, 19, 700, DateTimeKind.Local).AddTicks(6439));
+                        .HasDefaultValue(new DateTime(2023, 7, 9, 23, 2, 43, 687, DateTimeKind.Local).AddTicks(5911));
 
                     b.Property<int>("IDBill")
                         .HasColumnType("int");
@@ -163,7 +163,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("Birthday")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 9, 22, 58, 19, 701, DateTimeKind.Local).AddTicks(527));
+                        .HasDefaultValue(new DateTime(2023, 7, 9, 23, 2, 43, 687, DateTimeKind.Local).AddTicks(9789));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -211,7 +211,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("CheckOutDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 9, 22, 58, 19, 701, DateTimeKind.Local).AddTicks(5011));
+                        .HasDefaultValue(new DateTime(2023, 7, 9, 23, 2, 43, 688, DateTimeKind.Local).AddTicks(3898));
 
                     b.Property<int>("ElectricMoney")
                         .HasMaxLength(50)
@@ -229,7 +229,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("ReceiveDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 9, 22, 58, 19, 701, DateTimeKind.Local).AddTicks(4671));
+                        .HasDefaultValue(new DateTime(2023, 7, 9, 23, 2, 43, 688, DateTimeKind.Local).AddTicks(3588));
 
                     b.Property<int>("RoomMoney")
                         .HasMaxLength(50)

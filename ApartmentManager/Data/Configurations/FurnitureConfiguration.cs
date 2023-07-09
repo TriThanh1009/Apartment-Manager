@@ -14,7 +14,7 @@ namespace Data.Configurations
         public void Configure(EntityTypeBuilder<Furniture> builder)
         {
             builder.ToTable("Furniture");
-            builder.HasKey("ID");
+            builder.HasKey(x=>x.ID);
             builder.Property(x => x.ID).IsRequired();
             builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
         }
