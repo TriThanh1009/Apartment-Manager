@@ -3,30 +3,62 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:UI.View.Rooms"
+             xmlns:local="clr-namespace:UI.View.Rooms" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="630" d:DesignWidth="730">
 
-    <Grid Margin="0,0,29,169">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="410*"/>
-            <RowDefinition Height="51*"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+            <Button Style="{StaticResource DetailsButton}" Content="Add" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top"/>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="4">
+            <Button Style="{StaticResource DetailsButton}" Content="Room Details"  Margin="190,57,0,0" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" >
+            <Button Style="{StaticResource DetailsButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Contract"  Margin="30,30,0,0" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="4" >
+            <Button Style="{StaticResource DetailsButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Bill"  Margin="230,30,0,0" />
+        </StackPanel>
 
-        <Button Style="{StaticResource ActionButton}" Content="Add" HorizontalAlignment="Left" Margin="484,61,0,0" VerticalAlignment="Top"/>
-        <Button Style="{StaticResource ActionButton}" Content="Update" HorizontalAlignment="Left" Margin="484,115,0,0" VerticalAlignment="Top"/>
-        <Button Style="{StaticResource ActionButton}" Content="Delete" HorizontalAlignment="Left" Margin="484,168,0,0" VerticalAlignment="Top"/>
-        <Button Style="{StaticResource DetailsButton}" Content="Room Details" HorizontalAlignment="Left" Margin="409,309,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.489,0.409"/>
-        <Button Style="{StaticResource DetailsButton}" Content="Contract" HorizontalAlignment="Left" Margin="27,309,0,0" VerticalAlignment="Top"/>
-        <Button Style="{StaticResource DetailsButton}" Content="Bill" HorizontalAlignment="Left" Margin="220,309,0,0" VerticalAlignment="Top"/>
-
-        <DataGrid x:Name="roomDataGrid" Margin="10,31,331,180">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="100"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"  Width="*"/>
-                <DataGridTextColumn Header="Leader" Binding="{Binding NameLeader}" Width="*"/>
-                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="4" x:Name="main">
+            <DataGrid Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*" />
+                    <DataGridTextColumn Header="Name" IsReadOnly="True" CanUserResize="False" Width="*" />
+                    <DataGridTemplateColumn Header="Operation" IsReadOnly="True" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource EditButton}">
+                                        <iconPacks:PackIconMaterial Kind="PencilOutline" Style="{StaticResource ButtonIcon}" />
+                                    </Button>
+                                    <Button Style="{StaticResource EditButton}">
+                                        <iconPacks:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource ButtonIcon}" />
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
     </Grid>
 </UserControl>
