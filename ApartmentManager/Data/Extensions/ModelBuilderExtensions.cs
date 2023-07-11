@@ -17,7 +17,7 @@ namespace Data.Extensions
             modelbuilder.Entity<Account>().HasData(
                 new Account() { Acc = "admin", Pass = "admin" });
             modelbuilder.Entity<Bill>().HasData(
-                new Bill() { ID = 2, IDRTC = 1, ElectricQuantity = 150, Active = Active.Yes, PayDate = DateTime.Now, TotalMoney = 1000000 });
+                new Bill() { ID = 1, IDRTC = 1, ElectricQuantity = 150, Active = Active.Yes, PayDate = DateTime.Now, TotalMoney = 1000000 });
             modelbuilder.Entity<DepositsContract>().HasData(
                 new DepositsContract { ID = 1, IDRoom = 1, DepositsDate = DateTime.Now, ReceiveDate = DateTime.Now, CheckOutDate = DateTime.Now, Money = 10000 });
             modelbuilder.Entity<Furniture>().HasData(
@@ -72,13 +72,13 @@ namespace Data.Extensions
             modelbuilder.Entity<RoomImage>().HasData(
                 new RoomImage { ID=1, IDroom=1, Name="A1 Image", Url="www.goole.com" });
             modelbuilder.Entity<RoomDetails>().HasData(
-                new RoomDetails { IDFur = 1, IDRoom = 1},
-                new RoomDetails { IDFur = 2, IDRoom = 2 },
-                new RoomDetails { IDFur = 3, IDRoom = 3 },
-                new RoomDetails { IDFur = 2, IDRoom = 4 },
-                new RoomDetails { IDFur = 3, IDRoom = 5 },
+                new RoomDetails { IDFur = 1, IDRoom = 1 },
+                new RoomDetails { IDFur = 1, IDRoom = 2 },
+                new RoomDetails { IDFur = 1, IDRoom = 3 },
+                new RoomDetails { IDFur = 1, IDRoom = 4 },
+                new RoomDetails { IDFur = 1, IDRoom = 5 },
                 new RoomDetails { IDFur = 1, IDRoom = 6 },
-                new RoomDetails { IDFur = 3, IDRoom = 7 }
+                new RoomDetails { IDFur = 1, IDRoom = 7 }
                 );
         }
     }

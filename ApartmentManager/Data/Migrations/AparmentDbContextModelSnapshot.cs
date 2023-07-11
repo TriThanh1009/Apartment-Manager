@@ -25,7 +25,6 @@ namespace Data.Migrations
             modelBuilder.Entity("Data.Entity.Account", b =>
                 {
                     b.Property<string>("Acc")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -34,7 +33,16 @@ namespace Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.HasKey("Acc");
+
                     b.ToTable("Account", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Acc = "admin",
+                            Pass = "admin"
+                        });
                 });
 
             modelBuilder.Entity("Data.Entity.Bill", b =>
@@ -59,7 +67,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("PayDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 9, 23, 2, 43, 686, DateTimeKind.Local).AddTicks(8129));
+                        .HasDefaultValue(new DateTime(2023, 7, 11, 12, 13, 45, 89, DateTimeKind.Local).AddTicks(4586));
 
                     b.Property<int>("TotalMoney")
                         .HasColumnType("int");
@@ -69,6 +77,17 @@ namespace Data.Migrations
                     b.HasIndex("IDRTC");
 
                     b.ToTable("Bill", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Active = 0,
+                            ElectricQuantity = 150,
+                            IDRTC = 1,
+                            PayDate = new DateTime(2023, 7, 11, 12, 13, 45, 92, DateTimeKind.Local).AddTicks(9500),
+                            TotalMoney = 1000000
+                        });
                 });
 
             modelBuilder.Entity("Data.Entity.DepositsContract", b =>
@@ -85,7 +104,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("DepositsDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 9, 23, 2, 43, 687, DateTimeKind.Local).AddTicks(1625));
+                        .HasDefaultValue(new DateTime(2023, 7, 11, 12, 13, 45, 89, DateTimeKind.Local).AddTicks(8875));
 
                     b.Property<int>("IDRoom")
                         .HasColumnType("int");
@@ -97,13 +116,24 @@ namespace Data.Migrations
                     b.Property<DateTime>("ReceiveDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 9, 23, 2, 43, 687, DateTimeKind.Local).AddTicks(1974));
+                        .HasDefaultValue(new DateTime(2023, 7, 11, 12, 13, 45, 89, DateTimeKind.Local).AddTicks(9236));
 
                     b.HasKey("ID");
 
                     b.HasIndex("IDRoom");
 
                     b.ToTable("DepositsContract", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CheckOutDate = new DateTime(2023, 7, 11, 12, 13, 45, 92, DateTimeKind.Local).AddTicks(9531),
+                            DepositsDate = new DateTime(2023, 7, 11, 12, 13, 45, 92, DateTimeKind.Local).AddTicks(9529),
+                            IDRoom = 1,
+                            Money = 10000,
+                            ReceiveDate = new DateTime(2023, 7, 11, 12, 13, 45, 92, DateTimeKind.Local).AddTicks(9530)
+                        });
                 });
 
             modelBuilder.Entity("Data.Entity.Furniture", b =>
@@ -122,6 +152,13 @@ namespace Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Furniture", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Name = "Chair"
+                        });
                 });
 
             modelBuilder.Entity("Data.Entity.PaymentExtension", b =>
@@ -135,7 +172,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("Days")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 9, 23, 2, 43, 687, DateTimeKind.Local).AddTicks(5911));
+                        .HasDefaultValue(new DateTime(2023, 7, 11, 12, 13, 45, 90, DateTimeKind.Local).AddTicks(3939));
 
                     b.Property<int>("IDBill")
                         .HasColumnType("int");
@@ -145,6 +182,14 @@ namespace Data.Migrations
                     b.HasIndex("IDBill");
 
                     b.ToTable("PaymentExtension", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Days = new DateTime(2023, 7, 11, 12, 13, 45, 92, DateTimeKind.Local).AddTicks(9568),
+                            IDBill = 1
+                        });
                 });
 
             modelBuilder.Entity("Data.Entity.People", b =>
@@ -163,7 +208,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("Birthday")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 9, 23, 2, 43, 687, DateTimeKind.Local).AddTicks(9789));
+                        .HasDefaultValue(new DateTime(2023, 7, 11, 12, 13, 45, 90, DateTimeKind.Local).AddTicks(8428));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -198,6 +243,20 @@ namespace Data.Migrations
                     b.HasIndex("IDroom");
 
                     b.ToTable("People", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Address = "Vietnam",
+                            Birthday = new DateTime(2023, 7, 11, 12, 13, 45, 92, DateTimeKind.Local).AddTicks(9582),
+                            Email = "thanh@gmail.com",
+                            IDCard = "1234123",
+                            IDroom = 1,
+                            Name = "Jonhny Deep",
+                            PhoneNumber = "1234",
+                            Sex = 0
+                        });
                 });
 
             modelBuilder.Entity("Data.Entity.RentalContract", b =>
@@ -211,7 +270,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("CheckOutDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 9, 23, 2, 43, 688, DateTimeKind.Local).AddTicks(3898));
+                        .HasDefaultValue(new DateTime(2023, 7, 11, 12, 13, 45, 91, DateTimeKind.Local).AddTicks(3254));
 
                     b.Property<int>("ElectricMoney")
                         .HasMaxLength(50)
@@ -229,7 +288,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("ReceiveDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 9, 23, 2, 43, 688, DateTimeKind.Local).AddTicks(3588));
+                        .HasDefaultValue(new DateTime(2023, 7, 11, 12, 13, 45, 91, DateTimeKind.Local).AddTicks(2882));
 
                     b.Property<int>("RoomMoney")
                         .HasMaxLength(50)
@@ -250,6 +309,20 @@ namespace Data.Migrations
                     b.HasIndex("PeopleID");
 
                     b.ToTable("RentalContract", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CheckOutDate = new DateTime(2023, 7, 11, 12, 13, 45, 92, DateTimeKind.Local).AddTicks(9607),
+                            ElectricMoney = 100,
+                            IDLeader = 1,
+                            IDroom = 1,
+                            ReceiveDate = new DateTime(2023, 7, 11, 12, 13, 45, 92, DateTimeKind.Local).AddTicks(9606),
+                            RoomMoney = 100,
+                            ServiceMoney = 100,
+                            WaterMoney = 100
+                        });
                 });
 
             modelBuilder.Entity("Data.Entity.Room", b =>
@@ -273,6 +346,288 @@ namespace Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Room", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            IDLeader = 0,
+                            Name = "A201",
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            ID = 2,
+                            IDLeader = 0,
+                            Name = "A202",
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ID = 3,
+                            IDLeader = 0,
+                            Name = "A203",
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            ID = 4,
+                            IDLeader = 0,
+                            Name = "A204",
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            ID = 5,
+                            IDLeader = 0,
+                            Name = "A205",
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            ID = 6,
+                            IDLeader = 0,
+                            Name = "A206",
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            ID = 7,
+                            IDLeader = 0,
+                            Name = "A207",
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            ID = 8,
+                            IDLeader = 0,
+                            Name = "A208",
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ID = 9,
+                            IDLeader = 0,
+                            Name = "A209",
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ID = 10,
+                            IDLeader = 0,
+                            Name = "A210",
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            ID = 11,
+                            IDLeader = 0,
+                            Name = "A211",
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ID = 12,
+                            IDLeader = 0,
+                            Name = "A212",
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            ID = 13,
+                            IDLeader = 0,
+                            Name = "A213",
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            ID = 14,
+                            IDLeader = 0,
+                            Name = "A214",
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            ID = 15,
+                            IDLeader = 0,
+                            Name = "A215",
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            ID = 16,
+                            IDLeader = 0,
+                            Name = "A216",
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            ID = 17,
+                            IDLeader = 0,
+                            Name = "A217",
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            ID = 18,
+                            IDLeader = 0,
+                            Name = "A218",
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            ID = 19,
+                            IDLeader = 0,
+                            Name = "A219",
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ID = 20,
+                            IDLeader = 0,
+                            Name = "A220",
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            ID = 21,
+                            IDLeader = 0,
+                            Name = "A221",
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            ID = 22,
+                            IDLeader = 0,
+                            Name = "A222",
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ID = 23,
+                            IDLeader = 0,
+                            Name = "A223",
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ID = 24,
+                            IDLeader = 0,
+                            Name = "A224",
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            ID = 25,
+                            IDLeader = 0,
+                            Name = "A225",
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            ID = 26,
+                            IDLeader = 0,
+                            Name = "A226",
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            ID = 27,
+                            IDLeader = 0,
+                            Name = "A227",
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ID = 28,
+                            IDLeader = 0,
+                            Name = "A228",
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            ID = 29,
+                            IDLeader = 0,
+                            Name = "A229",
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            ID = 30,
+                            IDLeader = 0,
+                            Name = "A230",
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ID = 31,
+                            IDLeader = 0,
+                            Name = "A231",
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            ID = 32,
+                            IDLeader = 0,
+                            Name = "A232",
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ID = 33,
+                            IDLeader = 0,
+                            Name = "A233",
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            ID = 34,
+                            IDLeader = 0,
+                            Name = "A234",
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            ID = 35,
+                            IDLeader = 0,
+                            Name = "A235",
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            ID = 36,
+                            IDLeader = 0,
+                            Name = "A236",
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ID = 37,
+                            IDLeader = 0,
+                            Name = "A237",
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            ID = 38,
+                            IDLeader = 0,
+                            Name = "A238",
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            ID = 39,
+                            IDLeader = 0,
+                            Name = "A239",
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ID = 40,
+                            IDLeader = 0,
+                            Name = "A240",
+                            Quantity = 3
+                        });
                 });
 
             modelBuilder.Entity("Data.Entity.RoomImage", b =>
@@ -301,6 +656,15 @@ namespace Data.Migrations
                     b.HasIndex("IDroom");
 
                     b.ToTable("RoomImage", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            IDroom = 1,
+                            Name = "A1 Image",
+                            Url = "www.goole.com"
+                        });
                 });
 
             modelBuilder.Entity("Data.Relationships.RoomDetails", b =>
@@ -316,6 +680,43 @@ namespace Data.Migrations
                     b.HasIndex("IDRoom");
 
                     b.ToTable("RoomDetails", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            IDFur = 1,
+                            IDRoom = 1
+                        },
+                        new
+                        {
+                            IDFur = 1,
+                            IDRoom = 2
+                        },
+                        new
+                        {
+                            IDFur = 1,
+                            IDRoom = 3
+                        },
+                        new
+                        {
+                            IDFur = 1,
+                            IDRoom = 4
+                        },
+                        new
+                        {
+                            IDFur = 1,
+                            IDRoom = 5
+                        },
+                        new
+                        {
+                            IDFur = 1,
+                            IDRoom = 6
+                        },
+                        new
+                        {
+                            IDFur = 1,
+                            IDRoom = 7
+                        });
                 });
 
             modelBuilder.Entity("Data.Entity.Bill", b =>

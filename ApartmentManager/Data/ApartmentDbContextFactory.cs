@@ -12,15 +12,10 @@ namespace Data
 {
     public class ApartmentDbContextFactory : IDesignTimeDbContextFactory<AparmentDbContext>
     {
-        public AparmentDbContext CreateDbContext(string[] args)
+        public AparmentDbContext CreateDbContext(string[] args = null)
         {
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsetting.json")
-                .Build();
-            var connectionString = configuration.GetConnectionString("ApartmentDB");
             var optionsBuilder = new DbContextOptionsBuilder<AparmentDbContext>();
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-IQ3UV32\\SQLEXPRESS;Database=Apartment;User ID=sa;Password=123456;TrustServerCertificate=True");
             return new AparmentDbContext(optionsBuilder.Options);
         }
     }

@@ -18,6 +18,12 @@ using UI.Utilities;
 using Unity.Policy;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI;
+using Services.Interface;
+using Services.Implement;
+using ViewModel.Dtos;
+using ViewModel.People;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using AM.UI.Model;
 
 namespace AM.UI.View.People
 {
@@ -26,18 +32,28 @@ namespace AM.UI.View.People
     /// </summary>
     public partial class Home : UserControl
     {
+        private PeopleModel _people;
         private Button current = null;
         private Regex regex = new Regex();
         private ControlObject co = new ControlObject();
         private int Pagecount = 16;
         private int Pagesize = 8;
         private int PageIndex = 1;
-        private string keyword;
+        private string keyword = string.Empty;
+        private PagedResult<CustomerVM> pagedResultCS = new PagedResult<CustomerVM>();
 
         public Home()
         {
+            _people = new PeopleModel();
             InitializeComponent();
-            DataContext = new SreachModel();
+            Loaddata();
+        }
+
+        private async void Loaddata()
+        {
+            pagedResultCS = await _people.GetAllPage(GetAllPage());
+            homedata.ItemsSource = pagedResultCS.Items;
+
             Button button = new Button();
             button.Content = 1;
             button.Name = "button1";
@@ -46,15 +62,26 @@ namespace AM.UI.View.People
             pagingbutton.Children.Add(button);
             pagingLeft.IsEnabled = false;
             current = button;
-            for (int i = 2; i <= Pagecount; i++)
-            {
-                button = new Button();
-                button.Content = i.ToString();
-                button.Name = "button"+ i.ToString();
-                button.Style = (Style)FindResource("pagingButton");
-                button.Click += Button_Click;
-                pagingbutton.Children.Add(button);
-            }
+            if (pagedResultCS.PageCount>1)
+                for (int i = 2; i <= pagedResultCS.PageCount; i++)
+                {
+                    button = new Button();
+                    button.Content = i.ToString();
+                    button.Name = "button"+ i.ToString();
+                    button.Style = (Style)FindResource("pagingButton");
+                    button.Click += Button_Click;
+                    pagingbutton.Children.Add(button);
+                }
+            else pagingRight.IsEnabled = false;
+        }
+
+        private RequestPaging GetAllPage()
+        {
+            RequestPaging a = new RequestPaging();
+            a.PageIndex =PageIndex;
+            a.PageSize = Pagesize;
+            a.Keyword = keyword;
+            return a;
         }
 
         private Button FindButtonByIndex(int index)

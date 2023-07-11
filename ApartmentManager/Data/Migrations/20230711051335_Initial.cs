@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Data.Migrations
 {
     /// <inheritdoc />
@@ -20,6 +22,7 @@ namespace Data.Migrations
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_Account", x => x.Acc);
                 });
 
             migrationBuilder.CreateTable(
@@ -57,8 +60,8 @@ namespace Data.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IDRoom = table.Column<int>(type: "int", nullable: false),
-                    DepositsDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 9, 23, 2, 43, 687, DateTimeKind.Local).AddTicks(1625)),
-                    ReceiveDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 9, 23, 2, 43, 687, DateTimeKind.Local).AddTicks(1974)),
+                    DepositsDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 11, 12, 13, 35, 440, DateTimeKind.Local).AddTicks(5716)),
+                    ReceiveDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 11, 12, 13, 35, 440, DateTimeKind.Local).AddTicks(6055)),
                     CheckOutDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Money = table.Column<int>(type: "int", maxLength: 50, nullable: false)
                 },
@@ -82,7 +85,7 @@ namespace Data.Migrations
                     IDroom = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Sex = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
-                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 9, 23, 2, 43, 687, DateTimeKind.Local).AddTicks(9789)),
+                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 11, 12, 13, 35, 441, DateTimeKind.Local).AddTicks(5419)),
                     PhoneNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     IDCard = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -152,8 +155,8 @@ namespace Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IDroom = table.Column<int>(type: "int", nullable: false),
                     IDLeader = table.Column<int>(type: "int", nullable: false),
-                    ReceiveDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 9, 23, 2, 43, 688, DateTimeKind.Local).AddTicks(3588)),
-                    CheckOutDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 9, 23, 2, 43, 688, DateTimeKind.Local).AddTicks(3898)),
+                    ReceiveDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 11, 12, 13, 35, 441, DateTimeKind.Local).AddTicks(9524)),
+                    CheckOutDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 11, 12, 13, 35, 441, DateTimeKind.Local).AddTicks(9874)),
                     RoomMoney = table.Column<int>(type: "int", maxLength: 50, nullable: false),
                     ElectricMoney = table.Column<int>(type: "int", maxLength: 50, nullable: false),
                     WaterMoney = table.Column<int>(type: "int", maxLength: 50, nullable: false),
@@ -185,7 +188,7 @@ namespace Data.Migrations
                     IDRTC = table.Column<int>(type: "int", nullable: false),
                     ElectricQuantity = table.Column<int>(type: "int", maxLength: 50, nullable: false),
                     Active = table.Column<int>(type: "int", maxLength: 50, nullable: false),
-                    PayDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 9, 23, 2, 43, 686, DateTimeKind.Local).AddTicks(8129)),
+                    PayDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 11, 12, 13, 35, 440, DateTimeKind.Local).AddTicks(2066)),
                     TotalMoney = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -206,7 +209,7 @@ namespace Data.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IDBill = table.Column<int>(type: "int", nullable: false),
-                    Days = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 9, 23, 2, 43, 687, DateTimeKind.Local).AddTicks(5911))
+                    Days = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 11, 12, 13, 35, 441, DateTimeKind.Local).AddTicks(603))
                 },
                 constraints: table =>
                 {
@@ -218,6 +221,107 @@ namespace Data.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Account",
+                columns: new[] { "Acc", "Pass" },
+                values: new object[] { "admin", "admin" });
+
+            migrationBuilder.InsertData(
+                table: "Furniture",
+                columns: new[] { "ID", "Name" },
+                values: new object[] { 1, "Chair" });
+
+            migrationBuilder.InsertData(
+                table: "Room",
+                columns: new[] { "ID", "IDLeader", "Name", "Quantity" },
+                values: new object[,]
+                {
+                    { 1, 0, "A201", 4 },
+                    { 2, 0, "A202", 5 },
+                    { 3, 0, "A203", 3 },
+                    { 4, 0, "A204", 3 },
+                    { 5, 0, "A205", 4 },
+                    { 6, 0, "A206", 4 },
+                    { 7, 0, "A207", 3 },
+                    { 8, 0, "A208", 5 },
+                    { 9, 0, "A209", 5 },
+                    { 10, 0, "A210", 3 },
+                    { 11, 0, "A211", 5 },
+                    { 12, 0, "A212", 3 },
+                    { 13, 0, "A213", 4 },
+                    { 14, 0, "A214", 4 },
+                    { 15, 0, "A215", 3 },
+                    { 16, 0, "A216", 4 },
+                    { 17, 0, "A217", 3 },
+                    { 18, 0, "A218", 3 },
+                    { 19, 0, "A219", 5 },
+                    { 20, 0, "A220", 4 },
+                    { 21, 0, "A221", 4 },
+                    { 22, 0, "A222", 5 },
+                    { 23, 0, "A223", 5 },
+                    { 24, 0, "A224", 3 },
+                    { 25, 0, "A225", 4 },
+                    { 26, 0, "A226", 3 },
+                    { 27, 0, "A227", 5 },
+                    { 28, 0, "A228", 3 },
+                    { 29, 0, "A229", 4 },
+                    { 30, 0, "A230", 5 },
+                    { 31, 0, "A231", 4 },
+                    { 32, 0, "A232", 5 },
+                    { 33, 0, "A233", 4 },
+                    { 34, 0, "A234", 3 },
+                    { 35, 0, "A235", 4 },
+                    { 36, 0, "A236", 5 },
+                    { 37, 0, "A237", 4 },
+                    { 38, 0, "A238", 3 },
+                    { 39, 0, "A239", 5 },
+                    { 40, 0, "A240", 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "DepositsContract",
+                columns: new[] { "ID", "CheckOutDate", "DepositsDate", "IDRoom", "Money", "ReceiveDate" },
+                values: new object[] { 1, new DateTime(2023, 7, 11, 12, 13, 35, 443, DateTimeKind.Local).AddTicks(5499), new DateTime(2023, 7, 11, 12, 13, 35, 443, DateTimeKind.Local).AddTicks(5498), 1, 10000, new DateTime(2023, 7, 11, 12, 13, 35, 443, DateTimeKind.Local).AddTicks(5499) });
+
+            migrationBuilder.InsertData(
+                table: "People",
+                columns: new[] { "ID", "Address", "Birthday", "Email", "IDCard", "IDroom", "Name", "PhoneNumber" },
+                values: new object[] { 1, "Vietnam", new DateTime(2023, 7, 11, 12, 13, 35, 443, DateTimeKind.Local).AddTicks(5548), "thanh@gmail.com", "1234123", 1, "Jonhny Deep", "1234" });
+
+            migrationBuilder.InsertData(
+                table: "RentalContract",
+                columns: new[] { "ID", "CheckOutDate", "ElectricMoney", "IDLeader", "IDroom", "PeopleID", "ReceiveDate", "RoomMoney", "ServiceMoney", "WaterMoney" },
+                values: new object[] { 1, new DateTime(2023, 7, 11, 12, 13, 35, 443, DateTimeKind.Local).AddTicks(5570), 100, 1, 1, null, new DateTime(2023, 7, 11, 12, 13, 35, 443, DateTimeKind.Local).AddTicks(5570), 100, 100, 100 });
+
+            migrationBuilder.InsertData(
+                table: "RoomDetails",
+                columns: new[] { "IDFur", "IDRoom" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 1, 2 },
+                    { 1, 3 },
+                    { 1, 4 },
+                    { 1, 5 },
+                    { 1, 6 },
+                    { 1, 7 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "RoomImage",
+                columns: new[] { "ID", "IDroom", "Name", "Url" },
+                values: new object[] { 1, 1, "A1 Image", "www.goole.com" });
+
+            migrationBuilder.InsertData(
+                table: "Bill",
+                columns: new[] { "ID", "Active", "ElectricQuantity", "IDRTC", "PayDate", "TotalMoney" },
+                values: new object[] { 1, 0, 150, 1, new DateTime(2023, 7, 11, 12, 13, 35, 443, DateTimeKind.Local).AddTicks(5464), 1000000 });
+
+            migrationBuilder.InsertData(
+                table: "PaymentExtension",
+                columns: new[] { "ID", "Days", "IDBill" },
+                values: new object[] { 1, new DateTime(2023, 7, 11, 12, 13, 35, 443, DateTimeKind.Local).AddTicks(5532), 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bill_IDRTC",

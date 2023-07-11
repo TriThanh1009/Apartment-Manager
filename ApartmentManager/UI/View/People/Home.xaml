@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-
+            xmlns:vm ="clr-namespace:AM.UI.ViewModelUI"
              mc:Ignorable="d"
              Style="{StaticResource Page_Style}">
 
@@ -55,7 +55,15 @@
         <StackPanel Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="4" x:Name="main">
             <DataGrid Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="auto" />
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="auto"  Binding="{Binding ID}" />
+                    <DataGridTextColumn Header="IDroom" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding IDroom}" />
+                    <DataGridTextColumn Header="Name" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Sex" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Sex}" />
+                    <DataGridTextColumn Header="Birthday" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Birthday}" />
+                    <DataGridTextColumn Header="PhoneNumber" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding PhoneNumber}" />
+                    <DataGridTextColumn Header="Email" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Email}" />
+                    <DataGridTextColumn Header="IDCard" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding IDCard}" />
+                    <DataGridTextColumn Header="Address" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Address}" />
                 </DataGrid.Columns>
             </DataGrid>
             <Border  Height="40" HorizontalAlignment="Right" BorderBrush="#dee4ec" BorderThickness="1" CornerRadius="5"

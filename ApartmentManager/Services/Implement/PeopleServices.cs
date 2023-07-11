@@ -13,44 +13,46 @@ namespace Services.Implement
 {
     public class PeopleServices : IPeople
     {
-        private readonly AparmentDbContext _context;
+        private readonly ApartmentDbContextFactory _contextfactory = new ApartmentDbContextFactory();
 
-        public PeopleServices(AparmentDbContext context)
+        public PeopleServices()
         {
-            _context=context;
         }
 
         public async Task<PagedResult<CustomerVM>> GetAllPage(RequestPaging request)
         {
-            var query = from p in _context.People
-                        select p;
-            if (!string.IsNullOrEmpty(request.Keyword))
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
-                query = query.Where(x => x.ID.Equals(request.Keyword) || x.Name.Contains(request.Keyword));
-            }
-            int totalRow = await query.CountAsync();
-            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
-                .Take(request.PageSize)
-                .Select(x => new CustomerVM()
+                var query = from p in _context.People
+                            select p;
+                if (!string.IsNullOrEmpty(request.Keyword))
                 {
-                    ID = x.ID,
-                    Name = x.Name,
-                    Sex = x.Sex,
-                    Address = x.Address,
-                    Birthday = x.Birthday,
-                    Email = x.Email,
-                    IDroom = x.IDroom,
-                    IDCard =x.IDCard,
-                    PhoneNumber = x.PhoneNumber,
-                }).ToListAsync();
-            var pagedView = new PagedResult<CustomerVM>()
-            {
-                TotalRecords = totalRow,
-                PageIndex = request.PageIndex,
-                PageSize = request.PageSize,
-                Items = data
-            };
-            return pagedView;
+                    query = query.Where(x => x.ID.Equals(request.Keyword) || x.Name.Contains(request.Keyword));
+                }
+                int totalRow = await query.CountAsync();
+                var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+                    .Take(request.PageSize)
+                    .Select(x => new CustomerVM()
+                    {
+                        ID = x.ID,
+                        Name = x.Name,
+                        Sex = x.Sex,
+                        Address = x.Address,
+                        Birthday = x.Birthday,
+                        Email = x.Email,
+                        IDroom = x.IDroom,
+                        IDCard =x.IDCard,
+                        PhoneNumber = x.PhoneNumber,
+                    }).ToListAsync();
+                var pagedView = new PagedResult<CustomerVM>()
+                {
+                    TotalRecords = totalRow,
+                    PageIndex = request.PageIndex,
+                    PageSize = request.PageSize,
+                    Items = data
+                };
+                return pagedView;
+            }
         }
     }
 }
