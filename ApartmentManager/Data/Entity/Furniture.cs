@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace Data.Entity
 {
-    public class Furniture
+    public class Furniture : DomainObject
     {
-        public int ID { get; set; }
         public string Name { get; set; }
-
 
         public List<RoomDetails> RoomDeltails { get; } = new();
     }

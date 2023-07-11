@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Data.Entity
 {
-    public class DepositsContract
+    public class DepositsContract : DomainObject
     {
-        public int ID { get; set; }
         public int IDRoom { get; set; }
         public DateTime DepositsDate { get; set; }
         public DateTime ReceiveDate { get; set; }

@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Data.Entity
 {
-    public class RoomImage
+    public class RoomImage : DomainObject
     {
-        public int ID { get; set; }
         public int IDroom { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
