@@ -32,7 +32,7 @@ namespace AM.UI.View.People
     /// </summary>
     public partial class Home : UserControl
     {
-        private PeopleModel _people;
+        private IPeople _people = new PeopleServices();
         private Button current = null;
         private Regex regex = new Regex();
         private ControlObject co = new ControlObject();
@@ -44,7 +44,6 @@ namespace AM.UI.View.People
 
         public Home()
         {
-            _people = new PeopleModel();
             InitializeComponent();
             Loaddata();
         }
