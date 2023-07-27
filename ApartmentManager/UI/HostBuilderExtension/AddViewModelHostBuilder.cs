@@ -24,7 +24,9 @@ namespace AM.UI.HostBuilderExtension
                 services.AddTransient<CustomerVMUI>();
                 services.AddSingleton<Func<CustomerVMUI>>((s) => () => s.GetRequiredService<CustomerVMUI>());
                 services.AddSingleton<NavigationService<CustomerVMUI>>();
-
+                services.AddTransient<RoomHomeVMUI>();
+                services.AddSingleton<Func<RoomHomeVMUI>>((s) => () => s.GetRequiredService<RoomHomeVMUI>());
+                services.AddSingleton<NavigationService<RoomHomeVMUI>>();
                 services.AddSingleton<NavigationVM>();
             });
 
@@ -35,7 +37,8 @@ namespace AM.UI.HostBuilderExtension
         {
             return NavigationVM.LoadViewModel(services.GetRequiredService<Navigation>(),
                 services.GetRequiredService<NavigationService<HomeVM>>(),
-                services.GetRequiredService<NavigationService<CustomerVMUI>>());
+                services.GetRequiredService<NavigationService<CustomerVMUI>>(),
+                services.GetRequiredService<NavigationService<RoomHomeVMUI>>());
         }
     }
 }

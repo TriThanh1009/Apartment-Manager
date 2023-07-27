@@ -25,6 +25,12 @@ namespace AM.UI.View.Rooms
             InitializeComponent();
         }
 
+
+        public void LoadData()
+        {
+
+        }
+
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
         }

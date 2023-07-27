@@ -18,18 +18,19 @@ namespace AM.UI.ViewModelUI
 
         public ViewModelBase CurrentViewModel => _navigation.CurrentViewModel;
         public ICommand HomeCommand { get; }
+        public ICommand RoomHomeCommand { get; }
 
-        public NavigationVM(Navigation navigation, NavigationService<HomeVM> HomeVMNagvigation, NavigationService<CustomerVMUI> CustomerVMNagvigation)
+        public NavigationVM(Navigation navigation, NavigationService<HomeVM> HomeVMNagvigation, NavigationService<CustomerVMUI> CustomerVMNagvigation, NavigationService<RoomHomeVMUI> RoomHomeVMNavigation)
         {
             _navigation = navigation;
             HomeCommand = new NavigateCommand<HomeVM>(HomeVMNagvigation);
-
+            RoomHomeCommand = new NavigateCommand<RoomHomeVMUI>(RoomHomeVMNavigation);
             _navigation.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
 
-        public static NavigationVM LoadViewModel(Navigation navigation, NavigationService<HomeVM> HomeVMNagvigation, NavigationService<CustomerVMUI> CustomerVMNagvigation)
+        public static NavigationVM LoadViewModel(Navigation navigation, NavigationService<HomeVM> HomeVMNagvigation, NavigationService<CustomerVMUI> CustomerVMNagvigation,NavigationService<RoomHomeVMUI> RoomHomeVMNavigation)
         {
-            NavigationVM navigationVM = new NavigationVM(navigation, HomeVMNagvigation, CustomerVMNagvigation);
+            NavigationVM navigationVM = new NavigationVM(navigation, HomeVMNagvigation, CustomerVMNagvigation, RoomHomeVMNavigation);
             return navigationVM;
         }
 
