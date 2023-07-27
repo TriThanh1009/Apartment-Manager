@@ -13,10 +13,11 @@ namespace Services.Implement
 {
     public class PeopleServices : IPeople
     {
-        private readonly ApartmentDbContextFactory _contextfactory = new ApartmentDbContextFactory();
+        private readonly ApartmentDbContextFactory _contextfactory;
 
-        public PeopleServices()
+        public PeopleServices(ApartmentDbContextFactory contextfactory)
         {
+            _contextfactory=contextfactory;
         }
 
         public async Task<PagedResult<CustomerVM>> GetAllPage(RequestPaging request)

@@ -27,22 +27,10 @@ namespace AM.UI.View.Rooms
     public partial class RoomHome : UserControl
     {
         //string cacheKey = "MyData";
-        private readonly IRoom room = new RoomServices();
-        private PagedResult<RoomVm> paged = new PagedResult<RoomVm>();
         public RoomHome()
         {
             InitializeComponent();
-            LoadData();
         }
-
-        public async void LoadData()
-        {
-            //IMemoryCache cache = new MemoryCache(new MemoryCacheOptions());
-            var request = new RequestPaging() { PageIndex = 1, PageSize = 10 }; // Thay đổi các giá trị tương ứng
-            paged =  room.GetAllPage(request);
-            homedata.ItemsSource = paged.Items;
-        }
-
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

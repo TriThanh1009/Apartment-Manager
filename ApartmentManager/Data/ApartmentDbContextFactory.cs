@@ -10,13 +10,20 @@ using System.IO;
 
 namespace Data
 {
-    public class ApartmentDbContextFactory : IDesignTimeDbContextFactory<AparmentDbContext>
+    public class ApartmentDbContextFactory
     {
+        private readonly Action<DbContextOptionsBuilder> _configureDbContext;
+
+        public ApartmentDbContextFactory(Action<DbContextOptionsBuilder> configureDbContext)
+        {
+            _configureDbContext = configureDbContext;
+        }
+
         public AparmentDbContext CreateDbContext(string[] args = null)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<AparmentDbContext>();
-            optionsBuilder.UseSqlServer("Data Source=ADMIN-PC;Database=Apartment;Trusted_Connection=True;TrustServerCertificate=True");
-            return new AparmentDbContext(optionsBuilder.Options);
+            DbContextOptionsBuilder<AparmentDbContext> options = new DbContextOptionsBuilder<AparmentDbContext>();
+            _configureDbContext(options);
+            return new AparmentDbContext(options.Options);
         }
     }
 }

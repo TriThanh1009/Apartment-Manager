@@ -15,7 +15,13 @@ namespace Services.Implement
 {
     public class RoomServices : IRoom
     {
-        private readonly ApartmentDbContextFactory _contextfactory = new ApartmentDbContextFactory();
+        private readonly ApartmentDbContextFactory _contextfactory;
+
+        public RoomServices(ApartmentDbContextFactory contextfactory)
+        {
+            _contextfactory=contextfactory;
+        }
+
         public Task<int> CreateRoom(RoomCreateViewModel model)
         {
             throw new NotImplementedException();
@@ -33,8 +39,8 @@ namespace Services.Implement
                 var query = from p in _context.Room
                             join pt in _context.People on p.IDLeader equals pt.ID
                             select new { p, pt };
-                int totalRow =  query.Count();
-                var data =  query.Skip((request.PageIndex - 1) * request.PageSize)
+                int totalRow = query.Count();
+                var data = query.Skip((request.PageIndex - 1) * request.PageSize)
                     .Take(request.PageSize)
                     .Select(x => new RoomVm()
                     {

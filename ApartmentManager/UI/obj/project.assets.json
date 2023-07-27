@@ -4605,19 +4605,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\THANH\\.nuget\\packages\\": {}
+    "C:\\Users\\84768\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\UI\\AM.UI.csproj",
+      "projectUniqueName": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\UI\\AM.UI.csproj",
       "projectName": "AM.UI",
-      "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\UI\\AM.UI.csproj",
-      "packagesPath": "C:\\Users\\THANH\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\UI\\obj\\",
+      "projectPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\UI\\AM.UI.csproj",
+      "packagesPath": "C:\\Users\\84768\\.nuget\\packages\\",
+      "outputPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\UI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\THANH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\84768\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4631,11 +4631,11 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
-            "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj": {
-              "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj"
+            "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj": {
+              "projectPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj"
             },
-            "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj": {
-              "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj"
+            "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj": {
+              "projectPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj"
             }
           }
         }
@@ -4706,16 +4706,8 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\UI\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

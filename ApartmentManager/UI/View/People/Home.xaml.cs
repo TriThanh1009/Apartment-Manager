@@ -33,7 +33,6 @@ namespace AM.UI.View.People
     /// </summary>
     public partial class Home : UserControl
     {
-        private IPeople _people = new PeopleServices();
         private Button current = null;
         private Regex regex = new Regex();
         private ControlObject co = new ControlObject();
@@ -51,7 +50,6 @@ namespace AM.UI.View.People
 
         private async void Loaddata()
         {
-            pagedResultCS = await _people.GetAllPage(GetAllPage());
             homedata.ItemsSource = pagedResultCS.Items;
 
             Button button = new Button();
