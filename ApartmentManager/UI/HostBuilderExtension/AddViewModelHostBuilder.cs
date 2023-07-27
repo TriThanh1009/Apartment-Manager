@@ -1,5 +1,6 @@
 ﻿using AM.UI.Utilities;
 using AM.UI.ViewModelUI;
+using AM.UI.ViewModelUI.Room;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -24,7 +25,12 @@ namespace AM.UI.HostBuilderExtension
                 services.AddTransient<CustomerVMUI>();
                 services.AddSingleton<Func<CustomerVMUI>>((s) => () => s.GetRequiredService<CustomerVMUI>());
                 services.AddSingleton<NavigationService<CustomerVMUI>>();
-
+                services.AddTransient<RoomHomeVMUI>();
+                services.AddSingleton<Func<RoomHomeVMUI>>((s) => () => s.GetRequiredService<RoomHomeVMUI>());
+                services.AddSingleton<NavigationService<RoomHomeVMUI>>();
+                services.AddTransient<RoomAddVMUI>();
+                services.AddSingleton<Func<RoomAddVMUI>>((s) => () => s.GetRequiredService<RoomAddVMUI>());
+                services.AddSingleton<NavigationService<RoomAddVMUI>>();
                 services.AddSingleton<NavigationVM>();
             });
 
@@ -35,7 +41,9 @@ namespace AM.UI.HostBuilderExtension
         {
             return NavigationVM.LoadViewModel(services.GetRequiredService<Navigation>(),
                 services.GetRequiredService<NavigationService<HomeVM>>(),
-                services.GetRequiredService<NavigationService<CustomerVMUI>>());
+                services.GetRequiredService<NavigationService<CustomerVMUI>>(),
+                services.GetRequiredService<NavigationService<RoomHomeVMUI>>(),
+                services.GetRequiredService<NavigationService<RoomAddVMUI>>());
         }
     }
 }

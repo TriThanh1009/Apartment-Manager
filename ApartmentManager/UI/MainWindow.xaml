@@ -78,7 +78,8 @@
 
                     <!--// Products //-->
 
-                    <Menu:Btn Style="{StaticResource BtnStyle}">
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                               Command="{Binding RoomHomeCommand}">
 
                         <Grid>
 
