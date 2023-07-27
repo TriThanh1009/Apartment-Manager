@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Services.Implement;
+using Services.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ViewModel.Dtos;
+using ViewModel.People;
+using ViewModel.Room;
 
 namespace AM.UI.View.Rooms
 {
@@ -20,16 +26,23 @@ namespace AM.UI.View.Rooms
     /// </summary>
     public partial class RoomHome : UserControl
     {
+        //string cacheKey = "MyData";
+        private readonly IRoom room = new RoomServices();
+        private PagedResult<RoomVm> paged = new PagedResult<RoomVm>();
         public RoomHome()
         {
             InitializeComponent();
+            LoadData();
         }
 
-
-        public void LoadData()
+        public async void LoadData()
         {
-
+            //IMemoryCache cache = new MemoryCache(new MemoryCacheOptions());
+            var request = new RequestPaging() { PageIndex = 1, PageSize = 10 }; // Thay đổi các giá trị tương ứng
+            paged =  room.GetAllPage(request);
+            homedata.ItemsSource = paged.Items;
         }
+
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

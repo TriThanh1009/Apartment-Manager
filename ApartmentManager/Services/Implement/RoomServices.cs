@@ -15,7 +15,7 @@ namespace Services.Implement
 {
     public class RoomServices : IRoom
     {
-        private readonly ApartmentDbContextFactory _contextfactory;
+        private readonly ApartmentDbContextFactory _contextfactory = new ApartmentDbContextFactory();
         public Task<int> CreateRoom(RoomCreateViewModel model)
         {
             throw new NotImplementedException();
@@ -26,15 +26,15 @@ namespace Services.Implement
             throw new NotImplementedException();
         }
 
-        public async Task<PagedResult<RoomVm>> GetAllPage(RequestPaging request)
+        public PagedResult<RoomVm> GetAllPage(RequestPaging request)
         {
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.Room
                             join pt in _context.People on p.IDLeader equals pt.ID
                             select new { p, pt };
-                int totalRow = await query.CountAsync();
-                var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+                int totalRow =  query.Count();
+                var data =  query.Skip((request.PageIndex - 1) * request.PageSize)
                     .Take(request.PageSize)
                     .Select(x => new RoomVm()
                     {
@@ -42,7 +42,7 @@ namespace Services.Implement
                         NameLeader = x.pt.Name,
                         Name = x.p.Name,
                         Quantity = x.p.Quantity
-                    }).ToListAsync();
+                    }).ToList();
                 var pagedView = new PagedResult<RoomVm>()
                 {
                     TotalRecords = totalRow,

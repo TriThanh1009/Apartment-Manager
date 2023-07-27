@@ -26,7 +26,7 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
-            <Button Style="{StaticResource DetailsButton}" Content="Add" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top" />
+            <Button Style="{StaticResource DetailsButton}" Command="{}" Content="Add" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top" />
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="4">
             <Button Style="{StaticResource DetailsButton}" Content="Room Details"  Margin="190,57,0,0" />
@@ -41,8 +41,10 @@
         <StackPanel Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="4" x:Name="main">
             <DataGrid Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*" />
-                    <DataGridTextColumn Header="Name" IsReadOnly="True" CanUserResize="False" Width="*" />
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="Leader Name" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding NameLeader}"/>
+                    <DataGridTextColumn Header="Name" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Quantity" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding Quantity}"/>
                     <DataGridTemplateColumn Header="Operation" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

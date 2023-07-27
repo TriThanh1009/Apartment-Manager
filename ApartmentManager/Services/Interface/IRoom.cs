@@ -18,6 +18,6 @@ namespace Services.Interface
 
         Task<int> DeleteRoom(int ImageId);
 
-        Task<PagedResult<RoomVm>> GetAllPage(RequestPaging request);
+        PagedResult<RoomVm> GetAllPage(RequestPaging request);
     }
 }
