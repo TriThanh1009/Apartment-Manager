@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UI.View.Furniture
+namespace AM.UI.View.Furniture
 {
     /// <summary>
     /// Interaction logic for FurnitureAdd.xaml

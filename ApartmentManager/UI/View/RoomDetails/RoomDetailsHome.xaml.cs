@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UI.View.RoomDetails
+namespace AM.UI.View.RoomDetails
 {
     /// <summary>
     /// Interaction logic for RoomDetailsHome.xaml

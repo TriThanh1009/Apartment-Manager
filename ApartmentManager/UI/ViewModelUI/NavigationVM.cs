@@ -3,57 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UI.Utilities;
+using AM.UI.Utilities;
 using System.Windows.Input;
 using ViewModel.People;
 using ViewModel.Room;
+using System.Windows.Navigation;
+using AM.UI.Command;
 
-namespace UI.ViewModel
+namespace AM.UI.ViewModelUI
 {
     internal class NavigationVM : ViewModelBase
     {
-        private object _currentView;
+        private readonly Navigation _navigation;
 
-        public object CurrentView
+        public ViewModelBase CurrentViewModel => _navigation.CurrentViewModel;
+        public ICommand HomeCommand { get; }
+
+        public NavigationVM(Navigation navigation, NavigationService<HomeVM> HomeVMNagvigation, NavigationService<CustomerVMUI> CustomerVMNagvigation)
         {
-            get { return _currentView; }
-            set { _currentView = value; OnPropertyChanged(); }
+            _navigation = navigation;
+            HomeCommand = new NavigateCommand<HomeVM>(HomeVMNagvigation);
+
+            _navigation.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
 
-        public ICommand HomeCommand { get; set; }
-        public ICommand CustomersCommand { get; set; }
-        public ICommand RoomCommand { get; set; }
-        public ICommand OrdersCommand { get; set; }
-        public ICommand TransactionsCommand { get; set; }
-        public ICommand ShipmentsCommand { get; set; }
-        public ICommand SettingsCommand { get; set; }
-
-        private void Home(object obj) => CurrentView = new HomeVM();
-
-        private void Customer(object obj) => CurrentView = new CustomerVM();
-
-        private void Room(object obj) => CurrentView = new RoomVm();
-
-        private void Order(object obj) => CurrentView = new OrderVM();
-
-        private void Transaction(object obj) => CurrentView = new TransactionVM();
-
-        private void Shipment(object obj) => CurrentView = new ShipmentVM();
-
-        private void Setting(object obj) => CurrentView = new SettingVM();
-
-        public NavigationVM()
+        public static NavigationVM LoadViewModel(Navigation navigation, NavigationService<HomeVM> HomeVMNagvigation, NavigationService<CustomerVMUI> CustomerVMNagvigation)
         {
-            HomeCommand = new RelayCommand(Home);
-            CustomersCommand = new RelayCommand(Customer);
-            RoomCommand = new RelayCommand(Room);
-            OrdersCommand = new RelayCommand(Order);
-            TransactionsCommand = new RelayCommand(Transaction);
-            ShipmentsCommand = new RelayCommand(Shipment);
-            SettingsCommand = new RelayCommand(Setting);
+            NavigationVM navigationVM = new NavigationVM(navigation, HomeVMNagvigation, CustomerVMNagvigation);
+            return navigationVM;
+        }
 
-            // Startup Page
-            CurrentView = new HomeVM();
+        private void OnCurrentViewModelChanged()
+        {
+            OnPropertyChanged(nameof(CurrentViewModel));
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using AM.UI.Model;
+using AM.UI.Utilities;
 using Data;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Services.Implement;
 using Services.Interface;
 using System;
@@ -8,32 +10,43 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices.JavaScript;
 using System.Threading.Tasks;
 using System.Windows;
+using AM.UI.ViewModelUI;
+using AM.UI.HostBuilderExtension;
 
-namespace UI
+namespace AM.UI
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
+        private readonly IHost _host;
+
+        public App()
         {
-            IServiceProvider serviceProvider = CreateServiceProvider();
-            Window window = serviceProvider.GetService<MainWindow>();
-            window.Show();
-            base.OnStartup(e);
+            _host = Host.CreateDefaultBuilder()
+                .AddViewModels()
+               .ConfigureServices((hostContext, services) =>
+               {
+                   services.AddSingleton<Navigation>();
+                   services.AddSingleton(s => new MainWindow()
+                   {
+                       DataContext = s.GetRequiredService<NavigationVM>()
+                   });
+               }).Build();
         }
 
-        private IServiceProvider CreateServiceProvider()
+        protected override void OnStartup(StartupEventArgs e)
         {
-            IServiceCollection services = new ServiceCollection();
-            services.AddSingleton<ApartmentDbContextFactory>();
-            services.AddSingleton<IPeople, PeopleServices>();
-            services.AddSingleton<PeopleModel>();
-            services.AddScoped<MainWindow>();
-            return services.BuildServiceProvider();
+            _host.Start();
+            NavigationService<HomeVM> navigationService = _host.Services.GetRequiredService<NavigationService<HomeVM>>();
+            navigationService.Navigate();
+            MainWindow = _host.Services.GetRequiredService<MainWindow>();
+            MainWindow.Show();
+            base.OnStartup(e);
         }
     }
 }

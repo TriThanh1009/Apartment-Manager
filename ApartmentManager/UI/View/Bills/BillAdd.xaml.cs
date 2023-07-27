@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UI.View.Bills
+namespace AM.UI.View.Bills
 {
     /// <summary>
     /// Interaction logic for BillAdd.xaml

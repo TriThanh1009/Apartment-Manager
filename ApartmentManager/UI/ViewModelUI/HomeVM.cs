@@ -1,12 +1,13 @@
-﻿using System;
+﻿using AM.UI.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UI.ViewModel
+namespace AM.UI.ViewModelUI
 {
-    internal class HomeVM
+    public class HomeVM : ViewModelBase
     {
     }
 }

@@ -1,18 +1,22 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:vm="clr-namespace:UI.ViewModel"
+                    xmlns:vm="clr-namespace:AM.UI.ViewModelUI"
                     xmlns:people="clr-namespace:ViewModel.People;assembly=ViewModel"
                     xmlns:room="clr-namespace:ViewModel.Room;assembly=ViewModel"
-                    xmlns:roomview="clr-namespace:UI.View.Rooms"
-                    xmlns:view="clr-namespace:UI.View"
+                    xmlns:roomview="clr-namespace:AM.UI.View.Rooms"
+                    xmlns:view="clr-namespace:AM.UI.View"
                     xmlns:vp="clr-namespace:AM.UI.View.People"
-                    xmlns:vh="clr-namespace:UI.View.Homes">
+                    xmlns:vh="clr-namespace:AM.UI.View.Homes">
 
     <DataTemplate DataType="{x:Type vm:HomeVM}">
         <vh:Home />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type people:CustomerVM}">
+        <vp:Home />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:Class1}">
         <vp:Home />
     </DataTemplate>
 

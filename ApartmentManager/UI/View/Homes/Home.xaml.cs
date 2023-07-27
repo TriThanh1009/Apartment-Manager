@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UI.View.Homes
+namespace AM.UI.View.Homes
 {
     /// <summary>
     /// Interaction logic for Home.xaml

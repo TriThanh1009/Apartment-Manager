@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UI.View.ConfirmForm
+namespace AM.UI.View.ConfirmForm
 {
     /// <summary>
     /// Interaction logic for Confirm.xaml

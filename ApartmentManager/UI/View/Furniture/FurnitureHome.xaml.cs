@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UI.View.Furniture
+namespace AM.UI.View.Furniture
 {
     /// <summary>
     /// Interaction logic for FurnitureHome.xaml
@@ -23,9 +23,7 @@ namespace UI.View.Furniture
     {
         public FurnitureHome()
         {
-            
             InitializeComponent();
-
         }
     }
 }
