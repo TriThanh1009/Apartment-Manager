@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace AM.UI.View
 {
     /// <summary>
-    /// Interaction logic for Transactions.xaml
+    /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class Transactions : UserControl
+    public partial class Navigation : UserControl
     {
-        public Transactions()
+        public Navigation()
         {
             InitializeComponent();
         }

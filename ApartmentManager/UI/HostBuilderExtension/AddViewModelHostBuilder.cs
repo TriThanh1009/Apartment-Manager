@@ -17,7 +17,7 @@ namespace AM.UI.HostBuilderExtension
         {
             hostBuilder.ConfigureServices(services =>
             {
-                services.AddTransient((s) => CreateReservationListingViewModel(s));
+                //   services.AddTransient((s) => CreateReservationListingViewModel(s));
                 services.AddSingleton<Func<HomeVM>>((s) => () => s.GetRequiredService<HomeVM>());
                 services.AddSingleton<NavigationService<HomeVM>>();
 
@@ -37,13 +37,13 @@ namespace AM.UI.HostBuilderExtension
             return hostBuilder;
         }
 
-        private static NavigationVM CreateReservationListingViewModel(IServiceProvider services)
-        {
-            return NavigationVM.LoadViewModel(services.GetRequiredService<Navigation>(),
-                services.GetRequiredService<NavigationService<HomeVM>>(),
-                services.GetRequiredService<NavigationService<CustomerVMUI>>(),
-                services.GetRequiredService<NavigationService<RoomHomeVMUI>>(),
-                services.GetRequiredService<NavigationService<RoomAddVMUI>>());
-        }
+        /*  private static NavigationVM CreateReservationListingViewModel(IServiceProvider services)
+          {
+              return NavigationVM.LoadViewModel(services.GetRequiredService<Navigation>(),
+                  services.GetRequiredService<NavigationService<HomeVM>>(),
+                  services.GetRequiredService<NavigationService<CustomerVMUI>>(),
+                  services.GetRequiredService<NavigationService<RoomHomeVMUI>>(),
+                  services.GetRequiredService<NavigationService<RoomAddVMUI>>());
+          }*/
     }
 }

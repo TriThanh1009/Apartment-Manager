@@ -8,9 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace AM.UI.Utilities
 {
+    public delegate TViewModel CreateViewModel<TViewModel>() where TViewModel : ViewModelBase;
+
     public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public virtual void Dispose()
+        { }
 
         public void OnPropertyChanged([CallerMemberName] string propName = null)
         {

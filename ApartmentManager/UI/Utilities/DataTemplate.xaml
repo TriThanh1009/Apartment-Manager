@@ -13,10 +13,9 @@
         <vh:Home />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type people:CustomerVM}">
+    <DataTemplate DataType="{x:Type vm:CustomerVMUI}">
         <vp:Home />
     </DataTemplate>
-
 
     <DataTemplate DataType="{x:Type room:RoomVm}">
         <roomview:RoomHome />
@@ -29,5 +28,4 @@
     <DataTemplate DataType="{x:Type vmr:RoomAddVMUI}">
         <roomview:RoomAdd />
     </DataTemplate>
-
 </ResourceDictionary>
