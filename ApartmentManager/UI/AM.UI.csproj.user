@@ -127,9 +127,6 @@
     <Page Update="View\Homes\Home.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\Orders.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="View\People\Home.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -164,15 +161,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Rooms\RoomUpdate.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\Settings.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\Shipments.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\Transactions.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Navigation.xaml">
