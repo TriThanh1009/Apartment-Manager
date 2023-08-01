@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AM.UI.ViewModelUI
 {
-    internal class CustomerVMUI : ViewModelBase
+    public class CustomerVMUI : ViewModelBase
     {
     }
 }

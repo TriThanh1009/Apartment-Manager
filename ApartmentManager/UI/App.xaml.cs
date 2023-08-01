@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using AM.UI.ViewModelUI;
 using AM.UI.HostBuilderExtension;
+using Microsoft.EntityFrameworkCore;
 
 namespace AM.UI
 {
@@ -28,7 +29,9 @@ namespace AM.UI
         public App()
         {
             _host = Host.CreateDefaultBuilder()
+                .AddStores()
                 .AddViewModels()
+                .AddDbContext()
                .ConfigureServices((hostContext, services) =>
                {
                    services.AddSingleton<Navigation>();
@@ -42,8 +45,13 @@ namespace AM.UI
         protected override void OnStartup(StartupEventArgs e)
         {
             _host.Start();
-            NavigationService<HomeVM> navigationService = _host.Services.GetRequiredService<NavigationService<HomeVM>>();
-            navigationService.Navigate();
+            ApartmentDbContextFactory contextFactory = _host.Services.GetRequiredService<ApartmentDbContextFactory>();
+            using (AparmentDbContext context = contextFactory.CreateDbContext())
+            {
+                context.Database.Migrate();
+            }
+            // NavigationService<HomeVM> navigationService = _host.Services.GetRequiredService<NavigationService<HomeVM>>();
+            // navigationService.Navigate();
             MainWindow = _host.Services.GetRequiredService<MainWindow>();
             MainWindow.Show();
             base.OnStartup(e);

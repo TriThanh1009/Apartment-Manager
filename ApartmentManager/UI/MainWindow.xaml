@@ -10,6 +10,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Menu="clr-namespace:AM.UI.Utilities"
+         xmlns:nav="clr-namespace:AM.UI.State.Navigators"
+        xmlns:converters="clr-namespace:AM.UI.Converters"
+        xmlns:vm="clr-namespace:AM.UI.ViewModelUI"
         mc:Ignorable="d"
         Title="MainWindow"
         Height="680"
@@ -18,6 +21,9 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent">
+    <Window.Resources>
+        <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />
+    </Window.Resources>
 
     <Grid>
 
@@ -49,8 +55,9 @@
                     <!--// Home //-->
 
                     <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding HomeCommand}"
-                              IsChecked="True">
+                              Command="{Binding UpdateCurrentViewModelCommand}"
+                              CommandParameter="{x:Static nav:ViewType.Home}"
+                              IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:HomeVM}}">
 
                         <Grid>
 
@@ -64,8 +71,10 @@
 
                     <!--// Customer //-->
 
-                    <Menu:Btn Style="{StaticResource BtnStyle}">
-
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding UpdateCurrentViewModelCommand}"
+                              CommandParameter="{x:Static nav:ViewType.Customer}"
+                              IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:CustomerVMUI}}">
                         <Grid>
 
                             <Image Source="Images/icon/img_customer.png"
@@ -79,7 +88,9 @@
                     <!--// Products //-->
 
                     <Menu:Btn Style="{StaticResource BtnStyle}"
-                               Command="{Binding RoomHomeCommand}">
+                              Command="{Binding UpdateCurrentViewModelCommand}"
+                              CommandParameter="{x:Static nav:ViewType.Room}"
+                              IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:RoomHomeVMUI}}">
 
                         <Grid>
 
