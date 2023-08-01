@@ -50,8 +50,6 @@ namespace AM.UI.View.People
 
         private async void Loaddata()
         {
-            homedata.ItemsSource = pagedResultCS.Items;
-
             Button button = new Button();
             button.Content = 1;
             button.Name = "button1";

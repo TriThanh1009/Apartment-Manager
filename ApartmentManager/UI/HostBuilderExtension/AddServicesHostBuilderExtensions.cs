@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Data.Entity;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Services.Implement;
+using Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +17,7 @@ namespace AM.UI.HostBuilderExtension
         {
             host.ConfigureServices(services =>
             {
+                services.AddSingleton<IPeople, PeopleServices>();
             });
 
             return host;

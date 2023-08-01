@@ -53,7 +53,7 @@
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="4" x:Name="main">
-            <DataGrid Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
+            <DataGrid ItemsSource="{Binding test}" Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="auto"  Binding="{Binding ID}" />
                     <DataGridTextColumn Header="IDroom" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding IDroom}" />

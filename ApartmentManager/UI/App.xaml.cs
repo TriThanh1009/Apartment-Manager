@@ -30,6 +30,8 @@ namespace AM.UI
         {
             _host = Host.CreateDefaultBuilder()
                 .AddStores()
+                .AddConfiguration()
+                .AddServices()
                 .AddViewModels()
                 .AddDbContext()
                .ConfigureServices((hostContext, services) =>
@@ -45,13 +47,7 @@ namespace AM.UI
         protected override void OnStartup(StartupEventArgs e)
         {
             _host.Start();
-            ApartmentDbContextFactory contextFactory = _host.Services.GetRequiredService<ApartmentDbContextFactory>();
-            using (AparmentDbContext context = contextFactory.CreateDbContext())
-            {
-                context.Database.Migrate();
-            }
-            // NavigationService<HomeVM> navigationService = _host.Services.GetRequiredService<NavigationService<HomeVM>>();
-            // navigationService.Navigate();
+
             MainWindow = _host.Services.GetRequiredService<MainWindow>();
             MainWindow.Show();
             base.OnStartup(e);

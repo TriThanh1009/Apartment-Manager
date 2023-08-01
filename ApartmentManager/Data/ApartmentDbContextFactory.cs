@@ -19,7 +19,7 @@ namespace Data
             _configureDbContext = configureDbContext;
         }
 
-        public AparmentDbContext CreateDbContext(string[] args = null)
+        public AparmentDbContext CreateDbContext()
         {
             DbContextOptionsBuilder<AparmentDbContext> options = new DbContextOptionsBuilder<AparmentDbContext>();
             _configureDbContext(options);
