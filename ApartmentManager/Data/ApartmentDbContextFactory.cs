@@ -14,6 +14,10 @@ namespace Data
     {
         private readonly Action<DbContextOptionsBuilder> _configureDbContext;
 
+        public ApartmentDbContextFactory()
+        {
+
+        }
         public ApartmentDbContextFactory(Action<DbContextOptionsBuilder> configureDbContext)
         {
             _configureDbContext = configureDbContext;

@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using ViewModel.Dtos;
 using ViewModel.People;
 using ViewModel.Room;
+using AM.UI.Command;
 
 namespace AM.UI.View.Rooms
 {
@@ -27,9 +28,16 @@ namespace AM.UI.View.Rooms
     public partial class RoomHome : UserControl
     {
         //string cacheKey = "MyData";
+        private readonly ViewModelCommand _view;
+        private readonly IRoom services = new RoomServices();
+        private PagedResult<RoomVm> paged = new PagedResult<RoomVm>();
+
+        
         public RoomHome()
         {
             InitializeComponent();
+            var request = new RequestPaging() { PageIndex = 1, PageSize = 10 };
+            paged = services.GetAllPage(request);
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
