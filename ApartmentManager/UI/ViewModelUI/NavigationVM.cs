@@ -9,7 +9,6 @@ using ViewModel.People;
 using ViewModel.Room;
 using System.Windows.Navigation;
 using AM.UI.Command;
-using AM.UI.ViewModelUI.Room;
 using AM.UI.ViewModelUI.Factory;
 using AM.UI.State.Navigators;
 

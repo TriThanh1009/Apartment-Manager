@@ -20,17 +20,20 @@ namespace AM.UI.HostBuilderExtension
                 //   services.AddTransient((s) => CreateReservationListingViewModel(s));
                 services.AddSingleton<Func<HomeVM>>((s) => () => s.GetRequiredService<HomeVM>());
                 services.AddSingleton<NavigationService<HomeVM>>();
-
                 services.AddTransient<HomeVM>();
+
                 services.AddTransient<CustomerVMUI>();
                 services.AddSingleton<Func<CustomerVMUI>>((s) => () => s.GetRequiredService<CustomerVMUI>());
                 services.AddSingleton<NavigationService<CustomerVMUI>>();
+
                 services.AddTransient<RoomHomeVMUI>();
                 services.AddSingleton<Func<RoomHomeVMUI>>((s) => () => s.GetRequiredService<RoomHomeVMUI>());
                 services.AddSingleton<NavigationService<RoomHomeVMUI>>();
+
                 services.AddTransient<RoomAddVMUI>();
                 services.AddSingleton<Func<RoomAddVMUI>>((s) => () => s.GetRequiredService<RoomAddVMUI>());
                 services.AddSingleton<NavigationService<RoomAddVMUI>>();
+
                 services.AddSingleton<NavigationVM>();
             });
 

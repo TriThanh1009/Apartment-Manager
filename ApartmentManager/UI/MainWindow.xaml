@@ -111,7 +111,7 @@
                             <Image Source="/Images/img_order.png"
                                    Style="{StaticResource Image_Style}" />
 
-                            <TextBlock Text="Orders"
+                            <TextBlock Text="Rental Contract"
                                        Style="{StaticResource Text_Style}" />
                         </Grid>
                     </Menu:Btn>
@@ -125,7 +125,7 @@
                             <Image Source="/Images/img_transaction.png"
                                    Style="{StaticResource Image_Style}" />
 
-                            <TextBlock Text="Transactions"
+                            <TextBlock Text="Bills"
                                        Style="{StaticResource Text_Style}" />
                         </Grid>
                     </Menu:Btn>

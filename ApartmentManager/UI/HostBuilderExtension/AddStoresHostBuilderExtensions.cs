@@ -2,6 +2,7 @@
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI;
 using AM.UI.ViewModelUI.Factory;
+using AM.UI.ViewModelUI.Room;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;

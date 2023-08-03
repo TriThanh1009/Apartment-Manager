@@ -18,6 +18,7 @@ namespace AM.UI.HostBuilderExtension
             host.ConfigureServices(services =>
             {
                 services.AddSingleton<IPeople, PeopleServices>();
+                services.AddSingleton<IRoom, RoomServices>();
             });
 
             return host;

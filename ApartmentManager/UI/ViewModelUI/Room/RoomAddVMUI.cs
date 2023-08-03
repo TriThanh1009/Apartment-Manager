@@ -9,6 +9,5 @@ namespace AM.UI.ViewModelUI.Room
 {
     public class RoomAddVMUI : ViewModelBase
     {
-        public RoomAddVMUI() { }
     }
 }
