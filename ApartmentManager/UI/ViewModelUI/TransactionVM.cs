@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace AM.UI.ViewModelUI
 {
-    internal class TransactionVM : Utilities.ViewModelBase
+    public class TransactionVM : Utilities.ViewModelBase
     {
-        public TransactionVM()
-        {
-        }
+        
     }
 }

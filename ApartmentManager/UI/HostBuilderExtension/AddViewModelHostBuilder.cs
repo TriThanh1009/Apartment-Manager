@@ -34,6 +34,10 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<Func<RoomAddVMUI>>((s) => () => s.GetRequiredService<RoomAddVMUI>());
                 services.AddSingleton<NavigationService<RoomAddVMUI>>();
 
+                services.AddTransient<TransactionVM>();
+                services.AddSingleton<Func<TransactionVM>>((s) => () => s.GetRequiredService<TransactionVM>());
+                services.AddSingleton<NavigationService<TransactionVM>>();
+
                 services.AddSingleton<NavigationVM>();
             });
 

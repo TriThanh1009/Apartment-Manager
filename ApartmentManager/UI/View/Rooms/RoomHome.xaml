@@ -26,7 +26,7 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
-            <Button Command="{Binding RoomAddNavCommand}" Style="{StaticResource DetailsButton}" Content="Add" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top" />
+            <Button  Style="{StaticResource DetailsButton}" Content="Add" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top"  Command="{Binding RoomAddNavCommand}"/>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="4">
             <Button Style="{StaticResource DetailsButton}" Content="Room Details"  Margin="190,57,0,0" />

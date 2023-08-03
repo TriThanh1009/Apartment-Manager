@@ -16,13 +16,14 @@ using ViewModel.RoomDetails;
 
 namespace AM.UI.ViewModelUI
 {
-    public class RoomHomeVMUI :ViewModelBase
+    public class RoomHomeVMUI : ViewModelBase
     {
         private readonly IRoom _iroom;
         private List<RoomVm> _room;
         public ICommand RoomAddNavCommand { get; }
+
         public ICommand FurnitureNavCommand;
-        NavigationService<RoomAddVMUI> services;
+
         public List<RoomVm> Room
         {
             get => _room;
@@ -33,12 +34,15 @@ namespace AM.UI.ViewModelUI
 
         public RoomHomeVMUI(NavigationService<RoomAddVMUI> services)
         {
+            
             RoomAddNavCommand = new NavigateCommand<RoomAddVMUI>(services);
             //_iroom = iroom;
             // Room = new List<RoomVm>();
 
             //LoadData();
         }
+
+
         public async void LoadData()
         {
             var paged = new RequestPaging { PageIndex = 1, PageSize = 10 };

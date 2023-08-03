@@ -28,4 +28,5 @@
     <DataTemplate DataType="{x:Type vmr:RoomAddVMUI}">
         <roomview:RoomAdd />
     </DataTemplate>
+
 </ResourceDictionary>
