@@ -9,6 +9,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using AM.UI.View;
+using AM.UI.View.Homes;
+using AM.UI.View.People;
+using AM.UI.View.Rooms;
+using AM.UI.ViewModelUI;
+using AM.UI.ViewModelUI.Room;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -30,6 +36,8 @@ using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
+using ViewModel.People;
+using ViewModel.Room;
 
 
 namespace AM.UI.View.Bills {
@@ -46,13 +54,13 @@ namespace AM.UI.View.Bills {
         /// InitializeComponent
         /// </summary>
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "7.0.7.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "7.0.5.0")]
         public void InitializeComponent() {
             if (_contentLoaded) {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AM.UI;component/view/bills/billadd.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AM.UI;V1.0.0.0;component/view/bills/billadd.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\Bills\BillAdd.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
@@ -62,7 +70,7 @@ namespace AM.UI.View.Bills {
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "7.0.7.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "7.0.5.0")]
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes")]
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
