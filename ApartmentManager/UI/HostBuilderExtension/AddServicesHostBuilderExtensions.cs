@@ -19,6 +19,11 @@ namespace AM.UI.HostBuilderExtension
             {
                 services.AddSingleton<IPeople, PeopleServices>();
                 services.AddSingleton<IRoom, RoomServices>();
+                services.AddSingleton<IFurniture, FurnitureServices>();
+                services.AddSingleton<IRoomDetails, RoomDetailsServices>();
+                services.AddSingleton<IRentalContract, RentalContractServices>();
+                services.AddSingleton<IBill, BillServices>();
+                services.AddSingleton<IDepositsContract, DepositsContractServices>();
             });
 
             return host;

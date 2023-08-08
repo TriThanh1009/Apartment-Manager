@@ -1,5 +1,6 @@
 ﻿using AM.UI.Utilities;
 using AM.UI.ViewModelUI;
+using AM.UI.ViewModelUI.DepositContract;
 using AM.UI.ViewModelUI.Room;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -34,9 +35,23 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<Func<RoomAddVMUI>>((s) => () => s.GetRequiredService<RoomAddVMUI>());
                 services.AddSingleton<NavigationService<RoomAddVMUI>>();
 
-                services.AddTransient<TransactionVM>();
-                services.AddSingleton<Func<TransactionVM>>((s) => () => s.GetRequiredService<TransactionVM>());
-                services.AddSingleton<NavigationService<TransactionVM>>();
+                services.AddTransient<FurnitureHomeVMUI>();
+                services.AddSingleton<Func<FurnitureHomeVMUI>>((s) => () => s.GetRequiredService<FurnitureHomeVMUI>());
+                services.AddSingleton<NavigationService<FurnitureHomeVMUI>>();
+
+
+                services.AddTransient<RoomUpdateVMUI>();
+                services.AddSingleton<Func<RoomUpdateVMUI>>((s) => () => s.GetRequiredService<RoomUpdateVMUI>());
+                services.AddSingleton<NavigationService<RoomUpdateVMUI>>();
+
+                services.AddTransient<RentalContractHomeVMUI>();
+                services.AddSingleton<Func<RentalContractHomeVMUI>>((s) => () => s.GetRequiredService<RentalContractHomeVMUI>());
+                services.AddSingleton<NavigationService<RentalContractHomeVMUI>>();
+
+                services.AddTransient<DepositContractHomeVMUI>();
+                services.AddSingleton<Func<DepositContractHomeVMUI>>((s) => () => s.GetRequiredService<DepositContractHomeVMUI>());
+                services.AddSingleton<NavigationService<DepositContractHomeVMUI>>();
+
 
                 services.AddSingleton<NavigationVM>();
             });

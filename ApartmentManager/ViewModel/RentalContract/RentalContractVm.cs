@@ -9,8 +9,8 @@ namespace ViewModel.RentalContract
     public class RentalContractVm
     {
         public int ID { get; set; }
+        public string RoomName { get; set; }
         public string LeaderName { get; set; }
-        public int IDLeader { get; set; }
         public DateTime ReceiveDate { get; set; }
         public DateTime CheckOutDate { get; set; }
         public int RoomMoney { get; set; }

@@ -13,6 +13,7 @@
          xmlns:nav="clr-namespace:AM.UI.State.Navigators"
         xmlns:converters="clr-namespace:AM.UI.Converters"
         xmlns:vm="clr-namespace:AM.UI.ViewModelUI"
+        xmlns:vmdeposit="clr-namespace:AM.UI.ViewModelUI.DepositContract"
         mc:Ignorable="d"
         Title="MainWindow"
         Height="680"
@@ -90,6 +91,7 @@
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding UpdateCurrentViewModelCommand}"
                               CommandParameter="{x:Static nav:ViewType.Room}"
+                             
                               IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:RoomHomeVMUI}}">
 
                         <Grid>
@@ -104,7 +106,10 @@
 
                     <!--// Orders //-->
 
-                    <Menu:Btn Style="{StaticResource BtnStyle}">
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding UpdateCurrentViewModelCommand}"
+                              CommandParameter="{x:Static nav:ViewType.RentalContract}"
+                              IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:RentalContractHomeVMUI}}">
 
                         <Grid>
 
@@ -112,13 +117,16 @@
                                    Style="{StaticResource Image_Style}" />
 
                             <TextBlock Text="Rental Contract"
-                                       Style="{StaticResource Text_Style}" />
+                                       Style="{StaticResource Text_Style}" HorizontalAlignment="Stretch" Margin="70,0,26,0" />
                         </Grid>
                     </Menu:Btn>
 
                     <!--// Transactions //-->
 
-                    <Menu:Btn Style="{StaticResource BtnStyle}">
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding UpdateCurrentViewModelCommand}"
+                              CommandParameter="{x:Static nav:ViewType.Bill}"
+                              IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:BillHomeVMUI}}">
 
                         <Grid>
 
@@ -132,28 +140,36 @@
 
                     <!--// Shipments //-->
 
-                    <Menu:Btn Style="{StaticResource BtnStyle}">
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding UpdateCurrentViewModelCommand}"
+                              CommandParameter="{x:Static nav:ViewType.Furnitures}"
+                             
+                              IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:FurnitureHomeVMUI}}">
 
                         <Grid>
 
                             <Image Source="/Images/img_shipment.png"
                                    Style="{StaticResource Image_Style}" />
 
-                            <TextBlock Text="Shipments"
+                            <TextBlock Text="Furniture"
                                        Style="{StaticResource Text_Style}" />
                         </Grid>
                     </Menu:Btn>
 
                     <!--// Settings //-->
 
-                    <Menu:Btn Style="{StaticResource BtnStyle}">
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                               Command="{Binding UpdateCurrentViewModelCommand}"
+                              CommandParameter="{x:Static nav:ViewType.DepositContract}"
+                             
+                              IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vmdeposit:DepositContractHomeVMUI}}">
 
                         <Grid>
 
                             <Image Source="/Images/img_setting.png"
                                    Style="{StaticResource Image_Style}" />
 
-                            <TextBlock Text="Settings"
+                            <TextBlock Text="DepositContract"
                                        Style="{StaticResource Text_Style}" />
                         </Grid>
                     </Menu:Btn>

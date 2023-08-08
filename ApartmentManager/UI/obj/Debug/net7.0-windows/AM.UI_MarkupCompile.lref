@@ -7,6 +7,7 @@ FD:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\View\Bills\Bi
 FD:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\View\Bills\BillHome.xaml;;
 FD:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\View\Bills\BillUpdate.xaml;;
 FD:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\View\ConfirmForm\Confirm.xaml;;
+FD:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\View\DepositContract\DepositContractHome.xaml;;
 FD:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\View\Furniture\FurnitureAdd.xaml;;
 FD:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\View\Furniture\FurnitureDelete.xaml;;
 FD:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\View\Furniture\FurnitureHome.xaml;;
@@ -16,6 +17,7 @@ FD:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\View\Navigati
 FD:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\View\People\Home.xaml;;
 FD:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\View\RentalContract\RentalContactDelete.xaml;;
 FD:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\View\RentalContract\RentalContractAdd.xaml;;
+FD:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\View\RentalContract\RentalContractHome.xaml;;
 FD:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\View\RentalContract\RentalContractUpdate.xaml;;
 FD:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\View\RoomDetails\RoomDetailsAdd.xaml;;
 FD:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\View\RoomDetails\RoomDetailsDelete.xaml;;

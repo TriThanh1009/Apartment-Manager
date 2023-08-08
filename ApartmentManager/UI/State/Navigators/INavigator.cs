@@ -11,7 +11,13 @@ namespace AM.UI.State.Navigators
     {
         Home,
         Customer,
-        Room
+        Room,RoomAdd,RoomUpdate,
+        RoomDetails,
+        Furnitures,
+        RentalContract,RentalContractAdd,RentalContractUpdate,
+        Bill,BillAdd,BillUpdate,
+        DepositContract
+        
     }
 
     public interface INavigator

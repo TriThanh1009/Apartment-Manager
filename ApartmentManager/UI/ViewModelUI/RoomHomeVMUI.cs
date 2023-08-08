@@ -1,5 +1,8 @@
 ﻿using AM.UI.Command;
+using AM.UI.State.Navigators;
 using AM.UI.Utilities;
+using AM.UI.View.Rooms;
+using AM.UI.ViewModelUI.Factory;
 using AM.UI.ViewModelUI.Room;
 using Microsoft.Identity.Client;
 using Services.Interface;
@@ -20,9 +23,11 @@ namespace AM.UI.ViewModelUI
     {
         private readonly IRoom _iroom;
         private List<RoomVm> _room;
-        public ICommand RoomAddNavCommand { get; }
+        private readonly IAparmentViewModelFactory _viewModelFactory;
+        private readonly INavigator _navigator;
+        public ICommand RoomNavCommand { get; }
+        public ICommand RoomUpdateNavCommand { get; }
 
-        public ICommand FurnitureNavCommand;
 
         public List<RoomVm> Room
         {
@@ -32,17 +37,20 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-        public RoomHomeVMUI(NavigationService<RoomAddVMUI> services)
+        public RoomHomeVMUI(IRoom iroom,INavigator navigator,IAparmentViewModelFactory viewModelFactory )
         {
-            
-            RoomAddNavCommand = new NavigateCommand<RoomAddVMUI>(services);
-            //_iroom = iroom;
-            // Room = new List<RoomVm>();
+            _viewModelFactory = viewModelFactory;
+            _navigator = navigator;
+            RoomNavCommand = new UpdateCurrentViewModelCommand(navigator, viewModelFactory);
 
-            //LoadData();
+            _iroom = iroom;
+             Room = new List<RoomVm>();
+
+            LoadData();
         }
+      
 
-
+ 
         public async void LoadData()
         {
             var paged = new RequestPaging { PageIndex = 1, PageSize = 10 };

@@ -17,6 +17,6 @@ namespace Services.Interface
 
         Task<int> DeleteRentalContract(int RcID);
 
-        Task<PagedResult<RentalContractVm>> GetAllPage(RequestPaging request);
+        PagedResult<RentalContractVm> GetAllPage(RequestPaging request);
     }
 }

@@ -3,11 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:AM.UI.View.Rooms" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:roomview="clr-namespace:AM.UI.View.Rooms"
+             xmlns:nav="clr-namespace:AM.UI.State.Navigators"
+             xmlns:local="clr-namespace:AM.UI.View.Rooms" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" xmlns:viewmodelui="clr-namespace:AM.UI.ViewModelUI"
              mc:Ignorable="d"
              d:DesignHeight="630" d:DesignWidth="730">
 
+
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -17,28 +21,40 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="13*" />
+            <ColumnDefinition Width="13*" />
+            <ColumnDefinition Width="13*" />
+            <ColumnDefinition Width="13*" />
+            <ColumnDefinition Width="13*" />
+            <ColumnDefinition Width="13*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
-            <Button  Style="{StaticResource DetailsButton}" Content="Add" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top"  Command="{Binding RoomAddNavCommand}"/>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="4" Margin="0,0,104,0">
+            <Button Style="{StaticResource DetailsButton}"  
+                    Command="{Binding RoomNavCommand}" 
+                    CommandParameter="{x:Static nav:ViewType.RoomAdd}"   
+                    Content="Add" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top"  
+                    
+                    />
         </StackPanel>
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="4">
-            <Button Style="{StaticResource DetailsButton}" Content="Room Details"  Margin="190,57,0,0" />
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="5">
+            <Button  Style="{StaticResource DetailsButton}" 
+                     Command="{Binding RoomNavCommand}" 
+                     CommandParameter="{x:Static nav:ViewType.RoomDetails}" 
+                     Content="Room Details"  Margin="190,57,0,0" />
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-            <Button Style="{StaticResource DetailsButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Contract"  Margin="30,30,0,0" />
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Margin="0,0,104,0">
+            <Button Style="{StaticResource DetailsButton}"
+                    Command="{Binding RoomNavCommand}" 
+                    CommandParameter="{x:Static nav:ViewType.RentalContract}" 
+                    HorizontalAlignment="Left" VerticalAlignment="Top" Content="Contract"  Margin="30,30,0,0" />
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="4">
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="5">
             <Button Style="{StaticResource DetailsButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Bill"  Margin="230,30,0,0" />
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="4" x:Name="main">
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="8" Grid.RowSpan="4" x:Name="main">
             <DataGrid ItemsSource="{Binding Room}" Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ID}"/>
@@ -49,7 +65,9 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource EditButton}">
+                                    <Button Style="{StaticResource EditButton}"
+                                            Command="{Binding RoomUpdateNavCommand}"
+                                            CommandParameter="{x:Static nav:ViewType.RoomUpdate}">
                                         <iconPacks:PackIconMaterial Kind="PencilOutline" Style="{StaticResource ButtonIcon}" />
                                     </Button>
                                     <Button Style="{StaticResource EditButton}">

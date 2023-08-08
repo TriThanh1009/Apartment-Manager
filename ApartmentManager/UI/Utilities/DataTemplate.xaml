@@ -2,9 +2,19 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:AM.UI.ViewModelUI"
                     xmlns:vmr="clr-namespace:AM.UI.ViewModelUI.Room"
+                    xmlns:vmrd="clr-namespace:AM.UI.ViewModelUI.RoomDetails"
+                    xmlns:vmdeposit="clr-namespace:AM.UI.ViewModelUI.DepositContract"
+                    
+                    
+                    
                     xmlns:people="clr-namespace:ViewModel.People;assembly=ViewModel"
                     xmlns:room="clr-namespace:ViewModel.Room;assembly=ViewModel"
                     xmlns:roomview="clr-namespace:AM.UI.View.Rooms"
+                    xmlns:roomdetailsview="clr-namespace:AM.UI.View.RoomDetails"
+                    xmlns:rentalview="clr-namespace:AM.UI.View.RentalContract"
+                    xmlns:depositview="clr-namespace:AM.UI.View.DepositContract"
+                    xmlns:billview="clr-namespace:AM.UI.View.Bills"
+                    xmlns:furnitureview="clr-namespace:AM.UI.View.Furniture"
                     xmlns:view="clr-namespace:AM.UI.View"
                     xmlns:vp="clr-namespace:AM.UI.View.People"
                     xmlns:vh="clr-namespace:AM.UI.View.Homes">
@@ -12,21 +22,49 @@
     <DataTemplate DataType="{x:Type vm:HomeVM}">
         <vh:Home />
     </DataTemplate>
+    
 
     <DataTemplate DataType="{x:Type vm:CustomerVMUI}">
         <vp:Home />
     </DataTemplate>
 
+    
     <DataTemplate DataType="{x:Type room:RoomVm}">
         <roomview:RoomHome />
     </DataTemplate>
 
+    
     <DataTemplate DataType="{x:Type vm:RoomHomeVMUI}">
         <roomview:RoomHome />
     </DataTemplate>
+    
 
     <DataTemplate DataType="{x:Type vmr:RoomAddVMUI}">
         <roomview:RoomAdd />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vmr:RoomUpdateVMUI}">
+        <roomview:RoomUpdate />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vmrd:RoomDetailsHomeVMUI}">
+        <roomdetailsview:RoomDetailsHome />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:FurnitureHomeVMUI}">
+        <furnitureview:FurnitureHome/>
+    </DataTemplate>
+
+
+    <DataTemplate DataType="{x:Type vm:RentalContractHomeVMUI}">
+        <rentalview:RentalContractHome/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vmdeposit:DepositContractHomeVMUI}">
+        <depositview:DepositContractHome/>
+    </DataTemplate>
+
+
+
 
 </ResourceDictionary>

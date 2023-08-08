@@ -9,10 +9,10 @@ namespace ViewModel.DepositsContract
     public class DepositsContractVm
     {
         public int ID { get; set; }
-        public int IDRoom { get; set; }
+        public string RoomName { get; set; }
         public DateTime DepositsDate { get; set; }
         public DateTime ReceiveDate { get; set; }
-        public int CheckOutDate { get; set; }
+        public DateTime CheckOutDate { get; set; }
         public int Money { get; set; }
     }
 }
