@@ -19,39 +19,6 @@ namespace AM.UI.HostBuilderExtension
             hostBuilder.ConfigureServices(services =>
             {
                 //   services.AddTransient((s) => CreateReservationListingViewModel(s));
-                services.AddSingleton<Func<HomeVM>>((s) => () => s.GetRequiredService<HomeVM>());
-                services.AddSingleton<NavigationService<HomeVM>>();
-                services.AddTransient<HomeVM>();
-
-                services.AddTransient<CustomerVMUI>();
-                services.AddSingleton<Func<CustomerVMUI>>((s) => () => s.GetRequiredService<CustomerVMUI>());
-                services.AddSingleton<NavigationService<CustomerVMUI>>();
-
-                services.AddTransient<RoomHomeVMUI>();
-                services.AddSingleton<Func<RoomHomeVMUI>>((s) => () => s.GetRequiredService<RoomHomeVMUI>());
-                services.AddSingleton<NavigationService<RoomHomeVMUI>>();
-
-                services.AddTransient<RoomAddVMUI>();
-                services.AddSingleton<Func<RoomAddVMUI>>((s) => () => s.GetRequiredService<RoomAddVMUI>());
-                services.AddSingleton<NavigationService<RoomAddVMUI>>();
-
-                services.AddTransient<FurnitureHomeVMUI>();
-                services.AddSingleton<Func<FurnitureHomeVMUI>>((s) => () => s.GetRequiredService<FurnitureHomeVMUI>());
-                services.AddSingleton<NavigationService<FurnitureHomeVMUI>>();
-
-
-                services.AddTransient<RoomUpdateVMUI>();
-                services.AddSingleton<Func<RoomUpdateVMUI>>((s) => () => s.GetRequiredService<RoomUpdateVMUI>());
-                services.AddSingleton<NavigationService<RoomUpdateVMUI>>();
-
-                services.AddTransient<RentalContractHomeVMUI>();
-                services.AddSingleton<Func<RentalContractHomeVMUI>>((s) => () => s.GetRequiredService<RentalContractHomeVMUI>());
-                services.AddSingleton<NavigationService<RentalContractHomeVMUI>>();
-
-                services.AddTransient<DepositContractHomeVMUI>();
-                services.AddSingleton<Func<DepositContractHomeVMUI>>((s) => () => s.GetRequiredService<DepositContractHomeVMUI>());
-                services.AddSingleton<NavigationService<DepositContractHomeVMUI>>();
-
 
                 services.AddSingleton<NavigationVM>();
             });

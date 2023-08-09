@@ -1,4 +1,5 @@
 ﻿using Data;
+using Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using Services.Interface;
 using System;
@@ -14,10 +15,30 @@ namespace Services.Implement
     public class PeopleServices : IPeople
     {
         private readonly ApartmentDbContextFactory _contextfactory;
+        private readonly IBaseControl<People> _baseControl;
 
-        public PeopleServices(ApartmentDbContextFactory contextfactory)
+        public PeopleServices(ApartmentDbContextFactory contextfactory, IBaseControl<People> baseControl)
         {
             _contextfactory=contextfactory;
+            _baseControl=baseControl;
+        }
+
+        public async Task<List<CustomerVM>> GetAll()
+        {
+            List<People> result = await _baseControl.GetAll();
+            var result1 = result.Select(e => new CustomerVM
+            {
+                ID = e.ID,
+                IDroom = e.IDroom,
+                Name = e.Name,
+                Sex = e.Sex,
+                Birthday= e.Birthday,
+                PhoneNumber = e.PhoneNumber,
+                Email = e.Email,
+                IDCard = e.IDCard,
+                Address = e.Address,
+            }).ToList();
+            return result1;
         }
 
         public async Task<PagedResult<CustomerVM>> GetAllPage(RequestPaging request)

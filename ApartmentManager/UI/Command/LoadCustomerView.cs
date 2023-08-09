@@ -34,8 +34,10 @@ namespace AM.UI.Command
             a.Keyword=null;
             a.PageSize=7;
             a.PageIndex=1;
-            PagedResult<CustomerVM> tes = await _people.GetAllPage(a);
-            _customer.test = tes.Items;
+            //  PagedResult<CustomerVM> tes = await _people.GetAllPage(a);
+
+            // _customer.test = tes.Items;
+            _customer.test = await _people.GetAll();
         }
     }
 }

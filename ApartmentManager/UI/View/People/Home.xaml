@@ -6,6 +6,7 @@
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
             xmlns:vm ="clr-namespace:AM.UI.ViewModelUI"
+             xmlns:nav="clr-namespace:AM.UI.State.Navigators"
              mc:Ignorable="d"
              Style="{StaticResource Page_Style}">
 
@@ -46,7 +47,9 @@
             </Grid>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3">
-            <Button Style="{StaticResource AddButton}">
+            <Button Style="{StaticResource AddButton}"
+                    Command="{Binding AddNavCustomer}"
+                    CommandParameter="{x:Static nav:ViewType.CustomerAdd}">
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0" />
                     <TextBlock Text="Add New Customer" />

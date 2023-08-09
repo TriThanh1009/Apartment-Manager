@@ -1,6 +1,7 @@
 ﻿using AM.UI.Command;
 using AM.UI.State.Navigators;
 using AM.UI.Utilities;
+using AM.UI.ViewModelUI.Factory;
 using Services.Interface;
 using System;
 using System.Collections.Generic;
@@ -47,18 +48,19 @@ namespace AM.UI.ViewModelUI
 
         private readonly INavigator _navigator;
         public ICommand UpdateNavCustomer { get; }
+        public ICommand AddNavCustomer { get; }
 
         public ICommand LoadDatabase { get; }
 
-        public CustomerVMUI(INavigator navigator, IPeople people)
+        public CustomerVMUI(INavigator navigator, IPeople people, IAparmentViewModelFactory aparmentViewModelFactory)
         {
             _people = people;
             test = new List<CustomerVM>();
             UpdateNavCustomer = new RelayCommand(Test1);
             LoadDatabase = new LoadCustomerView(this, _people);
             LoadDatabase.Execute(null);
+            AddNavCustomer = new UpdateCurrentViewModelCommand(navigator, aparmentViewModelFactory);
             _navigator =navigator;
-            // Load();
         }
 
         private void Test1(object parameter)
@@ -67,16 +69,6 @@ namespace AM.UI.ViewModelUI
             {
                 MessageBox.Show(person.Email);
             }
-        }
-
-        public async Task Load()
-        {
-            RequestPaging a = new RequestPaging();
-            a.Keyword=null;
-            a.PageSize=7;
-            a.PageIndex=1;
-            PagedResult<CustomerVM> tes = await _people.GetAllPage(a);
-            tes.Items.ForEach(x => test.Add(x));
         }
     }
 }

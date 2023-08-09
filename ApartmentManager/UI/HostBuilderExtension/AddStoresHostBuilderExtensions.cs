@@ -2,6 +2,7 @@
 using AM.UI.Utilities;
 using AM.UI.View.RoomDetails;
 using AM.UI.ViewModelUI;
+using AM.UI.ViewModelUI.Customer;
 using AM.UI.ViewModelUI.DepositContract;
 using AM.UI.ViewModelUI.Factory;
 using AM.UI.ViewModelUI.Room;
@@ -32,8 +33,8 @@ namespace AM.UI.HostBuilderExtension
                 services.AddTransient<RentalContractHomeVMUI>();
                 services.AddTransient<BillHomeVMUI>();
                 services.AddTransient<DepositContractHomeVMUI>();
-
-
+                services.AddTransient<AddCustomerVMUI>();
+                /*-------------------------------------------------------------------------------*/
                 services.AddSingleton<INavigator, Navigator>();
                 services.AddSingleton<IAparmentViewModelFactory, AparmentViewModelFactory>();
                 services.AddSingleton<CreateViewModel<HomeVM>>(services => () => services.GetRequiredService<HomeVM>());
@@ -46,8 +47,9 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<CreateViewModel<RentalContractHomeVMUI>>(services => () => services.GetRequiredService<RentalContractHomeVMUI>());
                 services.AddSingleton<CreateViewModel<BillHomeVMUI>>(services => () => services.GetRequiredService<BillHomeVMUI>());
                 services.AddSingleton<CreateViewModel<DepositContractHomeVMUI>>(services => () => services.GetRequiredService<DepositContractHomeVMUI>());
+                services.AddSingleton<CreateViewModel<AddCustomerVMUI>>(services => () => services.GetRequiredService<AddCustomerVMUI>());
 
-
+                /*-------------------------------------------------------------------------------*/
                 services.AddSingleton<ViewModelDelegateRenavigator<RoomHomeVMUI>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<HomeVM>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<CustomerVMUI>>();
@@ -58,6 +60,7 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<ViewModelDelegateRenavigator<RentalContractHomeVMUI>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<BillHomeVMUI>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<DepositContractHomeVMUI>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<AddCustomerVMUI>>();
             });
 
             return host;

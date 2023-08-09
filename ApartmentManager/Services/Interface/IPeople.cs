@@ -11,5 +11,7 @@ namespace Services.Interface
     public interface IPeople
     {
         Task<PagedResult<CustomerVM>> GetAllPage(RequestPaging request);
+
+        Task<List<CustomerVM>> GetAll();
     }
 }

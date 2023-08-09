@@ -24,6 +24,7 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<IRentalContract, RentalContractServices>();
                 services.AddSingleton<IBill, BillServices>();
                 services.AddSingleton<IDepositsContract, DepositsContractServices>();
+                services.AddSingleton<IBaseControl<People>, BaseControlServices<People>>();
             });
 
             return host;

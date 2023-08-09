@@ -38,6 +38,9 @@
     <Compile Update="View\Furniture\FurnitureUpdate.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\People\AddCustomer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\People\Home.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -134,6 +137,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Homes\Home.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\People\AddCustomer.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\People\Home.xaml">

@@ -35,7 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModelUI\Customer\" />
     <Folder Include="ViewModelUI\Furnitures\" />
     <Folder Include="ViewModelUI\RentalContract\" />
   </ItemGroup>

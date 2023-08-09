@@ -1,5 +1,6 @@
 ﻿using AM.UI.State.Navigators;
 using AM.UI.Utilities;
+using AM.UI.ViewModelUI.Customer;
 using AM.UI.ViewModelUI.DepositContract;
 using AM.UI.ViewModelUI.Room;
 using AM.UI.ViewModelUI.RoomDetails;
@@ -24,12 +25,14 @@ namespace AM.UI.ViewModelUI.Factory
         private readonly CreateViewModel<RentalContractHomeVMUI> _createRentalContractVM;
         private readonly CreateViewModel<BillHomeVMUI> _createBillVM;
         private readonly CreateViewModel<DepositContractHomeVMUI> _createDepositContractVM;
+        private readonly CreateViewModel<AddCustomerVMUI> _createAddCustomerVM;
 
         public AparmentViewModelFactory(CreateViewModel<HomeVM> createhomeVM, CreateViewModel<CustomerVMUI> createCustomerVM,
                                         CreateViewModel<RoomHomeVMUI> createRoomVM, CreateViewModel<RoomAddVMUI> createRoomAddVM,
-                                        CreateViewModel<RoomUpdateVMUI> createRoomUpdateVM,CreateViewModel<RoomDetailsHomeVMUI> createRoomDetailsVM,
+                                        CreateViewModel<RoomUpdateVMUI> createRoomUpdateVM, CreateViewModel<RoomDetailsHomeVMUI> createRoomDetailsVM,
                                         CreateViewModel<FurnitureHomeVMUI> createFurnitureVM, CreateViewModel<RentalContractHomeVMUI> createRentalContractVM,
-                                        CreateViewModel<BillHomeVMUI> createBillVM,CreateViewModel<DepositContractHomeVMUI> createDepositContractVM)
+                                        CreateViewModel<BillHomeVMUI> createBillVM, CreateViewModel<DepositContractHomeVMUI> createDepositContractVM,
+                                        CreateViewModel<AddCustomerVMUI> createAddCustomerVM)
         {
             _createCustomerVM = createCustomerVM;
             _createHomeVM = createhomeVM;
@@ -41,6 +44,7 @@ namespace AM.UI.ViewModelUI.Factory
             _createRentalContractVM = createRentalContractVM;
             _createBillVM = createBillVM;
             _createDepositContractVM = createDepositContractVM;
+            _createAddCustomerVM = createAddCustomerVM;
         }
 
         public ViewModelBase CreateViewModel(ViewType viewType)
@@ -76,6 +80,9 @@ namespace AM.UI.ViewModelUI.Factory
 
                 case ViewType.DepositContract:
                     return _createDepositContractVM();
+
+                case ViewType.CustomerAdd:
+                    return _createAddCustomerVM();
 
                 default:
                     throw new ArgumentException("The ViewType does not have a ViewModel.", "viewType");

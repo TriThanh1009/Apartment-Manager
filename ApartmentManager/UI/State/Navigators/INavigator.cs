@@ -10,14 +10,13 @@ namespace AM.UI.State.Navigators
     public enum ViewType
     {
         Home,
-        Customer,
-        Room,RoomAdd,RoomUpdate,
+        Customer, CustomerAdd,
+        Room, RoomAdd, RoomUpdate,
         RoomDetails,
         Furnitures,
-        RentalContract,RentalContractAdd,RentalContractUpdate,
-        Bill,BillAdd,BillUpdate,
+        RentalContract, RentalContractAdd, RentalContractUpdate,
+        Bill, BillAdd, BillUpdate,
         DepositContract
-        
     }
 
     public interface INavigator
