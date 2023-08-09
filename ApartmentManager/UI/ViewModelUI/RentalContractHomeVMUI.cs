@@ -15,6 +15,7 @@ namespace AM.UI.ViewModelUI
     {
         private List<RentalContractVm> _rental;
         private readonly IRentalContract _irental;
+
         public List<RentalContractVm> Rental
         {
             get => _rental;
@@ -24,17 +25,19 @@ namespace AM.UI.ViewModelUI
                 OnPropertyChanged();
             }
         }
+
         public RentalContractHomeVMUI(IRentalContract irental)
         {
             _irental = irental;
             Rental = new List<RentalContractVm>();
             LoadData();
         }
+
         public void LoadData()
         {
             var paged = new RequestPaging { PageIndex = 1, PageSize = 10 };
             PagedResult<RentalContractVm> r = _irental.GetAllPage(paged);
-            r.Items.ForEach(x=>_rental.Add(x));
+            r.Items.ForEach(x => _rental.Add(x));
         }
     }
 }

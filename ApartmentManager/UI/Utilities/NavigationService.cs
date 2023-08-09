@@ -18,9 +18,9 @@ namespace AM.UI.Utilities
             _CreateModel=CreateModel;
         }
 
-        public void Navigate()
+        public ViewModelBase Navigate()
         {
-            _navigation.CurrentViewModel = _CreateModel();
+            return _CreateModel();
         }
     }
 }

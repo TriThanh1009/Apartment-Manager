@@ -10,7 +10,6 @@
 //------------------------------------------------------------------------------
 
 using AM.UI.View.People;
-using AM.UI.ViewModelUI;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -54,7 +53,7 @@ namespace AM.UI.View.People {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AM.UI;V1.0.0.0;component/view/people/updatecustomer.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AM.UI;component/view/people/updatecustomer.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\People\UpdateCustomer.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

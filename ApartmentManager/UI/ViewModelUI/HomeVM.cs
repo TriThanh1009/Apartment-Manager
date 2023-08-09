@@ -1,4 +1,5 @@
-﻿using AM.UI.Utilities;
+﻿using AM.UI.State.Navigators;
+using AM.UI.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,11 @@ namespace AM.UI.ViewModelUI
 {
     public class HomeVM : ViewModelBase
     {
+        private readonly INavigator _navigator;
+
+        public HomeVM(INavigator navigator)
+        {
+            _navigator = navigator;
+        }
     }
 }

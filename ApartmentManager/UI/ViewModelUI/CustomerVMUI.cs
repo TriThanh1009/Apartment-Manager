@@ -1,10 +1,15 @@
-﻿using AM.UI.Utilities;
+﻿using AM.UI.Command;
+using AM.UI.State.Navigators;
+using AM.UI.Utilities;
 using Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 using ViewModel.Dtos;
 using ViewModel.People;
 
@@ -25,14 +30,46 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-        public CustomerVMUI(IPeople people)
+        private bool _isLoading;
+
+        public bool IsLoading
+        {
+            get
+            {
+                return _isLoading;
+            }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged(nameof(IsLoading));
+            }
+        }
+
+        private readonly INavigator _navigator;
+        public ICommand UpdateNavCustomer { get; }
+
+        public ICommand LoadDatabase { get; }
+
+        public CustomerVMUI(INavigator navigator, IPeople people)
         {
             _people = people;
             test = new List<CustomerVM>();
-            Load();
+            UpdateNavCustomer = new RelayCommand(Test1);
+            LoadDatabase = new LoadCustomerView(this, _people);
+            LoadDatabase.Execute(null);
+            _navigator =navigator;
+            // Load();
         }
 
-        public async void Load()
+        private void Test1(object parameter)
+        {
+            if (parameter is CustomerVM person)
+            {
+                MessageBox.Show(person.Email);
+            }
+        }
+
+        public async Task Load()
         {
             RequestPaging a = new RequestPaging();
             a.Keyword=null;
