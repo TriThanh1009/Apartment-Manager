@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,12 +13,18 @@ namespace Services.Interface
 {
     public interface IRoom
     {
-        Task<int> CreateRoom(RoomCreateViewModel model);
-
-        Task<int> UpdateRoom(RoomUpdateViewModel model);
-
-        Task<int> DeleteRoom(int ImageId);
-
         PagedResult<RoomVm> GetAllPage(RequestPaging request);
+
+        Task<List<RoomVm>> GetAll();
+
+        Task<Room> Create(RoomCreateViewModel model);
+
+        Task<Room> Update(int id, RoomUpdateViewModel model);
+
+        Task<bool> Delete(int id);
+
+        Task<Room> GetById(int id);
+
+
     }
 }
