@@ -1,6 +1,7 @@
 ﻿using AM.UI.Command;
 using AM.UI.State.Navigators;
 using AM.UI.Utilities;
+using AM.UI.ViewModelUI.Customer;
 using AM.UI.ViewModelUI.Factory;
 using Services.Interface;
 using System;
@@ -20,6 +21,15 @@ namespace AM.UI.ViewModelUI
     {
         private List<CustomerVM> _test;
         private readonly IPeople _people;
+        private readonly IAparmentViewModelFactory _factory;
+
+        private string _search;
+
+        public string search
+        {
+            get { return _search; }
+            set { _search = value; OnPropertyChanged(nameof(search)); }
+        }
 
         public List<CustomerVM> test
         {
@@ -61,13 +71,14 @@ namespace AM.UI.ViewModelUI
             LoadDatabase.Execute(null);
             AddNavCustomer = new UpdateCurrentViewModelCommand(navigator, aparmentViewModelFactory);
             _navigator =navigator;
+            _factory = aparmentViewModelFactory;
         }
 
         private void Test1(object parameter)
         {
             if (parameter is CustomerVM person)
             {
-                MessageBox.Show(person.Email);
+                _navigator.CurrentViewModel = new UpdateCustomerVMUI(_people, person, _navigator, _factory);
             }
         }
     }

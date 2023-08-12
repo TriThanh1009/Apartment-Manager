@@ -23,6 +23,45 @@ namespace Services.Implement
             _baseControl=baseControl;
         }
 
+        public async Task<People> Create(PeopleCreateViewModel request)
+        {
+            People people = new People
+            {
+                IDroom = request.IDroom,
+                Name = request.Name,
+                Sex = request.Sex,
+                Birthday= request.Birthday,
+                PhoneNumber = request.PhoneNumber,
+                Email = request.Email,
+                IDCard = request.IDCard,
+                Address = request.Address,
+            };
+            var result = await _baseControl.Create(people);
+            return result;
+        }
+
+        public async Task<bool> Delete(int id)
+        {
+            return await _baseControl.Delete(id);
+        }
+
+        public async Task<People> Edit(int id, PeopleUpdateViewModel request)
+        {
+            People people = new People
+            {
+                IDroom = request.IDroom,
+                Name = request.Name,
+                Sex = request.Sex,
+                Birthday= request.Birthday,
+                PhoneNumber = request.PhoneNumber,
+                Email = request.Email,
+                IDCard = request.IDCard,
+                Address = request.Address,
+            };
+            var result = await _baseControl.Update(id, people);
+            return result;
+        }
+
         public async Task<List<CustomerVM>> GetAll()
         {
             List<People> result = await _baseControl.GetAll();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,11 @@ namespace Services.Interface
         Task<PagedResult<CustomerVM>> GetAllPage(RequestPaging request);
 
         Task<List<CustomerVM>> GetAll();
+
+        Task<People> Edit(int id, PeopleUpdateViewModel request);
+
+        Task<bool> Delete(int id);
+
+        Task<People> Create(PeopleCreateViewModel request);
     }
 }

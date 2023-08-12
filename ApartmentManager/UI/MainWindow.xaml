@@ -74,8 +74,7 @@
 
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding UpdateCurrentViewModelCommand}"
-                              CommandParameter="{x:Static nav:ViewType.Customer}"
-                              IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:CustomerVMUI}}">
+                              CommandParameter="{x:Static nav:ViewType.Customer}">
                         <Grid>
 
                             <Image Source="Images/icon/img_customer.png"
@@ -91,7 +90,7 @@
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding UpdateCurrentViewModelCommand}"
                               CommandParameter="{x:Static nav:ViewType.Room}"
-                             
+
                               IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:RoomHomeVMUI}}">
 
                         <Grid>
@@ -143,7 +142,7 @@
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding UpdateCurrentViewModelCommand}"
                               CommandParameter="{x:Static nav:ViewType.Furnitures}"
-                             
+
                               IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:FurnitureHomeVMUI}}">
 
                         <Grid>
@@ -161,7 +160,7 @@
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                                Command="{Binding UpdateCurrentViewModelCommand}"
                               CommandParameter="{x:Static nav:ViewType.DepositContract}"
-                             
+
                               IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vmdeposit:DepositContractHomeVMUI}}">
 
                         <Grid>

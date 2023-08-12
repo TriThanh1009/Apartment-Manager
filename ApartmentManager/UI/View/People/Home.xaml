@@ -41,7 +41,7 @@
                            Panel.ZIndex="1"  Text=""
                            Visibility="{Binding ElementName=txtSearch,Converter={StaticResource BoolToVis}}" />
 
-                <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}" />
+                <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}" Text="{Binding search}" />
                 <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
                                        Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right" />
             </Grid>
@@ -74,7 +74,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <Button Style="{StaticResource EditButton}"
-                                            Command="{Binding DataContext.UpdateNavCustomer}">
+                                            Command="{Binding DataContext.UpdateNavCustomer, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                         <iconPacks:PackIconMaterial Kind="PencilOutline" Style="{StaticResource ButtonIcon}" />
                                     </Button>
                                     <Button Style="{StaticResource EditButton}">

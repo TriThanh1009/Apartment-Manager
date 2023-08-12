@@ -30,6 +30,10 @@
         <viewpeople:AddCustomer />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vmpeople:UpdateCustomerVMUI}">
+        <viewpeople:UpdateCustomer />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type room:RoomVm}">
         <roomview:RoomHome />
     </DataTemplate>

@@ -1,4 +1,8 @@
-﻿using AM.UI.Utilities;
+﻿using AM.UI.State.Navigators;
+using AM.UI.Utilities;
+using AM.UI.ViewModelUI.Factory;
+using Data.Enum;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Services.Interface;
 using System;
 using System.Collections.Generic;
@@ -14,13 +18,22 @@ namespace AM.UI.ViewModelUI.Customer
     {
         private readonly IPeople _people;
         public string a = "";
-        private readonly CustomerVM _customerVM;
+        private CustomerVM _customerVM;
 
-        public UpdateCustomerVMUI(IPeople people, CustomerVM customerVM)
+        public CustomerVM customerVM
+        {
+            get { return _customerVM; }
+            set
+            {
+                _customerVM = value;
+                OnPropertyChanged(nameof(CustomerVM));
+            }
+        }
+
+        public UpdateCustomerVMUI(IPeople people, CustomerVM customer, INavigator navigator, IAparmentViewModelFactory factory)
         {
             _people = people;
-            _customerVM = customerVM;
-            MessageBox.Show(_customerVM.Name);
+            customerVM = customer;
         }
     }
 }
