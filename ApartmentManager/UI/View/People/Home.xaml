@@ -37,13 +37,17 @@
         <StackPanel Grid.Row="1" Grid.ColumnSpan="4">
             <TextBlock Text="Search here :" HorizontalAlignment="Left" FontSize="15" Margin="10 2 0 0" Foreground="#b0b9c6" />
             <Grid Width="300" HorizontalAlignment="Left" Margin="10 2 0 0">
-                <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="14*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="20,0,20,0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
                            Panel.ZIndex="1"  Text=""
-                           Visibility="{Binding ElementName=txtSearch,Converter={StaticResource BoolToVis}}" />
+                           Visibility="{Binding ElementName=txtSearch,Converter={StaticResource BoolToVis}}" Grid.ColumnSpan="2" />
 
-                <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}" />
+                <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}" Grid.ColumnSpan="2" />
                 <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
-                                       Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right" />
+                                       Margin="250,0,0,0" Foreground="#b0b9c6" Grid.Column="1" />
             </Grid>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3">

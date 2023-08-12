@@ -10,6 +10,8 @@ namespace AM.UI.Command
     {
         private bool _isExecuting;
 
+
+
         private bool IsExecuting
         {
             get

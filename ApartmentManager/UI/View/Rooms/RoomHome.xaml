@@ -12,6 +12,7 @@
 
     <Grid>
 
+
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -34,8 +35,7 @@
             <Button Style="{StaticResource DetailsButton}"  
                     Command="{Binding RoomNavCommand}" 
                     CommandParameter="{x:Static nav:ViewType.RoomAdd}"   
-                    Content="Add" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top"  
-                    
+                    Content="Add" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top"
                     />
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="5">
@@ -54,6 +54,11 @@
             <Button Style="{StaticResource DetailsButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Bill"  Margin="230,30,0,0" />
         </StackPanel>
 
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="4" Margin="104,0,0,0">
+            <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}" Width="257" Text="{Binding IDFind}" />
+        </StackPanel>
+
+
         <StackPanel Grid.Row="2" Grid.ColumnSpan="8" Grid.RowSpan="4" x:Name="main">
             <DataGrid ItemsSource="{Binding Room}" Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
                 <DataGrid.Columns>
@@ -66,8 +71,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <Button Style="{StaticResource EditButton}"
-                                            Command="{Binding RoomUpdateNavCommand}"
-                                            CommandParameter="{x:Static nav:ViewType.RoomUpdate}">
+                                           Command="{Binding DataContext.RoomUpdateNavCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                         <iconPacks:PackIconMaterial Kind="PencilOutline" Style="{StaticResource ButtonIcon}" />
                                     </Button>
                                     <Button Style="{StaticResource EditButton}">
