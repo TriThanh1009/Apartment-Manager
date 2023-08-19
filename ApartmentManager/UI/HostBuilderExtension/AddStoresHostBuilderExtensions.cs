@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModel.People;
 using ViewModel.Room;
 
 namespace AM.UI.HostBuilderExtension
@@ -28,8 +29,11 @@ namespace AM.UI.HostBuilderExtension
                 services.AddTransient<CustomerVMUI>();
                 services.AddTransient<RoomHomeVMUI>();
                 services.AddTransient<RoomAddVMUI>();
-                services.AddTransient<RoomUpdateVMUI>(); 
+                services.AddTransient<RoomUpdateVMUI>();
                 services.AddTransient<RoomDeleteVMUI>();
+                services.AddTransient<CustomerVM>();
+                services.AddTransient<RoomVm>();
+
                 services.AddTransient<RoomDetailsHomeVMUI>();
                 services.AddTransient<FurnitureHomeVMUI>();
                 services.AddTransient<RentalContractHomeVMUI>();

@@ -5,13 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-            xmlns:vm ="clr-namespace:AM.UI.ViewModelUI"
+             xmlns:vm ="clr-namespace:AM.UI.ViewModelUI"
+             xmlns:custom="clr-namespace:AM.UI.Utilities"
              xmlns:nav="clr-namespace:AM.UI.State.Navigators"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:converters="clr-namespace:AM.UI.Converters"
              mc:Ignorable="d"
              Style="{StaticResource Page_Style}">
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -38,14 +42,15 @@
             <TextBlock Text="Search here :" HorizontalAlignment="Left" FontSize="15" Margin="10 2 0 0" Foreground="#b0b9c6" />
             <Grid Width="300" HorizontalAlignment="Left" Margin="10 2 0 0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="14*"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="14*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="20,0,20,0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-                           Panel.ZIndex="1"  Text=""
-                           Visibility="{Binding ElementName=txtSearch,Converter={StaticResource BoolToVis}}" Grid.ColumnSpan="2" />
+                           Panel.ZIndex="1"  Text="search by id......" x:Name="textblock"
+                           Visibility="{Binding IsText, Converter={StaticResource BoolToVis}}" Grid.ColumnSpan="2" />
 
-                <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}" Text="{Binding search}" />
+                <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}" Text="{Binding search,UpdateSourceTrigger=PropertyChanged}"  Width="300" Grid.ColumnSpan="2" HorizontalAlignment="Left" MouseEnter="txtSearch_MouseEnter" MouseLeave="txtSearch_MouseLeave" />
+
                 <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
                                        Margin="250,0,0,0" Foreground="#b0b9c6" Grid.Column="1" />
             </Grid>
@@ -61,7 +66,18 @@
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="4" x:Name="main">
-            <DataGrid ItemsSource="{Binding test}" Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
+            <custom:LoadingSpinner
+
+                Diameter="100"
+                IsLoading="{Binding IsLoading}"
+                Thickness="5"
+                Color="Black" />
+            <TextBlock
+                    Foreground="Red"
+                    Text="{Binding ErrorMessage}"
+                    Visibility="{Binding HasErrorMessage, Converter={StaticResource BoolToVis}}" />
+            <DataGrid ItemsSource="{Binding test}" Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}"
+                      Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="auto"  Binding="{Binding ID}" />
                     <DataGridTextColumn Header="IDroom" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding IDroom}" />

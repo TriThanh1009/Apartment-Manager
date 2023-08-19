@@ -3,15 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:custom ="clr-namespace:AM.UI.Utilities"
              xmlns:roomview="clr-namespace:AM.UI.View.Rooms"
              xmlns:nav="clr-namespace:AM.UI.State.Navigators"
              xmlns:local="clr-namespace:AM.UI.View.Rooms" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" xmlns:viewmodelui="clr-namespace:AM.UI.ViewModelUI"
              mc:Ignorable="d"
              d:DesignHeight="630" d:DesignWidth="730">
-
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
 
     <Grid>
-
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -23,7 +25,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="9*" />
             <ColumnDefinition Width="13*" />
             <ColumnDefinition Width="13*" />
             <ColumnDefinition Width="13*" />
@@ -32,22 +34,21 @@
             <ColumnDefinition Width="13*" />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="4" Margin="0,0,104,0">
-            <Button Style="{StaticResource DetailsButton}"  
-                    Command="{Binding RoomNavCommand}" 
-                    CommandParameter="{x:Static nav:ViewType.RoomAdd}"   
-                    Content="Add" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top"
-                    />
+            <Button Style="{StaticResource DetailsButton}"
+                    Command="{Binding RoomNavCommand}"
+                    CommandParameter="{x:Static nav:ViewType.RoomAdd}"
+                    Content="Add" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top" />
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="5">
-            <Button  Style="{StaticResource DetailsButton}" 
-                     Command="{Binding RoomNavCommand}" 
-                     CommandParameter="{x:Static nav:ViewType.RoomDetails}" 
+            <Button  Style="{StaticResource DetailsButton}"
+                     Command="{Binding RoomNavCommand}"
+                     CommandParameter="{x:Static nav:ViewType.RoomDetails}"
                      Content="Room Details"  Margin="190,57,0,0" />
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Margin="0,0,104,0">
             <Button Style="{StaticResource DetailsButton}"
-                    Command="{Binding RoomNavCommand}" 
-                    CommandParameter="{x:Static nav:ViewType.RentalContract}" 
+                    Command="{Binding RoomNavCommand}"
+                    CommandParameter="{x:Static nav:ViewType.RentalContract}"
                     HorizontalAlignment="Left" VerticalAlignment="Top" Content="Contract"  Margin="30,30,0,0" />
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="5">
@@ -58,14 +59,22 @@
             <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}" Width="257" Text="{Binding IDFind}" />
         </StackPanel>
 
-
         <StackPanel Grid.Row="2" Grid.ColumnSpan="8" Grid.RowSpan="4" x:Name="main">
-            <DataGrid ItemsSource="{Binding Room}" Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
+            <custom:LoadingSpinner
+            Height="300"
+            Margin="10"
+            Cap="Triangle"
+            Diameter="250"
+            IsLoading="{Binding IsLoading}"
+            Thickness="1"
+            Color="White" />
+            <DataGrid ItemsSource="{Binding Room}" Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}"
+                      Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ID}"/>
-                    <DataGridTextColumn Header="Leader Name" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding NameLeader}"/>
-                    <DataGridTextColumn Header="Name" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Quantity" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding Quantity}"/>
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ID}" />
+                    <DataGridTextColumn Header="Leader Name" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding NameLeader}" />
+                    <DataGridTextColumn Header="Name" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Quantity" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding Quantity}" />
                     <DataGridTemplateColumn Header="Operation" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

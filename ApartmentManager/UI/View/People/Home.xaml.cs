@@ -14,8 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 
-using Unity.Policy;
-
 using AM.UI.Utilities;
 
 using AM.UI.ViewModelUI;
@@ -69,15 +67,6 @@ namespace AM.UI.View.People
                     pagingbutton.Children.Add(button);
                 }
             else pagingRight.IsEnabled = false;
-        }
-
-        private RequestPaging GetAllPage()
-        {
-            RequestPaging a = new RequestPaging();
-            a.PageIndex =PageIndex;
-            a.PageSize = Pagesize;
-            a.Keyword = keyword;
-            return a;
         }
 
         private Button FindButtonByIndex(int index)
@@ -185,6 +174,17 @@ namespace AM.UI.View.People
                     }
                 }
             }
+        }
+
+        private void txtSearch_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (textblock.Text.Equals("search by id......")) textblock.Text="";
+        }
+
+        private void txtSearch_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (textblock.Text.Equals(""))
+                textblock.Text ="search by id......";
         }
     }
 }
