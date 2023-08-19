@@ -37,13 +37,15 @@ namespace Services.Implement
                 Name = model.Name,
                 Quantity = model.Quantity,
             };
-            
+           
+                
              return await _base.Create(room);
         }
 
         public async Task<bool> Delete(int id)
         {   
             await _base.Delete(id);
+            var del = _base.Delete(id);
             return true;
 
         }
@@ -75,10 +77,23 @@ namespace Services.Implement
 
             }).ToList();
             return result1;*/
+
+            List<Room> list = await _base.GetAll();
+            var room = list.Select(x => new RoomVm
+                {
+                    ID = x.ID,
+                    NameLeader = x.Name,
+                    Name = x.Name,
+                    Quantity = x.Quantity
+
+                }).ToList();
+            
+             return room;
         }
 
         public PagedResult<RoomVm> GetAllPage(RequestPaging request)
         {
+            
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.Room

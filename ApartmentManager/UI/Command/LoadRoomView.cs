@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using ViewModel.Room;
 
 namespace AM.UI.Command
 {
@@ -14,7 +15,10 @@ namespace AM.UI.Command
     {
         private readonly IRoom _iroom;
         private readonly RoomHomeVMUI _roomhomevm;
-        public LoadRoomView(RoomHomeVMUI roomhomevm,IRoom iroom)
+
+
+        public LoadRoomView(RoomHomeVMUI roomhomevm, IRoom iroom)
+
         {
             _iroom = iroom;
             _roomhomevm = roomhomevm;
@@ -32,3 +36,4 @@ namespace AM.UI.Command
         }
     }
 }
+ 

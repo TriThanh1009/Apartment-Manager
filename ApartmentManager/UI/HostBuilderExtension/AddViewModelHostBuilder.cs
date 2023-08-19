@@ -1,4 +1,6 @@
-﻿using AM.UI.Utilities;
+﻿using AM.UI.Model;
+using AM.UI.State;
+using AM.UI.Utilities;
 using AM.UI.ViewModelUI;
 using AM.UI.ViewModelUI.DepositContract;
 using AM.UI.ViewModelUI.Room;
@@ -18,8 +20,8 @@ namespace AM.UI.HostBuilderExtension
         {
             hostBuilder.ConfigureServices(services =>
             {
-                //   services.AddTransient((s) => CreateReservationListingViewModel(s));
-
+                services.AddTransient<Apartment>();
+                services.AddSingleton<ApartmentStore>();
                 services.AddSingleton<NavigationVM>();
             });
 

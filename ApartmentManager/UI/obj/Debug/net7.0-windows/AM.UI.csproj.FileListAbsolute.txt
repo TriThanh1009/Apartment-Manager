@@ -144,6 +144,10 @@ D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\RentalContract\RentalContractHome.baml
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\DepositContract\DepositContractHome.g.cs
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\DepositContract\DepositContractHome.baml
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\People\AddCustomer.g.cs
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\People\UpdateCustomer.g.cs
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\People\AddCustomer.baml
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\People\UpdateCustomer.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\AM.UI.exe
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\appsettings.json
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\AM.UI.deps.json
@@ -155,6 +159,8 @@ D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Azure.I
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Caliburn.Micro.Core.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\MahApps.Metro.IconPacks.Core.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\MahApps.Metro.IconPacks.Material.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\MaterialDesignColors.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\MaterialDesignThemes.Wpf.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.Bcl.AsyncInterfaces.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.Data.SqlClient.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.dll
@@ -197,11 +203,10 @@ D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microso
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.IdentityModel.Tokens.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.SqlServer.Server.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.Xaml.Behaviors.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\System.IdentityModel.Tokens.Jwt.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\System.Memory.Data.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\System.Runtime.Caching.dll
-D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Unity.Abstractions.dll
-D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Unity.Container.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
@@ -257,6 +262,7 @@ D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\AM.UI_M
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\MainWindow.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\Styles\DataGrid.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\Utilities\DataTemplate.baml
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\Utilities\Generic.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Bills\BillDelete.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Bills\BillHome.baml
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Bills\BillUpdate.baml
@@ -294,12 +300,7 @@ D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\refint\
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\AM.UI.pdb
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\AM.UI.genruntimeconfig.cache
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\ref\AM.UI.dll
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\People\AddCustomer.g.cs
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\People\UpdateCustomer.g.cs
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\People\AddCustomer.baml
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\People\UpdateCustomer.baml
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\LoadingSpinnerControl.dll
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Humanizer.dll
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.Design.dll
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyModel.dll
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Mono.TextTemplating.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Humanizer.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.Design.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyModel.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Mono.TextTemplating.dll

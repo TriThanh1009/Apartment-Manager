@@ -5,12 +5,14 @@
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:AM.UI.View.Homes"
+             xmlns:Design="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:custom="clr-namespace:AM.UI.Utilities"
              mc:Ignorable="d"
              Background="#212529"
              d:DesignHeight="681"
              d:DesignWidth="732"
              Style="{StaticResource Page_Style}">
     <Grid>
+
         <Grid  Margin="15 15 15 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="200" />
@@ -90,6 +92,21 @@
                 </Grid>
             </Grid>
             <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
+                <CheckBox
+            x:Name="cbIsLoading"
+            Grid.Row="0"
+            Margin="10"
+            HorizontalAlignment="Center"
+            Content="Is Loading" />
+
+                <custom:LoadingSpinner
+
+            Margin="10"
+            Diameter="250"
+            IsLoading="{Binding IsChecked, ElementName=cbIsLoading}"
+            Thickness="1"
+            Color="Black" />
+
                 <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 50 0 0" x:Name="homedata">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto"  Binding="{Binding ID}" />

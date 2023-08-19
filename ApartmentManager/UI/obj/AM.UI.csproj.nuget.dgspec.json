@@ -250,6 +250,10 @@
               "target": "Package",
               "version": "[4.11.0, )"
             },
+            "MaterialDesignThemes": {
+              "target": "Package",
+              "version": "[4.9.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.8, )"
@@ -279,10 +283,6 @@
             "Microsoft.Extensions.Hosting.Abstractions": {
               "target": "Package",
               "version": "[7.0.0, )"
-            },
-            "Unity": {
-              "target": "Package",
-              "version": "[5.11.10, )"
             }
           },
           "imports": [

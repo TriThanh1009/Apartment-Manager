@@ -65,7 +65,12 @@ namespace Services.Implement
 
         public async Task<List<CustomerVM>> GetAll()
         {
-            List<People> result = await _baseControl.GetAll();
+            // List<People> result = await _baseControl.GetAll();
+            List<People> result;
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                result = await _context.People.ToListAsync();
+            }
             var result1 = result.Select(e => new CustomerVM
             {
                 ID = e.ID,
