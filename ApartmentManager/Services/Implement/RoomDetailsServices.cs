@@ -1,4 +1,5 @@
 ﻿using Data;
+using Data.Entity;
 using Microsoft.EntityFrameworkCore.Internal;
 using Services.Interface;
 using System;
@@ -16,14 +17,24 @@ namespace Services.Implement
 {
     public class RoomDetailsServices : IRoomDetails
     {
-        private readonly ApartmentDbContextFactory _contextFactory;
-        public RoomDetailsServices(ApartmentDbContextFactory contextFactory)
+        private readonly ApartmentDbContextFactory _contextfactory;
+        private readonly IBaseControl<Room> _base;
+
+        public RoomDetailsServices(ApartmentDbContextFactory contextfactory, IBaseControl<Room> baseControl)
         {
-            _contextFactory = contextFactory;
+            _contextfactory = contextfactory;
+            _base = baseControl;
         }
+
+        public async Task<bool> Delete(int id)
+        {
+            await _base.Delete(id);
+            return true;
+        }
+
         public PagedResult<RoomDetailsVm> GetAllPage(RequestPaging request)
         {
-            using (AparmentDbContext _context = _contextFactory.CreateDbContext())
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.RoomDetail
                             join pt in _context.Furniture on p.IDFur equals pt.ID

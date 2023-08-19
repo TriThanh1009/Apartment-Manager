@@ -9,6 +9,7 @@
       "Services/1.0.0": {
         "dependencies": {
           "Data": "1.0.0",
+          "LoadingSpinner.WPF": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.8",
           "Microsoft.Extensions.Configuration.Json": "7.0.0",
@@ -49,6 +50,14 @@
           "lib/netstandard2.0/Azure.Identity.dll": {
             "assemblyVersion": "1.6.0.0",
             "fileVersion": "1.600.22.20503"
+          }
+        }
+      },
+      "LoadingSpinner.WPF/1.0.0": {
+        "runtime": {
+          "lib/netcoreapp3.1/LoadingSpinnerControl.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -615,6 +624,7 @@
       },
       "Data/1.0.0": {
         "dependencies": {
+          "LoadingSpinner.WPF": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.8",
           "Microsoft.EntityFrameworkCore.Abstractions": "7.0.8",
           "Microsoft.EntityFrameworkCore.Relational": "7.0.8",
@@ -630,7 +640,8 @@
       },
       "ViewModel/1.0.0": {
         "dependencies": {
-          "Data": "1.0.0"
+          "Data": "1.0.0",
+          "LoadingSpinner.WPF": "1.0.0"
         },
         "runtime": {
           "ViewModel.dll": {}
@@ -657,6 +668,13 @@
       "sha512": "sha512-EycyMsb6rD2PK9P0SyibFfEhvWWttdrYhyPF4f41uzdB/44yQlV+2Wehxyg489Rj6gbPvSPgbKq0xsHJBhipZA==",
       "path": "azure.identity/1.6.0",
       "hashPath": "azure.identity.1.6.0.nupkg.sha512"
+    },
+    "LoadingSpinner.WPF/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-szXy14LPJMKOG51LfOP4nLx9CtqsODA52LzUHHN+N8WXTIxu99289aTZMHRywomsVPiOtA4RKgWqPm/uffOUmw==",
+      "path": "loadingspinner.wpf/1.0.0",
+      "hashPath": "loadingspinner.wpf.1.0.0.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",

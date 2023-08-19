@@ -38,16 +38,17 @@
             <TextBlock Text="Search here :" HorizontalAlignment="Left" FontSize="15" Margin="10 2 0 0" Foreground="#b0b9c6" />
             <Grid Width="300" HorizontalAlignment="Left" Margin="10 2 0 0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="14*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="17*"/>
+                    <ColumnDefinition Width="123*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="20,0,20,0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
+                <TextBlock Margin="0,0,20,0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
                            Panel.ZIndex="1"  Text=""
-                           Visibility="{Binding ElementName=txtSearch,Converter={StaticResource BoolToVis}}" Grid.ColumnSpan="2" />
+                           Visibility="{Binding ElementName=txtSearch,Converter={StaticResource BoolToVis}}" Grid.ColumnSpan="2" Grid.Column="1" />
 
-                <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}" Text="{Binding search}" />
+                <TextBox Width="250"  x:Name="txtSearch" Style="{StaticResource textboxSearch}" Text="{Binding search}" Grid.ColumnSpan="3" HorizontalAlignment="Left" />
                 <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
-                                       Margin="250,0,0,0" Foreground="#b0b9c6" Grid.Column="1" />
+                                       Margin="216,0,0,0" Foreground="#b0b9c6" Grid.Column="2" />
             </Grid>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3">

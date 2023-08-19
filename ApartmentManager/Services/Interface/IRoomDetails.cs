@@ -13,6 +13,7 @@ namespace Services.Interface
     public interface IRoomDetails
     {
 
+        Task<bool> Delete(int id);
         PagedResult<RoomDetailsVm> GetAllPage(RequestPaging request);
     }
 }

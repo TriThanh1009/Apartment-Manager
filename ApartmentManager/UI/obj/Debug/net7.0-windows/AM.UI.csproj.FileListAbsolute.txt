@@ -294,3 +294,12 @@ D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\refint\
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\AM.UI.pdb
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\AM.UI.genruntimeconfig.cache
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\ref\AM.UI.dll
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\People\AddCustomer.g.cs
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\People\UpdateCustomer.g.cs
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\People\AddCustomer.baml
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\People\UpdateCustomer.baml
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\LoadingSpinnerControl.dll
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Humanizer.dll
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.Design.dll
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyModel.dll
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Mono.TextTemplating.dll

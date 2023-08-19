@@ -1,4 +1,5 @@
 ﻿using Data;
+using Data.Entity;
 using Microsoft.EntityFrameworkCore.Internal;
 using Services.Interface;
 using System;
@@ -20,12 +21,18 @@ namespace Services.Implement
         {
             _contextfactory = contextfactory;
         }
-        public Task<int> CreateRentalContract(RentalContractCreateViewModel model)
+
+        public Task<RentalContract> Create(RentalContractCreateViewModel model)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> DeleteRentalContract(int RcID)
+        public Task<bool> Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<RentalContractVm>> GetAll()
         {
             throw new NotImplementedException();
         }
@@ -65,7 +72,12 @@ namespace Services.Implement
             }
         }
 
-        public Task<int> UpdateRentalContract(RentalContractUpdateViewModel model)
+        public Task<RentalContract> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<RentalContract> Update(int id, RentalContractUpdateViewModel model)
         {
             throw new NotImplementedException();
         }

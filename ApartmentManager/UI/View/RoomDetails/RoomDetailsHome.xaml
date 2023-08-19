@@ -39,7 +39,8 @@
                                     <Button Style="{StaticResource EditButton}">
                                         <iconPacks:PackIconMaterial Kind="PencilOutline" Style="{StaticResource ButtonIcon}" />
                                     </Button>
-                                    <Button Style="{StaticResource EditButton}">
+                                    <Button Style="{StaticResource EditButton}"
+                                        Command="{Binding DataContext.RoomDeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                         <iconPacks:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource ButtonIcon}" />
                                     </Button>
                                 </StackPanel>

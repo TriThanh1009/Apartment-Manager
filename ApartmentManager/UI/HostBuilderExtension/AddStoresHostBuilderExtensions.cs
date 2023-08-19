@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModel.Room;
 
 namespace AM.UI.HostBuilderExtension
 {
@@ -27,13 +28,15 @@ namespace AM.UI.HostBuilderExtension
                 services.AddTransient<CustomerVMUI>();
                 services.AddTransient<RoomHomeVMUI>();
                 services.AddTransient<RoomAddVMUI>();
-                services.AddTransient<RoomUpdateVMUI>();
+                services.AddTransient<RoomUpdateVMUI>(); 
+                services.AddTransient<RoomDeleteVMUI>();
                 services.AddTransient<RoomDetailsHomeVMUI>();
                 services.AddTransient<FurnitureHomeVMUI>();
                 services.AddTransient<RentalContractHomeVMUI>();
                 services.AddTransient<BillHomeVMUI>();
                 services.AddTransient<DepositContractHomeVMUI>();
                 services.AddTransient<AddCustomerVMUI>();
+                services.AddTransient<RoomVm>();
                 /*-------------------------------------------------------------------------------*/
                 services.AddSingleton<INavigator, Navigator>();
                 services.AddSingleton<IAparmentViewModelFactory, AparmentViewModelFactory>();
@@ -48,6 +51,7 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<CreateViewModel<BillHomeVMUI>>(services => () => services.GetRequiredService<BillHomeVMUI>());
                 services.AddSingleton<CreateViewModel<DepositContractHomeVMUI>>(services => () => services.GetRequiredService<DepositContractHomeVMUI>());
                 services.AddSingleton<CreateViewModel<AddCustomerVMUI>>(services => () => services.GetRequiredService<AddCustomerVMUI>());
+                services.AddSingleton<CreateViewModel<RoomDeleteVMUI>>(services => () => services.GetRequiredService<RoomDeleteVMUI>());
 
                 /*-------------------------------------------------------------------------------*/
                 services.AddSingleton<ViewModelDelegateRenavigator<RoomHomeVMUI>>();
@@ -61,6 +65,9 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<ViewModelDelegateRenavigator<BillHomeVMUI>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<DepositContractHomeVMUI>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<AddCustomerVMUI>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<RoomDeleteVMUI>>();
+
+                services.AddScoped<RoomUpdateViewModel>();
             });
 
             return host;

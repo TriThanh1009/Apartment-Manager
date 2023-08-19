@@ -35,9 +35,7 @@ namespace AM.UI.ViewModelUI
 
         public void LoadData()
         {
-            var paged = new RequestPaging { PageIndex = 1, PageSize = 10 };
-            PagedResult<RentalContractVm> r = _irental.GetAllPage(paged);
-            r.Items.ForEach(x => _rental.Add(x));
+            
         }
     }
 }
