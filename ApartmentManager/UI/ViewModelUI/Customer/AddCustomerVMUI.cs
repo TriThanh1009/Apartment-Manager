@@ -1,4 +1,5 @@
 ﻿using AM.UI.Command;
+using AM.UI.State;
 using AM.UI.State.Navigators;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI.Factory;
@@ -6,7 +7,10 @@ using Azure.Core;
 using Data.Enum;
 using Services.Interface;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Printing;
 using System.Text;
@@ -34,6 +38,10 @@ namespace AM.UI.ViewModelUI.Customer
             }
         }
 
+        private ObservableCollection<string> _combosex;
+
+        public IEnumerable<string> ComboSex => _combosex;
+
         private string _name;
 
         public string name
@@ -43,10 +51,16 @@ namespace AM.UI.ViewModelUI.Customer
             {
                 _name = value;
                 OnPropertyChanged(nameof(name));
+                ClearErrors(nameof(name));
+                if (!Hasname)
+                {
+                    AddError("Name cannot empty", nameof(name));
+                }
+                OnPropertyChanged(nameof(name));
             }
         }
 
-        private Sex _sex;
+        private Sex _sex = Sex.Male;
 
         public Sex sex
         {
@@ -58,7 +72,7 @@ namespace AM.UI.ViewModelUI.Customer
             }
         }
 
-        private DateTime _birthday;
+        private DateTime _birthday = DateTime.Now;
 
         public DateTime birthday
         {
@@ -118,41 +132,68 @@ namespace AM.UI.ViewModelUI.Customer
             }
         }
 
+        private bool Hasname => !string.IsNullOrEmpty(name);
+        private bool Hasemail => !string.IsNullOrEmpty(email);
+        private bool Hasphone => !string.IsNullOrEmpty(phoneNumber);
+        private bool Hasidcard => !string.IsNullOrEmpty(idcard);
+        private bool Hasaddress => !string.IsNullOrEmpty(address);
+
         public ICommand Cancel { get; }
         public ICommand Confirm { get; }
         public ICommand Succeccd { get; }
 
-        public AddCustomerVMUI(IPeople people, INavigator navigator, IAparmentViewModelFactory factory)
+        private readonly Dictionary<string, List<string>> _propertyNameToErrorsDictionary;
+
+        public bool HasErrors => _propertyNameToErrorsDictionary.Any();
+
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
+        public AddCustomerVMUI(IPeople people, INavigator navigator, IAparmentViewModelFactory factory, ApartmentStore apartmentStore)
         {
+            _combosex = new ObservableCollection<string>();
+            _propertyNameToErrorsDictionary = new Dictionary<string, List<string>>();
+            foreach (Sex sex in Enum.GetValues(typeof(Sex)))
+            {
+                _combosex.Add(sex.ToString());
+            }
             _Ipeople = people;
             Cancel = new UpdateCurrentViewModelCommand(navigator, factory);
-            Succeccd = new UpdateCurrentViewModelCommand(navigator, factory);
+            Succeccd = new AddCusomerCommand(this, apartmentStore, navigator, factory);
             Confirm = new RelayAsyncCommand(Addcustomer);
+        }
+
+        public IEnumerable GetErrors(string propertyName)
+        {
+            return _propertyNameToErrorsDictionary.GetValueOrDefault(propertyName, new List<string>());
+        }
+
+        private void AddError(string errorMessage, string propertyName)
+        {
+            if (!_propertyNameToErrorsDictionary.ContainsKey(propertyName))
+            {
+                _propertyNameToErrorsDictionary.Add(propertyName, new List<string>());
+            }
+
+            _propertyNameToErrorsDictionary[propertyName].Add(errorMessage);
+
+            OnErrorsChanged(propertyName);
         }
 
         public async Task Addcustomer()
         {
-            PeopleCreateViewModel create = new PeopleCreateViewModel
-            {
-                IDroom = IDRoom,
-                Name = name,
-                Sex = sex,
-                Birthday= birthday,
-                PhoneNumber = phoneNumber,
-                Email = email,
-                IDCard = idcard,
-                Address = address,
-            };
-            var result = await _Ipeople.Create(create);
-            if (result == null)
-            {
-                MessageBox.Show("Fail");
-            }
-            else
-            {
-                MessageBox.Show("Sussecd");
-                Succeccd.Execute(ViewType.Customer);
-            }
+            Succeccd.Execute(null);
+        }
+
+        private void ClearErrors(string propertyName)
+        {
+            _propertyNameToErrorsDictionary.Remove(propertyName);
+
+            OnErrorsChanged(propertyName);
+        }
+
+        private void OnErrorsChanged(string propertyName)
+        {
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
     }
 }

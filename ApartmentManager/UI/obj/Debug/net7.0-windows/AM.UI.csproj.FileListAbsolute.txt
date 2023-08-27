@@ -304,3 +304,5 @@ D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Humaniz
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.Design.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyModel.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Mono.TextTemplating.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Dialog\MessageBoxCustom.baml
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Dialog\MessageBoxCustom.g.cs

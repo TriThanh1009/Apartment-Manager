@@ -23,7 +23,7 @@ namespace AM.UI.Model
         {
             RequestPaging a = new RequestPaging();
             a.Keyword=null;
-            a.PageSize=7;
+            a.PageSize=100;
             a.PageIndex=1;
             PagedResult<CustomerVM> tes = await _Ipeople.GetAllPage(a);
             List<CustomerVM> data = tes.Items;

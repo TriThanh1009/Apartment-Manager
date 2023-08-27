@@ -1,4 +1,5 @@
-﻿using Data.Entity;
+﻿using AM.UI.State.Navigators;
+using Data.Entity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Services.Implement;
@@ -24,7 +25,6 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<IRentalContract, RentalContractServices>();
                 services.AddSingleton<IBill, BillServices>();
                 services.AddSingleton<IDepositsContract, DepositsContractServices>();
-
 
                 services.AddSingleton<IBaseControl<People>, BaseControlServices<People>>();
                 services.AddSingleton<IBaseControl<Room>, BaseControlServices<Room>>();

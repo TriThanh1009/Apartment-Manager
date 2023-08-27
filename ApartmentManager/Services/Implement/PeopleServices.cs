@@ -1,6 +1,7 @@
 ﻿using Data;
 using Data.Entity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Services.Interface;
 using System;
 using System.Collections.Generic;
@@ -43,24 +44,37 @@ namespace Services.Implement
 
         public async Task<bool> Delete(int id)
         {
-            return await _baseControl.Delete(id);
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                People entity = await _context.People.FirstOrDefaultAsync((x) => x.ID==id);
+                if (entity == null) return false;
+                _context.People.Remove(entity);
+                await _context.SaveChangesAsync();
+                return true;
+            }
         }
 
         public async Task<People> Edit(int id, PeopleUpdateViewModel request)
         {
-            People people = new People
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
-                IDroom = request.IDroom,
-                Name = request.Name,
-                Sex = request.Sex,
-                Birthday= request.Birthday,
-                PhoneNumber = request.PhoneNumber,
-                Email = request.Email,
-                IDCard = request.IDCard,
-                Address = request.Address,
-            };
-            var result = await _baseControl.Update(id, people);
-            return result;
+                People people = new People
+                {
+                    ID = id,
+                    IDroom = request.IDroom,
+                    Name = request.Name,
+                    Sex = request.Sex,
+                    Birthday= request.Birthday,
+                    PhoneNumber = request.PhoneNumber,
+                    Email = request.Email,
+                    IDCard = request.IDCard,
+                    Address = request.Address,
+                };
+
+                EntityEntry<People> result = _context.People.Update(people);
+                await _context.SaveChangesAsync();
+                return result.Entity;
+            }
         }
 
         public async Task<List<CustomerVM>> GetAll()

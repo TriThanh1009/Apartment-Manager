@@ -1,4 +1,5 @@
 ﻿using AM.UI.Utilities;
+using MaterialDesignThemes.Wpf;
 using Services.Interface;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace AM.UI.ViewModelUI
         {
             _irental = irental;
             Rental = new List<RentalContractVm>();
-            LoadData();
+            //   LoadData();
         }
 
         public void LoadData()

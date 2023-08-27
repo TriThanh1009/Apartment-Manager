@@ -49,7 +49,7 @@
                            Panel.ZIndex="1"  Text="search by id......" x:Name="textblock"
                            Visibility="{Binding IsText, Converter={StaticResource BoolToVis}}" Grid.ColumnSpan="2" />
 
-                <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}" Text="{Binding search,UpdateSourceTrigger=PropertyChanged}"  Width="300" Grid.ColumnSpan="2" HorizontalAlignment="Left" MouseEnter="txtSearch_MouseEnter" MouseLeave="txtSearch_MouseLeave" />
+                <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}" Text="{Binding search,UpdateSourceTrigger=PropertyChanged}" Height="35"  Width="300" Grid.ColumnSpan="2" HorizontalAlignment="Left" MouseEnter="txtSearch_MouseEnter" MouseLeave="txtSearch_MouseLeave" />
 
                 <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
                                        Margin="250,0,0,0" Foreground="#b0b9c6" Grid.Column="1" />
@@ -76,6 +76,7 @@
                     Foreground="Red"
                     Text="{Binding ErrorMessage}"
                     Visibility="{Binding HasErrorMessage, Converter={StaticResource BoolToVis}}" />
+
             <DataGrid ItemsSource="{Binding test}" Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}"
                       Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
                 <DataGrid.Columns>
@@ -97,7 +98,8 @@
                                             Command="{Binding DataContext.UpdateNavCustomer, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                         <iconPacks:PackIconMaterial Kind="PencilOutline" Style="{StaticResource ButtonIcon}" />
                                     </Button>
-                                    <Button Style="{StaticResource EditButton}">
+                                    <Button Style="{StaticResource EditButton}"
+                                        Command="{Binding DataContext.DeleteCustomerCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                         <iconPacks:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource ButtonIcon}" />
                                     </Button>
                                 </StackPanel>
