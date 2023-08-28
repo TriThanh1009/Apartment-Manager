@@ -29,7 +29,7 @@ namespace AM.UI.ViewModelUI
             _navigator.StateChanged += Navigator_StateChanged;
 
             UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(navigator, _viewModelFactory);
-            UpdateCurrentViewModelCommand.Execute(ViewType.Home);
+            UpdateCurrentViewModelCommand.Execute(ViewType.RentalContract);
         }
 
         private void Navigator_StateChanged()

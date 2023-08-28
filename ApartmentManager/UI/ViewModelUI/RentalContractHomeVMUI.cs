@@ -61,20 +61,8 @@ namespace AM.UI.ViewModelUI
         public RentalContractHomeVMUI(IRentalContract irental,INavigator navigator, IAparmentViewModelFactory ViewModel,ApartmentStore apartmentStore)
         {
             _irental = irental;
-            _navigator = navigator;
-            _ViewModel = ViewModel;
-            _apartmentStore = apartmentStore;
-
-            _rental = new ObservableCollection<RentalContractVm>();
-            LoadDataBase = new LoadRentalContractView(this, apartmentStore);
-            LoadDataBase.Execute(null);
-        }
-
-        public static RentalContractHomeVMUI RentalContractViewModel(IRentalContract irental, INavigator navigator, IAparmentViewModelFactory ViewModel, ApartmentStore apartmentStore)
-        {
-            RentalContractHomeVMUI rental = new RentalContractHomeVMUI(irental, navigator, ViewModel, apartmentStore);
-            rental.LoadDataBase.Execute(null);
-            return rental;
+            Rental = new List<RentalContractVm>();
+            LoadData();
         }
 
         public void UpdateData(List<RentalContractVm> data)

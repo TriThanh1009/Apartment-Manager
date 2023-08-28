@@ -14,6 +14,9 @@ using AM.UI.Utilities;
 using AM.UI.View.RentalContract;
 using MahApps.Metro.IconPacks;
 using MahApps.Metro.IconPacks.Converter;
+using MaterialDesignThemes.Wpf;
+using MaterialDesignThemes.Wpf.Converters;
+using MaterialDesignThemes.Wpf.Transitions;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -46,7 +49,7 @@ namespace AM.UI.View.RentalContract {
     public partial class RentalContractHome : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
         
-        #line 41 "..\..\..\..\..\View\RentalContract\RentalContractHome.xaml"
+        #line 36 "..\..\..\..\..\View\RentalContract\RentalContractHome.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.StackPanel main;
         
@@ -54,7 +57,7 @@ namespace AM.UI.View.RentalContract {
         #line hidden
         
         
-        #line 55 "..\..\..\..\..\View\RentalContract\RentalContractHome.xaml"
+        #line 37 "..\..\..\..\..\View\RentalContract\RentalContractHome.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.DataGrid homedata;
         

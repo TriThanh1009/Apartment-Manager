@@ -1,5 +1,8 @@
-﻿using AM.UI.Model;
+﻿using AM.UI.Command;
+using AM.UI.Model;
 using Data;
+using Data.Entity;
+using Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,15 +35,6 @@ namespace AM.UI.State
         private readonly List<RoomDetailsFurniture> _roomdetailsvmfur;
 
         private Lazy<Task> _initializeLazy;
-        private Lazy<Task> _initializeLazyRoom;
-        private Lazy<Task> _initializeLazyBill;
-        private Lazy<Task> _initialLazyDeposits;
-        private Lazy<Task> _initialLazyFurniture;
-        private Lazy<Task> _initialLazyPayment;
-        private Lazy<Task> _initialLazyRental;
-        private Lazy<Task> _initialLazyRoomDetails;
-
-
         public List<CustomerVM> customervm => _customervm;
         public List<RoomVm> roomvm => _roomvm;
         public List<BillVm > billvm => _billvm;
@@ -50,9 +44,16 @@ namespace AM.UI.State
         public List<RentalContractVm> rentalvm => _rentalvm;
         public List<RoomDetailsFurniture> roomdetailsvmfur => _roomdetailsvmfur;
 
-        public ApartmentStore(Apartment apartment)
+        public event Action<int> YouTubeViewerDeleted;
+
+        public event Action<CustomerVM> CustomerAdd;
+
+        public event Action<CustomerVM> CustomerUpdate;
+
+        public ApartmentStore(Apartment apartment, IPeople people)
         {
             _apartment = apartment;
+            _people = people;
             _initializeLazy = new Lazy<Task>(Initialize);
             _initializeLazyRoom = new Lazy<Task>(InitializeRoom);
             _initializeLazyBill = new Lazy<Task>(InitializeBill);
@@ -259,6 +260,65 @@ namespace AM.UI.State
             List<CustomerVM> customer = await _apartment.GetAllcustomer();
             _customervm.Clear();
             _customervm.AddRange(customer);
+        }
+
+        public async Task<People> AddCustomer(PeopleCreateViewModel request)
+        {
+            var result = await _people.Create(request);
+            CustomerVM create = new CustomerVM
+            {
+                ID = result.ID,
+                IDroom = request.IDroom,
+                Name = request.Name,
+                Sex = request.Sex,
+                Birthday= request.Birthday,
+                PhoneNumber = request.PhoneNumber,
+                Email = request.Email,
+                IDCard = request.IDCard,
+                Address = request.Address,
+            };
+            _customervm.Add(create);
+            CustomerAdd?.Invoke(create);
+            return result;
+        }
+
+        public async Task<People> UpdateCustomer(PeopleUpdateViewModel request)
+        {
+            var result = await _people.Edit(request.ID, request);
+            CustomerVM create = new CustomerVM
+            {
+                ID = result.ID,
+                IDroom = request.IDroom,
+                Name = request.Name,
+                Sex = request.Sex,
+                Birthday= request.Birthday,
+                PhoneNumber = request.PhoneNumber,
+                Email = request.Email,
+                IDCard = request.IDCard,
+                Address = request.Address,
+            };
+            int currentIndex = _customervm.FindIndex(y => y.ID == create.ID);
+
+            if (currentIndex != -1)
+            {
+                _customervm[currentIndex] = create;
+            }
+            else
+            {
+                _customervm.Add(create);
+            }
+            CustomerUpdate?.Invoke(create);
+            return result;
+        }
+
+        public async Task<bool> Delete(int id)
+        {
+            var result = await _people.Delete(id);
+
+            _customervm.RemoveAll(y => y.ID == id);
+
+            YouTubeViewerDeleted?.Invoke(id);
+            return result;
         }
     }
 }

@@ -114,6 +114,8 @@ D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Caliburn.Micro.Core.dll
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\MahApps.Metro.IconPacks.Core.dll
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\MahApps.Metro.IconPacks.Material.dll
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Unity.Abstractions.dll
+D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Unity.Container.dll
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\People\Home.g.cs
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\RentalContract\RentalContactDelete.g.cs
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\RentalContract\RentalContractAdd.g.cs
@@ -302,12 +304,5 @@ D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Humaniz
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.Design.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyModel.dll
 D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Mono.TextTemplating.dll
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Humanizer.dll
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\LoadingSpinnerControl.dll
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\MaterialDesignColors.dll
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\MaterialDesignThemes.Wpf.dll
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.Design.dll
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyModel.dll
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Microsoft.Xaml.Behaviors.dll
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\Mono.TextTemplating.dll
-D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\Utilities\Generic.baml
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Dialog\MessageBoxCustom.baml
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\Dialog\MessageBoxCustom.g.cs

@@ -1,4 +1,5 @@
-﻿using Data.Entity;
+﻿using AM.UI.State.Navigators;
+using Data.Entity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Services.Implement;

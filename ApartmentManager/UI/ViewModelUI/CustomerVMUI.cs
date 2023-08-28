@@ -2,6 +2,7 @@
 using AM.UI.State;
 using AM.UI.State.Navigators;
 using AM.UI.Utilities;
+using AM.UI.View.Dialog;
 using AM.UI.ViewModelUI.Customer;
 using AM.UI.ViewModelUI.Factory;
 using Services.Interface;
@@ -11,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +30,23 @@ namespace AM.UI.ViewModelUI
         private readonly IAparmentViewModelFactory _factory;
         private readonly ApartmentStore _apartmentStore;
 
+        private int _ID;
+
+        public int ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                _ID = value;
+                OnPropertyChanged(nameof(ID));
+            }
+        }
+
         private string _search;
+
         public bool HasData => _test.Any();
         private bool _isText;
 
@@ -95,35 +113,67 @@ namespace AM.UI.ViewModelUI
         public ICommand AddNavCustomer { get; }
 
         public ICommand LoadDatabase { get; }
+        public ICommand DeleteCustomerCommand { get; }
+        public ICommand ConfirmDeleteCustomerCommand { get; }
 
         public CustomerVMUI(INavigator navigator, IPeople people, IAparmentViewModelFactory aparmentViewModelFactory, ApartmentStore apartmentStore)
         {
-            UpdateNavCustomer = new RelayCommand(Test1);
+            UpdateNavCustomer = new RelayCommand(NavigateUpdateCustomerVM);
+            DeleteCustomerCommand = new RelayCommand(DeleteCustomer);
+            ConfirmDeleteCustomerCommand = new DeleteCustomerCommand(this, apartmentStore, aparmentViewModelFactory, navigator);
+            AddNavCustomer = new UpdateCurrentViewModelCommand(navigator, aparmentViewModelFactory);
+            LoadDatabase = new LoadCustomerView(this, apartmentStore);
+
             _test = new ObservableCollection<CustomerVM>();
             _isText = true;
-            LoadDatabase = new LoadCustomerView(this, apartmentStore);
             LoadDatabase.Execute(null);
             _people = people;
             _apartmentStore = apartmentStore;
-
-            AddNavCustomer = new UpdateCurrentViewModelCommand(navigator, aparmentViewModelFactory);
             _navigator =navigator;
             _factory = aparmentViewModelFactory;
             _test.CollectionChanged += OnReservationsChanged;
+            _apartmentStore.YouTubeViewerDeleted += Store_Delete;
+            _apartmentStore.CustomerAdd+=  Store_Add;
+            _apartmentStore.CustomerUpdate += Store_Update;
         }
 
-        public static CustomerVMUI LoadCustomerViewModel(INavigator navigator, IPeople people, IAparmentViewModelFactory aparmentViewModelFactory, ApartmentStore apartmentStore)
-        {
-            CustomerVMUI customer = new CustomerVMUI(navigator, people, aparmentViewModelFactory, apartmentStore);
-            customer.LoadDatabase.Execute(null);
-            return customer;
-        }
-
-        private void Test1(object parameter)
+        public async void DeleteCustomer(object parameter)
         {
             if (parameter is CustomerVM person)
             {
-                _navigator.CurrentViewModel = new UpdateCustomerVMUI(_people, person, _navigator, _factory);
+                bool? Confirm = new MessageBoxCustom($"Do you want to delete customer :{person.ID} ", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                if (Confirm == true)
+                {
+                    _ID = person.ID;
+                    ConfirmDeleteCustomerCommand.Execute(null);
+                }
+            }
+        }
+
+        private void Store_Add(CustomerVM Data)
+        {
+            _test.Add(Data);
+        }
+
+        private void Store_Delete(int id)
+        {
+            var object1 = _test.FirstOrDefault(y => y.ID == id);
+
+            if (object1 != null)
+            {
+                _test.Remove(object1);
+            }
+        }
+
+        private void Store_Update(CustomerVM Data)
+        {
+        }
+
+        private void NavigateUpdateCustomerVM(object parameter)
+        {
+            if (parameter is CustomerVM person)
+            {
+                _navigator.CurrentViewModel = new UpdateCustomerVMUI(_apartmentStore, person, _navigator, _factory);
             }
         }
 
