@@ -9,7 +9,7 @@
     <Grid>
         <Button Style="{StaticResource DetailsButton}" Content="Add Confirm" HorizontalAlignment="Left" Margin="185,280,0,0" VerticalAlignment="Top" />
         <Button Style="{StaticResource DetailsButton}" Content="Cancel" HorizontalAlignment="Left" Margin="416,280,0,0" VerticalAlignment="Top" />
-        <TextBlock HorizontalAlignment="Left" Margin="31,97,0,0" TextWrapping="Wrap" Text="ID Furniture" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
+        <TextBlock HorizontalAlignment="Left" Margin="31,97,0,0" TextWrapping="Wrap" Text="ID Image" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
         <TextBox HorizontalAlignment="Left" Margin="185,96,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="25" />
         <TextBox HorizontalAlignment="Left" Margin="185,126,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
@@ -24,6 +24,30 @@
         <TextBlock HorizontalAlignment="Left" Margin="31,183,0,0" TextWrapping="Wrap" Text="ID Room" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
         <TextBox HorizontalAlignment="Left" Margin="185,183,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="25" />
         <TextBox HorizontalAlignment="Left" Margin="185,213,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1" />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBlock HorizontalAlignment="Left" Margin="390,98,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
+        <TextBox HorizontalAlignment="Left" Margin="544,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="24" />
+        <TextBox HorizontalAlignment="Left" Margin="544,128,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="2" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1" />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBlock HorizontalAlignment="Left" Margin="390,184,0,0" TextWrapping="Wrap" Text="Url" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
+        <TextBox HorizontalAlignment="Left" Margin="544,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="26" />
+        <TextBox HorizontalAlignment="Left" Margin="544,214,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="4" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1" />

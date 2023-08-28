@@ -8,32 +8,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using ViewModel.Room;
+using AM.UI.State;
 
 namespace AM.UI.Command
 {
     public class LoadRoomView : AsyncCommandBase
     {
-        private readonly IRoom _iroom;
         private readonly RoomHomeVMUI _roomhomevm;
-
-
-        public LoadRoomView(RoomHomeVMUI roomhomevm, IRoom iroom)
-
+        private readonly ApartmentStore _room;
+        
+        public LoadRoomView(RoomHomeVMUI roomhomevm, ApartmentStore room)
         {
-            _iroom = iroom;
             _roomhomevm = roomhomevm;
+            _room = room;
         }
 
         public override async Task ExecuteAsync(object parameter)
         {
+            
             _roomhomevm.IsLoading = true;
-            await Task.WhenAll(LoadDataBase());
-            _roomhomevm.IsLoading = false;
+            try
+            {
+                
+                await _room.LoadRoom();
+                _roomhomevm.UpdateData(_room.roomvm);
             }
-        public async Task LoadDataBase()
-        {
-            _roomhomevm.Room = await _iroom.GetAll();
+            catch (Exception) {
+                _roomhomevm.MessageError = "Can't load Room Database";
+            }
+            _roomhomevm.IsLoading = false;
+            
         }
     }
 }
- 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace ViewModel.RoomDetails
 {
@@ -10,5 +11,8 @@ namespace ViewModel.RoomDetails
     {
         public string FurName { get; set; }
         public string RoomName { get; set; }
+
+        //public string RoomImage { get; set; }
+   
     }
 }

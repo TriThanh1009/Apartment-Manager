@@ -1,4 +1,5 @@
 ﻿using Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Services.Interface;
 using System;
@@ -30,20 +31,20 @@ namespace Services.Implement
             throw new NotImplementedException();
         }
 
-        public PagedResult<FurnitureVm> GetAllPage(RequestPaging request)
+        public async Task<PagedResult<FurnitureVm>> GetAllPage(RequestPaging request)
         {
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.Furniture
                             select  p;
-                int totalRow = query.Count();
-                var data = query.Skip((request.PageIndex - 1) * request.PageSize)
+                int totalRow = await query.CountAsync();
+                var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                     .Take(request.PageSize)
                     .Select(x => new FurnitureVm()
                     {
                         ID = x.ID,
                         Name = x.Name,
-                    }).ToList();
+                    }).ToListAsync();
                 var pagedView = new PagedResult<FurnitureVm>()
                 {
                     TotalRecords = totalRow,

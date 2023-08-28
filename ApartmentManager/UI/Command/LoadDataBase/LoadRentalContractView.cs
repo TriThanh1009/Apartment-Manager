@@ -1,4 +1,5 @@
-﻿using AM.UI.ViewModelUI;
+﻿using AM.UI.State;
+using AM.UI.ViewModelUI;
 using Services.Implement;
 using System;
 using System.Collections.Generic;
@@ -11,19 +12,25 @@ namespace AM.UI.Command.LoadDataBase
     public class LoadRentalContractView : AsyncCommandBase
     {
         private readonly RentalContractHomeVMUI _rentalcontracthome;
-        private readonly RentalContractServices _irental;
-        public LoadRentalContractView(RentalContractHomeVMUI rentalcontracthome, RentalContractServices irental)
+        private readonly ApartmentStore _rental;
+        public LoadRentalContractView(RentalContractHomeVMUI rentalcontracthome, ApartmentStore rental)
         {
             _rentalcontracthome = rentalcontracthome;
-            _irental = irental;
+            _rental = rental;
         }
-        public override Task ExecuteAsync(object parameter)
+        public override async Task ExecuteAsync(object parameter)
         {
-            throw new NotImplementedException();
+            _rentalcontracthome.IsLoading = true;
+            try
+            {           
+                  await _rental.LoadeRentalContract();
+                 _rentalcontracthome.UpdateData(_rental.rentalvm);
+            }catch (Exception)
+            {
+                _rentalcontracthome.ErrorMessage = "Can't Load RentalContract Database";
+            }
+            _rentalcontracthome.IsLoading = false;
         }
-        public void LoadDataBase()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

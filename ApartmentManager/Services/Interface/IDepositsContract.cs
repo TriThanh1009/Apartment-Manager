@@ -17,6 +17,6 @@ namespace Services.Interface
 
         Task<int> DeleteDepositsContract(int depositsId);
 
-        PagedResult<DepositsContractVm> GetAllPage(RequestPaging request);
+        Task<PagedResult<DepositsContractVm>> GetAllPage(RequestPaging request);
     }
 }

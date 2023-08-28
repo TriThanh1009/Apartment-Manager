@@ -17,6 +17,6 @@ namespace Services.Interface
 
         Task<int> DeleteBill(int BillID);
 
-        PagedResult<BillVm> GetAllPage(RequestPaging request);
+        Task<PagedResult<BillVm>> GetAllPage(RequestPaging request);
     }
 }

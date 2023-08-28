@@ -1,5 +1,6 @@
 ﻿using Data;
 using Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Services.Interface;
 using System;
@@ -37,7 +38,7 @@ namespace Services.Implement
             throw new NotImplementedException();
         }
 
-        public PagedResult<RentalContractVm> GetAllPage(RequestPaging request)
+        public async Task<PagedResult<RentalContractVm>> GetAllPage(RequestPaging request)
         {
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
@@ -46,8 +47,8 @@ namespace Services.Implement
                             join px in _context.People on p.IDLeader equals px.ID
                             select new { p, pt, px };
 
-                int totalRow = query.Count();
-                var data = query.Skip((request.PageIndex - 1) * request.PageSize)
+                int totalRow = await query.CountAsync();
+                var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                     .Take(request.PageSize)
                     .Select(x => new RentalContractVm()
                     {
@@ -60,7 +61,7 @@ namespace Services.Implement
                         ElectricMoney = x.p.ElectricMoney,
                         WaterMoney = x.p.WaterMoney,
                         ServiceMoney = x.p.ServiceMoney
-                    }).ToList();
+                    }).ToListAsync();
                 var pagedView = new PagedResult<RentalContractVm>()
                 {
                     TotalRecords = totalRow,

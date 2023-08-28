@@ -176,9 +176,13 @@
             </Grid>
 
             <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="297*"/>
+                    <RowDefinition Height="383*"/>
+                </Grid.RowDefinitions>
 
                 <ContentControl x:Name="Pages"
-                                Content="{Binding CurrentViewModel}" />
+                                Content="{Binding CurrentViewModel}" Grid.RowSpan="2" />
             </Grid>
         </Grid>
         <Button x:Name="CloseApp"

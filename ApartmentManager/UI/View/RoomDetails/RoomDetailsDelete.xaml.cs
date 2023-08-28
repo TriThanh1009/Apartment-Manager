@@ -20,9 +20,24 @@ namespace AM.UI.View.RoomDetails
     /// </summary>
     public partial class RoomDetailsDelete : UserControl
     {
+
+        class Image
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }
+            public string PathImage { get; set; }
+        }
         public RoomDetailsDelete()
         {
             InitializeComponent();
+            List<Image> images = new List<Image>();
+            images.Add(new Image
+            {
+                ID = 1,
+                Name = "a",
+                PathImage = "img_home.png"
+            });
+            listbox1.ItemsSource= images;
         }
     }
 }

@@ -16,7 +16,8 @@ namespace AM.UI.State.Navigators
         Furnitures,
         RentalContract, RentalContractAdd, RentalContractUpdate,
         Bill, BillAdd, BillUpdate,
-        DepositContract
+        DepositContract,
+        RoomImagesAdd
     }
 
     public interface INavigator

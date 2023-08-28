@@ -1,23 +1,32 @@
 ﻿using AM.UI.Command;
+using AM.UI.State;
 using AM.UI.State.Navigators;
 using AM.UI.Utilities;
+using AM.UI.View.RoomDetails;
 using AM.UI.View.Rooms;
 using AM.UI.ViewModelUI.Factory;
 using AM.UI.ViewModelUI.Room;
+using AM.UI.ViewModelUI.RoomDetails;
+using Data;
 using Data.Entity;
+using Data.Relationships;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Identity.Client;
 using Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using ViewModel.Dtos;
+using ViewModel.Furniture;
 using ViewModel.People;
 using ViewModel.Room;
 using ViewModel.RoomDetails;
@@ -28,23 +37,26 @@ namespace AM.UI.ViewModelUI
     public class RoomHomeVMUI : ViewModelBase
     {
         private readonly IRoom _iroom;
-        private List<RoomVm> _room;
+        private ObservableCollection<RoomVm> _room;
+        
         private readonly IAparmentViewModelFactory _viewModelFactory;
         private readonly RoomVm _RoomViewModel;
-
+        private readonly ApartmentDbContextFactory _factory;
+        private readonly RoomDetailsHomeVMUI _roomDetailsHomeVMUI;
+        private readonly ApartmentStore _apartmentStore;
 
 
         private readonly INavigator _navigator;
         public ICommand RoomNavCommand { get; }
         public ICommand RoomUpdateNavCommand { get; }
 
+        public ICommand RoomDetailsCommand { get; }
 
         public ICommand RoomDeleteCommand { get; }
 
         public ICommand FindingRoomCommand { get; }
 
         public ICommand LoadDataBase { get; }
-
 
 
 
@@ -74,15 +86,37 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-        public List<RoomVm> Room
+        
+        private string _messageError;
+        public string MessageError
         {
-            get => _room;
+            get { return _messageError; }
             set
             {
-                _room = value;
-                OnPropertyChanged();
+                _messageError = value;
+                OnPropertyChanged(nameof(MessageError)); 
+                OnPropertyChanged(nameof(HasErrorMessage));
             }
         }
+        public bool HasErrorMessage => !string.IsNullOrEmpty(MessageError);
+
+
+        private bool _isText;
+
+        public bool IsText
+        {
+            get
+            {
+                return _isText;
+            }
+            set
+            {
+                _isText = value;
+                OnPropertyChanged(nameof(IsText));
+            }
+        }
+
+        public IEnumerable<RoomVm> Room => _room;
 
         private bool _isLoading;
 
@@ -104,45 +138,69 @@ namespace AM.UI.ViewModelUI
 
 
 
-        public RoomHomeVMUI(IRoom iroom, INavigator navigator, IAparmentViewModelFactory viewModelFactory)
+        public RoomHomeVMUI(IRoom iroom, INavigator navigator, IAparmentViewModelFactory viewModelFactory,ApartmentStore apartmentStore,ApartmentDbContextFactory factory)
         {
+            
             _iroom = iroom;
             _viewModelFactory = viewModelFactory;
             _navigator = navigator;
-            Room = new List<RoomVm>();
-            LoadDataBase = new LoadRoomView(this, _iroom);
+            _room = new ObservableCollection<RoomVm>();
+            _factory = factory;
+            LoadDataBase = new LoadRoomView(this, apartmentStore);
             LoadDataBase.Execute(null);
             RoomNavCommand = new UpdateCurrentViewModelCommand(navigator, viewModelFactory);
+            _apartmentStore = apartmentStore;
             RoomUpdateNavCommand = new RelayCommand(DataRoomUpdate);
             RoomDeleteCommand = new RelayCommand(DataRoomDelete);
+            RoomDetailsCommand = new RelayCommand(ShowRoomDetails);
+            _room.CollectionChanged += OnReservationsChanged;
 
 
 
 
         }
 
-      
+
+
+
+
+        public void ShowRoomDetails(object parameter)
+        {
+
+            if(parameter is RoomVm room)
+            {
+                _navigator.CurrentViewModel = new RoomDetailsHomeVMUI(room, _navigator, _viewModelFactory, _apartmentStore);
+            }
+
+
+            
+
+
+        }
+
 
         public async void DataRoomDelete(object parameter)
         {
-            if (parameter is RoomVm r)
+            MessageBoxResult result = MessageBox.Show("Do you want to proceed?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
             {
-                await _iroom.Delete(r.ID);
-                RoomNavCommand.Execute(ViewType.Room);
-            }    
+                if (parameter is RoomVm r)
+                {
+                    await _iroom.Delete(r.ID);
+                    LoadDataBase.Execute(null);
+                }
+            } 
         }
 
         public void UpdateData(List<RoomVm> data)
         {
-            foreach (RoomVm room in data)
+            foreach (var room in data)
             {
-                Room.Add(room);
+                _room.Add(room);
             }
         }
 
-        public async Task Finding()
-        {
-        }
 
         public void DataRoomUpdate(object parameter)
         {
@@ -152,43 +210,18 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-        public void LoadData()
-        {
-            /*var paged = new RequestPaging { PageIndex = 1, PageSize = 10 };
-             PagedResult<RoomVm> r = _iroom.GetAllPage(paged);
-             r.Items.ForEach(x => Room.Add(x));*/
-
-            /*List<Data.Entity.Room> a = await phong.GetAll();
-            List<RoomVm> r = new List<RoomVm>();
-            foreach(Data.Entity.Room room in a)
-            {
-                RoomVm roo = new RoomVm()
-                {
-                    ID = room.ID,
-                    NameLeader = room.Name,
-                    Name = room.Name,
-                    Quantity = room.Quantity
-                };
-               r.Add( roo );
-            }
-            r.ForEach(x=>Room.Add(x));
-            */
-        }
+ 
 
         private void ChangedString(string _Search)
         {
-           if (Search.Equals(""))
-           { 
-                LoadDataBase.Execute(null);
-                
-           }
-           else
-            { 
-            Room = Room.FindAll(x=>x.ID == Convert.ToInt32(Search));
            
-            }
-            OnPropertyChanged();
 
+        }
+
+
+        private void OnReservationsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(HasData));
         }
 
         public RoomVm RoomV

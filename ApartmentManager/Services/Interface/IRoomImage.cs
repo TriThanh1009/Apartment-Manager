@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ViewModel.Dtos;
 using ViewModel.People;
+using ViewModel.Room;
 using ViewModel.RoomImage;
 
 namespace Services.Interface
@@ -17,6 +18,6 @@ namespace Services.Interface
 
         Task<int> DeleteImage(int id);
 
-        Task<PagedResult<RoomImageVm>> GetAllPage(RequestPaging request);
+        Task<PagedResult<RoomVm>> GetAllPage(RequestPaging request);
     }
 }

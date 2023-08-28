@@ -32,5 +32,10 @@ namespace Services.Implement
         {
             throw new NotImplementedException();
         }
+
+        Task<PagedResult<RoomVm>> IRoomImage.GetAllPage(RequestPaging request)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

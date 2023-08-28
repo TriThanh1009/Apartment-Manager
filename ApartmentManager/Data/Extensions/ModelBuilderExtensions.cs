@@ -70,7 +70,8 @@ namespace Data.Extensions
                 new Room { ID = 39, Name = "A239", IDLeader = 0, Quantity = 5 },
                 new Room { ID = 40, Name = "A240", IDLeader = 0, Quantity = 3 });
             modelbuilder.Entity<RoomImage>().HasData(
-                new RoomImage { ID=1, IDroom=1, Name="A1 Image", Url="www.goole.com" });
+                new RoomImage { ID=1, IDroom=1, Name="A1 Image", Url="D:jett.png" },
+                new RoomImage { ID = 2, IDroom = 1, Name = "A2 Image", Url = "D:home.png" });
             modelbuilder.Entity<RoomDetails>().HasData(
                 new RoomDetails { IDFur = 1, IDRoom = 1 },
                 new RoomDetails { IDFur = 1, IDRoom = 2 },

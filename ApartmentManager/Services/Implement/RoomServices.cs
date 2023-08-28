@@ -52,7 +52,6 @@ namespace Services.Implement
 
         public async Task<List<RoomVm>> GetAll()
         {
-            
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.Room
@@ -78,20 +77,9 @@ namespace Services.Implement
             }).ToList();
             return result1;*/
 
-            List<Room> list = await _base.GetAll();
-            var room = list.Select(x => new RoomVm
-                {
-                    ID = x.ID,
-                    NameLeader = x.Name,
-                    Name = x.Name,
-                    Quantity = x.Quantity
-
-                }).ToList();
-            
-             return room;
         }
 
-        public PagedResult<RoomVm> GetAllPage(RequestPaging request)
+        public async Task<PagedResult<RoomVm>> GetAllPage(RequestPaging request)
         {
             
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
@@ -99,8 +87,8 @@ namespace Services.Implement
                 var query = from p in _context.Room
                             join pt in _context.People on p.IDLeader equals pt.ID
                             select new { p, pt };
-                int totalRow = query.Count();
-                var data = query.Skip((request.PageIndex - 1) * request.PageSize)
+                int totalRow = await query.CountAsync();
+                var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                     .Take(request.PageSize)
                     .Select(x => new RoomVm()
                     {
@@ -108,7 +96,7 @@ namespace Services.Implement
                         NameLeader = x.pt.Name,
                         Name = x.p.Name,
                         Quantity = x.p.Quantity
-                    }).ToList();
+                    }).ToListAsync();
                 var pagedView = new PagedResult<RoomVm>()
                 {
                     TotalRecords = totalRow,
@@ -118,6 +106,11 @@ namespace Services.Implement
                 };
                 return pagedView;
             }
+        }
+
+        public Task<PagedResult<RoomVm>> GetAllPageDetails(RequestPaging request)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<Room> GetById(int id)

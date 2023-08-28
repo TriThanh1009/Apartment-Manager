@@ -14,6 +14,9 @@ namespace Services.Interface
     {
 
         Task<bool> Delete(int id);
-        PagedResult<RoomDetailsVm> GetAllPage(RequestPaging request);
+        Task<PagedResult<RoomDetailsVm>> GetAllPage(RequestPaging request);
+        Task<PagedResult<RoomDetailsFurniture>> GetAllFurniture(RequestPaging request,int id);
+        Task<PagedResult<RoomDetailsVm>> GetAllRoom(RequestPaging request);
+        Task<PagedResult<RoomDetailsImage>> GetAllImage(RequestPaging request, int id);
     }
 }

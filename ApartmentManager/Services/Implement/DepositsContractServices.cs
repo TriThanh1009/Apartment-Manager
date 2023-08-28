@@ -1,4 +1,5 @@
 ﻿using Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Services.Interface;
 using System;
@@ -30,15 +31,15 @@ namespace Services.Implement
             throw new NotImplementedException();
         }
 
-        public PagedResult<DepositsContractVm> GetAllPage(RequestPaging request)
+        public async Task<PagedResult<DepositsContractVm>> GetAllPage(RequestPaging request)
         {
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.DepositsContract
                             join pt in _context.Room on p.IDRoom equals pt.ID
                             select new { p, pt };
-                int totalRow = query.Count();
-                var data = query.Skip((request.PageIndex - 1) * request.PageSize)
+                int totalRow = await query.CountAsync();
+                var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                     .Take(request.PageSize)
                     .Select(x => new DepositsContractVm()
                     {
@@ -49,7 +50,7 @@ namespace Services.Implement
                         CheckOutDate = x.p.CheckOutDate,
                         Money = x.p.Money
                        
-                    }).ToList();
+                    }).ToListAsync();
                 var pagedView = new PagedResult<DepositsContractVm>()
                 {
                     TotalRecords = totalRow,

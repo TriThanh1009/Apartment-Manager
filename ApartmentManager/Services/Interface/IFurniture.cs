@@ -17,6 +17,6 @@ namespace Services.Interface
 
         Task<int> DeleteFurniture(int FurnitureId);
 
-        PagedResult<FurnitureVm> GetAllPage(RequestPaging request);
+        Task<PagedResult<FurnitureVm>> GetAllPage(RequestPaging request);
     }
 }

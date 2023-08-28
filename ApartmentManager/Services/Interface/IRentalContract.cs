@@ -23,6 +23,6 @@ namespace Services.Interface
 
         Task<RentalContract> GetById(int id);
 
-        PagedResult<RentalContractVm> GetAllPage(RequestPaging request);
+        Task<PagedResult<RentalContractVm>> GetAllPage(RequestPaging request);
     }
 }

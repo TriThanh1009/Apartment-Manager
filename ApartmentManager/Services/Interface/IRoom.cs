@@ -13,7 +13,8 @@ namespace Services.Interface
 {
     public interface IRoom
     {
-        PagedResult<RoomVm> GetAllPage(RequestPaging request);
+        Task<PagedResult<RoomVm>> GetAllPage(RequestPaging request);
+        Task<PagedResult<RoomVm>> GetAllPageDetails(RequestPaging request);
 
         Task<List<RoomVm>> GetAll();
 
