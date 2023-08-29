@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:nav="clr-namespace:AM.UI.State.Navigators"
              xmlns:local="clr-namespace:AM.UI.View.RoomDetails" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" xmlns:converters="clr-namespace:AM.UI.Converters" xmlns:custom="clr-namespace:AM.UI.Utilities"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="AM.UI.View.RoomDetails.RoomDetailsHome"
              mc:Ignorable="d"
@@ -40,6 +41,7 @@
         <StackPanel Grid.Row="0" Grid.ColumnSpan="8">
             <Button  Style="{StaticResource DetailsButton}"
                      Command="{Binding RoomDetailsNav}"
+                     CommandParameter="{x:Static nav:ViewType.RoomImagesAdd}"
                      Content="Room Details"  Margin="190,57,0,0" />
         </StackPanel>
         <ListView ItemsSource="{Binding RoomDetails}"  Grid.ColumnSpan="3" Margin="52,45,68,60" Grid.RowSpan="5" Grid.Row="1">

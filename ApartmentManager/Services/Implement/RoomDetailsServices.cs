@@ -14,15 +14,16 @@ using ViewModel.Furniture;
 using ViewModel.People;
 using ViewModel.Room;
 using ViewModel.RoomDetails;
+using ViewModel.RoomImage;
 
 namespace Services.Implement
 {
     public class RoomDetailsServices : IRoomDetails
     {
         private readonly ApartmentDbContextFactory _contextfactory;
-        private readonly IBaseControl<Room> _base;
+        private readonly IBaseControl<RoomImage> _base;
 
-        public RoomDetailsServices(ApartmentDbContextFactory contextfactory, IBaseControl<Room> baseControl)
+        public RoomDetailsServices(ApartmentDbContextFactory contextfactory, IBaseControl<RoomImage> baseControl)
         {
             _contextfactory = contextfactory;
             _base = baseControl;
@@ -144,6 +145,17 @@ namespace Services.Implement
             }
         }
 
-        
+        public async Task<RoomImage> CreateImage(RoomImageCreateViewModel request)
+        {
+            var create = new RoomImage
+            {
+                ID = request.ID,
+                IDroom = request.IDroom,
+                Name = request.Name,
+                Url = request.Url
+            };
+            var result = await _base.Create(create);
+            return result;
+        }
     }
 }

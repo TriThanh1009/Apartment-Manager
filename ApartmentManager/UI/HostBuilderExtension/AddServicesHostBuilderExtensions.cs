@@ -1,5 +1,6 @@
 ﻿using AM.UI.State.Navigators;
 using Data.Entity;
+using Data.Relationships;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Services.Implement;
@@ -31,6 +32,7 @@ namespace AM.UI.HostBuilderExtension
 
                 services.AddSingleton<IBaseControl<People>, BaseControlServices<People>>();
                 services.AddSingleton<IBaseControl<Room>, BaseControlServices<Room>>();
+                services.AddSingleton<IBaseControl<RoomImage>, BaseControlServices<RoomImage>>();
             });
 
             return host;

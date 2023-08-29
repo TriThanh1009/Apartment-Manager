@@ -27,6 +27,7 @@ namespace Services.Implement
 
         public async Task<People> Create(PeopleCreateViewModel request)
         {
+            MessageBox.Show(request.ID.ToString());
             People people = new People
             {
                 IDroom = request.IDroom,

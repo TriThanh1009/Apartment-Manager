@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace Services.Interface
 {
     public interface IRoomImage
     {
-        Task<int> CreateImage(RoomImageCreateViewModel model);
+        Task<RoomImage> CreateImage(RoomImageCreateViewModel model);
 
         Task<int> UpdateImage(RoomImageUpdateViewModel model);
 

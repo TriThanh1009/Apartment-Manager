@@ -61,8 +61,7 @@ namespace AM.UI.ViewModelUI
         public RentalContractHomeVMUI(IRentalContract irental,INavigator navigator, IAparmentViewModelFactory ViewModel,ApartmentStore apartmentStore)
         {
             _irental = irental;
-            Rental = new List<RentalContractVm>();
-            LoadData();
+            _rental = new ObservableCollection<RentalContractVm>();
         }
 
         public void UpdateData(List<RentalContractVm> data)

@@ -19,6 +19,7 @@ using ViewModel.People;
 using ViewModel.RentalContract;
 using ViewModel.Room;
 using ViewModel.RoomDetails;
+using ViewModel.RoomImage;
 
 namespace AM.UI.State
 {
@@ -33,8 +34,20 @@ namespace AM.UI.State
         private readonly List<PaymentExtensionVm> _paymentextensionvm;
         private readonly List<RentalContractVm> _rentalvm;
         private readonly List<RoomDetailsFurniture> _roomdetailsvmfur;
+        private readonly List<RoomImageCreateViewModel> _roomimagevms;
+
+        private readonly IPeople _people;
+        private readonly IRoom _room;
+        private readonly IRoomDetails _roomimage;
 
         private Lazy<Task> _initializeLazy;
+        private Lazy<Task> _initializeLazyRoom;
+        private Lazy<Task> _initializeLazyBill;
+        private Lazy<Task> _initialLazyDeposits;
+        private Lazy<Task> _initialLazyFurniture;
+        private Lazy<Task> _initialLazyPayment;
+        private Lazy<Task> _initialLazyRental;
+
         public List<CustomerVM> customervm => _customervm;
         public List<RoomVm> roomvm => _roomvm;
         public List<BillVm > billvm => _billvm;
@@ -43,6 +56,7 @@ namespace AM.UI.State
         public List<PaymentExtensionVm > paymentextensionvm => _paymentextensionvm;
         public List<RentalContractVm> rentalvm => _rentalvm;
         public List<RoomDetailsFurniture> roomdetailsvmfur => _roomdetailsvmfur;
+        public List<RoomImageCreateViewModel> roomimagevms => _roomimagevms;
 
         public event Action<int> YouTubeViewerDeleted;
 
@@ -50,10 +64,20 @@ namespace AM.UI.State
 
         public event Action<CustomerVM> CustomerUpdate;
 
-        public ApartmentStore(Apartment apartment, IPeople people)
+        public event Action<RoomVm> RoomAdd;
+
+        public event Action<RoomVm> RoomUpdate;
+
+        public event Action<int> RoomDelete;
+
+        public event Action<RoomImageCreateViewModel> RoomImageAdd;
+
+        public ApartmentStore(Apartment apartment, IPeople people,IRoom room,IRoomDetails roomimage)
         {
             _apartment = apartment;
             _people = people;
+            _room = room;
+            _roomimage = roomimage;
             _initializeLazy = new Lazy<Task>(Initialize);
             _initializeLazyRoom = new Lazy<Task>(InitializeRoom);
             _initializeLazyBill = new Lazy<Task>(InitializeBill);
@@ -70,7 +94,27 @@ namespace AM.UI.State
             _paymentextensionvm = new List<PaymentExtensionVm>();
             _rentalvm = new List<RentalContractVm>();
             _roomdetailsvmfur = new List<RoomDetailsFurniture>();
+            _roomimagevms = new List<RoomImageCreateViewModel>();
         }
+
+
+        // Room Images
+        public async Task<RoomImage> CreateImage (RoomImageCreateViewModel request)
+        {
+            var result = await _roomimage.CreateImage(request);
+            RoomImageCreateViewModel create = new RoomImageCreateViewModel
+            {
+                ID = request.ID,
+                IDroom = request.IDroom,
+                Name = request.Name,
+                Url = request.Url,
+            };
+            _roomimagevms.Add(create);
+            RoomImageAdd?.Invoke(create);
+            return result;
+        }
+
+
 
         //----------------------------------------RentalContract
 
@@ -237,6 +281,53 @@ namespace AM.UI.State
         }
 
 
+        public async Task<Room> AddRoom(RoomCreateViewModel request)
+        {
+            var result = await _room.Create(request);
+            RoomVm create = new RoomVm
+            {
+                ID = result.ID,
+                NameLeader = result.IDLeader.ToString(),
+                Name = result.Name,
+                Quantity = result.Quantity,
+
+            };
+            _roomvm.Add(create);
+            RoomAdd?.Invoke(create);
+            return result;
+        }
+
+
+        public async Task<Room> UpdateRoom(RoomUpdateViewModel request)
+        {
+            var result = await _room.Update(request.ID, request);
+            RoomVm update = new RoomVm
+            {
+                ID = result.ID,
+                NameLeader = result.IDLeader.ToString(),
+                Name = result.Name,
+                Quantity = result.Quantity,
+            };
+            var currentIndex = _roomvm.FindIndex(x=>x.ID== result.ID);
+            if(currentIndex != -1)
+            {
+                _roomvm[currentIndex] = update;
+            }
+            else
+            {
+                _roomvm.Add(update);
+            }
+            RoomUpdate?.Invoke(update);
+            return result;
+        }
+
+        public async Task<bool> DeleteRoom(int id)
+        {
+            var result = await _room.Delete(id);
+            _roomvm.RemoveAll(x => x.ID == id);
+            RoomDelete?.Invoke(id);
+            return result;
+        }
 
         //----------------------------------------Customer
         public async Task Load()

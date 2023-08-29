@@ -173,7 +173,7 @@ namespace AM.UI.ViewModelUI.Customer
             {
                 _propertyNameToErrorsDictionary.Add(propertyName, new List<string>());
             }
-
+             
             _propertyNameToErrorsDictionary[propertyName].Add(errorMessage);
 
             OnErrorsChanged(propertyName);

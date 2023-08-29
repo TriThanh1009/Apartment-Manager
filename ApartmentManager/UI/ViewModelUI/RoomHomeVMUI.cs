@@ -1,7 +1,9 @@
 ﻿using AM.UI.Command;
+using AM.UI.Command.Room;
 using AM.UI.State;
 using AM.UI.State.Navigators;
 using AM.UI.Utilities;
+using AM.UI.View.Dialog;
 using AM.UI.View.RoomDetails;
 using AM.UI.View.Rooms;
 using AM.UI.ViewModelUI.Factory;
@@ -54,9 +56,12 @@ namespace AM.UI.ViewModelUI
 
         public ICommand RoomDeleteCommand { get; }
 
+        public ICommand RoomDeleteCommandConfirm { get; }
+
         public ICommand FindingRoomCommand { get; }
 
         public ICommand LoadDataBase { get; }
+
 
 
 
@@ -134,7 +139,16 @@ namespace AM.UI.ViewModelUI
         }
 
 
-
+        private int _ID;
+        public int ID
+        {
+            get { return _ID; }
+            set
+            {
+                _ID = value;
+                OnPropertyChanged(nameof(ID));
+            }
+        }
 
 
 
@@ -151,17 +165,22 @@ namespace AM.UI.ViewModelUI
             RoomNavCommand = new UpdateCurrentViewModelCommand(navigator, viewModelFactory);
             _apartmentStore = apartmentStore;
             RoomUpdateNavCommand = new RelayCommand(DataRoomUpdate);
-            RoomDeleteCommand = new RelayCommand(DataRoomDelete);
+            RoomDeleteCommand = new RelayCommand(DeleteRoom);
+            RoomDeleteCommandConfirm = new RoomDeleteCommand(this, apartmentStore, navigator, viewModelFactory);
             RoomDetailsCommand = new RelayCommand(ShowRoomDetails);
             _room.CollectionChanged += OnReservationsChanged;
-
+            _apartmentStore.RoomAdd += Store_Add;
+            _apartmentStore.RoomDelete += Delete_Store;
 
 
 
         }
 
 
-
+        private void Store_Add(RoomVm data)
+        {
+            _room.Add(data);
+        }
 
 
         public void ShowRoomDetails(object parameter)
@@ -178,19 +197,28 @@ namespace AM.UI.ViewModelUI
 
         }
 
-
-        public async void DataRoomDelete(object parameter)
+        public void DeleteRoom(object parameter)
         {
-            MessageBoxResult result = MessageBox.Show("Do you want to proceed?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if (result == MessageBoxResult.Yes)
+            if(parameter is RoomVm room)
             {
-                if (parameter is RoomVm r)
+                bool? Confirm = new MessageBoxCustom($"Do you want to delete customer :{room.ID} ", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                if(Confirm == true)
                 {
-                    await _iroom.Delete(r.ID);
-                    LoadDataBase.Execute(null);
+                    _ID = room.ID;
+                    RoomDeleteCommandConfirm.Execute(null);
                 }
-            } 
+            }
+        }
+
+
+        public async void Delete_Store(int id)
+        {
+            var object1 = _room.FirstOrDefault(x => x.ID == id);
+            if(object1 != null)
+            {
+                _room.Remove(object1);
+            }
+
         }
 
         public void UpdateData(List<RoomVm> data)
@@ -206,7 +234,7 @@ namespace AM.UI.ViewModelUI
         {
             if (parameter is RoomVm r)
             {
-                _navigator.CurrentViewModel = new RoomUpdateVMUI(_iroom, r, _navigator, _viewModelFactory);
+                _navigator.CurrentViewModel = new RoomUpdateVMUI(_iroom, r, _navigator, _viewModelFactory,_apartmentStore);
             }
         }
 

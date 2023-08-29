@@ -44,6 +44,8 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
 
 
+
+
         public bool HasData => _roomdetails.Any();
         public bool _IsLoading;
         public bool IsLoading

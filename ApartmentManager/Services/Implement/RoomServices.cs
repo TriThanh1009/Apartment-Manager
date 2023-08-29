@@ -32,21 +32,26 @@ namespace Services.Implement
         {
             var room = new Data.Entity.Room()
             {
-                ID = model.ID,
                 IDLeader = model.IDLeader,
                 Name = model.Name,
                 Quantity = model.Quantity,
             };
            
                 
-             return await _base.Create(room);
+             var result = await _base.Create(room);
+            return result;
         }
 
         public async Task<bool> Delete(int id)
-        {   
-            await _base.Delete(id);
-            var del = _base.Delete(id);
-            return true;
+        {
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                Room entity = await _context.Room.FirstOrDefaultAsync((x) => x.ID == id);
+                if (entity == null) return false;
+                _context.Room.Remove(entity);
+                await _context.SaveChangesAsync();
+                return true;
+            }
 
         }
 
