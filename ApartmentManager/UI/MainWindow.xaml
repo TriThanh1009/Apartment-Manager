@@ -62,8 +62,8 @@
 
                         <Grid>
 
-                            <Image
-                                   Style="{StaticResource Image_Style}" Source="/Images/img_home.png" />
+                            <Image x:Name="images"
+                                   Style="{StaticResource Image_Style}"  />
 
                             <TextBlock Text="Home"
                                        Style="{StaticResource Text_Style}" />

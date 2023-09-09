@@ -13,7 +13,7 @@ namespace Data.Entity
         public string Name { get; set; }
         public int Quantity { get; set; }
 
-        public List<RoomDetails> RoomDeltails { get; } = new();
+        public ICollection<RoomDetails> RoomDeltails { get; } = new List<RoomDetails>();
 
         public ICollection<RoomImage> RoomImage { get; } = new List<RoomImage>();
 

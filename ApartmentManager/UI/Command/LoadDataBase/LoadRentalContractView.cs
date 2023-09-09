@@ -1,4 +1,5 @@
 ﻿using AM.UI.State;
+using AM.UI.State.Store;
 using AM.UI.ViewModelUI;
 using Services.Implement;
 using System;
@@ -12,8 +13,8 @@ namespace AM.UI.Command.LoadDataBase
     public class LoadRentalContractView : AsyncCommandBase
     {
         private readonly RentalContractHomeVMUI _rentalcontracthome;
-        private readonly ApartmentStore _rental;
-        public LoadRentalContractView(RentalContractHomeVMUI rentalcontracthome, ApartmentStore rental)
+        private readonly RentalContractStore _rental;
+        public LoadRentalContractView(RentalContractHomeVMUI rentalcontracthome, RentalContractStore rental)
         {
             _rentalcontracthome = rentalcontracthome;
             _rental = rental;

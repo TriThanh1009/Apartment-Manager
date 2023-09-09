@@ -1,5 +1,6 @@
 ﻿using AM.UI.State;
 using AM.UI.State.Navigators;
+using AM.UI.State.Store;
 using AM.UI.View.Dialog;
 using AM.UI.ViewModelUI;
 using AM.UI.ViewModelUI.Factory;
@@ -18,11 +19,11 @@ namespace AM.UI.Command.Room
     public class RoomDeleteCommand : AsyncCommandBase
     {
         private readonly RoomHomeVMUI _roomvmui;
-        private readonly ApartmentStore _apartmentStore;
+        private readonly RoomStore _apartmentStore;
         private readonly INavigator _navigator;
         private readonly IAparmentViewModelFactory _factory;
 
-        public RoomDeleteCommand(RoomHomeVMUI roomvmui, ApartmentStore apartmentStore, INavigator navigator, IAparmentViewModelFactory factory)
+        public RoomDeleteCommand(RoomHomeVMUI roomvmui, RoomStore apartmentStore, INavigator navigator, IAparmentViewModelFactory factory)
         {
             _roomvmui = roomvmui;
             _apartmentStore = apartmentStore;
@@ -34,7 +35,6 @@ namespace AM.UI.Command.Room
         public override async Task ExecuteAsync(object parameter)
         {
             var result = await _apartmentStore.DeleteRoom(_roomvmui.ID);
-            MessageBox.Show(_roomvmui.ID.ToString());
             if(result == true)
             {
                 new MessageBoxCustom("Delete Successed", MessageType.Success, MessageButtons.Ok).ShowDialog();

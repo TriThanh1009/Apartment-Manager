@@ -52,7 +52,14 @@
             </ListView.View>
         </ListView>
 
-        <ListBox ItemsSource="{Binding RoomDetailsImage,UpdateSourceTrigger=PropertyChanged}"   Grid.Column="3" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="4" Grid.RowSpan="5" Height="NaN" Width="NaN" Margin="10,45,94,60" >
+
+
+        <ListBox SelectedItem="{Binding RoomImages,UpdateSourceTrigger=PropertyChanged}"  ItemsSource="{Binding RoomDetailsImage,UpdateSourceTrigger=PropertyChanged}"   Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="4" Height="NaN" Width="NaN" Margin="51,18,10,52" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Image Source="{Binding Url}"  Width="50" Height="50">
@@ -63,6 +70,9 @@
 
 
         </ListBox>
+        <TextBox Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="78,45,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding RoomImages}" VerticalAlignment="Top" Width="120"/>
+        <Button Command="{Binding DeleteImageCommand}" Grid.Column="5" Content="Delete Image" HorizontalAlignment="Left" Margin="53,45,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="129"/>
+        <Button Command="{Binding ShowLargeImageNav}" Grid.Column="6" Content="Button" HorizontalAlignment="Left" Margin="2,52,0,0" Grid.Row="2" VerticalAlignment="Top"/>
 
 
 

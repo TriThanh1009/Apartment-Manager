@@ -1,4 +1,5 @@
 ﻿using AM.UI.State;
+using AM.UI.State.Store;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI;
 using AM.UI.ViewModelUI.PaymentExtension;
@@ -13,9 +14,9 @@ namespace AM.UI.Command.LoadDataBase
     public class LoadPaymentExtensionView : AsyncCommandBase
     {
         private readonly PaymentExtensionHomeVMUI _paymenthomevm;
-        private readonly ApartmentStore _payment;
+        private readonly PaymentExtensionStore _payment;
 
-        public LoadPaymentExtensionView(PaymentExtensionHomeVMUI paymenthomevm, ApartmentStore payment)
+        public LoadPaymentExtensionView(PaymentExtensionHomeVMUI paymenthomevm, PaymentExtensionStore payment)
         {
             _paymenthomevm = paymenthomevm;
             _payment = payment;

@@ -1,6 +1,7 @@
 ﻿using AM.UI.Command.LoadDataBase;
 using AM.UI.State;
 using AM.UI.State.Navigators;
+using AM.UI.State.Store;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI.Factory;
 using Services.Interface;
@@ -24,7 +25,7 @@ namespace AM.UI.ViewModelUI.DepositContract
         private readonly IDepositsContract _ideposit;
         private readonly INavigator _navigator;
         private readonly IAparmentViewModelFactory _ViewModelFactory;
-        private readonly ApartmentStore _apartmentStore;
+        private readonly DepositContractStore _apartmentStore;
         private ObservableCollection<DepositsContractVm> _deposit;
         
         public ICommand LoadDataBase { get; }
@@ -58,7 +59,7 @@ namespace AM.UI.ViewModelUI.DepositContract
         public bool HasMessageError => !string.IsNullOrEmpty(MessageError);
 
 
-        public DepositContractHomeVMUI(IDepositsContract ideposit, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, ApartmentStore apartmentStore)
+        public DepositContractHomeVMUI(IDepositsContract ideposit, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, DepositContractStore apartmentStore)
         {
             _ideposit = ideposit;
             _navigator = navigator;
@@ -70,7 +71,7 @@ namespace AM.UI.ViewModelUI.DepositContract
             _deposit.CollectionChanged += OnReservationsChanged;
         }
 
-        public static DepositContractHomeVMUI DepositsContractViewModel(IDepositsContract ideposit, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, ApartmentStore apartmentStore)
+        public static DepositContractHomeVMUI DepositsContractViewModel(IDepositsContract ideposit, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, DepositContractStore apartmentStore)
         {
             DepositContractHomeVMUI deposit = new DepositContractHomeVMUI(ideposit, navigator, ViewModelFactory, apartmentStore);
             deposit.LoadDataBase.Execute(null);

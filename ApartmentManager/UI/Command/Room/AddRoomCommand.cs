@@ -12,17 +12,18 @@ using ViewModel.Room;
 using AM.UI.ViewModelUI.Room;
 using AM.UI.View.Dialog;
 using System.Windows;
+using AM.UI.State.Store;
 
 namespace AM.UI.Command.Room
 {
     public class AddRoomCommand : AsyncCommandBase
     {
         private readonly RoomAddVMUI _roomvmui;
-        private readonly ApartmentStore _room;
+        private readonly RoomStore _room;
         private readonly INavigator _navigator;
         private readonly IAparmentViewModelFactory _viewModelFactory;
 
-        public AddRoomCommand(RoomAddVMUI roomvmui, ApartmentStore room, INavigator navigator, IAparmentViewModelFactory viewModelFactory)
+        public AddRoomCommand(RoomAddVMUI roomvmui, RoomStore room, INavigator navigator, IAparmentViewModelFactory viewModelFactory)
         {
             _roomvmui = roomvmui;
             _room = room;

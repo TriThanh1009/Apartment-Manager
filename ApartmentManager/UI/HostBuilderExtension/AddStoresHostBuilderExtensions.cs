@@ -45,6 +45,8 @@ namespace AM.UI.HostBuilderExtension
                 services.AddTransient<DepositContractHomeVMUI>();
                 services.AddTransient<AddCustomerVMUI>();
                 services.AddTransient<RoomDetailsAddImageVMUI>();
+                services.AddTransient<RoomDetailsEnlarge>();
+
                 /*-------------------------------------------------------------------------------*/
                 services.AddSingleton<INavigator, Navigator>();
                 services.AddSingleton<IAparmentViewModelFactory, AparmentViewModelFactory>();
@@ -61,6 +63,7 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<CreateViewModel<AddCustomerVMUI>>(services => () => services.GetRequiredService<AddCustomerVMUI>());
                 services.AddSingleton<CreateViewModel<RoomDeleteVMUI>>(services => () => services.GetRequiredService<RoomDeleteVMUI>());
                 services.AddSingleton<CreateViewModel<RoomDetailsAddImageVMUI>>(services => () => services.GetRequiredService<RoomDetailsAddImageVMUI>());
+                services.AddSingleton<CreateViewModel<RoomDetailsEnlarge>>(services => () => services.GetRequiredService<RoomDetailsEnlarge>());
 
                 /*-------------------------------------------------------------------------------*/
                 services.AddSingleton<ViewModelDelegateRenavigator<RoomHomeVMUI>>();
@@ -76,6 +79,7 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<ViewModelDelegateRenavigator<AddCustomerVMUI>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<RoomDeleteVMUI>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<RoomDetailsAddImageVMUI>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<RoomDetailsEnlarge>>();
 
                 services.AddScoped<RoomUpdateViewModel>();
             });

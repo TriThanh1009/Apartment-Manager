@@ -15,9 +15,9 @@ namespace Services.Interface
     public interface IRoomDetails
     {
 
-        Task<bool> Delete(int id);
+        Task<DeleteImageViewModel> Delete(int id);
 
-        Task<RoomImage> CreateImage (RoomImageCreateViewModel request);
+        Task<bool> CreateImage (RoomImageCreateViewModel request,string NameFile);
 
         Task<PagedResult<RoomDetailsVm>> GetAllPage(RequestPaging request);
         Task<PagedResult<RoomDetailsFurniture>> GetAllFurniture(RequestPaging request,int id);

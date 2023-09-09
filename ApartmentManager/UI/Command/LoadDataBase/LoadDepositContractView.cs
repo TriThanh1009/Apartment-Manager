@@ -1,4 +1,5 @@
 ﻿using AM.UI.State;
+using AM.UI.State.Store;
 using AM.UI.ViewModelUI;
 using AM.UI.ViewModelUI.DepositContract;
 using System;
@@ -12,9 +13,9 @@ namespace AM.UI.Command.LoadDataBase
     public class LoadDepositContractview : AsyncCommandBase
     {
         private readonly DepositContractHomeVMUI _deposithomevm;
-        private readonly ApartmentStore _deposit;
+        private readonly DepositContractStore _deposit;
 
-        public LoadDepositContractview(DepositContractHomeVMUI deposithomevm, ApartmentStore deposit)
+        public LoadDepositContractview(DepositContractHomeVMUI deposithomevm, DepositContractStore deposit)
         {
             _deposithomevm = deposithomevm;
             _deposit = deposit;

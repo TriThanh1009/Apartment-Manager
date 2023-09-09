@@ -1,4 +1,5 @@
 ﻿using AM.UI.State;
+using AM.UI.State.Store;
 using AM.UI.ViewModelUI;
 using AM.UI.ViewModelUI.RoomDetails;
 using System;
@@ -14,10 +15,10 @@ namespace AM.UI.Command.LoadDataBase
     public class LoadRoomDetailsView : AsyncCommandBase
     {
         private readonly RoomDetailsHomeVMUI _roomdetailhomevm;
-        private readonly ApartmentStore _roomdetails;
+        private readonly RoomStore _roomdetails;
         public int _id;
 
-        public LoadRoomDetailsView(RoomDetailsHomeVMUI roomdetailhomevm, ApartmentStore roomdetails,int id)
+        public LoadRoomDetailsView(RoomDetailsHomeVMUI roomdetailhomevm, RoomStore roomdetails,int id)
         {
             _roomdetailhomevm = roomdetailhomevm;
             _roomdetails = roomdetails;
@@ -29,7 +30,7 @@ namespace AM.UI.Command.LoadDataBase
             _roomdetailhomevm.IsLoading = true;
             try
             {
-                List<RoomDetailsImage> roomimage = new List<RoomDetailsImage>();
+                 List<RoomDetailsImage> roomimage = new List<RoomDetailsImage>();
                  List<RoomDetailsFurniture> room = new List<RoomDetailsFurniture>();
                 room = await _roomdetails.LoadRoomDetailsFurniture(_id);
                 roomimage = await _roomdetails.LoadRoomDetailsImage(_id);

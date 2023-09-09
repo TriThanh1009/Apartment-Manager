@@ -24,5 +24,10 @@ namespace AM.UI.View.RoomDetails
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

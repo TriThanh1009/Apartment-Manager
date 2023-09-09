@@ -2,6 +2,7 @@
 using AM.UI.Command.Room;
 using AM.UI.State;
 using AM.UI.State.Navigators;
+using AM.UI.State.Store;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI.Factory;
 using Data.Entity;
@@ -23,7 +24,7 @@ namespace AM.UI.ViewModelUI.Room
         private readonly INavigator _navigator;
         private readonly IAparmentViewModelFactory _viewModelFactory;
         private readonly IRoom _iroom;
-        private readonly ApartmentStore _apartmentStore;
+        private readonly RoomStore _apartmentStore;
         private readonly RoomCreateViewModel _room;
 
 
@@ -76,7 +77,7 @@ namespace AM.UI.ViewModelUI.Room
 
 
          
-        public RoomAddVMUI(IRoom iroom ,INavigator navigator,IAparmentViewModelFactory viewModelFactory, ApartmentStore apartmentStore) {
+        public RoomAddVMUI(IRoom iroom ,INavigator navigator,IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore) {
             _iroom = iroom;
             _navigator = navigator;
             _viewModelFactory = viewModelFactory;

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using ViewModel.DepositsContract;
 using ViewModel.PaymentExtension;
 using AM.UI.Utilities;
+using AM.UI.State.Store;
 
 namespace AM.UI.ViewModelUI.PaymentExtension
 {
@@ -19,7 +20,7 @@ namespace AM.UI.ViewModelUI.PaymentExtension
         private readonly IPaymentExtension _ipayment;
         private readonly INavigator _navigator;
         private readonly IAparmentViewModelFactory _ViewModelFactory;
-        private readonly ApartmentStore _apartmentStore;
+        private readonly PaymentExtensionStore _apartmentStore;
         private ObservableCollection<PaymentExtensionVm> _payment;
 
         public IEnumerable<PaymentExtensionVm> Payment => _payment;
@@ -48,7 +49,7 @@ namespace AM.UI.ViewModelUI.PaymentExtension
         public bool HasMessageError => !string.IsNullOrEmpty(MessageError);
 
 
-        public PaymentExtensionHomeVMUI(IPaymentExtension ipayment, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, ApartmentStore apartmentStore)
+        public PaymentExtensionHomeVMUI(IPaymentExtension ipayment, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, PaymentExtensionStore apartmentStore)
         {
             _ipayment = ipayment;
             _navigator = navigator;

@@ -1,6 +1,7 @@
 ﻿using AM.UI.Command.LoadDataBase;
 using AM.UI.State;
 using AM.UI.State.Navigators;
+using AM.UI.State.Store;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI.Factory;
 using Data.Entity;
@@ -24,7 +25,7 @@ namespace AM.UI.ViewModelUI
         private readonly IBill _ibill;
         private readonly INavigator _navigator;
         private readonly IAparmentViewModelFactory _ViewModelFactory;
-        private readonly ApartmentStore _apartmentStore;
+        private readonly BillStore _apartmentStore;
         private ObservableCollection<BillVm> _bill;
         public IEnumerable<BillVm> Bill => _bill;
 
@@ -58,7 +59,7 @@ namespace AM.UI.ViewModelUI
 
         public bool HasMessageError => !string.IsNullOrEmpty(MessageError);
 
-        public BillHomeVMUI(IBill ibill,INavigator navigator,IAparmentViewModelFactory ViewModelFactory,ApartmentStore apartmentStore)
+        public BillHomeVMUI(IBill ibill,INavigator navigator,IAparmentViewModelFactory ViewModelFactory, BillStore apartmentStore)
         {
             _ibill = ibill;
             _navigator = navigator;
@@ -70,7 +71,7 @@ namespace AM.UI.ViewModelUI
             LoadDataBase.Execute(null);
             _bill.CollectionChanged += OnReservationsChanged;
         }
-        public static BillHomeVMUI BillHomeViewModel(IBill ibill, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, ApartmentStore apartmentStore)
+        public static BillHomeVMUI BillHomeViewModel(IBill ibill, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, BillStore apartmentStore)
         {
             BillHomeVMUI bill = new BillHomeVMUI(ibill, navigator, ViewModelFactory, apartmentStore);
             bill.LoadDataBase.Execute(null);

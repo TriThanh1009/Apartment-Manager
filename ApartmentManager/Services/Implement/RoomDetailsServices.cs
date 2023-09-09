@@ -2,13 +2,16 @@
 using Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using Services.Common;
 using Services.Interface;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using ViewModel.Dtos;
 using ViewModel.Furniture;
 using ViewModel.People;
@@ -22,6 +25,7 @@ namespace Services.Implement
     {
         private readonly ApartmentDbContextFactory _contextfactory;
         private readonly IBaseControl<RoomImage> _base;
+        private const string FolderName = @"../../../Images/ImageOfRoom/";
 
         public RoomDetailsServices(ApartmentDbContextFactory contextfactory, IBaseControl<RoomImage> baseControl)
         {
@@ -29,10 +33,27 @@ namespace Services.Implement
             _base = baseControl;
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<DeleteImageViewModel> Delete(int id)
         {
-            await _base.Delete(id);
-            return true;
+            using(AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                DeleteImageViewModel delete = new DeleteImageViewModel
+                {
+                    result = 0,
+                    url = null
+                };
+                RoomImage entity = await _context.RoomImage.FirstOrDefaultAsync((x) => x.ID == id);
+                if (entity != null)
+                {
+                    delete.url = entity.Url;
+                    _context.Remove(entity);
+                    
+                    delete.result = await _context.SaveChangesAsync();
+                    return delete;
+                }
+                return delete;
+
+            }
         }
 
         public async Task<PagedResult<RoomDetailsFurniture>> GetAllFurniture(RequestPaging request,int id)
@@ -66,21 +87,31 @@ namespace Services.Implement
 
         public async Task<PagedResult<RoomDetailsImage>> GetAllImage(RequestPaging request,int id)
         {
+            /*BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri(new Uri(AppDomain.CurrentDomain.BaseDirectory), s);
+            bitmapImage.EndInit();*/
+
+
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.RoomImage
                             where p.IDroom == id
-
                             select p;
                 int totalRow = await query.CountAsync();
                 var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                     .Take(request.PageSize)
                     .Select(x => new RoomDetailsImage()
                     {
-                       IDRoom = x.IDroom,
+                        IDRoom = x.IDroom,
                         IDImage = x.ID,
-                        Url = x.Url
+                        Url = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,x.Url)
                     }).ToListAsync();
+
+
+
+
+
                 var pagedView = new PagedResult<RoomDetailsImage>()
                 {
                     TotalRecords = totalRow,
@@ -145,17 +176,39 @@ namespace Services.Implement
             }
         }
 
-        public async Task<RoomImage> CreateImage(RoomImageCreateViewModel request)
+        public async Task<bool> CreateImage(RoomImageCreateViewModel model,string NameFile)
         {
-            var create = new RoomImage
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(NameFile)}";
+            string resourcUri = FolderName + fileName;
+            MessageBox.Show(resourcUri);
+            try
             {
-                ID = request.ID,
-                IDroom = request.IDroom,
-                Name = request.Name,
-                Url = request.Url
-            };
-            var result = await _base.Create(create);
-            return result;
+                System.IO.File.Copy(model.Url, resourcUri, true);
+                RoomImage roomimage = new RoomImage
+                {
+                    IDroom = model.IDroom,
+                    Name = model.Name,      
+                    Url = resourcUri
+                };
+                
+                var result = await _base.Create(roomimage);
+                if (result != null)
+                {
+                    return true;
+                }
+                else return false;
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show($"Lỗi: {e.Message}");
+                return false;
+            }
+
+
         }
+
+
+
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AM.UI.State;
+using AM.UI.State.Store;
 using AM.UI.ViewModelUI;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace AM.UI.Command.LoadDataBase
     public class LoadBillView : AsyncCommandBase
     {
         private readonly BillHomeVMUI _billhomevm;
-        private readonly ApartmentStore _bill;
+        private readonly BillStore _bill;
 
-        public LoadBillView(BillHomeVMUI billhomevm, ApartmentStore bill)
+        public LoadBillView(BillHomeVMUI billhomevm, BillStore bill)
         {
             _billhomevm = billhomevm;
             _bill = bill;

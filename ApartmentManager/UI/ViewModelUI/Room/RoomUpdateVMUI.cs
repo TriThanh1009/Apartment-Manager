@@ -2,6 +2,7 @@
 using AM.UI.Command.Room;
 using AM.UI.State;
 using AM.UI.State.Navigators;
+using AM.UI.State.Store;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI.Factory;
 using Caliburn.Micro;
@@ -24,7 +25,7 @@ namespace AM.UI.ViewModelUI.Room
         private readonly INavigator _navigator;
         private readonly IAparmentViewModelFactory _viewModelFactory;
         private readonly IRoom _iroom;
-        private readonly ApartmentStore _apartmentStore;
+        private readonly RoomStore _apartmentStore;
         private readonly RoomVm _roomUpdateViewModel;
 
         public ICommand UpdateConfirm { get; }
@@ -38,7 +39,7 @@ namespace AM.UI.ViewModelUI.Room
 
 
 
-        public RoomUpdateVMUI(IRoom iroom, RoomVm model,INavigator navigator,IAparmentViewModelFactory viewModelFactory,ApartmentStore apartmentStore)
+        public RoomUpdateVMUI(IRoom iroom, RoomVm model,INavigator navigator,IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore)
         {
             _viewModelFactory = viewModelFactory;
             _iroom = iroom;

@@ -9,15 +9,16 @@ using System.Threading.Tasks;
 using System.Windows;
 using ViewModel.Room;
 using AM.UI.State;
+using AM.UI.State.Store;
 
 namespace AM.UI.Command
 {
     public class LoadRoomView : AsyncCommandBase
     {
         private readonly RoomHomeVMUI _roomhomevm;
-        private readonly ApartmentStore _room;
+        private readonly RoomStore _room;
         
-        public LoadRoomView(RoomHomeVMUI roomhomevm, ApartmentStore room)
+        public LoadRoomView(RoomHomeVMUI roomhomevm, RoomStore room)
         {
             _roomhomevm = roomhomevm;
             _room = room;

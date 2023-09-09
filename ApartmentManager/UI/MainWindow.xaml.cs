@@ -23,8 +23,8 @@ namespace AM.UI
         public MainWindow()
         {
             InitializeComponent();
-        }
 
+        }
         private void CloseApp_Click(object sender, RoutedEventArgs e)
         {
             Close();

@@ -2,6 +2,7 @@
 using AM.UI.Command.LoadDataBase;
 using AM.UI.State;
 using AM.UI.State.Navigators;
+using AM.UI.State.Store;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI.Factory;
 using Data.Entity;
@@ -20,12 +21,11 @@ using ViewModel.RentalContract;
 namespace AM.UI.ViewModelUI
 {
     public class RentalContractHomeVMUI : ViewModelBase
-    {
-        private readonly IRentalContract _irental;
+    { 
         private ObservableCollection<RentalContractVm> _rental;
         private readonly INavigator _navigator;
         private readonly IAparmentViewModelFactory _ViewModel;
-        private readonly ApartmentStore _apartmentStore;
+        private readonly RentalContractStore _apartmentStore;
         public IEnumerable<RentalContractVm> Rental => _rental;
 
 
@@ -58,9 +58,8 @@ namespace AM.UI.ViewModelUI
         }
         public bool HasMessageEroor => !string.IsNullOrEmpty(ErrorMessage);
 
-        public RentalContractHomeVMUI(IRentalContract irental,INavigator navigator, IAparmentViewModelFactory ViewModel,ApartmentStore apartmentStore)
+        public RentalContractHomeVMUI(INavigator navigator, IAparmentViewModelFactory ViewModel, RentalContractStore apartmentStore)
         {
-            _irental = irental;
             _rental = new ObservableCollection<RentalContractVm>();
         }
 

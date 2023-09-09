@@ -60,6 +60,10 @@
         <roomdetailsview:RoomDetailsAdd />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vmrd:RoomDetailsEnlarge}">
+        <roomdetailsview:RoomDetailsShowLargeImage />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type vm:BillHomeVMUI}">
         <billview:BillHome />
     </DataTemplate>

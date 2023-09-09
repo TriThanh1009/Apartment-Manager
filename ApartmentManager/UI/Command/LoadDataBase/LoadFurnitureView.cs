@@ -1,4 +1,5 @@
 ﻿using AM.UI.State;
+using AM.UI.State.Store;
 using AM.UI.ViewModelUI;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,9 @@ namespace AM.UI.Command.LoadDataBase
     public class LoadFurnitureView : AsyncCommandBase
     {
         private readonly FurnitureHomeVMUI _furniturehomevm;
-        private readonly ApartmentStore _furniture;
+        private readonly FurnitureStore _furniture;
 
-        public LoadFurnitureView(FurnitureHomeVMUI furniturehomevm, ApartmentStore furniture)
+        public LoadFurnitureView(FurnitureHomeVMUI furniturehomevm, FurnitureStore furniture)
         {
             _furniturehomevm = furniturehomevm;
             _furniture = furniture;

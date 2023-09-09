@@ -1,5 +1,6 @@
 ﻿using AM.UI.State;
 using AM.UI.State.Navigators;
+using AM.UI.State.Store;
 using AM.UI.View.Dialog;
 using AM.UI.ViewModelUI.Factory;
 using AM.UI.ViewModelUI.Room;
@@ -19,12 +20,12 @@ namespace AM.UI.Command.Room
     {
         private readonly IRoom _iroom;
         private readonly RoomUpdateVMUI _roomvmui;
-        private readonly ApartmentStore _apartmentstore;
+        private readonly RoomStore _apartmentstore;
 
         public ICommand RoomHomeNav { get; }
 
         
-        public UpdateRoomCommand(RoomUpdateVMUI roomvmui,INavigator navigator,IAparmentViewModelFactory factory,ApartmentStore apartmentStore)
+        public UpdateRoomCommand(RoomUpdateVMUI roomvmui,INavigator navigator,IAparmentViewModelFactory factory, RoomStore apartmentStore)
         {
             _roomvmui = roomvmui;
             _apartmentstore = apartmentStore;

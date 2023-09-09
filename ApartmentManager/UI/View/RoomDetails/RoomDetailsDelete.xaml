@@ -6,19 +6,5 @@
              xmlns:local="clr-namespace:AM.UI.View.RoomDetails"
              mc:Ignorable="d"
              d:DesignHeight="630" d:DesignWidth="730">
-    <Grid>
-        <ListBox Name="listbox1" d:ItemsSource="{d:SampleData ItemCount=5}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding PathImage}" Width="300" Height="250">
-                            
-                        </Image>
-                    </StackPanel>
-                    
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        
-    </Grid>
+    <Grid/>
 </UserControl>

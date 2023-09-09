@@ -1,5 +1,6 @@
 ﻿using AM.UI.State;
 using AM.UI.State.Navigators;
+using AM.UI.State.Store;
 using AM.UI.ViewModelUI.Factory;
 using Services.Interface;
 using System;
@@ -20,7 +21,7 @@ namespace AM.UI.ViewModelUI
         private ObservableCollection<FurnitureVm> _fur;
         private readonly INavigator _navigator;
         private readonly IAparmentViewModelFactory _ViewModelFactory;
-        private readonly ApartmentStore _apartmentStore;
+        private readonly FurnitureStore _apartmentStore;
         public IFurniture _ifur;
         public IEnumerable<FurnitureVm> Fur => _fur;
 
@@ -47,7 +48,7 @@ namespace AM.UI.ViewModelUI
         }
         public bool HasMessageError => !string.IsNullOrEmpty(MessageError);
 
-        public FurnitureHomeVMUI(IFurniture ifur,INavigator navigator,IAparmentViewModelFactory ViewModelFactory,ApartmentStore apartmentStore)
+        public FurnitureHomeVMUI(IFurniture ifur,INavigator navigator,IAparmentViewModelFactory ViewModelFactory, FurnitureStore apartmentStore)
         {
             _ifur = ifur;
             _navigator = navigator;
