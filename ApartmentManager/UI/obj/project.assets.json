@@ -75,6 +75,18 @@
           }
         }
       },
+      "LoadingSpinner.WPF/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/LoadingSpinnerControl.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/LoadingSpinnerControl.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
       "MahApps.Metro.IconPacks.Material/4.11.0": {
         "type": "package",
         "compile": {
@@ -1662,6 +1674,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "LoadingSpinner.WPF": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.8",
           "Microsoft.EntityFrameworkCore.Abstractions": "7.0.8",
           "Microsoft.EntityFrameworkCore.Relational": "7.0.8",
@@ -1686,6 +1699,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "Data": "1.0.0",
+          "LoadingSpinner.WPF": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.8",
           "Microsoft.Extensions.Configuration.Json": "7.0.0",
@@ -1705,7 +1719,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "Data": "1.0.0"
+          "Data": "1.0.0",
+          "LoadingSpinner.WPF": "1.0.0"
         },
         "compile": {
           "bin/placeholder/ViewModel.dll": {}
@@ -1788,6 +1803,18 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "LoadingSpinner.WPF/1.0.0": {
+      "sha512": "szXy14LPJMKOG51LfOP4nLx9CtqsODA52LzUHHN+N8WXTIxu99289aTZMHRywomsVPiOtA4RKgWqPm/uffOUmw==",
+      "type": "package",
+      "path": "loadingspinner.wpf/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netcoreapp3.1/LoadingSpinnerControl.dll",
+        "loadingspinner.wpf.1.0.0.nupkg.sha512",
+        "loadingspinner.wpf.nuspec"
       ]
     },
     "MahApps.Metro.IconPacks.Material/4.11.0": {
@@ -4794,6 +4821,7 @@
     "net7.0-windows7.0": [
       "Caliburn.Micro.Core >= 4.0.212",
       "Data >= 1.0.0",
+      "LoadingSpinner.WPF >= 1.0.0",
       "MahApps.Metro.IconPacks.Material >= 4.11.0",
       "MaterialDesignThemes >= 4.9.0",
       "Microsoft.EntityFrameworkCore >= 7.0.8",
@@ -4855,6 +4883,10 @@
           "Caliburn.Micro.Core": {
             "target": "Package",
             "version": "[4.0.212, )"
+          },
+          "LoadingSpinner.WPF": {
+            "target": "Package",
+            "version": "[1.0.0, )"
           },
           "MahApps.Metro.IconPacks.Material": {
             "target": "Package",

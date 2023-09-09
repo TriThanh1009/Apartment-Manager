@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "DfF97o34fsh6A7xUiakO5eCj1DW2Ces4Pv34Nr1IiHN4aEiVNuRw2uU8+Hsep4PAjWV8BjOka/GvUM32YlZ1Gw==",
+  "dgSpecHash": "+mCdniMuVGciJ05P4qqvLmDkpUkTw76sp4SPrvFYWGwz9XUiZlbv6k6I6zz7iE3/XYX3rkidrCp7ZbvkM8osrA==",
   "success": true,
   "projectFilePath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\84768\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\84768\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\84768\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\84768\\.nuget\\packages\\loadingspinner.wpf\\1.0.0\\loadingspinner.wpf.1.0.0.nupkg.sha512",
     "C:\\Users\\84768\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\84768\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\84768\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.2\\microsoft.data.sqlclient.5.0.2.nupkg.sha512",

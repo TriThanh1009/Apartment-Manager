@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,17 +7,22 @@ using System.Threading.Tasks;
 using ViewModel.Dtos;
 using ViewModel.People;
 using ViewModel.RentalContract;
+using ViewModel.Room;
 
 namespace Services.Interface
 {
     public interface IRentalContract
     {
-        Task<int> CreateRentalContract(RentalContractCreateViewModel model);
+        Task<List<RentalContractVm>> GetAll();
 
-        Task<int> UpdateRentalContract(RentalContractUpdateViewModel model);
+        Task<RentalContract> Create(RentalContractCreateViewModel model);
 
-        Task<int> DeleteRentalContract(int RcID);
+        Task<RentalContract> Update(int id, RentalContractUpdateViewModel model);
 
-        PagedResult<RentalContractVm> GetAllPage(RequestPaging request);
+        Task<bool> Delete(int id);
+
+        Task<RentalContract> GetById(int id);
+
+        Task<PagedResult<RentalContractVm>> GetAllPage(RequestPaging request);
     }
 }

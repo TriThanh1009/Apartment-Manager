@@ -6,11 +6,12 @@
              xmlns:custom ="clr-namespace:AM.UI.Utilities"
              xmlns:roomview="clr-namespace:AM.UI.View.Rooms"
              xmlns:nav="clr-namespace:AM.UI.State.Navigators"
-             xmlns:local="clr-namespace:AM.UI.View.Rooms" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" xmlns:viewmodelui="clr-namespace:AM.UI.ViewModelUI"
+             xmlns:local="clr-namespace:AM.UI.View.Rooms" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" xmlns:viewmodelui="clr-namespace:AM.UI.ViewModelUI" xmlns:converters="clr-namespace:AM.UI.Converters"
              mc:Ignorable="d"
              d:DesignHeight="630" d:DesignWidth="730">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
     </UserControl.Resources>
 
     <Grid>
@@ -61,30 +62,37 @@
 
         <StackPanel Grid.Row="2" Grid.ColumnSpan="8" Grid.RowSpan="4" x:Name="main">
             <custom:LoadingSpinner
-            Height="300"
-            Margin="10"
-            Cap="Triangle"
-            Diameter="250"
-            IsLoading="{Binding IsLoading}"
-            Thickness="1"
-            Color="White" />
-            <DataGrid ItemsSource="{Binding Room}" Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}"
+
+                Diameter="100"
+                IsLoading="{Binding IsLoading}"
+                Thickness="5"
+                Color="Black" />
+            <TextBlock
+                    Foreground="Red"
+                    Text="{Binding MessageError}"
+                    Visibility="{Binding HasErrorMessage, Converter={StaticResource BoolToVis}}" />
+            <DataGrid ItemsSource="{Binding Room}" Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}"  
                       Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ID}" />
                     <DataGridTextColumn Header="Leader Name" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding NameLeader}" />
                     <DataGridTextColumn Header="Name" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding Name}" />
                     <DataGridTextColumn Header="Quantity" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding Quantity}" />
-                    <DataGridTemplateColumn Header="Operation" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn Header="Operation" IsReadOnly="True" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal" >
                                     <Button Style="{StaticResource EditButton}"
                                            Command="{Binding DataContext.RoomUpdateNavCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                         <iconPacks:PackIconMaterial Kind="PencilOutline" Style="{StaticResource ButtonIcon}" />
                                     </Button>
-                                    <Button Style="{StaticResource EditButton}">
+                                    <Button Style="{StaticResource EditButton}"
+                                        Command="{Binding DataContext.RoomDeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                         <iconPacks:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource ButtonIcon}" />
+                                    </Button> 
+                                    <Button Style="{StaticResource EditButton}"
+                                             Command="{Binding DataContext.RoomDetailsCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                        <iconPacks:PackIconMaterial Kind="Home" Style="{StaticResource ButtonIcon}" />
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>

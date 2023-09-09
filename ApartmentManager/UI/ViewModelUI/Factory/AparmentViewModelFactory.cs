@@ -26,13 +26,14 @@ namespace AM.UI.ViewModelUI.Factory
         private readonly CreateViewModel<BillHomeVMUI> _createBillVM;
         private readonly CreateViewModel<DepositContractHomeVMUI> _createDepositContractVM;
         private readonly CreateViewModel<AddCustomerVMUI> _createAddCustomerVM;
+        private readonly CreateViewModel<RoomDetailsAddImageVMUI> _createRoomDeatailsAddImageVM;
 
         public AparmentViewModelFactory(CreateViewModel<HomeVM> createhomeVM, CreateViewModel<CustomerVMUI> createCustomerVM,
                                         CreateViewModel<RoomHomeVMUI> createRoomVM, CreateViewModel<RoomAddVMUI> createRoomAddVM,
                                         CreateViewModel<RoomUpdateVMUI> createRoomUpdateVM, CreateViewModel<RoomDetailsHomeVMUI> createRoomDetailsVM,
                                         CreateViewModel<FurnitureHomeVMUI> createFurnitureVM, CreateViewModel<RentalContractHomeVMUI> createRentalContractVM,
                                         CreateViewModel<BillHomeVMUI> createBillVM, CreateViewModel<DepositContractHomeVMUI> createDepositContractVM,
-                                        CreateViewModel<AddCustomerVMUI> createAddCustomerVM)
+                                        CreateViewModel<AddCustomerVMUI> createAddCustomerVM, CreateViewModel<RoomDetailsAddImageVMUI> createRoomDeatailsAddImageVM)
         {
             _createCustomerVM = createCustomerVM;
             _createHomeVM = createhomeVM;
@@ -45,6 +46,7 @@ namespace AM.UI.ViewModelUI.Factory
             _createBillVM = createBillVM;
             _createDepositContractVM = createDepositContractVM;
             _createAddCustomerVM = createAddCustomerVM;
+            _createRoomDeatailsAddImageVM = createRoomDeatailsAddImageVM;
         }
 
         public ViewModelBase CreateViewModel(ViewType viewType)
@@ -84,6 +86,8 @@ namespace AM.UI.ViewModelUI.Factory
                 case ViewType.CustomerAdd:
                     return _createAddCustomerVM();
 
+                case ViewType.RoomImagesAdd:
+                    return _createRoomDeatailsAddImageVM();
                 default:
                     throw new ArgumentException("The ViewType does not have a ViewModel.", "viewType");
             }

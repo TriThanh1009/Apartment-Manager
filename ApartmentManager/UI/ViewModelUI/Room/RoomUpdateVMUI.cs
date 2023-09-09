@@ -1,4 +1,6 @@
 ﻿using AM.UI.Command;
+using AM.UI.Command.Room;
+using AM.UI.State;
 using AM.UI.State.Navigators;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI.Factory;
@@ -22,24 +24,29 @@ namespace AM.UI.ViewModelUI.Room
         private readonly INavigator _navigator;
         private readonly IAparmentViewModelFactory _viewModelFactory;
         private readonly IRoom _iroom;
+        private readonly ApartmentStore _apartmentStore;
         private readonly RoomVm _roomUpdateViewModel;
 
         public ICommand UpdateConfirm { get; }
 
         public ICommand RoomHomeNav { get; }
 
+        public ICommand UpdateSuccess { get; }
 
 
 
 
 
-        public RoomUpdateVMUI(IRoom iroom, RoomVm model,INavigator navigator,IAparmentViewModelFactory viewModelFactory)
+
+        public RoomUpdateVMUI(IRoom iroom, RoomVm model,INavigator navigator,IAparmentViewModelFactory viewModelFactory,ApartmentStore apartmentStore)
         {
             _viewModelFactory = viewModelFactory;
             _iroom = iroom;
             _roomUpdateViewModel = model;
             _navigator = navigator;
+            _apartmentStore = apartmentStore;
             UpdateConfirm = new RelayCommand(UpdateConFirm);
+            UpdateSuccess = new UpdateRoomCommand(this, navigator, viewModelFactory, apartmentStore);
             RoomHomeNav = new UpdateCurrentViewModelCommand(_navigator, _viewModelFactory);
             
         }
@@ -47,21 +54,7 @@ namespace AM.UI.ViewModelUI.Room
 
         public async void UpdateConFirm(object parameter)
         {
-            RoomUpdateViewModel view = new RoomUpdateViewModel()
-            {
-                ID = Room.ID,
-                IDLeader = int.Parse(Room.NameLeader),
-                Name = Room.Name,
-                Quantity = Room.Quantity
-
-
-            };
-            await _iroom.Update(view.ID,view);
-            RoomHomeNav.Execute(ViewType.Room);
-
-
-
-
+            UpdateSuccess.Execute(null);
 
         }
 
@@ -73,7 +66,7 @@ namespace AM.UI.ViewModelUI.Room
             set
             {
                 Room = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(RoomVm));
             }
         }
     }

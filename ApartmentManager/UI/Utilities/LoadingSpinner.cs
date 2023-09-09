@@ -22,6 +22,7 @@ namespace AM.UI.Utilities
         public bool IsLoading
         {
             get { return (bool)GetValue(IsLoadingProperty); }
+
             set { SetValue(IsLoadingProperty, value); }
         }
 

@@ -1,4 +1,6 @@
 ﻿using AM.UI.Command;
+using AM.UI.Command.Room;
+using AM.UI.State;
 using AM.UI.State.Navigators;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI.Factory;
@@ -21,8 +23,11 @@ namespace AM.UI.ViewModelUI.Room
         private readonly INavigator _navigator;
         private readonly IAparmentViewModelFactory _viewModelFactory;
         private readonly IRoom _iroom;
+        private readonly ApartmentStore _apartmentStore;
         private readonly RoomCreateViewModel _room;
 
+
+        public ICommand RoomCreateSuccess { get; }
         public ICommand RoomCreateConFirm { get; }
 
         public ICommand RoomHomeNav { get; }
@@ -71,10 +76,14 @@ namespace AM.UI.ViewModelUI.Room
 
 
          
-        public RoomAddVMUI(IRoom iroom ,INavigator navigator,IAparmentViewModelFactory viewModelFactory) {
+        public RoomAddVMUI(IRoom iroom ,INavigator navigator,IAparmentViewModelFactory viewModelFactory, ApartmentStore apartmentStore) {
             _iroom = iroom;
             _navigator = navigator;
             _viewModelFactory = viewModelFactory;
+            _apartmentStore = apartmentStore;
+
+            RoomCreateSuccess = new AddRoomCommand(this,apartmentStore,navigator,viewModelFactory);
+
             RoomCreateConFirm = new RelayAsyncCommand(CreateRoom);
             
             RoomHomeNav = new UpdateCurrentViewModelCommand(_navigator, _viewModelFactory);
@@ -83,17 +92,7 @@ namespace AM.UI.ViewModelUI.Room
 
         public async Task CreateRoom()
         {
-            RoomCreateViewModel r = new RoomCreateViewModel()
-            {
-                ID = iD,
-                IDLeader = iDLeader,
-                Name = name,
-                Quantity = quantity
-
-            };
-            await _iroom.Create(r);
-            RoomHomeNav.Execute(ViewType.Room);
-            
+            RoomCreateSuccess.Execute(null);
         }
         public RoomCreateViewModel Room
         {

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "B/D1vsKXMXLygm7FnUZxuF12iAAoxKt6z+BIz9y+rPSl3Z8W9JZQOXXVbFYB4xIjYeQHUQVB4s9rtr5a3l9Spg==",
+  "dgSpecHash": "yve1sjFAzT/6Rw6DO/rgeSYXydh1EeEaqaK8SvGeUVeym86y1sDHJZw4SC1GaFXgJa4GEnZbZAkJ9tnEvERBvQ==",
   "success": true,
   "projectFilePath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\UI\\AM.UI.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\84768\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\84768\\.nuget\\packages\\caliburn.micro.core\\4.0.212\\caliburn.micro.core.4.0.212.nupkg.sha512",
     "C:\\Users\\84768\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\84768\\.nuget\\packages\\loadingspinner.wpf\\1.0.0\\loadingspinner.wpf.1.0.0.nupkg.sha512",
     "C:\\Users\\84768\\.nuget\\packages\\mahapps.metro.iconpacks.material\\4.11.0\\mahapps.metro.iconpacks.material.4.11.0.nupkg.sha512",
     "C:\\Users\\84768\\.nuget\\packages\\materialdesigncolors\\2.1.4\\materialdesigncolors.2.1.4.nupkg.sha512",
     "C:\\Users\\84768\\.nuget\\packages\\materialdesignthemes\\4.9.0\\materialdesignthemes.4.9.0.nupkg.sha512",

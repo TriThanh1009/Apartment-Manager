@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "G3EMGia4HLWpiPbBvjoeU8vn4l5CjU52r2lEjBkgJvOsvc9cA+LVaV8Se3GmwiZo19ZXMo7uy9vv4Q8XVavG6g==",
+  "dgSpecHash": "jYW8X02Gkpa3odBcrQyxVlsvLFFauXXv39QMREPheiDW61kNO4H9v/H2ROG72gn/gcPgwqNWD8aFU/3VKVsjmQ==",
   "success": true,
   "projectFilePath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\84768\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\84768\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\84768\\.nuget\\packages\\loadingspinner.wpf\\1.0.0\\loadingspinner.wpf.1.0.0.nupkg.sha512",
     "C:\\Users\\84768\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\84768\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\84768\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.2\\microsoft.data.sqlclient.5.0.2.nupkg.sha512",

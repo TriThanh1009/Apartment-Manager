@@ -1,11 +1,18 @@
-﻿using AM.UI.Utilities;
-using MaterialDesignThemes.Wpf;
+﻿using AM.UI.Command;
+using AM.UI.Command.LoadDataBase;
+using AM.UI.State;
+using AM.UI.State.Navigators;
+using AM.UI.Utilities;
+using AM.UI.ViewModelUI.Factory;
+using Data.Entity;
 using Services.Interface;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using ViewModel.Dtos;
 using ViewModel.People;
 using ViewModel.RentalContract;
@@ -14,31 +21,57 @@ namespace AM.UI.ViewModelUI
 {
     public class RentalContractHomeVMUI : ViewModelBase
     {
-        private List<RentalContractVm> _rental;
         private readonly IRentalContract _irental;
+        private ObservableCollection<RentalContractVm> _rental;
+        private readonly INavigator _navigator;
+        private readonly IAparmentViewModelFactory _ViewModel;
+        private readonly ApartmentStore _apartmentStore;
+        public IEnumerable<RentalContractVm> Rental => _rental;
 
-        public List<RentalContractVm> Rental
+
+        public ICommand LoadDataBase { get; }
+
+
+        private bool _IsLoading;
+        public bool IsLoading
         {
-            get => _rental;
+            get { return _IsLoading; }
             set
             {
-                _rental = value;
-                OnPropertyChanged();
+                _IsLoading = value;
+                OnPropertyChanged(nameof(IsLoading));
             }
         }
 
-        public RentalContractHomeVMUI(IRentalContract irental)
+        public bool HasData => _rental.Any();
+
+        private string _ErrorMessage;
+        public string ErrorMessage
+        {
+            get { return _ErrorMessage; }
+            set
+            {
+                _ErrorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+                OnPropertyChanged(nameof(HasMessageEroor));
+            }
+        }
+        public bool HasMessageEroor => !string.IsNullOrEmpty(ErrorMessage);
+
+        public RentalContractHomeVMUI(IRentalContract irental,INavigator navigator, IAparmentViewModelFactory ViewModel,ApartmentStore apartmentStore)
         {
             _irental = irental;
-            Rental = new List<RentalContractVm>();
-            //   LoadData();
+            _rental = new ObservableCollection<RentalContractVm>();
         }
 
-        public void LoadData()
+        public void UpdateData(List<RentalContractVm> data)
         {
-            var paged = new RequestPaging { PageIndex = 1, PageSize = 10 };
-            PagedResult<RentalContractVm> r = _irental.GetAllPage(paged);
-            r.Items.ForEach(x => _rental.Add(x));
+            foreach(var rental in data)
+            {
+                _rental.Add(rental);
+            }
         }
+
+        
     }
 }

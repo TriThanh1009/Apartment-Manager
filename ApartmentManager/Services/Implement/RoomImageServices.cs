@@ -1,4 +1,5 @@
-﻿using Services.Interface;
+﻿using Data.Entity;
+using Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,16 @@ namespace Services.Implement
         }
 
         public Task<int> UpdateImage(RoomImageUpdateViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<RoomImage> IRoomImage.CreateImage(RoomImageCreateViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<PagedResult<RoomVm>> IRoomImage.GetAllPage(RequestPaging request)
         {
             throw new NotImplementedException();
         }

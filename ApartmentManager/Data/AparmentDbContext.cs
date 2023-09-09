@@ -17,9 +17,7 @@ namespace Data
         {
         }
 
-        public AparmentDbContext()
-        {
-        }
+       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

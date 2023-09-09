@@ -171,10 +171,7 @@ namespace AM.UI.ViewModelUI
 
         private void NavigateUpdateCustomerVM(object parameter)
         {
-            if (parameter is CustomerVM person)
-            {
-                _navigator.CurrentViewModel = new UpdateCustomerVMUI(_apartmentStore, person, _navigator, _factory);
-            }
+            
         }
 
         private void ChangedString(string _search)
