@@ -177,8 +177,8 @@
 
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="297*"/>
-                    <RowDefinition Height="383*"/>
+                    <RowDefinition Height="297*" />
+                    <RowDefinition Height="383*" />
                 </Grid.RowDefinitions>
 
                 <ContentControl x:Name="Pages"

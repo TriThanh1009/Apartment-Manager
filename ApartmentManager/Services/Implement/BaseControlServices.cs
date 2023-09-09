@@ -68,7 +68,6 @@ namespace Services.Implement
             {
                 entity.ID = id;
                 context.Set<T>().Update(entity);
-                await context.SaveChangesAsync();
                 return entity;
             }
         }

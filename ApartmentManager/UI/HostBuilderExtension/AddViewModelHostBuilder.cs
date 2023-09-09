@@ -1,5 +1,6 @@
 ﻿using AM.UI.Model;
 using AM.UI.State;
+using AM.UI.State.Store;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI;
 using AM.UI.ViewModelUI.DepositContract;
@@ -22,6 +23,7 @@ namespace AM.UI.HostBuilderExtension
             {
                 services.AddTransient<Apartment>();
                 services.AddSingleton<ApartmentStore>();
+                services.AddSingleton<HomeStore>();
                 services.AddSingleton<NavigationVM>();
             });
 

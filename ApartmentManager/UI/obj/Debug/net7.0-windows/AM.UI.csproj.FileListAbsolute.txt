@@ -315,3 +315,4 @@ D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\AM.UI.pdb
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\AM.UI.genruntimeconfig.cache
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\ref\AM.UI.dll
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\bin\Debug\net7.0-windows\LoadingSpinnerControl.dll

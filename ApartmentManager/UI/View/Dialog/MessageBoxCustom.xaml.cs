@@ -19,6 +19,8 @@ namespace AM.UI.View.Dialog
     /// </summary>
     public partial class MessageBoxCustom : Window
     {
+        public string Input { get; private set; }
+
         public MessageBoxCustom(string Message, MessageType Type, MessageButtons Buttons)
         {
             InitializeComponent();
@@ -44,6 +46,18 @@ namespace AM.UI.View.Dialog
 
                 case MessageType.Warning:
                     txtTitle.Text = "Warning";
+                    break;
+
+                case MessageType.Input:
+                    {
+                        string defaultColor = "#4527a0";
+
+                        Color bkColor = (Color)ColorConverter.ConvertFromString(defaultColor);
+                        changeBackgroundThemeColor(Colors.Green);
+                        txtTitle.Text = "Input";
+                        txtMessage.Content = "Enter your Text: ";
+                        Istextbox.Visibility = Visibility.Visible;
+                    }
                     break;
 
                 case MessageType.Error:
@@ -88,6 +102,7 @@ namespace AM.UI.View.Dialog
 
         private void btnYes_Click(object sender, RoutedEventArgs e)
         {
+            Input= textbox.Text;
             this.DialogResult = true;
             this.Close();
         }
@@ -124,6 +139,7 @@ namespace AM.UI.View.Dialog
         Success,
         Warning,
         Error,
+        Input
     }
 
     public enum MessageButtons

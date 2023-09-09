@@ -1,6 +1,5 @@
 ﻿using AM.UI.State.Navigators;
 using AM.UI.State;
-using AM.UI.ViewModelUI.Room;
 using AM.UI.ViewModelUI.Factory;
 using System;
 using System.Collections.Generic;
@@ -30,17 +29,17 @@ namespace AM.UI.Command.Room
             _viewModelFactory = viewModelFactory;
             _roomvmui.PropertyChanged += OnViewModelPropertyChanged;
         }
+
         public override async Task ExecuteAsync(object parameter)
         {
             RoomCreateViewModel create = new RoomCreateViewModel
-            {            
+            {
                 IDLeader = _roomvmui.iDLeader,
                 Name = _roomvmui.name,
                 Quantity = _roomvmui.quantity
-
             };
             var result = await _room.AddRoom(create);
-            if(result!=null)
+            if (result!=null)
             {
                 new MessageBoxCustom("Add Successed", MessageType.Success, MessageButtons.Ok).ShowDialog();
                 _navigator.CurrentViewModel = _viewModelFactory.CreateViewModel(ViewType.Room);
@@ -57,4 +56,3 @@ namespace AM.UI.Command.Room
         }
     }
 }
-

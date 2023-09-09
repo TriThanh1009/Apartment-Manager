@@ -336,4 +336,31 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="ActiveToggl1e" TargetType="ToggleButton">
+        <Setter Property="Height" Value="12" />
+        <Setter Property="Width" Value="36" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate  TargetType="ToggleButton">
+                    <Border x:Name="B1" Background="CornflowerBlue"
+                                CornerRadius="5" Padding="1">
+                        <Border
+                                x:Name="B2"
+                                Background="White"
+                                    Width="{TemplateBinding Height}"
+                                    CornerRadius="5" HorizontalAlignment="Left">
+                            <ContentPresenter Height="5" />
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger  Property="IsChecked" Value="True">
+                            <Setter TargetName="B2" Property="HorizontalAlignment" Value="Right" />
+                            <Setter TargetName="B1" Property="Background" Value="lime" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
