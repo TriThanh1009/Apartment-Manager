@@ -10,6 +10,8 @@
         <Button Command="{Binding SelectedFile}" Content="Chọn Tệp"/>
         <TextBlock  Margin="10,30,10,0" VerticalAlignment="Top"/>
         <Button Command="{Binding SelectedFileConfirm}"  Style="{StaticResource DetailsButton}" Content="Add Confirm" HorizontalAlignment="Left" Margin="185,280,0,0" VerticalAlignment="Top" />
+        <Button Content="Chọn Tệp" />
+        <Button Style="{StaticResource DetailsButton}" Content="Add Confirm" HorizontalAlignment="Left" Margin="185,280,0,0" VerticalAlignment="Top" />
         <Button Style="{StaticResource DetailsButton}" Content="Cancel" HorizontalAlignment="Left" Margin="416,280,0,0" VerticalAlignment="Top" />
         <TextBlock HorizontalAlignment="Left" Margin="31,97,0,0" TextWrapping="Wrap" Text="ID Image" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
         <TextBox Text="{Binding ID}" HorizontalAlignment="Left" Margin="185,96,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="150" Height="25" />

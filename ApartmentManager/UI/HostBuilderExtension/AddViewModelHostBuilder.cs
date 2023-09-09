@@ -29,6 +29,7 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<PaymentExtensionStore>();
                 services.AddSingleton<RentalContractStore>();
                 services.AddSingleton<RoomStore>();
+                services.AddSingleton<HomeStore>();
                 services.AddSingleton<NavigationVM>();
             });
 
