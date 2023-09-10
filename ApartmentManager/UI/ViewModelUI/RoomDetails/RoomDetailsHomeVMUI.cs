@@ -150,9 +150,10 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         public void ShowLargeImage(object parameter)
         {
+            MessageBox.Show("aa");
             if (parameter is RoomDetailsImage roomimage)
             {
-                MessageBox.Show("aa");
+                MessageBox.Show(roomimage.IDImage.ToString());
                 _navigator.CurrentViewModel = new RoomDetailsEnlarge(_ViewModelFactory, _navigator, roomimage);
             }
         }

@@ -133,11 +133,10 @@ namespace AM.UI.State.Store
 
         public async Task<int> DeteleImage(int id)
         {
+
+            
             var result = await _roomimage.Delete(id);
-            if (File.Exists(result.url))
-            {
-                    File.Delete(result.url);
-            }
+            
             _roomimagevms.RemoveAll(y => y.ID == id);
             RoomImageDelete?.Invoke(id);
 

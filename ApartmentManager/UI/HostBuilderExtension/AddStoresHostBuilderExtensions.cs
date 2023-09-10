@@ -19,6 +19,7 @@ using ViewModel.Bill;
 using ViewModel.PaymentExtension;
 using ViewModel.People;
 using ViewModel.Room;
+using ViewModel.RoomDetails;
 
 namespace AM.UI.HostBuilderExtension
 {
@@ -36,6 +37,7 @@ namespace AM.UI.HostBuilderExtension
                 services.AddTransient<RoomDeleteVMUI>();
                 services.AddTransient<CustomerVM>();
                 services.AddTransient<RoomVm>();
+                services.AddTransient<RoomDetailsImage>();
                 services.AddTransient<PaymentExtensionVm>();
                 services.AddTransient<BillVm>();
                 services.AddTransient<RoomDetailsHomeVMUI>();

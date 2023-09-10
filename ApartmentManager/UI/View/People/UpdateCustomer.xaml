@@ -30,6 +30,6 @@
         <Button Content="cancel" HorizontalAlignment="Left" Margin="427,409,0,0" VerticalAlignment="Top" Height="52" Width="98"
                 Command="{Binding Cancel}" CommandParameter="{x:Static nav:ViewType.Customer}" />
         <Label Content="{Binding customerVM.ID}" HorizontalAlignment="Left" Margin="362,10,0,0" VerticalAlignment="Top" Width="66" FontSize="24" Foreground="#FFE4BABA" />
-        <Label Content="ID:" HorizontalAlignment="Left" Margin="330,10,0,0" VerticalAlignment="Top" Width="66" FontSize="24" Foreground="#FFE4BABA" />
+        <Label Content="Update ID:" HorizontalAlignment="Left" Margin="270,10,0,0" VerticalAlignment="Top" Width="126" FontSize="24" Foreground="#FFE4BABA" />
     </Grid>
 </UserControl>
