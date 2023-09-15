@@ -80,7 +80,6 @@ namespace Services.Implement
 
         public async Task<List<CustomerVM>> GetAll()
         {
-            // List<People> result = await _baseControl.GetAll();
             List<People> result;
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {

@@ -9,6 +9,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using AM.UI.Converters;
+using AM.UI.Utilities;
 using AM.UI.View.RentalContract;
 using System;
 using System.Diagnostics;

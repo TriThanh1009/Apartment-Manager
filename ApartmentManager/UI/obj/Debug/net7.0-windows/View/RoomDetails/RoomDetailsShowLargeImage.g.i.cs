@@ -9,6 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using AM.UI.Converters;
+using AM.UI.State.Navigators;
+using AM.UI.Utilities;
 using AM.UI.View.RoomDetails;
 using System;
 using System.Diagnostics;

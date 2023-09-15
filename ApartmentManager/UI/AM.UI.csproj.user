@@ -41,6 +41,18 @@
     <Compile Update="View\Furniture\FurnitureUpdate.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Homes\HomeBillListingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Homes\HomeCustomerListingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Homes\HomePEListingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Homes\HomeRoomEmptyListingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\People\AddCustomer.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -149,6 +161,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Homes\Home.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Homes\HomeBillListingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Homes\HomeCustomerListingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Homes\HomePEListingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Homes\HomeRoomEmptyListingView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\People\AddCustomer.xaml">

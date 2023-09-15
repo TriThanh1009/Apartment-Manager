@@ -14,6 +14,7 @@ using AM.UI.State.Navigators;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI;
 using AM.UI.ViewModelUI.DepositContract;
+using Microsoft.Windows.Themes;
 using System;
 using System.Diagnostics;
 using System.Windows;

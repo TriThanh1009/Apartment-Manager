@@ -9,6 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using AM.UI.Converters;
+using AM.UI.Utilities;
+using AM.UI.View.DepositContract;
 using AM.UI.View.Furniture;
 using System;
 using System.Diagnostics;

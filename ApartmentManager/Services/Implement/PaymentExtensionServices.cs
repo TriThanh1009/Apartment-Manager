@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using Azure.Core;
+using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Services.Interface;
@@ -17,10 +18,12 @@ namespace Services.Implement
     public class PaymentExtensionServices : IPaymentExtension
     {
         private readonly ApartmentDbContextFactory _contextfactory;
+
         public PaymentExtensionServices(ApartmentDbContextFactory contextfactory)
         {
             _contextfactory = contextfactory;
         }
+
         public Task<int> CreatePaymentExtension(PaymentExtensionCreateViewModel model)
         {
             throw new NotImplementedException();
@@ -31,13 +34,32 @@ namespace Services.Implement
             throw new NotImplementedException();
         }
 
+        public async Task<List<PaymentExtensionVm>> GetAll()
+        {
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                var query = from p in _context.PaymentExtension
+                            join pt in _context.Bill on p.IDBill equals pt.ID
+                            select new { p, pt };
+                int totalRow = await query.CountAsync();
+                var data = await
+                    query.Select(x => new PaymentExtensionVm()
+                    {
+                        ID = x.p.ID,
+                        IDBill = x.pt.ID,
+                        Days = x.p.Days
+                    }).ToListAsync();
+                return data;
+            }
+        }
+
         public async Task<PagedResult<PaymentExtensionVm>> GetAllPage(RequestPaging request)
         {
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.PaymentExtension
                             join pt in _context.Bill on p.IDBill equals pt.ID
-                            select new { p,pt};
+                            select new { p, pt };
                 int totalRow = await query.CountAsync();
                 var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                     .Take(request.PageSize)

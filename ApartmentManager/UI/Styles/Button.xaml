@@ -363,4 +363,27 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="NoBorderButton" TargetType="Button">
+        <Setter Property="Width"  Value="auto" />
+        <Setter Property="Height" Value="auto" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FontFamily" Value="Champagne &amp; Limousines" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderThickness="0">
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="Yellow" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

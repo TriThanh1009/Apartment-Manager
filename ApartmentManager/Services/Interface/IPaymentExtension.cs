@@ -11,6 +11,8 @@ namespace Services.Interface
 {
     public interface IPaymentExtension
     {
+        Task<List<PaymentExtensionVm>> GetAll();
+
         Task<int> CreatePaymentExtension(PaymentExtensionCreateViewModel model);
 
         Task<int> UpdatePaymentExtension(PaymentExtensionUpdateViewModel model);

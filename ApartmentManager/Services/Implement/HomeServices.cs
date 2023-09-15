@@ -66,11 +66,6 @@ namespace Services.Implement
             }
         }
 
-        private int ElectricMoney(int electric, int quanlity)
-        {
-            return electric * quanlity;
-        }
-
         public async Task<List<HomeItemVM>> GetDataBase(DateTime date)
         {
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
@@ -121,7 +116,7 @@ namespace Services.Implement
             }
         }
 
-        public async Task<bool> updateElectric(UpdateElectricQuanlity request)
+        public async Task<Bill> updateElectric(UpdateElectricQuanlity request)
         {
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
@@ -136,8 +131,7 @@ namespace Services.Implement
                     TotalMoney = request.TotalMoney
                 };
                 Bill result = await _Ibill.Update(bill.ID, bill);
-                if (result!= null) return true;
-                return false;
+                return result;
             }
         }
 
@@ -157,6 +151,7 @@ namespace Services.Implement
                     IDRTC= asd.pt.ID,
                     ElectricQuantity= request.ElecQuality,
                     PayDate = request.PayDate,
+                    TotalMoney = request.TotalMoney,
                     Active = re,
                 };
                 var result = await _Ibill.Update(bill.ID, bill);

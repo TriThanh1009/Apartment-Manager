@@ -9,7 +9,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using AM.UI.Converters;
+using AM.UI.State.Navigators;
+using AM.UI.Utilities;
 using AM.UI.View.Rooms;
+using AM.UI.ViewModelUI;
 using System;
 using System.Diagnostics;
 using System.Windows;
