@@ -2,6 +2,7 @@
 using AM.UI.View.ConfirmForm;
 using AM.UI.View.Dialog;
 using AM.UI.ViewModelUI;
+using AM.UI.ViewModelUI.Homes;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,10 @@ namespace AM.UI.Command.Home
 {
     public class EditElectricCommand : AsyncCommandBase
     {
-        private readonly HomeVM _homevm;
+        private readonly HomeBillListingViewModel _homevm;
         private readonly HomeStore _Ihome;
 
-        public EditElectricCommand(HomeVM homevm, HomeStore ihome)
+        public EditElectricCommand(HomeBillListingViewModel homevm, HomeStore ihome)
         {
             _homevm=homevm;
             _Ihome=ihome;
@@ -32,8 +33,9 @@ namespace AM.UI.Command.Home
             if (parameter is UpdateElectricQuanlity model)
             {
                 var result = await _Ihome.UpdateElectric(model);
-                if (result)
+                if (result!=null)
                 {
+                    _homevm.LoadDatabase.Execute(null);
                     new MessageBoxCustom("Edit Electic Quanlity Successed", MessageType.Success, MessageButtons.Ok).ShowDialog();
                 }
                 else { new MessageBoxCustom("Edit Electic Quanlity Fail", MessageType.Warning, MessageButtons.Ok).ShowDialog(); }

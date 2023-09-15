@@ -7,10 +7,6 @@
                     xmlns:vmpeople="clr-namespace:AM.UI.ViewModelUI.Customer"
                     xmlns:vmdeposit="clr-namespace:AM.UI.ViewModelUI.DepositContract"
 
-                    
-                    
-                    
-                    
                     xmlns:people="clr-namespace:ViewModel.People;assembly=ViewModel"
                     xmlns:room="clr-namespace:ViewModel.Room;assembly=ViewModel"
                     xmlns:roomview="clr-namespace:AM.UI.View.Rooms"
@@ -26,7 +22,9 @@
     <DataTemplate DataType="{x:Type vm:HomeVM}">
         <vh:Home />
     </DataTemplate>
-
+    <DataTemplate DataType="{x:Type vm:HomeBillListingViewModel}">
+        <vh:HomeBillListingView />
+    </DataTemplate>
     <DataTemplate DataType="{x:Type vm:CustomerVMUI}">
         <viewpeople:Home />
     </DataTemplate>
@@ -42,7 +40,6 @@
     <DataTemplate DataType="{x:Type vm:RoomHomeVMUI}">
         <roomview:RoomHome />
     </DataTemplate>
-
 
     <DataTemplate DataType="{x:Type vmr:RoomAddVMUI}">
         <roomview:RoomAdd />
@@ -67,7 +64,6 @@
     <DataTemplate DataType="{x:Type vm:BillHomeVMUI}">
         <billview:BillHome />
     </DataTemplate>
-
 
     <DataTemplate DataType="{x:Type vm:FurnitureHomeVMUI}">
         <furnitureview:FurnitureHome />

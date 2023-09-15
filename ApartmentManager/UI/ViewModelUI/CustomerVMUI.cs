@@ -171,7 +171,6 @@ namespace AM.UI.ViewModelUI
 
         private void NavigateUpdateCustomerVM(object parameter)
         {
-            
         }
 
         private void ChangedString(string _search)
@@ -213,6 +212,7 @@ namespace AM.UI.ViewModelUI
 
         public void UpdateData(List<CustomerVM> data)
         {
+            _test.Clear();
             foreach (var item in data)
             {
                 _test.Add(item);

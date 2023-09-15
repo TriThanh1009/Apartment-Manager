@@ -16,7 +16,7 @@ namespace Services.Interface
 
         Task<ResultAutoAddVM> AutoAdd(AutoAddHomeVM request);
 
-        Task<bool> updateElectric(UpdateElectricQuanlity request);
+        Task<Bill> updateElectric(UpdateElectricQuanlity request);
 
         Task<Bill> updateActive(HomeItemVM request);
     }

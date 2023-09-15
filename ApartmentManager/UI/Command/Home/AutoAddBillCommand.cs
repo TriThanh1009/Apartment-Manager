@@ -9,15 +9,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ViewModel.Home;
+using AM.UI.ViewModelUI.Homes;
 
 namespace AM.UI.Command.Home
 {
     public class AutoAddBillCommand : AsyncCommandBase
     {
-        public readonly HomeVM _homeVM;
+        public readonly HomeBillListingViewModel _homeVM;
         public readonly HomeStore _homeStore;
 
-        public AutoAddBillCommand(HomeVM homeVM, HomeStore homeStore)
+        public AutoAddBillCommand(HomeBillListingViewModel homeVM, HomeStore homeStore)
         {
             _homeVM=homeVM;
             _homeStore=homeStore;
@@ -32,8 +33,8 @@ namespace AM.UI.Command.Home
             var result = await _homeStore.AutoAddBill(autoAddHomeVM);
             if (result ==1)
             {
+                _homeVM.LoadDatabase.Execute(null);
                 new MessageBoxCustom("Add Successed", MessageType.Success, MessageButtons.Ok).ShowDialog();
-                _homeVM.Loaddata.Execute(null);
             }
             else if (result==0)
                 new MessageBoxCustom("Add Fail", MessageType.Warning, MessageButtons.Ok).ShowDialog();

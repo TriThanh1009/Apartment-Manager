@@ -43,7 +43,7 @@
                         <TextBlock Text="Room" FontFamily="Champagne &amp; Limousines" Margin="0 5" Foreground="Gray" FontSize="20" VerticalAlignment="Bottom" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="20 0 0 10" Cursor="Hand">
-                        <TextBlock Text="View Detail" FontSize="13" Foreground="#FF8522BD" Cursor="Hand" />
+                        <Button Style="{StaticResource NoBorderButton}" Content="View Detail" />
                     </StackPanel>
                 </Grid>
             </Grid>
@@ -65,7 +65,8 @@
                         <TextBlock Text="People" FontFamily="Champagne &amp; Limousines" Margin="0 5" Foreground="Gray" FontSize="20" VerticalAlignment="Bottom" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="20 0 0 10" Cursor="Hand">
-                        <TextBlock Text="View Detail" FontSize="13" Foreground="#FF8522BD" />
+                        <Button Style="{StaticResource NoBorderButton}" Content="View Detail"
+                              Command="{Binding ViewDetailCustomer}" />
                     </StackPanel>
                 </Grid>
             </Grid>
@@ -87,58 +88,12 @@
                         <TextBlock Text="PE" FontFamily="Champagne &amp; Limousines" Margin="0 5" Foreground="Gray" FontSize="20" VerticalAlignment="Bottom" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="20 0 0 10" Cursor="Hand">
-                        <TextBlock Text="View Detail" FontSize="13" Foreground="#FF8522BD" />
+                        <Button Style="{StaticResource NoBorderButton}" Content="View Detail" />
                     </StackPanel>
                 </Grid>
             </Grid>
-            <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
-
-                <custom:LoadingSpinner
-            Margin="10"
-            Diameter="250"
-            IsLoading="{Binding IsLoading}"
-            Thickness="1"
-            Color="Black" />
-
-                <Button Content="ADD BILL" Width="162" Command="{Binding AutoAddCommand}"  HorizontalAlignment="Left" Margin=" 20 0 0 0" />
-
-                <DataGrid ItemsSource="{Binding listhome}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 20 0 0" x:Name="homedata">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding ID}" />
-                        <DataGridTextColumn Header="Room" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding NameRoom}" />
-                        <DataGridTextColumn Header="ElecQuality" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ElecQuality}" />
-                        <DataGridTextColumn Header="RoomMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding RoomMoney}" />
-                        <DataGridTextColumn Header="ElectricMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ElectricMoney}" />
-                        <DataGridTextColumn Header="WaterMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding WaterMoney}" />
-                        <DataGridTextColumn Header="ServiceMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ServiceMoney}" />
-                        <DataGridTextColumn Header="PayDate" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding PayDate}" />
-                        <DataGridTextColumn Header="TotalMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding TotalMoney}" />
-                        <DataGridTemplateColumn Header="Active" IsReadOnly="True" CanUserResize="False" Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <ToggleButton Style="{StaticResource ActiveToggl1e}" IsChecked="{Binding IsActive,UpdateSourceTrigger=PropertyChanged}"
-                                                     Command="{Binding DataContext.ActiveCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                        <DataGridTemplateColumn Header="Operation" IsReadOnly="True" Width="auto">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Style="{StaticResource EditButton}"
-                                                Command="{Binding DataContext.EditElectric, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
-                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource ButtonIcon}" />
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </StackPanel>
+            <ContentControl x:Name="Pages"
+                                Content="{Binding CurrentHomeViewModel}" Grid.Row="1" Grid.ColumnSpan="3" />
         </Grid>
     </Grid>
 </UserControl>
