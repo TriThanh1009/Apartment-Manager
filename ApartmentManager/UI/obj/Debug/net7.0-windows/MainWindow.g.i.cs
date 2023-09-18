@@ -14,7 +14,6 @@ using AM.UI.State.Navigators;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI;
 using AM.UI.ViewModelUI.DepositContract;
-using Microsoft.Windows.Themes;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -82,7 +81,7 @@ namespace AM.UI {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AM.UI;V1.0.0.0;component/mainwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AM.UI;component/mainwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\MainWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

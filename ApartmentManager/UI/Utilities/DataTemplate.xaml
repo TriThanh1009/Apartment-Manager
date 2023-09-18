@@ -4,6 +4,7 @@
                     xmlns:vma="clr-namespace:AM.UI.ViewModelUI"
                     xmlns:vmr="clr-namespace:AM.UI.ViewModelUI.Room"
                     xmlns:vmrd="clr-namespace:AM.UI.ViewModelUI.RoomDetails"
+                    xmlns:vmrf="clr-namespace:AM.UI.ViewModelUI.Furnitures"
                     xmlns:vmpeople="clr-namespace:AM.UI.ViewModelUI.Customer"
                     xmlns:vmdeposit="clr-namespace:AM.UI.ViewModelUI.DepositContract"
 
@@ -57,9 +58,14 @@
         <roomdetailsview:RoomDetailsAdd />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vmrd:RoomDetailsEnlarge}">
-        <roomdetailsview:RoomDetailsShowLargeImage />
+    <DataTemplate DataType="{x:Type vmrf:FurnitureUpdateVMUI}">
+        <furnitureview:FurnitureUpdate />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vmrf:FurnitureAddVMUI}">
+        <furnitureview:FurnitureAdd />
+    </DataTemplate>
+
 
     <DataTemplate DataType="{x:Type vm:BillHomeVMUI}">
         <billview:BillHome />

@@ -1,35 +1,28 @@
 ﻿using AM.UI.Command;
 using AM.UI.Command.LoadDataBase;
 using AM.UI.Command.RoomImages;
-using AM.UI.Model;
-using AM.UI.State;
 using AM.UI.State.Navigators;
 using AM.UI.State.Store;
 using AM.UI.Utilities;
 using AM.UI.View.Dialog;
 using AM.UI.ViewModelUI.Factory;
-using Caliburn.Micro;
-using Data.Entity;
-using Services.Interface;
 using System;
+using System.Buffers.Text;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using ViewModel.Dtos;
 using ViewModel.Furniture;
-using ViewModel.People;
 using ViewModel.Room;
 using ViewModel.RoomDetails;
+using System.Drawing;
+using System.Windows.Controls;
+using AM.UI.View.RoomDetails;
 
 namespace AM.UI.ViewModelUI.RoomDetails
 {
@@ -51,15 +44,9 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         public ICommand ShowLargeImageNav { get; }
 
-
-
-
-
-
-
-
         public bool HasData => _roomdetails.Any();
         public bool _IsLoading;
+
         public bool IsLoading
         {
             get { return _IsLoading; }
@@ -71,6 +58,7 @@ namespace AM.UI.ViewModelUI.RoomDetails
         }
 
         public string _MessageError;
+
         public string MessageError
         {
             get { return _MessageError; }
@@ -80,14 +68,14 @@ namespace AM.UI.ViewModelUI.RoomDetails
                 OnPropertyChanged(nameof(MessageError));
             }
         }
+
         public bool HasMessageError => !string.IsNullOrEmpty(MessageError);
         public ObservableCollection<RoomDetailsFurniture> RoomDetails => _roomdetails;
 
-
         public ObservableCollection<RoomDetailsImage> RoomDetailsImage => _roomdetailsimage;
 
-
         private RoomDetailsImage _RoomImages;
+
         public RoomDetailsImage RoomImages
         {
             get { return _RoomImages; }
@@ -98,9 +86,8 @@ namespace AM.UI.ViewModelUI.RoomDetails
             }
         }
 
-
-
         private int _ID;
+
         public int ID
         {
             get { return _ID; }
@@ -111,7 +98,10 @@ namespace AM.UI.ViewModelUI.RoomDetails
             }
         }
 
+
+
         private int _IdDelete;
+
         public int IdDelete
         {
             get { return _IdDelete; }
@@ -122,7 +112,6 @@ namespace AM.UI.ViewModelUI.RoomDetails
             }
         }
 
-        
 
         public RoomDetailsHomeVMUI(RoomVm id, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, RoomStore apartmentStore)
         {
@@ -145,38 +134,48 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         public RoomVm _IdRoom;
 
-        
-
-
         public void ShowLargeImage(object parameter)
         {
-            MessageBox.Show("aa");
-            if (parameter is RoomDetailsImage roomimage)
-            {
-                MessageBox.Show(roomimage.IDImage.ToString());
-                _navigator.CurrentViewModel = new RoomDetailsEnlarge(_ViewModelFactory, _navigator, roomimage);
-            }
+            new RoomDetailsShowLargeImage(BitmapImageFromFile(RoomImages.Url)).Show();
         }
 
 
 
+        public static BitmapSource BitmapImageFromFile(string filepath)
+        {
+            BitmapImage bi = new BitmapImage();
 
+            bi.BeginInit();
+            bi.CacheOption = BitmapCacheOption.OnLoad; //here
+            bi.CreateOptions = BitmapCreateOptions.IgnoreImageCache; //and here
+            bi.UriSource = new Uri(filepath, UriKind.RelativeOrAbsolute);
+            bi.EndInit();
+
+            return bi;
+        }
         public void DeleteImage(object parameter)
         {
 
-                bool? Confirm = new MessageBoxCustom($"Do you want to delete customer :{RoomImages.IDImage} ", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
-                if(Confirm == true)
+            bool? Confirm = new MessageBoxCustom($"Do you want to delete customer :{RoomImages.IDImage} ", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+            if (Confirm == true)
+            {
+                _ID = RoomImages.IDImage;
+
+                if (File.Exists(_RoomImages.Url))
                 {
 
-                    _ID = RoomImages.IDImage;
-                    DeleteImageConfirmCommand.Execute(null);
-                 }
+                    File.Delete(_RoomImages.Url);
+
+                }
+                DeleteImageConfirmCommand.Execute(null);
+                LoadDataBase.Execute(null);
+            }
         }
 
         public async void Delete_Store(int id)
         {
             var object1 = _roomdetailsimage.FirstOrDefault(x => x.IDImage == id);
-            if(object1 != null)
+            if (object1 != null)
             {
                 _roomdetailsimage.Remove(object1);
             }
@@ -184,14 +183,15 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         public void UpdateDataFurniture(List<RoomDetailsFurniture> data)
         {
-            foreach(var roomdetail in data)
+            foreach (var roomdetail in data)
             {
-                
-                 _roomdetails.Add(roomdetail);
+                _roomdetails.Add(roomdetail);
             }
         }
+
         public void UpdateDataImage(List<RoomDetailsImage> data)
         {
+            _roomdetailsimage.Clear();
             foreach (var roomdetail in data)
             {
                 _roomdetailsimage.Add(roomdetail);
@@ -202,10 +202,5 @@ namespace AM.UI.ViewModelUI.RoomDetails
         {
             OnPropertyChanged(nameof(HasData));
         }
-
-
-
-
-
     }
 }

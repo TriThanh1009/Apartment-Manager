@@ -24,7 +24,7 @@ namespace Services.Implement
 
         public RoomServices(ApartmentDbContextFactory contextfactory, IBaseControl<Room> baseControl)
         {
-            _contextfactory=contextfactory;
+            _contextfactory = contextfactory;
             _base = baseControl;
         }
 
@@ -36,6 +36,7 @@ namespace Services.Implement
                 Name = model.Name,
                 Quantity = model.Quantity,
             };
+
 
             var result = await _base.Create(room);
             return result;
@@ -51,6 +52,7 @@ namespace Services.Implement
                 await _context.SaveChangesAsync();
                 return true;
             }
+
         }
 
         public async Task<List<RoomVm>> GetAll()
@@ -69,29 +71,22 @@ namespace Services.Implement
                 }).ToListAsync();
                 return data;
             }
-        }
-
-        public async Task<List<RoomVm>> GetAllEmptyRoom()
-        {
-            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            /*List<Room> result = await _base.GetAll();
+            var result1 = result.Select(e => new RoomVm
             {
-                var query = from p in _context.Room
-                            join pt in _context.People on p.IDLeader equals pt.ID
-                            where p.ID == 1
-                            select new { p, pt };
-                var data = await query.Select(x => new RoomVm()
-                {
-                    ID = x.p.ID,
-                    NameLeader = x.pt.Name,
-                    Name = x.p.Name,
-                    Quantity = x.p.Quantity
-                }).ToListAsync();
-                return data;
-            }
+                ID = e.ID,
+                NameLeader = e.Name,
+                Name = e.Name,
+                Quantity=e.Quantity,
+
+            }).ToList();
+            return result1;*/
+
         }
 
         public async Task<PagedResult<RoomVm>> GetAllPage(RequestPaging request)
         {
+
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.Room
@@ -126,9 +121,10 @@ namespace Services.Implement
         public async Task<Room> GetById(int id)
         {
             return await _base.GetById(id);
+
         }
 
-        public async Task<Room> Update(int id, RoomUpdateViewModel model)
+        public async Task<Room> Update(RoomUpdateViewModel model)
         {
             var room = new Data.Entity.Room();
             room.ID = model.ID;
@@ -150,6 +146,9 @@ namespace Services.Implement
                 _context.Room.Update(room);
                 return await _context.SaveChangesAsync();
             }
+
         }
+
+
     }
 }

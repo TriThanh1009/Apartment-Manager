@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,11 @@ namespace Services.Interface
 {
     public interface IFurniture
     {
-        Task<int> CreateFurniture(FurnitureCreateViewModel model);
+        Task<Furniture> CreateFurniture(FurnitureCreateViewModel request);
 
-        Task<int> UpdateFurniture(FurnitureUpdateViewModel model);
+        Task<Furniture> UpdateFurniture(FurnitureUpdateViewModel model);
 
-        Task<int> DeleteFurniture(int FurnitureId);
+        Task<bool> DeleteFurniture(int FurnitureId);
 
         Task<PagedResult<FurnitureVm>> GetAllPage(RequestPaging request);
     }

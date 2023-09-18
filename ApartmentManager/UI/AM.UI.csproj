@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ViewModelUI\RentalContract\**" />
+    <EmbeddedResource Remove="ViewModelUI\RentalContract\**" />
+    <None Remove="ViewModelUI\RentalContract\**" />
+    <Page Remove="ViewModelUI\RentalContract\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Styles\shutdown_def.png" />
     <None Remove="Styles\shutdown_mo.png" />
   </ItemGroup>
@@ -41,8 +48,6 @@
 
   <ItemGroup>
     <Folder Include="Images\ImageOfRoom\" />
-    <Folder Include="ViewModelUI\Furnitures\" />
-    <Folder Include="ViewModelUI\RentalContract\" />
   </ItemGroup>
 
   <ItemGroup>

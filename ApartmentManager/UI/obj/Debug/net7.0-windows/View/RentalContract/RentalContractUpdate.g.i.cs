@@ -9,8 +9,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using AM.UI.Converters;
-using AM.UI.Utilities;
 using AM.UI.View.RentalContract;
 using System;
 using System.Diagnostics;
@@ -55,7 +53,7 @@ namespace AM.UI.View.RentalContract {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AM.UI;V1.0.0.0;component/view/rentalcontract/rentalcontractupdate.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AM.UI;component/view/rentalcontract/rentalcontractupdate.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\RentalContract\RentalContractUpdate.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

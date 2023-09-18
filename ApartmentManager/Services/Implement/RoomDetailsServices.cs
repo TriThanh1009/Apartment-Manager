@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,17 +26,28 @@ namespace Services.Implement
     {
         private readonly ApartmentDbContextFactory _contextfactory;
         private readonly IBaseControl<RoomImage> _base;
+        private readonly IBaseControl<Furniture> _Basefurniture;
         private const string FolderName = @"../../../Images/ImageOfRoom/";
 
-        public RoomDetailsServices(ApartmentDbContextFactory contextfactory, IBaseControl<RoomImage> baseControl)
+        public RoomDetailsServices(ApartmentDbContextFactory contextfactory, IBaseControl<RoomImage> baseControl, IBaseControl<Furniture> basefurniture)
         {
             _contextfactory = contextfactory;
             _base = baseControl;
+            _Basefurniture = basefurniture;
+        }
+
+        public async Task DeleteFileAsync(string fileName)
+        {
+            var filePath = Path.Combine(FolderName, fileName);
+            if (File.Exists(filePath))
+            {
+                await Task.Run(() => File.Delete(filePath));
+            }
         }
 
         public async Task<DeleteImageViewModel> Delete(int id)
         {
-            using(AparmentDbContext _context = _contextfactory.CreateDbContext())
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 DeleteImageViewModel delete = new DeleteImageViewModel
                 {
@@ -47,7 +59,7 @@ namespace Services.Implement
                 {
                     delete.url = entity.Url;
                     _context.Remove(entity);
-                    
+
                     delete.result = await _context.SaveChangesAsync();
                     return delete;
                 }
@@ -56,14 +68,14 @@ namespace Services.Implement
             }
         }
 
-        public async Task<PagedResult<RoomDetailsFurniture>> GetAllFurniture(RequestPaging request,int id)
+        public async Task<PagedResult<RoomDetailsFurniture>> GetAllFurniture(RequestPaging request, int id)
         {
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.RoomDetail
                             join pt in _context.Furniture on p.IDFur equals pt.ID
                             join px in _context.Room on p.IDRoom equals px.ID
-                            select new { p, pt};
+                            select new { p, pt };
                 int totalRow = await query.CountAsync();
                 var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                     .Take(request.PageSize)
@@ -85,7 +97,7 @@ namespace Services.Implement
             }
         }
 
-        public async Task<PagedResult<RoomDetailsImage>> GetAllImage(RequestPaging request,int id)
+        public async Task<PagedResult<RoomDetailsImage>> GetAllImage(RequestPaging request, int id)
         {
             /*BitmapImage bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
@@ -105,7 +117,8 @@ namespace Services.Implement
                     {
                         IDRoom = x.IDroom,
                         IDImage = x.ID,
-                        Url = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,x.Url)
+                        Url = x.Url
+
                     }).ToListAsync();
 
 
@@ -156,9 +169,9 @@ namespace Services.Implement
                 var query = from p in _context.RoomDetail
                             join pt in _context.Furniture on p.IDFur equals pt.ID
                             join px in _context.Room on p.IDRoom equals px.ID
-                            select new {p,pt,px};
+                            select new { p, pt, px };
                 int totalRow = await query.CountAsync();
-                var data =await query.Skip((request.PageIndex - 1) * request.PageSize)
+                var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                     .Take(request.PageSize)
                     .Select(x => new RoomDetailsVm()
                     {
@@ -176,7 +189,7 @@ namespace Services.Implement
             }
         }
 
-        public async Task<bool> CreateImage(RoomImageCreateViewModel model,string NameFile)
+        public async Task<bool> CreateImage(RoomImageCreateViewModel model, string NameFile)
         {
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(NameFile)}";
             string resourcUri = FolderName + fileName;
@@ -187,10 +200,10 @@ namespace Services.Implement
                 RoomImage roomimage = new RoomImage
                 {
                     IDroom = model.IDroom,
-                    Name = model.Name,      
+                    Name = model.Name,
                     Url = resourcUri
                 };
-                
+
                 var result = await _base.Create(roomimage);
                 if (result != null)
                 {
@@ -207,8 +220,28 @@ namespace Services.Implement
 
         }
 
+        public async Task<bool> CreateFurniture(FurnitureCreateViewModel model)
+        {
+            try
+            {
+                Furniture fur = new Furniture
+                {
+                    ID = model.ID,
+                    Name = model.Name,
+                };
+                var result = await _Basefurniture.Create(fur);
+                if (result != null)
+                {
+                    return true;
+                }
+                else return false;
 
-
-
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show($"Error: {e.Message}");
+                return false;
+            }
+        }
     }
 }

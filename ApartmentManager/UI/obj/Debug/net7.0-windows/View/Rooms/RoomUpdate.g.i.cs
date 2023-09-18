@@ -9,11 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using AM.UI.Converters;
-using AM.UI.State.Navigators;
-using AM.UI.Utilities;
 using AM.UI.View.Rooms;
-using AM.UI.ViewModelUI;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -57,7 +53,7 @@ namespace AM.UI.View.Rooms {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AM.UI;V1.0.0.0;component/view/rooms/roomupdate.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AM.UI;component/view/rooms/roomupdate.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\Rooms\RoomUpdate.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

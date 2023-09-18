@@ -13,7 +13,7 @@ namespace AM.UI.State.Navigators
         Customer, CustomerAdd,
         Room, RoomAdd, RoomUpdate,
         RoomDetails,
-        Furnitures,
+        Furnitures, FurnituresAdd, FurnitureUpdate,
         RentalContract, RentalContractAdd, RentalContractUpdate,
         Bill, BillAdd, BillUpdate,
         DepositContract,

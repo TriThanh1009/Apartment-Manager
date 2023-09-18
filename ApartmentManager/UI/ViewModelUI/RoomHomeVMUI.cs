@@ -93,6 +93,8 @@ namespace AM.UI.ViewModelUI
         }
 
         
+
+        
         private string _messageError;
         public string MessageError
         {

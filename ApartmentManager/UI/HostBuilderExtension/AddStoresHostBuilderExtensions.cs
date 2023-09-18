@@ -5,11 +5,13 @@ using AM.UI.ViewModelUI;
 using AM.UI.ViewModelUI.Customer;
 using AM.UI.ViewModelUI.DepositContract;
 using AM.UI.ViewModelUI.Factory;
+using AM.UI.ViewModelUI.Furnitures;
 using AM.UI.ViewModelUI.Room;
 using AM.UI.ViewModelUI.RoomDetails;
 using Data.Entity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Services.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +50,8 @@ namespace AM.UI.HostBuilderExtension
                 services.AddTransient<AddCustomerVMUI>();
                 services.AddTransient<RoomDetailsAddImageVMUI>();
                 services.AddTransient<RoomDetailsEnlarge>();
+                services.AddTransient<FurnitureAddVMUI>();
+                services.AddTransient<FurnitureUpdateVMUI>();
 
                 /*-------------------------------------------------------------------------------*/
                 services.AddSingleton<INavigator, Navigator>();
@@ -66,6 +70,8 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<CreateViewModel<RoomDeleteVMUI>>(services => () => services.GetRequiredService<RoomDeleteVMUI>());
                 services.AddSingleton<CreateViewModel<RoomDetailsAddImageVMUI>>(services => () => services.GetRequiredService<RoomDetailsAddImageVMUI>());
                 services.AddSingleton<CreateViewModel<RoomDetailsEnlarge>>(services => () => services.GetRequiredService<RoomDetailsEnlarge>());
+                services.AddSingleton<CreateViewModel<FurnitureAddVMUI>>(services => () => services.GetRequiredService<FurnitureAddVMUI>());
+                services.AddSingleton<CreateViewModel<FurnitureUpdateVMUI>>(services => () => services.GetRequiredService<FurnitureUpdateVMUI>());
 
                 /*-------------------------------------------------------------------------------*/
                 services.AddSingleton<ViewModelDelegateRenavigator<RoomHomeVMUI>>();
@@ -82,6 +88,8 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<ViewModelDelegateRenavigator<RoomDeleteVMUI>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<RoomDetailsAddImageVMUI>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<RoomDetailsEnlarge>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<FurnitureAddVMUI>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<FurnitureUpdateVMUI>>();
 
                 services.AddScoped<RoomUpdateViewModel>();
             });

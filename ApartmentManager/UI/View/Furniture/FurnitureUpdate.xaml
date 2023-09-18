@@ -7,10 +7,10 @@
              mc:Ignorable="d"
              d:DesignHeight="630" d:DesignWidth="730">
     <Grid>
-        <Button Style="{StaticResource DetailsButton}" Content="Update Confirm" HorizontalAlignment="Left" Margin="185,280,0,0" VerticalAlignment="Top" />
+        <Button Command="{Binding UpdateConFirm}" Style="{StaticResource DetailsButton}" Content="Update Confirm" HorizontalAlignment="Left" Margin="185,280,0,0" VerticalAlignment="Top" />
         <Button Style="{StaticResource DetailsButton}" Content="Cancel" HorizontalAlignment="Left" Margin="416,280,0,0" VerticalAlignment="Top" />
         <TextBlock HorizontalAlignment="Left" Margin="58,96,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <TextBox HorizontalAlignment="Left" Margin="185,96,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="25" />
+        <TextBox HorizontalAlignment="Left" Margin="185,96,0,0" TextWrapping="Wrap" Text="{Binding Furniture.ID}" VerticalAlignment="Top" Width="150" Height="25" />
         <TextBox HorizontalAlignment="Left" Margin="185,126,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
@@ -22,7 +22,7 @@
             </TextBox.RenderTransform>
         </TextBox>
         <TextBlock HorizontalAlignment="Left" Margin="393,95,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <TextBox HorizontalAlignment="Left" Margin="520,99,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="25" />
+        <TextBox HorizontalAlignment="Left" Margin="520,99,0,0" TextWrapping="Wrap" Text="{Binding Furniture.Name}" VerticalAlignment="Top" Width="150" Height="25" />
         <TextBox HorizontalAlignment="Left" Margin="520,129,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>

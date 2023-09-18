@@ -14,19 +14,18 @@ namespace Services.Interface
     public interface IRoom
     {
         Task<PagedResult<RoomVm>> GetAllPage(RequestPaging request);
-
         Task<PagedResult<RoomVm>> GetAllPageDetails(RequestPaging request);
 
         Task<List<RoomVm>> GetAll();
 
-        Task<List<RoomVm>> GetAllEmptyRoom();
-
         Task<Room> Create(RoomCreateViewModel model);
 
-        Task<Room> Update(int id, RoomUpdateViewModel model);
+        Task<Room> Update(RoomUpdateViewModel model);
 
         Task<bool> Delete(int id);
 
         Task<Room> GetById(int id);
+
+
     }
 }

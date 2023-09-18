@@ -2,6 +2,7 @@
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI.Customer;
 using AM.UI.ViewModelUI.DepositContract;
+using AM.UI.ViewModelUI.Furnitures;
 using AM.UI.ViewModelUI.Room;
 using AM.UI.ViewModelUI.RoomDetails;
 using System;
@@ -27,13 +28,16 @@ namespace AM.UI.ViewModelUI.Factory
         private readonly CreateViewModel<DepositContractHomeVMUI> _createDepositContractVM;
         private readonly CreateViewModel<AddCustomerVMUI> _createAddCustomerVM;
         private readonly CreateViewModel<RoomDetailsAddImageVMUI> _createRoomDeatailsAddImageVM;
+        private readonly CreateViewModel<FurnitureAddVMUI> _createFurnitureAddVM;
+        private readonly CreateViewModel<FurnitureUpdateVMUI> _createFurnitureUpdateVM;
 
         public AparmentViewModelFactory(CreateViewModel<HomeVM> createhomeVM, CreateViewModel<CustomerVMUI> createCustomerVM,
                                         CreateViewModel<RoomHomeVMUI> createRoomVM, CreateViewModel<RoomAddVMUI> createRoomAddVM,
                                         CreateViewModel<RoomUpdateVMUI> createRoomUpdateVM, CreateViewModel<RoomDetailsHomeVMUI> createRoomDetailsVM,
                                         CreateViewModel<FurnitureHomeVMUI> createFurnitureVM, CreateViewModel<RentalContractHomeVMUI> createRentalContractVM,
                                         CreateViewModel<BillHomeVMUI> createBillVM, CreateViewModel<DepositContractHomeVMUI> createDepositContractVM,
-                                        CreateViewModel<AddCustomerVMUI> createAddCustomerVM, CreateViewModel<RoomDetailsAddImageVMUI> createRoomDeatailsAddImageVM)
+                                        CreateViewModel<AddCustomerVMUI> createAddCustomerVM, CreateViewModel<RoomDetailsAddImageVMUI> createRoomDeatailsAddImageVM,
+                                        CreateViewModel<FurnitureAddVMUI> createFurnitureAddVM, CreateViewModel<FurnitureUpdateVMUI> createFurnitureUpdateVM)
         {
             _createCustomerVM = createCustomerVM;
             _createHomeVM = createhomeVM;
@@ -47,6 +51,8 @@ namespace AM.UI.ViewModelUI.Factory
             _createDepositContractVM = createDepositContractVM;
             _createAddCustomerVM = createAddCustomerVM;
             _createRoomDeatailsAddImageVM = createRoomDeatailsAddImageVM;
+            _createFurnitureAddVM = createFurnitureAddVM;
+            _createFurnitureUpdateVM = createFurnitureUpdateVM;
         }
 
         public ViewModelBase CreateViewModel(ViewType viewType)
@@ -88,6 +94,12 @@ namespace AM.UI.ViewModelUI.Factory
 
                 case ViewType.RoomImagesAdd:
                     return _createRoomDeatailsAddImageVM();
+
+                case ViewType.FurnituresAdd:
+                    return _createFurnitureAddVM();
+
+                case ViewType.FurnitureUpdate:
+                    return _createFurnitureUpdateVM();
                 default:
                     throw new ArgumentException("The ViewType does not have a ViewModel.", "viewType");
             }
