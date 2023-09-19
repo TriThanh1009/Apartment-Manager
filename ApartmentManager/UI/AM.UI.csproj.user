@@ -53,6 +53,9 @@
     <Compile Update="View\Homes\HomeRoomEmptyListingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\PaymentExtension\PEHomeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\People\AddCustomer.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -173,6 +176,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Homes\HomeRoomEmptyListingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\PaymentExtension\PEHomeView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\People\AddCustomer.xaml">

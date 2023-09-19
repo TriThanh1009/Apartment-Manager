@@ -19,11 +19,11 @@ namespace Services.Interface
 
         Task<List<RoomVm>> GetAll();
 
-        Task<List<RoomVm>> GetAllEmptyRoom();
+        Task<List<RoomVm>> GetAllEmptyRom();
 
         Task<Room> Create(RoomCreateViewModel model);
 
-        Task<Room> Update(int id, RoomUpdateViewModel model);
+        Task<Room> Update(RoomUpdateViewModel model);
 
         Task<bool> Delete(int id);
 

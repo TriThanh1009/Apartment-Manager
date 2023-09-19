@@ -3,6 +3,7 @@ using Data.Entity;
 using Data.Relationships;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Services.Common;
 using Services.Implement;
 using Services.Interface;
 using System;
@@ -34,6 +35,8 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<IBaseControl<Bill>, BaseControlServices<Bill>>();
                 services.AddSingleton<IBaseControl<Room>, BaseControlServices<Room>>();
                 services.AddSingleton<IBaseControl<RoomImage>, BaseControlServices<RoomImage>>();
+                services.AddSingleton<IBaseControl<Furniture>, BaseControlServices<Furniture>>();
+                services.AddSingleton<IStorageService, FileStorageService>();
             });
 
             return host;

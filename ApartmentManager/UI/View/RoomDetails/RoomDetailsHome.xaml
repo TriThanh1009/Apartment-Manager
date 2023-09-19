@@ -11,6 +11,7 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
+        <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter"/>
     </UserControl.Resources>
 
     <Grid>
@@ -38,11 +39,17 @@
 " VerticalAlignment="Center"/>
 
         <materialDesign:DialogHost Grid.Column="4" Content="DialogHost" HorizontalAlignment="Left" Margin="72,38,0,0" Grid.Row="3" VerticalAlignment="Top"/>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="4" >
+            <Button  Style="{StaticResource DetailsButton}"
+
+                     Content="Add Furniture"  Margin="1,57,0,0"/>
+                     
+        </StackPanel>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="8">
             <Button  Style="{StaticResource DetailsButton}"
                      Command="{Binding RoomDetailsNav}"
                      CommandParameter="{x:Static nav:ViewType.RoomImagesAdd}"
-                     Content="Room Details"  Margin="190,57,0,0" />
+                     Content="Add Images"  Margin="190,57,0,0" Width="325" />
         </StackPanel>
         <ListView ItemsSource="{Binding RoomDetails}"  Grid.ColumnSpan="3" Margin="52,45,68,60" Grid.RowSpan="5" Grid.Row="1">
             <ListView.View>
@@ -62,20 +69,20 @@
             </ItemsControl.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding Url}"  Width="50" Height="50">
+                    <Image Source="{Binding Url,Converter={StaticResource StringToImageSourceConverter}}"  Width="50" Height="50">
 
                     </Image>
-                    
+
                 </DataTemplate>
-                
+
             </ListBox.ItemTemplate>
-            
+
 
         </ListBox>
         <TextBox Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="78,45,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding RoomImages}" VerticalAlignment="Top" Width="120"/>
         <Button Command="{Binding DeleteImageCommand}" Grid.Column="5" Content="Delete Image" HorizontalAlignment="Left" Margin="53,45,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="129"/>
         <Button   Command="{Binding ShowLargeImageNav}"
-                Grid.Column="6" Content="Button" HorizontalAlignment="Left" Margin="2,52,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+                Grid.Column="5" Content="LargeImage" HorizontalAlignment="Left" Margin="80,52,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
 
     </Grid>

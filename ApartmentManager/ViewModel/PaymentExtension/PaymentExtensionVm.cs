@@ -10,6 +10,8 @@ namespace ViewModel.PaymentExtension
     {
         public int ID { get; set; }
         public int IDBill { get; set; }
+        public string NameRoom { get; set; }
+        public string NameLeader { get; set; }
         public DateTime Days { get; set; }
     }
 }

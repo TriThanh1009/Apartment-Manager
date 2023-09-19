@@ -24,7 +24,7 @@ namespace Services.Implement
 
         public RoomServices(ApartmentDbContextFactory contextfactory, IBaseControl<Room> baseControl)
         {
-            _contextfactory=contextfactory;
+            _contextfactory = contextfactory;
             _base = baseControl;
         }
 
@@ -71,20 +71,19 @@ namespace Services.Implement
             }
         }
 
-        public async Task<List<RoomVm>> GetAllEmptyRoom()
+        public async Task<List<RoomVm>> GetAllEmptyRom()
         {
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.Room
-                            join pt in _context.People on p.IDLeader equals pt.ID
-                            where p.ID == 1
-                            select new { p, pt };
+                            where p.IDLeader ==0
+                            select p;
                 var data = await query.Select(x => new RoomVm()
                 {
-                    ID = x.p.ID,
-                    NameLeader = x.pt.Name,
-                    Name = x.p.Name,
-                    Quantity = x.p.Quantity
+                    ID = x.ID,
+                    NameLeader = x.IDLeader.ToString(),
+                    Name = x.Name,
+                    Quantity = x.Quantity
                 }).ToListAsync();
                 return data;
             }
@@ -128,7 +127,7 @@ namespace Services.Implement
             return await _base.GetById(id);
         }
 
-        public async Task<Room> Update(int id, RoomUpdateViewModel model)
+        public async Task<Room> Update(RoomUpdateViewModel model)
         {
             var room = new Data.Entity.Room();
             room.ID = model.ID;

@@ -108,7 +108,7 @@ namespace AM.UI.State.Store
 
         private async Task InitializeEmptyRoom()
         {
-            List<RoomVm> emptyrooms = await _Iroom.GetAll();
+            List<RoomVm> emptyrooms = await _Iroom.GetAllEmptyRom();
             _HomeEmptyRoomVM.Clear();
             _HomeEmptyRoomVM.AddRange(emptyrooms);
         }

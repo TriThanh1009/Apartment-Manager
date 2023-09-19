@@ -2,7 +2,6 @@
 using AM.UI.State.Store;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI;
-using AM.UI.ViewModelUI.PaymentExtension;
 using System;
 using System.Collections.Generic;
 using System.Linq;

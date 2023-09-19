@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ViewModel.Home;
-using AM.UI.ViewModelUI.Homes;
 
 namespace AM.UI.Command.Home
 {

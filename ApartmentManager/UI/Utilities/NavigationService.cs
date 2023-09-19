@@ -11,7 +11,7 @@ namespace AM.UI.Utilities
     {
         private readonly Navigation _navigation;
         private readonly Func<TViewModel> _CreateModel;
-
+       
         public NavigationService(Navigation navigation, Func<TViewModel> CreateModel)
         {
             _navigation=navigation;

@@ -3,9 +3,8 @@ using Data.Entity;
 using Services.Interface;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
-using System.Windows;
+using ViewModel.Furniture;
 using ViewModel.Room;
 using ViewModel.RoomDetails;
 using ViewModel.RoomImage;
@@ -18,16 +17,19 @@ namespace AM.UI.State.Store
         private readonly List<RoomVm> _roomvm;
 
         private readonly IRoom _room;
-        private readonly IRoomDetails _roomimage;
+        private readonly IRoomDetails _roomdetails;
 
         private Lazy<Task> _initializeLazyRoom;
         public List<RoomVm> roomvm => _roomvm;
 
         private readonly List<RoomDetailsFurniture> _roomdetailsvmfur;
+
+        private readonly List<FurnitureCreateViewModel> _furniturecreatevm;
         private readonly List<RoomImageCreateViewModel> _roomimagevms;
 
         public List<RoomDetailsFurniture> roomdetailsvmfur => _roomdetailsvmfur;
         public List<RoomImageCreateViewModel> roomimagevms => _roomimagevms;
+        public List<FurnitureCreateViewModel> furniturecreatevm => _furniturecreatevm;
 
         public event Action<RoomVm> RoomAdd;
 
@@ -39,12 +41,14 @@ namespace AM.UI.State.Store
 
         public event Action<int> RoomImageDelete;
 
+        public event Action<FurnitureCreateViewModel> RoomFurnitureCreate;
+
         public RoomStore(Apartment apartment, IRoom room, IRoomDetails roomimages)
         {
             _apartment = apartment;
             _roomvm = new List<RoomVm>();
             _room = room;
-            _roomimage = roomimages;
+            _roomdetails = roomimages;
             _roomimagevms = new List<RoomImageCreateViewModel>();
             _initializeLazyRoom = new Lazy<Task>(InitializeRoom);
         }
@@ -86,7 +90,7 @@ namespace AM.UI.State.Store
 
         public async Task<Room> UpdateRoom(RoomUpdateViewModel request)
         {
-            var result = await _room.Update(request.ID, request);
+            var result = await _room.Update(request);
             RoomVm update = new RoomVm
             {
                 ID = result.ID,
@@ -117,8 +121,7 @@ namespace AM.UI.State.Store
 
         public async Task<bool> CreateImage(RoomImageCreateViewModel request, string NameFile)
         {
-            MessageBox.Show(request.IDroom.ToString());
-            var result = await _roomimage.CreateImage(request, NameFile);
+            var result = await _roomdetails.CreateImage(request, NameFile);
             RoomImageCreateViewModel create = new RoomImageCreateViewModel
             {
                 ID = request.ID,
@@ -131,12 +134,25 @@ namespace AM.UI.State.Store
             return result;
         }
 
+
+        public async Task<bool> CreateFurniture(FurnitureCreateViewModel request)
+        {
+            var result = await _roomdetails.CreateFurniture(request);
+            FurnitureCreateViewModel create = new FurnitureCreateViewModel
+            {
+                ID = request.ID,
+                Name = request.Name
+            };
+            _furniturecreatevm.Add(create);
+            RoomFurnitureCreate?.Invoke(create);
+            return result;
+        }
+
+
         public async Task<int> DeteleImage(int id)
         {
+            var result = await _roomdetails.Delete(id);
 
-            
-            var result = await _roomimage.Delete(id);
-            
             _roomimagevms.RemoveAll(y => y.ID == id);
             RoomImageDelete?.Invoke(id);
 

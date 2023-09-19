@@ -24,7 +24,6 @@ using Microsoft.IdentityModel.Tokens;
 using MaterialDesignThemes.Wpf;
 using Microsoft.IdentityModel.Abstractions;
 using AM.UI.ViewModelUI.Factory;
-using AM.UI.ViewModelUI.Homes;
 
 namespace AM.UI.ViewModelUI
 {
@@ -36,7 +35,7 @@ namespace AM.UI.ViewModelUI
         private readonly IAparmentViewModelFactory _factory;
         private readonly IHome _Ihome;
         private readonly HomeStore _HomeStore;
-        public ViewModelBase CurrentHomeViewModel { get; set; }
+        public ViewModelBase CurrentHomeViewModel => _navigator.CurrentHomeViewModel;
         //readonly
 
         //object
@@ -47,7 +46,7 @@ namespace AM.UI.ViewModelUI
         //command
 
         public ICommand Loaddata { get; }
-        public ICommand ViewDetailCustomer { get; }
+        public ICommand LoadCurrentHomeVM { get; }
 
         //command
         //viewmodel
@@ -88,15 +87,24 @@ namespace AM.UI.ViewModelUI
             _navigator = navigator;
             _Ihome = home;
             _factory = aparmentViewModelFactory;
+            _navigator.StateChanged += Navigator_StateChanged;
             Loaddata = new LoadHomeCommand(home, this);
-            CurrentHomeViewModel = new HomeBillListingViewModel(home, homeStore, navigator, aparmentViewModelFactory);
-            ViewDetailCustomer = new RelayCommand(ConfirmViewDetailCustomerCommand);
+            LoadCurrentHomeVM = new UpdateCurrentHomeViewModelCommand(home, homeStore, navigator, aparmentViewModelFactory);
             Loaddata.Execute(null);
+            LoadCurrentHomeVM.Execute(ViewHomeType.Bill);
         }
 
-        public void ConfirmViewDetailCustomerCommand(object sender)
+        private void Navigator_StateChanged()
         {
-            _navigator.CurrentViewModel = new HomeViewDetailCustomerVMUI(_HomeStore, _navigator, _factory);
+            OnPropertyChanged(nameof(CurrentHomeViewModel));
         }
+    }
+
+    public enum ViewHomeType
+    {
+        Bill,
+        Customer,
+        EmptyRoom,
+        Payment
     }
 }

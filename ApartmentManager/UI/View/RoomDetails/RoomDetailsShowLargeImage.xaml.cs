@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace AM.UI.View.RoomDetails
@@ -18,11 +17,12 @@ namespace AM.UI.View.RoomDetails
     /// <summary>
     /// Interaction logic for RoomDetailsShowLargeImage.xaml
     /// </summary>
-    public partial class RoomDetailsShowLargeImage : UserControl
+    public partial class RoomDetailsShowLargeImage : Window
     {
-        public RoomDetailsShowLargeImage()
+        public RoomDetailsShowLargeImage(BitmapSource url)
         {
             InitializeComponent();
+            image.Source = url;
         }
     }
 }

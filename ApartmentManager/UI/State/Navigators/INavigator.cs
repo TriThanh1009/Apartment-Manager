@@ -13,8 +13,9 @@ namespace AM.UI.State.Navigators
         Customer, CustomerAdd,
         Room, RoomAdd, RoomUpdate,
         RoomDetails,
-        Furnitures,
+        Furnitures, FurnituresAdd, FurnitureUpdate,
         RentalContract, RentalContractAdd, RentalContractUpdate,
+        PaymentExtensionHome, PaymentExtensionAdd, PaymentExtensionUpdate,
         Bill, BillAdd, BillUpdate,
         DepositContract,
         RoomImagesAdd
@@ -23,6 +24,7 @@ namespace AM.UI.State.Navigators
     public interface INavigator
     {
         ViewModelBase CurrentViewModel { get; set; }
+        ViewModelBase CurrentHomeViewModel { get; set; }
 
         event Action StateChanged;
     }

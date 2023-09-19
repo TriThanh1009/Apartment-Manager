@@ -39,14 +39,18 @@ namespace Services.Implement
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.PaymentExtension
-                            join pt in _context.Bill on p.IDBill equals pt.ID
-                            select new { p, pt };
+                            join pt in _context.RentalContract on p.IDBill equals pt.ID
+                            join px in _context.Room on pt.IDroom equals px.ID
+                            join pz in _context.People on pt.IDLeader equals pz.ID
+                            select new { p, px, pz };
                 int totalRow = await query.CountAsync();
                 var data = await
                     query.Select(x => new PaymentExtensionVm()
                     {
                         ID = x.p.ID,
-                        IDBill = x.pt.ID,
+                        IDBill = x.p.IDBill,
+                        NameRoom = x.px.Name,
+                        NameLeader = x.pz.Name,
                         Days = x.p.Days
                     }).ToListAsync();
                 return data;

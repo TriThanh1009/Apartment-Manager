@@ -4,6 +4,7 @@
                     xmlns:vma="clr-namespace:AM.UI.ViewModelUI"
                     xmlns:vmr="clr-namespace:AM.UI.ViewModelUI.Room"
                     xmlns:vmrd="clr-namespace:AM.UI.ViewModelUI.RoomDetails"
+                    xmlns:vmrf="clr-namespace:AM.UI.ViewModelUI.Furnitures"
                     xmlns:vmpeople="clr-namespace:AM.UI.ViewModelUI.Customer"
                     xmlns:vmdeposit="clr-namespace:AM.UI.ViewModelUI.DepositContract"
 
@@ -25,6 +26,18 @@
     <DataTemplate DataType="{x:Type vm:HomeBillListingViewModel}">
         <vh:HomeBillListingView />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:HomeEmptyRoomListtingVMUI}">
+        <vh:HomeRoomEmptyListingView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:HomeViewDetailCustomerVMUI}">
+        <vh:HomeCustomerListingView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:HomePaymentListtingVMUI}">
+        <vh:HomePEListingView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type vm:CustomerVMUI}">
         <viewpeople:Home />
     </DataTemplate>
@@ -57,8 +70,12 @@
         <roomdetailsview:RoomDetailsAdd />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vmrd:RoomDetailsEnlarge}">
-        <roomdetailsview:RoomDetailsShowLargeImage />
+    <DataTemplate DataType="{x:Type vmrf:FurnitureUpdateVMUI}">
+        <furnitureview:FurnitureUpdate />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vmrf:FurnitureAddVMUI}">
+        <furnitureview:FurnitureAdd />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type vm:BillHomeVMUI}">
@@ -75,5 +92,8 @@
 
     <DataTemplate DataType="{x:Type vmdeposit:DepositContractHomeVMUI}">
         <depositview:DepositContractHome />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:PaymentExtensionHomeVMUI}">
+        <view:PEHomeView />
     </DataTemplate>
 </ResourceDictionary>

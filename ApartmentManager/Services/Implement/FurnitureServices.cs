@@ -1,34 +1,49 @@
 ﻿using Data;
+using Data.Entity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Services.Interface;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using ViewModel.Dtos;
 using ViewModel.Furniture;
 using ViewModel.People;
-using ViewModel.Room;
 
 namespace Services.Implement
 {
     public class FurnitureServices : IFurniture
     {
         private readonly ApartmentDbContextFactory _contextfactory;
-        public FurnitureServices(ApartmentDbContextFactory contextfactory)
+        private readonly IBaseControl<Furniture> _base;
+
+        public FurnitureServices(ApartmentDbContextFactory contextfactory, IBaseControl<Furniture> basee)
         {
             _contextfactory = contextfactory;
-        }
-        public Task<int> CreateFurniture(FurnitureCreateViewModel model)
-        {
-            throw new NotImplementedException();
+            _base = basee;
         }
 
-        public Task<int> DeleteFurniture(int FurnitureId)
+        public async Task<Furniture> CreateFurniture(FurnitureCreateViewModel request)
         {
-            throw new NotImplementedException();
+            var fur = new Data.Entity.Furniture()
+            {
+                ID = request.ID,
+                Name = request.Name,
+            };
+            var result = await _base.Create(fur);
+            return result;
+        }
+
+        public async Task<bool> DeleteFurniture(int FurnitureId)
+        {
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                Furniture entity = await _context.Furniture.FirstOrDefaultAsync((x) => x.ID == FurnitureId);
+                if (entity == null) return false;
+                _context.Furniture.Remove(entity);
+                await _context.SaveChangesAsync();
+                return true;
+            }
         }
 
         public async Task<PagedResult<FurnitureVm>> GetAllPage(RequestPaging request)
@@ -36,7 +51,7 @@ namespace Services.Implement
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.Furniture
-                            select  p;
+                            select p;
                 int totalRow = await query.CountAsync();
                 var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                     .Take(request.PageSize)
@@ -56,9 +71,12 @@ namespace Services.Implement
             }
         }
 
-        public Task<int> UpdateFurniture(FurnitureUpdateViewModel model)
+        public async Task<Furniture> UpdateFurniture(FurnitureUpdateViewModel model)
         {
-            throw new NotImplementedException();
+            var furniture = new Furniture();
+            furniture.ID = model.ID;
+            furniture.Name = model.Name;
+            return await _base.Update(furniture.ID, furniture);
         }
     }
 }

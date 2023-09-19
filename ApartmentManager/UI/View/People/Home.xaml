@@ -80,7 +80,7 @@
             <DataGrid ItemsSource="{Binding test}" Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}"
                       Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="auto"  Binding="{Binding ID}" />
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding ID}" />
                     <DataGridTextColumn Header="IDroom" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding IDroom}" />
                     <DataGridTextColumn Header="Name" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Name}" />
                     <DataGridTextColumn Header="Sex" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Sex}" />
@@ -89,7 +89,6 @@
                     <DataGridTextColumn Header="Email" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Email}" />
                     <DataGridTextColumn Header="IDCard" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding IDCard}" />
                     <DataGridTextColumn Header="Address" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Address}" />
-
                     <DataGridTemplateColumn Header="Operation" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

@@ -22,6 +22,23 @@ namespace AM.UI.State.Navigators
             }
         }
 
+        private ViewModelBase _CurrentHomeViewModel;
+
+        public ViewModelBase CurrentHomeViewModel
+        {
+            get
+            {
+                return _CurrentHomeViewModel;
+            }
+            set
+            {
+                _CurrentHomeViewModel?.Dispose();
+
+                _CurrentHomeViewModel = value;
+                StateChanged?.Invoke();
+            }
+        }
+
         public event Action StateChanged;
     }
 }

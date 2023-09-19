@@ -75,6 +75,15 @@ namespace Services.Implement
                             join px in _context.Room on pt.IDroom equals px.ID
                             where p.PayDate.Month == date.Month && p.PayDate.Year == date.Year
                             select new { p, pt, px };
+                var payment = from p in _context.PaymentExtension
+                              join pt in _context.Bill on p.IDBill equals pt.ID
+                              where pt.PayDate.Month == date.Month &&    pt.PayDate.Year == date.Year
+                              select p;
+                MessageBox.Show(payment.Count().ToString());
+                if (payment.Any())
+                {
+                    query = query.Where(bill => !payment.Any(payment => payment.IDBill == bill.p.ID));
+                }
                 var result = await query.Select(x => new HomeItemVM
                 {
                     ID = x.p.ID,
