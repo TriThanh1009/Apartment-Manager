@@ -22,6 +22,8 @@ using ViewModel.Dtos;
 using ViewModel.Furniture;
 using ViewModel.People;
 using ViewModel.Room;
+using AM.UI.Mediator;
+using AM.UI.ViewModelUI.RoomDetails;
 
 namespace AM.UI.ViewModelUI
 {
@@ -34,9 +36,10 @@ namespace AM.UI.ViewModelUI
         public IFurniture _ifur;
         public IEnumerable<FurnitureVm> Fur => _fur;
 
+        public ICommand TransferDataCommand { get; private set; }
 
 
-
+        //Command
         public ICommand LoadDataBase { get; }
 
         public ICommand FurnitureNav { get; }
@@ -46,7 +49,7 @@ namespace AM.UI.ViewModelUI
         public ICommand DeleteSuccess { get; }
         public ICommand DeleteConFirm { get; }
 
-
+        //Properties
         public bool _IsLoading;
         public bool IsLoading
         {
@@ -115,9 +118,14 @@ namespace AM.UI.ViewModelUI
             _apartmentStore.FurnitureAdd += Store_Add;
 
 
+
+
         }
 
 
+
+
+        //Add, Update, Delete
         public void DeleteFurniture(object parameter)
         {
             if (parameter is FurnitureVm furniture)
@@ -152,6 +160,12 @@ namespace AM.UI.ViewModelUI
         {
             _fur.Add(data);
         }
+
+
+        /*public void UpdateSelectedFurniture(FurnitureVm data)
+        {
+            Mediators.Instance.Send("FurnitureSelected", data);
+        }*/
 
     }
 }

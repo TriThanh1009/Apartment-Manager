@@ -23,18 +23,31 @@ using ViewModel.RoomDetails;
 using System.Drawing;
 using System.Windows.Controls;
 using AM.UI.View.RoomDetails;
+using Caliburn.Micro;
+using Data.Enum;
+using Data.Entity;
+using Services.Interface;
+using System.Diagnostics.Eventing.Reader;
+using Microsoft.Identity.Client;
+using System.Windows.Media.Animation;
+using AM.UI.Command.RoomFurniture;
 
 namespace AM.UI.ViewModelUI.RoomDetails
 {
     public class RoomDetailsHomeVMUI : ViewModelBase
     {
+
+
+
+        private readonly RoomVm _LoadInformationRoom;
         private ObservableCollection<RoomDetailsFurniture> _roomdetails;
         private ObservableCollection<RoomDetailsImage> _roomdetailsimage;
-        private ObservableCollection<FurnitureVm> _fur;
         private readonly INavigator _navigator;
         private readonly IAparmentViewModelFactory _ViewModelFactory;
         private readonly RoomStore _apartmentStore;
-
+        public ObservableCollection<string> ComboBoxItems { get; set; }
+        
+        //command
         public ICommand LoadDataBase { get; }
 
         public ICommand RoomDetailsNav { get; }
@@ -44,7 +57,40 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         public ICommand ShowLargeImageNav { get; }
 
-        public bool HasData => _roomdetails.Any();
+        public ICommand AddFurnitureSuccess { get; }
+        public ICommand AddFurnitureConFirm { get; }
+
+        public ICommand DeleteFurnitureSuccess { get; }
+        public ICommand DeleteFurnitureConFirm { get; }
+
+        //Properties
+
+        public RoomVm LoadInformationRoom
+        {
+            get { return _LoadInformationRoom; }
+            set
+            {
+                LoadInformationRoom = value;
+                OnPropertyChanged(nameof(RoomVm));
+
+            }
+        }
+
+
+
+        public bool HasData => _roomdetailsimage.Any();
+
+        private bool _Flat = false;
+        public bool Flat
+        {
+            get { return _Flat; }
+            set
+            {
+
+                _Flat = value;
+                OnPropertyChanged(nameof(Flat));
+            }
+        }
         public bool _IsLoading;
 
         public bool IsLoading
@@ -70,7 +116,14 @@ namespace AM.UI.ViewModelUI.RoomDetails
         }
 
         public bool HasMessageError => !string.IsNullOrEmpty(MessageError);
-        public ObservableCollection<RoomDetailsFurniture> RoomDetails => _roomdetails;
+
+
+        public ObservableCollection<FurnitureVm> _comboBoxfurniture;
+
+        public IEnumerable<FurnitureVm> comboBoxfurniture => _comboBoxfurniture;
+
+
+        public IEnumerable<RoomDetailsFurniture> RoomDetails => _roomdetails;
 
         public ObservableCollection<RoomDetailsImage> RoomDetailsImage => _roomdetailsimage;
 
@@ -81,10 +134,57 @@ namespace AM.UI.ViewModelUI.RoomDetails
             get { return _RoomImages; }
             set
             {
-                _RoomImages = value;
+                
+                _RoomImages = value; 
                 OnPropertyChanged(nameof(RoomImages));
+                SetFlatTrue();
+
+
             }
         }
+
+
+        private RoomDetailsFurniture _SelectListViewFurniture;
+        public RoomDetailsFurniture SelectListViewFurniture
+        {
+            get { return _SelectListViewFurniture; }
+            set
+            {
+                _SelectListViewFurniture = value;
+                OnPropertyChanged(nameof(SelectListViewFurniture));
+            }
+        }
+
+
+
+
+        private FurnitureVm _SelectedFurniture;
+        public FurnitureVm SelectedFurniture
+        {
+            get { return _SelectedFurniture; }
+            set
+            {
+                _SelectedFurniture = value;
+
+                OnPropertyChanged(nameof(SelectedFurniture));
+            }
+        }
+
+        public void SetFlatTrue()
+        {
+            if (_RoomImages != null)
+                _Flat = true;
+            else
+            {
+                _Flat = false;
+            }
+            OnPropertyChanged(nameof(Flat));
+        }
+
+
+
+
+
 
         private int _ID;
 
@@ -112,24 +212,60 @@ namespace AM.UI.ViewModelUI.RoomDetails
             }
         }
 
+        private Furniture _Furniture;
+        public Furniture Furniture
+        {
+            get { return _Furniture; }
+            set
+            {
+                _Furniture = value;
+                OnPropertyChanged(nameof(Furniture));
+            }
+        }
+
+
 
         public RoomDetailsHomeVMUI(RoomVm id, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, RoomStore apartmentStore)
         {
+           
             _navigator = navigator;
             _ViewModelFactory = ViewModelFactory;
             _apartmentStore = apartmentStore;
             _IdRoom = id;
-
             _roomdetails = new ObservableCollection<RoomDetailsFurniture>();
+            _LoadInformationRoom = id;
+
+
             _roomdetailsimage = new ObservableCollection<RoomDetailsImage>();
+            _comboBoxfurniture = new ObservableCollection<FurnitureVm>();
             LoadDataBase = new LoadRoomDetailsView(this, apartmentStore, id.ID);
             LoadDataBase.Execute(null);
+
+
+
             DeleteImageCommand = new RelayCommand(DeleteImage);
             DeleteImageConfirmCommand = new DeleleRoomImageCommand(navigator, ViewModelFactory, apartmentStore, this);
             ShowLargeImageNav = new RelayCommand(ShowLargeImage);
             RoomDetailsNav = new UpdateCurrentViewModelCommand(navigator, ViewModelFactory);
+            AddFurnitureSuccess = new RoomFurnitureAddCommand(this,navigator, ViewModelFactory,apartmentStore);
+            AddFurnitureConFirm = new RelayCommand(AddFurniture);
+            DeleteFurnitureSuccess = new RoomFurnitureDeleteCommand(navigator, ViewModelFactory,apartmentStore,this);
+            DeleteFurnitureConFirm = new RelayCommand(DeleteFurniture);
+
+
+
             _roomdetails.CollectionChanged += OnReservationsChanged;
-            _apartmentStore.RoomImageDelete += Delete_Store;
+            _apartmentStore.RoomImageDelete += DeleteImage_Store;
+            _apartmentStore.RoomFurnitureCreate += AddFurniture_Store;
+
+
+
+            _comboBoxfurniture.Add(new FurnitureVm { ID = 0, Name = "None" });
+            _comboBoxfurniture.CollectionChanged += OnReservationsChanged;
+            
+
+
+
         }
 
         public RoomVm _IdRoom;
@@ -153,13 +289,13 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
             return bi;
         }
+
         public void DeleteImage(object parameter)
         {
 
-            bool? Confirm = new MessageBoxCustom($"Do you want to delete customer :{RoomImages.IDImage} ", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+            bool? Confirm = new MessageBoxCustom($"Do you want to delete Image :{RoomImages.IDImage} ", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
             if (Confirm == true)
             {
-                _ID = RoomImages.IDImage;
 
                 if (File.Exists(_RoomImages.Url))
                 {
@@ -172,13 +308,66 @@ namespace AM.UI.ViewModelUI.RoomDetails
             }
         }
 
-        public async void Delete_Store(int id)
+        public void DeleteFurniture(object parameter)
+        {
+            bool? Confirm = new MessageBoxCustom($"Do you want to delete Furniture :{SelectListViewFurniture.IdFur} ", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+            if(Confirm == true) {
+
+                DeleteFurnitureSuccess.Execute(null);
+            }
+        }
+
+
+        public void AddFurniture(object parameter)
+        {
+            AddFurnitureSuccess.Execute(null);
+        }
+
+
+
+        ///Store
+
+
+
+        public async void DeleteFurniture_Store(int id)
+        {
+            var object1 = _roomdetails.FirstOrDefault(x => x.IdFur == id);
+            if(object1 != null)
+            {
+                _roomdetails.Remove(object1);
+            }
+        }
+
+
+        
+        public async void DeleteImage_Store(int id)
         {
             var object1 = _roomdetailsimage.FirstOrDefault(x => x.IDImage == id);
             if (object1 != null)
             {
                 _roomdetailsimage.Remove(object1);
             }
+        }
+        public void UpdateDataImage(List<RoomDetailsImage> data)
+        {
+            _roomdetailsimage.Clear();
+            foreach (var roomdetail in data)
+            {
+                _roomdetailsimage.Add(roomdetail);
+            }
+        }
+
+
+
+
+        public void AddFurniture_Store(RoomDetailsFurniture data)
+        {
+            _roomdetails.Add(data);
+        }
+
+        public void UpdateDataComboBoxFurniture(List<FurnitureVm> data)
+        {
+            data.ForEach(x => _comboBoxfurniture.Add(x));
         }
 
         public void UpdateDataFurniture(List<RoomDetailsFurniture> data)
@@ -189,14 +378,7 @@ namespace AM.UI.ViewModelUI.RoomDetails
             }
         }
 
-        public void UpdateDataImage(List<RoomDetailsImage> data)
-        {
-            _roomdetailsimage.Clear();
-            foreach (var roomdetail in data)
-            {
-                _roomdetailsimage.Add(roomdetail);
-            }
-        }
+        
 
         private void OnReservationsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {

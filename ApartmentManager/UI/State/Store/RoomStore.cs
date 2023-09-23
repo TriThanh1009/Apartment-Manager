@@ -1,9 +1,11 @@
 ﻿using AM.UI.Model;
 using Data.Entity;
+using Data.Relationships;
 using Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows;
 using ViewModel.Furniture;
 using ViewModel.Room;
 using ViewModel.RoomDetails;
@@ -18,18 +20,19 @@ namespace AM.UI.State.Store
 
         private readonly IRoom _room;
         private readonly IRoomDetails _roomdetails;
+        private readonly IFurniture _ifur;
 
         private Lazy<Task> _initializeLazyRoom;
         public List<RoomVm> roomvm => _roomvm;
 
         private readonly List<RoomDetailsFurniture> _roomdetailsvmfur;
 
-        private readonly List<FurnitureCreateViewModel> _furniturecreatevm;
+        private readonly List<RoomDetailsVm> _furniturecreatevm;
         private readonly List<RoomImageCreateViewModel> _roomimagevms;
 
         public List<RoomDetailsFurniture> roomdetailsvmfur => _roomdetailsvmfur;
         public List<RoomImageCreateViewModel> roomimagevms => _roomimagevms;
-        public List<FurnitureCreateViewModel> furniturecreatevm => _furniturecreatevm;
+        public List<RoomDetailsVm> furniturecreatevm => _furniturecreatevm;
 
         public event Action<RoomVm> RoomAdd;
 
@@ -41,16 +44,21 @@ namespace AM.UI.State.Store
 
         public event Action<int> RoomImageDelete;
 
-        public event Action<FurnitureCreateViewModel> RoomFurnitureCreate;
+        public event Action<RoomDetailsFurniture> RoomFurnitureCreate;
 
-        public RoomStore(Apartment apartment, IRoom room, IRoomDetails roomimages)
+        public event Action<int> RoomFurnitureDelete;
+
+        public RoomStore(Apartment apartment, IRoom room, IRoomDetails roomimages, IFurniture ifur)
         {
             _apartment = apartment;
             _roomvm = new List<RoomVm>();
             _room = room;
             _roomdetails = roomimages;
             _roomimagevms = new List<RoomImageCreateViewModel>();
+            _roomdetailsvmfur = new List<RoomDetailsFurniture>();
+            _furniturecreatevm = new List<RoomDetailsVm>();
             _initializeLazyRoom = new Lazy<Task>(InitializeRoom);
+            _ifur = ifur;
         }
 
         public async Task LoadRoom()
@@ -135,18 +143,27 @@ namespace AM.UI.State.Store
         }
 
 
-        public async Task<bool> CreateFurniture(FurnitureCreateViewModel request)
+        public async Task<bool> CreateFurniture(RoomDetailsVm request)
         {
             var result = await _roomdetails.CreateFurniture(request);
-            FurnitureCreateViewModel create = new FurnitureCreateViewModel
+            RoomDetailsFurniture create = new RoomDetailsFurniture
             {
-                ID = request.ID,
-                Name = request.Name
+                IdFur = request.IDFur,
+                IdRoom = request.IDRoom
             };
-            _furniturecreatevm.Add(create);
+            _roomdetailsvmfur.Add(create);
             RoomFurnitureCreate?.Invoke(create);
             return result;
         }
+
+        public async Task<bool> DeleteFurniture(int id)
+        {
+            var result = await _roomdetails.DeleteRoomFurniture(id);
+            _roomdetailsvmfur.RemoveAll(x=>x.IdFur == id);
+            RoomFurnitureDelete?.Invoke(id);
+            return result;
+        }
+
 
 
         public async Task<int> DeteleImage(int id)
@@ -170,5 +187,15 @@ namespace AM.UI.State.Store
             List<RoomDetailsFurniture> roomdetails = await _apartment.GetAllRoomDetailsFurniture(id);
             return roomdetails;
         }
-    }
+
+        public async Task<List<FurnitureVm>> LoadFurniture()
+        {
+            return await _ifur.GetAll();
+        }
+
+        public async Task<List<RoomVm>> LoadInformationRoom()
+        {
+            return await _room.GetAll();
+        }
+    } 
 }

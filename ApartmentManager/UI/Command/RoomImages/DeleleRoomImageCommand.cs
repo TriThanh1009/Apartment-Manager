@@ -37,7 +37,7 @@ namespace AM.UI.Command.RoomImages
             {
                 new MessageBoxCustom("Delete Successed", MessageType.Success, MessageButtons.Ok).ShowDialog();
 
-                _navigator.CurrentViewModel = _factory.CreateViewModel(ViewType.RoomDetails);
+               // _navigator.CurrentViewModel = _factory.CreateViewModel(ViewType.RoomDetails);
             }
             else
             {
