@@ -14,6 +14,8 @@ namespace Services.Interface
 
         Task<List<HomeItemVM>> GetDataBase(DateTime date);
 
+        Task<HomeItemVM> GetByIDBill(int ID, DateTime date);
+
         Task<ResultAutoAddVM> AutoAdd(AutoAddHomeVM request);
 
         Task<Bill> updateElectric(UpdateElectricQuanlity request);

@@ -36,7 +36,6 @@ namespace AM.UI
                 .AddDbContext()
                .ConfigureServices((hostContext, services) =>
                {
-                   services.AddSingleton<Navigation>();
                    services.AddSingleton(s => new MainWindow()
                    {
                        DataContext = s.GetRequiredService<NavigationVM>()

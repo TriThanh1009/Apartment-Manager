@@ -1,11 +1,13 @@
 ﻿using Azure.Core;
 using Data;
+using Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using ViewModel.Dtos;
@@ -24,14 +26,39 @@ namespace Services.Implement
             _contextfactory = contextfactory;
         }
 
-        public Task<int> CreatePaymentExtension(PaymentExtensionCreateViewModel model)
+        public async Task<PaymentExtension> CreatePaymentExtension(PaymentExtensionCreateViewModel model)
         {
-            throw new NotImplementedException();
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                PaymentExtension enity = new PaymentExtension
+                {
+                    IDBill = model.IDBill,
+                    Days = model.Days,
+                };
+
+                var value = _context.PaymentExtension.Add(enity);
+                await _context.SaveChangesAsync();
+                return value.Entity;
+            }
         }
 
-        public Task<int> DeletePaymentExtension(int PeID)
+        public async Task<int> DeletePaymentExtension(int PeID)
         {
-            throw new NotImplementedException();
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                PaymentExtension entity = await _context.PaymentExtension.FirstOrDefaultAsync(x => x.ID ==PeID);
+                int result = 0;
+                if (entity != null)
+                {
+                    Bill _bill = await _context.Bill.FirstOrDefaultAsync(x => x.ID == entity.IDBill);
+                    _bill.Active = Data.Enum.Active.Yes;
+                    _context.Bill.Update(_bill);
+                    _context.PaymentExtension.Remove(entity);
+                    await _context.SaveChangesAsync();
+                    result=1;
+                }
+                return result;
+            }
         }
 
         public async Task<List<PaymentExtensionVm>> GetAll()
@@ -39,11 +66,11 @@ namespace Services.Implement
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.PaymentExtension
-                            join pt in _context.RentalContract on p.IDBill equals pt.ID
+                            join pc in _context.Bill on p.IDBill equals pc.ID
+                            join pt in _context.RentalContract on pc.IDRTC equals pt.ID
                             join px in _context.Room on pt.IDroom equals px.ID
                             join pz in _context.People on pt.IDLeader equals pz.ID
-                            select new { p, px, pz };
-                int totalRow = await query.CountAsync();
+                            select new { pc, p, px, pz };
                 var data = await
                     query.Select(x => new PaymentExtensionVm()
                     {
@@ -51,6 +78,32 @@ namespace Services.Implement
                         IDBill = x.p.IDBill,
                         NameRoom = x.px.Name,
                         NameLeader = x.pz.Name,
+                        TotalMoney = x.pc.TotalMoney,
+                        Days = x.p.Days
+                    }).ToListAsync();
+                return data;
+            }
+        }
+
+        public async Task<List<PaymentExtensionVm>> GetAllDate(DateTime date)
+        {
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                var query = from p in _context.PaymentExtension
+                            join pc in _context.Bill on p.IDBill equals pc.ID
+                            join pt in _context.RentalContract on pc.IDRTC equals pt.ID
+                            join px in _context.Room on pt.IDroom equals px.ID
+                            join pz in _context.People on pt.IDLeader equals pz.ID
+                            where p.Days.Month == date.Month && p.Days.Year == date.Year
+                            select new { pc, p, px, pz };
+                var data = await
+                    query.Select(x => new PaymentExtensionVm()
+                    {
+                        ID = x.p.ID,
+                        IDBill = x.p.IDBill,
+                        NameRoom = x.px.Name,
+                        NameLeader = x.pz.Name,
+                        TotalMoney = x.pc.TotalMoney,
                         Days = x.p.Days
                     }).ToListAsync();
                 return data;

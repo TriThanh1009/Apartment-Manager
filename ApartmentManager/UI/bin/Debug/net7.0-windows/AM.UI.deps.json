@@ -9,7 +9,6 @@
       "AM.UI/1.0.0": {
         "dependencies": {
           "Caliburn.Micro.Core": "4.0.212",
-          "Data": "1.0.0",
           "LoadingSpinner.WPF": "1.0.0",
           "MahApps.Metro.IconPacks.Material": "4.11.0",
           "MaterialDesignThemes": "4.9.0",
@@ -938,7 +937,6 @@
       },
       "Services/1.0.0": {
         "dependencies": {
-          "Data": "1.0.0",
           "LoadingSpinner.WPF": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.8",

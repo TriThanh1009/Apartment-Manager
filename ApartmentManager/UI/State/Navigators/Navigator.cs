@@ -15,7 +15,7 @@ namespace AM.UI.State.Navigators
             }
             set
             {
-                _currentViewModel?.Dispose();
+                // _currentViewModel?.Dispose();
 
                 _currentViewModel = value;
                 StateChanged?.Invoke();
@@ -32,7 +32,7 @@ namespace AM.UI.State.Navigators
             }
             set
             {
-                _CurrentHomeViewModel?.Dispose();
+                //  _CurrentHomeViewModel?.Dispose();
 
                 _CurrentHomeViewModel = value;
                 StateChanged?.Invoke();

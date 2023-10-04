@@ -7,54 +7,68 @@
              xmlns:custom="clr-namespace:AM.UI.Utilities"
              xmlns:local="clr-namespace:AM.UI.View.Homes"
              mc:Ignorable="d"
+
              d:DesignHeight="481" d:DesignWidth="732"
               Style="{StaticResource PageHome_Style}">
-    <Grid>
-        <StackPanel>
 
-            <Button Content="ADD BILL" Width="162" Command="{Binding AutoAddCommand}"  HorizontalAlignment="Left" Margin=" 20 10 0 0" />
-            <custom:LoadingSpinner
-            Margin="10"
-            Diameter="250"
-            IsLoading="{Binding IsLoading}"
-            Thickness="1"
-            Color="Black" />
-            <DataGrid ItemsSource="{Binding listhome}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 20 0 0" x:Name="homedata">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding ID}" />
-                    <DataGridTextColumn Header="Room" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding NameRoom}" />
-                    <DataGridTextColumn Header="ElecQuality" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ElecQuality}" />
-                    <DataGridTextColumn Header="RoomMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding RoomMoney}" />
-                    <DataGridTextColumn Header="ElectricMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ElectricMoney}" />
-                    <DataGridTextColumn Header="WaterMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding WaterMoney}" />
-                    <DataGridTextColumn Header="ServiceMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ServiceMoney}" />
-                    <DataGridTextColumn Header="PayDate" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding PayDate}" />
-                    <DataGridTextColumn Header="TotalMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding TotalMoney}" />
-                    <DataGridTemplateColumn Header="Active" IsReadOnly="True" CanUserResize="False" Width="*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <ToggleButton Style="{StaticResource ActiveToggl1e}" IsChecked="{Binding IsActive,UpdateSourceTrigger=PropertyChanged}"
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
+    <Grid custom:EventToCommandExtensions.MouseLeftButtonDownCommand="{Binding TestClick}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid>
+
+                <Button Content="ADD BILL" Width="162" Command="{Binding AutoAddCommand}"  HorizontalAlignment="Left" Margin=" 20 10 0 0" />
+                <Button Visibility="{Binding flag,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                Content="Add Payment Extension" Width="162" Command="{Binding AddPE}"  HorizontalAlignment="Right" Margin=" 0 10 20 0" />
+            </Grid>
+            <Grid Grid.Row="1">
+                <custom:LoadingSpinner
+                Diameter="100"
+                IsLoading="{Binding IsLoading}"
+                Thickness="5"
+                Color="Black" />
+                <DataGrid ItemsSource="{Binding listhome}" SelectedItem="{Binding selectItem,UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 20 0 0" x:Name="homedata">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding ID}" />
+                        <DataGridTextColumn Header="Room" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding NameRoom}" />
+                        <DataGridTextColumn Header="ElecQuality" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ElecQuality}" />
+                        <DataGridTextColumn Header="RoomMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding RoomMoney}" />
+                        <DataGridTextColumn Header="ElectricMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ElectricMoney}" />
+                        <DataGridTextColumn Header="WaterMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding WaterMoney}" />
+                        <DataGridTextColumn Header="ServiceMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ServiceMoney}" />
+                        <DataGridTextColumn Header="PayDate" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding PayDate}" />
+                        <DataGridTextColumn Header="TotalMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding TotalMoney}" />
+                        <DataGridTemplateColumn Header="Active" IsReadOnly="True" CanUserResize="False" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ToggleButton Style="{StaticResource ActiveToggl1e}" IsChecked="{Binding IsActive,UpdateSourceTrigger=PropertyChanged}"
                                                      Command="{Binding DataContext.ActiveCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Operation" IsReadOnly="True" Width="auto">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource EditButton}"
+                        <DataGridTemplateColumn Header="Operation" IsReadOnly="True" Width="auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Style="{StaticResource EditButton}"
                                                 Command="{Binding DataContext.EditElectric, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
-                                        <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource ButtonIcon}" />
-                                    </Button>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
+                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource ButtonIcon}" />
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

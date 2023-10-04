@@ -8,7 +8,6 @@
     ".NETCoreApp,Version=v7.0": {
       "Services/1.0.0": {
         "dependencies": {
-          "Data": "1.0.0",
           "LoadingSpinner.WPF": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.8",

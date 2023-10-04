@@ -45,6 +45,16 @@ namespace AM.UI.State.Store
 
         public event Action<HomeItemVM> HomeUpdateElectric;
 
+        public event Action<int> AddPaymentStore;
+
+        public event Action<PaymentExtensionCreateViewModel> UpdatePaymentStore;
+
+        public event Action<int> EventDeletePaymentStore;
+
+        public event Action EventDeleteNumberPayment;
+
+        public event Action<HomeItemVM> EventDeleteBillListtingPayment;
+
         public DateTime date { get; set; }
 
         public HomeStore(IHome home, IPeople ipeople, IRoom iroom, IPaymentExtension ipayment)
@@ -128,7 +138,7 @@ namespace AM.UI.State.Store
 
         private async Task InitializePayment()
         {
-            List<PaymentExtensionVm> PEs = await _Ipayment.GetAll();
+            List<PaymentExtensionVm> PEs = await _Ipayment.GetAllDate(date);
             _HomePEVM.Clear();
             _HomePEVM.AddRange(PEs);
         }
@@ -162,10 +172,43 @@ namespace AM.UI.State.Store
             return result.result;
         }
 
+        public async Task<int> AddPayment(PaymentExtensionCreateViewModel request)
+        {
+            PaymentExtension result = await _Ipayment.CreatePaymentExtension(request);
+            int flag = 0;
+            if (result!=null)
+            {
+                flag=1;
+                request.ID = result.ID;
+                homeItemVMs.RemoveAll(a => a.ID == request.IDBill);
+
+                HomePEVM.Add(new PaymentExtensionVm
+                {
+                    ID= result.ID,
+                    IDBill = result.IDBill,
+                    Days= result.Days
+                });
+                AddPaymentStore?.Invoke(request.IDBill);
+                UpdatePaymentStore?.Invoke(request);
+            }
+
+            return flag;
+        }
+
         public async Task<Bill> UpdateElectric(UpdateElectricQuanlity request)
         {
             var result = await _Ihome.updateElectric(request);
 
+            return result;
+        }
+
+        public async Task<int> DeletePayment(int ID, int IDBill)
+        {
+            var result = await _Ipayment.DeletePaymentExtension(ID);
+            var HomeBillItem = await _Ihome.GetByIDBill(IDBill, date);
+            EventDeleteNumberPayment?.Invoke();
+            EventDeleteBillListtingPayment?.Invoke(HomeBillItem);
+            EventDeletePaymentStore?.Invoke(ID);
             return result;
         }
     }

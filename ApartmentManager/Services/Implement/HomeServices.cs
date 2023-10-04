@@ -79,7 +79,6 @@ namespace Services.Implement
                               join pt in _context.Bill on p.IDBill equals pt.ID
                               where pt.PayDate.Month == date.Month &&    pt.PayDate.Year == date.Year
                               select p;
-                MessageBox.Show(payment.Count().ToString());
                 if (payment.Any())
                 {
                     query = query.Where(bill => !payment.Any(payment => payment.IDBill == bill.p.ID));
@@ -96,8 +95,44 @@ namespace Services.Implement
                     PayDate = x.p.PayDate,
                     TotalMoney =x.p.TotalMoney,
                     Active = x.p.Active,
-                    IsActive = !Convert.ToBoolean(x.p.Active)
+                    IsActive = Convert.ToBoolean(x.p.Active)
                 }).ToListAsync();
+                return result;
+            }
+        }
+
+        public async Task<HomeItemVM> GetByIDBill(int ID, DateTime date)
+        {
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                var query = from p in _context.Bill
+                            join pt in _context.RentalContract on p.IDRTC equals pt.ID
+                            join px in _context.Room on pt.IDroom equals px.ID
+                            where p.PayDate.Month == date.Month && p.PayDate.Year == date.Year
+                            select new { p, pt, px };
+                var payment = from p in _context.PaymentExtension
+                              join pt in _context.Bill on p.IDBill equals pt.ID
+                              where pt.PayDate.Month == date.Month &&    pt.PayDate.Year == date.Year
+                              select p;
+                if (payment.Any())
+                {
+                    query = query.Where(bill => !payment.Any(payment => payment.IDBill == bill.p.ID));
+                }
+                var result = await query.Select(x => new HomeItemVM
+                {
+                    ID = x.p.ID,
+                    NameRoom = x.px.Name,
+                    ElecQuality = x.p.ElectricQuantity,
+                    RoomMoney = x.pt.RoomMoney,
+                    ElectricMoney = x.pt.ElectricMoney,
+                    WaterMoney = x.pt.WaterMoney,
+                    ServiceMoney = x.pt.ServiceMoney,
+                    PayDate = x.p.PayDate,
+                    TotalMoney =x.p.TotalMoney,
+                    Active = x.p.Active,
+                    IsActive = Convert.ToBoolean(x.p.Active)
+                }).FirstOrDefaultAsync(x => x.ID == ID);
+
                 return result;
             }
         }
@@ -148,7 +183,7 @@ namespace Services.Implement
         {
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
-                Active re = (Active)Convert.ToInt32(!request.IsActive);
+                Active re = (Active)Convert.ToInt32(request.IsActive);
                 var listrc = from pt in _context.RentalContract
                              join px in _context.Room on pt.IDroom equals px.ID
                              where px.Name == request.NameRoom

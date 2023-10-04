@@ -92,6 +92,20 @@ namespace AM.UI.ViewModelUI
             LoadCurrentHomeVM = new UpdateCurrentHomeViewModelCommand(home, homeStore, navigator, aparmentViewModelFactory);
             Loaddata.Execute(null);
             LoadCurrentHomeVM.Execute(ViewHomeType.Bill);
+            _HomeStore.AddPaymentStore += AddPayment_Store;
+            _HomeStore.EventDeleteNumberPayment += EventDeletePayment_Store;
+        }
+
+        private void EventDeletePayment_Store()
+        {
+            Loaddata.Execute(null);
+            NumberOfHomeVM.NumberPE = NumberOfHomeVM.NumberPE-1;
+        }
+
+        private void AddPayment_Store(int id)
+        {
+            Loaddata.Execute(null);
+            NumberOfHomeVM.NumberPE +=1;
         }
 
         private void Navigator_StateChanged()

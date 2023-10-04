@@ -41,13 +41,12 @@ namespace AM.UI.ViewModelUI
     {
         private readonly IRoom _iroom;
         private ObservableCollection<RoomVm> _room;
-        
+
         private readonly IAparmentViewModelFactory _viewModelFactory;
         private readonly RoomVm _RoomViewModel;
         private readonly ApartmentDbContextFactory _factory;
         private readonly RoomDetailsHomeVMUI _roomDetailsHomeVMUI;
         private readonly RoomStore _apartmentStore;
-
 
         private readonly INavigator _navigator;
         public ICommand RoomNavCommand { get; }
@@ -63,10 +62,8 @@ namespace AM.UI.ViewModelUI
 
         public ICommand LoadDataBase { get; }
 
-
-
-
         public string _Search = "...";
+
         public string Search
         {
             get { return _Search; }
@@ -76,7 +73,6 @@ namespace AM.UI.ViewModelUI
                 ChangedString(nameof(Search));
             }
         }
-
 
         public bool HasData => _room.Any();
 
@@ -92,22 +88,20 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-        
-
-        
         private string _messageError;
+
         public string MessageError
         {
             get { return _messageError; }
             set
             {
                 _messageError = value;
-                OnPropertyChanged(nameof(MessageError)); 
+                OnPropertyChanged(nameof(MessageError));
                 OnPropertyChanged(nameof(HasErrorMessage));
             }
         }
-        public bool HasErrorMessage => !string.IsNullOrEmpty(MessageError);
 
+        public bool HasErrorMessage => !string.IsNullOrEmpty(MessageError);
 
         private bool _isText;
 
@@ -141,8 +135,8 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-
         private int _ID;
+
         public int ID
         {
             get { return _ID; }
@@ -153,11 +147,8 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-
-
-        public RoomHomeVMUI(IRoom iroom, INavigator navigator, IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore,ApartmentDbContextFactory factory)
+        public RoomHomeVMUI(IRoom iroom, INavigator navigator, IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore, ApartmentDbContextFactory factory)
         {
-            
             _iroom = iroom;
             _viewModelFactory = viewModelFactory;
             _navigator = navigator;
@@ -174,38 +165,27 @@ namespace AM.UI.ViewModelUI
             _room.CollectionChanged += OnReservationsChanged;
             _apartmentStore.RoomAdd += Store_Add;
             _apartmentStore.RoomDelete += Delete_Store;
-
-
-
         }
-
 
         private void Store_Add(RoomVm data)
         {
             _room.Add(data);
         }
 
-
         public void ShowRoomDetails(object parameter)
         {
-
-            if(parameter is RoomVm room)
+            if (parameter is RoomVm room)
             {
                 _navigator.CurrentViewModel = new RoomDetailsHomeVMUI(room, _navigator, _viewModelFactory, _apartmentStore);
             }
-
-
-            
-
-
         }
 
         public void DeleteRoom(object parameter)
         {
-            if(parameter is RoomVm room)
+            if (parameter is RoomVm room)
             {
                 bool? Confirm = new MessageBoxCustom($"Do you want to delete customer :{room.ID} ", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
-                if(Confirm == true)
+                if (Confirm == true)
                 {
                     _ID = room.ID;
                     RoomDeleteCommandConfirm.Execute(null);
@@ -213,15 +193,13 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-
         public async void Delete_Store(int id)
         {
             var object1 = _room.FirstOrDefault(x => x.ID == id);
-            if(object1 != null)
+            if (object1 != null)
             {
                 _room.Remove(object1);
             }
-
         }
 
         public void UpdateData(List<RoomVm> data)
@@ -232,23 +210,17 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-
         public void DataRoomUpdate(object parameter)
         {
             if (parameter is RoomVm r)
             {
-                _navigator.CurrentViewModel = new RoomUpdateVMUI(_iroom, r, _navigator, _viewModelFactory,_apartmentStore);
+                _navigator.CurrentViewModel = new RoomUpdateVMUI(_iroom, r, _navigator, _viewModelFactory, _apartmentStore);
             }
         }
 
- 
-
         private void ChangedString(string _Search)
         {
-           
-
         }
-
 
         private void OnReservationsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -264,10 +236,5 @@ namespace AM.UI.ViewModelUI
                 OnPropertyChanged();
             }
         }
-
-    
-        
-      
-
     }
 }

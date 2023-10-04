@@ -4,6 +4,7 @@ using Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows;
 using ViewModel.Furniture;
 using ViewModel.Room;
 using ViewModel.RoomDetails;
@@ -68,7 +69,7 @@ namespace AM.UI.State.Store
 
         private async Task InitializeRoom()
         {
-            List<RoomVm> room = await _apartment.GettAllRoom();
+            List<RoomVm> room = await _room.GetAll();
             _roomvm.Clear();
             _roomvm.AddRange(room);
         }
@@ -134,7 +135,6 @@ namespace AM.UI.State.Store
             return result;
         }
 
-
         public async Task<bool> CreateFurniture(FurnitureCreateViewModel request)
         {
             var result = await _roomdetails.CreateFurniture(request);
@@ -147,7 +147,6 @@ namespace AM.UI.State.Store
             RoomFurnitureCreate?.Invoke(create);
             return result;
         }
-
 
         public async Task<int> DeteleImage(int id)
         {

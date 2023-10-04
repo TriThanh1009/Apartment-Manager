@@ -14,7 +14,7 @@ namespace AM.UI.Utilities
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public virtual void Dispose()
+        protected virtual void Dispose()
         { }
 
         public void OnPropertyChanged([CallerMemberName] string propName = null)

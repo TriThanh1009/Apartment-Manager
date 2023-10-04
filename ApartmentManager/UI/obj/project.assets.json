@@ -1698,7 +1698,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "Data": "1.0.0",
           "LoadingSpinner.WPF": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.8",
@@ -4820,7 +4819,6 @@
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
       "Caliburn.Micro.Core >= 4.0.212",
-      "Data >= 1.0.0",
       "LoadingSpinner.WPF >= 1.0.0",
       "MahApps.Metro.IconPacks.Material >= 4.11.0",
       "MaterialDesignThemes >= 4.9.0",
@@ -4861,9 +4859,6 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
-            "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj": {
-              "projectPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj"
-            },
             "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj": {
               "projectPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj"
             }

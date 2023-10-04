@@ -18,7 +18,7 @@ namespace AM.UI.HostBuilderExtension
             host.ConfigureServices((context, services) =>
             {
                 string connectionString = context.Configuration.GetConnectionString("ApartmentDB");
-                Action<DbContextOptionsBuilder> configureDbContext = o => o.UseSqlServer(connectionString);
+                Action<DbContextOptionsBuilder> configureDbContext = o => o.UseSqlServer(connectionString, builder => builder.EnableRetryOnFailure());
                 services.AddDbContext<AparmentDbContext>(configureDbContext);
                 services.AddSingleton<ApartmentDbContextFactory>(new ApartmentDbContextFactory(configureDbContext));
             });

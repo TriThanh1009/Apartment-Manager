@@ -3,6 +3,7 @@ using AM.UI.State.Navigators;
 using AM.UI.State.Store;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI.Factory;
+using Data.Entity;
 using Services.Interface;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,18 @@ namespace AM.UI.ViewModelUI
         private ObservableCollection<PaymentExtensionVm> _Listpayment;
 
         public IEnumerable<PaymentExtensionVm> ListPE => _Listpayment;
+
+        private PaymentExtensionVm _SelectedPE;
+
+        public PaymentExtensionVm SelectedPE
+        {
+            get { return _SelectedPE; }
+            set
+            {
+                _SelectedPE = value; OnPropertyChanged(nameof(SelectedPE));
+            }
+        }
+
         public bool HasData => _Listpayment.Any();
 
         private bool _isLoading;
@@ -44,6 +57,7 @@ namespace AM.UI.ViewModelUI
 
         public ICommand ReturnBillHomeVM { get; }
         public ICommand LoadDataCommand { get; }
+        public ICommand DeletePECommnad { get; }
 
         public HomePaymentListtingVMUI(IHome home, HomeStore homeStore, INavigator navigator, IAparmentViewModelFactory factory)
         {
@@ -52,8 +66,31 @@ namespace AM.UI.ViewModelUI
             _factory=factory;
             _Listpayment = new ObservableCollection<PaymentExtensionVm>();
             ReturnBillHomeVM = new UpdateCurrentHomeViewModelCommand(home, homeStore, navigator, factory);
+            DeletePECommnad = new DeletePaymentCommand(homeStore, this, navigator, factory);
             LoadDataCommand = new LoadPaymentEListingCommand(this, homeStore);
             LoadDataCommand.Execute(null);
+            _HomeStore.UpdatePaymentStore+=UpdatePayment_Store;
+            _HomeStore.EventDeletePaymentStore += EventDeletePayment_Store;
+            _Listpayment.CollectionChanged +=OnReservationsChanged;
+        }
+
+        public void EventDeletePayment_Store(int ID)
+        {
+            var object1 = _Listpayment.FirstOrDefault(x => x.ID == ID);
+            if (object1 != null)
+            {
+                _Listpayment.Remove(object1);
+            }
+        }
+
+        private void UpdatePayment_Store(PaymentExtensionCreateViewModel request)
+        {
+            _Listpayment.Add(new PaymentExtensionVm
+            {
+                ID = request.ID,
+                IDBill = request.IDBill,
+                Days = request.Days,
+            });
         }
 
         public void UpdateData(List<PaymentExtensionVm> data)

@@ -52,13 +52,37 @@ namespace AM.UI.ViewModelUI
             }
         }
 
+        private bool _flag = false;
+
+        public bool flag
+        {
+            get { return _flag; }
+            set { _flag= value; OnPropertyChanged(nameof(flag)); }
+        }
+
+        private HomeItemVM _selectItem;
+
+        public HomeItemVM selectItem
+        {
+            get
+            { return _selectItem; }
+
+            set
+            {
+                _selectItem = value;
+                OnClickData();
+            }
+        }
+
         //Command
         public ICommand LoadDatabase { get; }
 
+        public ICommand AddPE { get; }
         public ICommand ActiveCommand { get; }
         public ICommand AutoAddCommand { get; }
         public ICommand EditElectric { get; }
         public ICommand ConfirmUpdate { get; }
+        public ICommand TestClick { get; }
 
         //Command
         public HomeBillListingViewModel(IHome ihome, HomeStore homeStore, INavigator navigator, IAparmentViewModelFactory factory)
@@ -68,14 +92,47 @@ namespace AM.UI.ViewModelUI
             _navigator=navigator;
             _factory=factory;
             _listhome = new ObservableCollection<HomeItemVM>();
+            _selectItem = new HomeItemVM();
             _listhome.CollectionChanged += OnReservationsChanged;
             LoadDatabase = new LoadBillListingCommand(this, homeStore);
-            LoadDatabase.Execute(null);
             AutoAddCommand = new AutoAddBillCommand(this, homeStore);
             ConfirmUpdate = new EditElectricCommand(this, homeStore);
+            AddPE = new AddPaymentCommand(this, homeStore);
             EditElectric = new RelayCommand(EditElec);
             ActiveCommand = new RelayCommand(testthu);
+            TestClick = new RelayCommand(DisposeDataCommand);
+            LoadDatabase.Execute(null);
+            _HomeStore.AddPaymentStore +=AddPaymentHome_Store;
             _HomeStore.HomeAdd += Store_Add;
+            _HomeStore.EventDeleteBillListtingPayment +=EventDeleteBillListtingPayment;
+        }
+
+        public void EventDeleteBillListtingPayment(HomeItemVM itemVM)
+        {
+            LoadDatabase.Execute(null);
+            _listhome.Add(itemVM);
+        }
+
+        public void AddPaymentHome_Store(int id)
+        {
+            var object1 = _listhome.FirstOrDefault(y => y.ID == id);
+
+            if (object1 != null)
+            {
+                _listhome.Remove(object1);
+            }
+        }
+
+        public void DisposeDataCommand(object parameter)
+        {
+            selectItem = null;
+            flag = false;
+        }
+
+        protected override void Dispose()
+        {
+            _HomeStore.HomeAdd -= Store_Add;
+            base.Dispose();
         }
 
         public void LoadHomeVM(List<HomeItemVM> list)
@@ -160,6 +217,12 @@ namespace AM.UI.ViewModelUI
         private void OnReservationsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChanged(nameof(HasData));
+        }
+
+        private void OnClickData()
+        {
+            flag =true;
+            OnPropertyChanged(nameof(selectItem));
         }
     }
 }

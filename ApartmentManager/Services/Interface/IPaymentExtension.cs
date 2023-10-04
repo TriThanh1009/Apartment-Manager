@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,9 @@ namespace Services.Interface
     {
         Task<List<PaymentExtensionVm>> GetAll();
 
-        Task<int> CreatePaymentExtension(PaymentExtensionCreateViewModel model);
+        Task<List<PaymentExtensionVm>> GetAllDate(DateTime date);
+
+        Task<PaymentExtension> CreatePaymentExtension(PaymentExtensionCreateViewModel model);
 
         Task<int> UpdatePaymentExtension(PaymentExtensionUpdateViewModel model);
 

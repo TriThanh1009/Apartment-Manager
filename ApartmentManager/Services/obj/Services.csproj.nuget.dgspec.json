@@ -136,9 +136,6 @@
           "net7.0-windows7.0": {
             "targetAlias": "net7.0-windows",
             "projectReferences": {
-              "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj": {
-                "projectPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj"
-              },
               "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj": {
                 "projectPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj"
               }

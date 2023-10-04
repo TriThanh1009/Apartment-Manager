@@ -35,13 +35,26 @@
                 IsLoading="{Binding IsLoading}"
                 Thickness="5"
                 Color="Black" />
-            <DataGrid ItemsSource="{Binding ListPE}" Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 20 0 0" x:Name="homedata">
+            <DataGrid ItemsSource="{Binding ListPE}" SelectedItem="{Binding SelectedPE}" Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 20 0 0" x:Name="homedata">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding ID}" />
                     <DataGridTextColumn Header="IDBill" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding IDBill}" />
                     <DataGridTextColumn Header="Room Name" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding NameRoom}" />
                     <DataGridTextColumn Header="Leader Name" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding NameLeader}" />
+                    <DataGridTextColumn Header="TotalMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding TotalMoney}" />
                     <DataGridTextColumn Header="Extension Date" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Days}" />
+                    <DataGridTemplateColumn Header="Operation" IsReadOnly="True" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource EditButton}"
+                                        Command="{Binding DataContext.DeletePECommnad, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                        <iconPacks:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource ButtonIcon}" />
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

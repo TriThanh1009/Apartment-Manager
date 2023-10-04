@@ -98,7 +98,7 @@
                     </StackPanel>
                 </Grid>
             </Grid>
-            <ContentControl x:Name="Pages"
+            <ContentControl x:Name="Pages"  Panel.ZIndex="2"
                                 Content="{Binding CurrentHomeViewModel}" Grid.Row="1" Grid.ColumnSpan="3" />
         </Grid>
     </Grid>
