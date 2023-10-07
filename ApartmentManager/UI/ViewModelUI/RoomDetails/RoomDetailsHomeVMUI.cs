@@ -28,6 +28,10 @@ namespace AM.UI.ViewModelUI.RoomDetails
 {
     public class RoomDetailsHomeVMUI : ViewModelBase
     {
+
+
+
+        private readonly RoomVm _LoadInformationRoom;
         private ObservableCollection<RoomDetailsFurniture> _roomdetails;
         private ObservableCollection<RoomDetailsImage> _roomdetailsimage;
         private ObservableCollection<FurnitureVm> _fur;
@@ -44,7 +48,55 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         public ICommand ShowLargeImageNav { get; }
 
-        public bool HasData => _roomdetails.Any();
+        public ICommand AddFurnitureSuccess { get; }
+        public ICommand AddFurnitureConFirm { get; }
+
+        public ICommand DeleteFurnitureSuccess { get; }
+        public ICommand DeleteFurnitureConFirm { get; }
+
+        //Properties
+
+        public RoomVm LoadInformationRoom
+        {
+            get { return _LoadInformationRoom; }
+            set
+            {
+                LoadInformationRoom = value;
+                OnPropertyChanged(nameof(RoomVm));
+
+            }
+        }
+
+
+
+        public bool HasData => _roomdetailsimage.Any();
+
+        private bool _FlagImage = false;
+        public bool FlagImage
+        {
+            get { return _FlagImage; }
+            set
+            {
+
+                _FlagImage = value;
+                OnPropertyChanged(nameof(FlagImage));
+            }
+        }
+
+
+
+        private bool _FlagFurniture = false;
+        public bool FlagFurniture
+        {
+            get { return _FlagFurniture; }
+            set
+            {
+
+                _FlagFurniture = value;
+                OnPropertyChanged(nameof(FlagFurniture));
+            }
+        }
+
         public bool _IsLoading;
 
         public bool IsLoading
@@ -113,15 +165,20 @@ namespace AM.UI.ViewModelUI.RoomDetails
         }
 
 
+
+
         public RoomDetailsHomeVMUI(RoomVm id, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, RoomStore apartmentStore)
         {
             _navigator = navigator;
             _ViewModelFactory = ViewModelFactory;
             _apartmentStore = apartmentStore;
             _IdRoom = id;
+            _roomdetails = new ObservableCollection<RoomDetailsFurniture>();
+            _LoadInformationRoom = id;
 
             _roomdetails = new ObservableCollection<RoomDetailsFurniture>();
             _roomdetailsimage = new ObservableCollection<RoomDetailsImage>();
+            _comboBoxfurniture = new ObservableCollection<FurnitureVm>();
             LoadDataBase = new LoadRoomDetailsView(this, apartmentStore, id.ID);
             LoadDataBase.Execute(null);
             DeleteImageCommand = new RelayCommand(DeleteImage);
@@ -174,10 +231,15 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         public async void Delete_Store(int id)
         {
-            var object1 = _roomdetailsimage.FirstOrDefault(x => x.IDImage == id);
-            if (object1 != null)
-            {
-                _roomdetailsimage.Remove(object1);
+                _navigator.CurrentViewModel = new RoomDetailsAddImageVMUI(_navigator, _ViewModelFactory, _apartmentStore, _RoomImages);
+        }
+
+        public void DeleteFurniture(object parameter)
+        {
+            bool? Confirm = new MessageBoxCustom($"Do you want to delete Furniture :{SelectListViewFurniture.IdFur} ", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+            if(Confirm == true) {
+
+                DeleteFurnitureSuccess.Execute(null);
             }
         }
 

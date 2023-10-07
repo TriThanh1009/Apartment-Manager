@@ -8,9 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows;
-using Microsoft.Win32;
-using AM.UI.Command.RoomImages;
+using ViewModel.RoomDetails;
 using ViewModel.RoomImage;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -29,6 +27,18 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         private ObservableCollection<RoomImageCreateViewModel> _tempimages;
         public IEnumerable<RoomImageCreateViewModel> tempimages => _tempimages;
+
+        private RoomDetailsImage _detailsImage;
+
+        public RoomDetailsImage detailsImage
+        {
+            get { return _detailsImage; }
+            set
+            {
+                detailsImage = value;
+                OnPropertyChanged(nameof(RoomDetailsImage));
+            }
+        }
 
         public ObservableCollection<RoomImageCreateViewModel> images
         {
@@ -111,7 +121,7 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         public bool HasData => _tempimages.Any();
 
-        public RoomDetailsAddImageVMUI(INavigator navigator, IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore)
+        public RoomDetailsAddImageVMUI(INavigator navigator, IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore, RoomDetailsImage image)
         {
             _navigator = navigator;
             _viewModelFactory = viewModelFactory;
