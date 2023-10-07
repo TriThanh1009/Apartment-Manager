@@ -53,7 +53,11 @@ namespace AM.UI.View.RentalContract {
                 return;
             }
             _contentLoaded = true;
+<<<<<<< Updated upstream:ApartmentManager/UI/obj/Debug/net7.0-windows/View/RentalContract/RentalContactDelete.g.cs
             System.Uri resourceLocater = new System.Uri("/AM.UI;component/view/rentalcontract/rentalcontactdelete.xaml", System.UriKind.Relative);
+=======
+            System.Uri resourceLocater = new System.Uri("/AM.UI;V1.0.0.0;component/view/depositcontract/depositcontractadd.xaml", System.UriKind.Relative);
+>>>>>>> Stashed changes:ApartmentManager/UI/obj/Debug/net7.0-windows/View/DepositContract/DepositContractAdd.g.i.cs
             
             #line 1 "..\..\..\..\..\View\RentalContract\RentalContactDelete.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
