@@ -156,19 +156,7 @@
                     </Menu:Btn>
 
                     <!--// Settings //-->
-                    <Menu:Btn Style="{StaticResource BtnStyle}"
-                               Command="{Binding UpdateCurrentViewModelCommand}"
-                              CommandParameter="{x:Static nav:ViewType.PaymentExtensionHome}"
-                               IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:PaymentExtensionHomeVMUI}}">
-                        <Grid>
 
-                            <Image Source="/Images/img_setting.png"
-                                   Style="{StaticResource Image_Style}" />
-
-                            <TextBlock Text="PaymentExtension"
-                                       Style="{StaticResource Text_Style}" />
-                        </Grid>
-                    </Menu:Btn>
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                                Command="{Binding UpdateCurrentViewModelCommand}"
                               CommandParameter="{x:Static nav:ViewType.DepositContract}"
