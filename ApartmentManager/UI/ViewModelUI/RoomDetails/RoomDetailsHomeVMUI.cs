@@ -50,7 +50,8 @@ namespace AM.UI.ViewModelUI.RoomDetails
         //command
         public ICommand LoadDataBase { get; }
 
-        public ICommand RoomDetailsNav { get; }
+        public ICommand RoomDetailsAddImageNav { get; }
+
 
         public ICommand DeleteImageCommand { get; }
         public ICommand DeleteImageConfirmCommand { get; }
@@ -80,17 +81,32 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         public bool HasData => _roomdetailsimage.Any();
 
-        private bool _Flat = false;
-        public bool Flat
+        private bool _FlagImage = false;
+        public bool FlagImage
         {
-            get { return _Flat; }
+            get { return _FlagImage; }
             set
             {
 
-                _Flat = value;
-                OnPropertyChanged(nameof(Flat));
+                _FlagImage = value;
+                OnPropertyChanged(nameof(FlagImage));
             }
         }
+
+
+
+        private bool _FlagFurniture = false;
+        public bool FlagFurniture
+        {
+            get { return _FlagFurniture; }
+            set
+            {
+
+                _FlagFurniture = value;
+                OnPropertyChanged(nameof(FlagFurniture));
+            }
+        }
+
         public bool _IsLoading;
 
         public bool IsLoading
@@ -137,7 +153,7 @@ namespace AM.UI.ViewModelUI.RoomDetails
                 
                 _RoomImages = value; 
                 OnPropertyChanged(nameof(RoomImages));
-                SetFlatTrue();
+                SetFlagImage();
 
 
             }
@@ -152,6 +168,7 @@ namespace AM.UI.ViewModelUI.RoomDetails
             {
                 _SelectListViewFurniture = value;
                 OnPropertyChanged(nameof(SelectListViewFurniture));
+                SetFlagFurniture();
             }
         }
 
@@ -170,18 +187,29 @@ namespace AM.UI.ViewModelUI.RoomDetails
             }
         }
 
-        public void SetFlatTrue()
+        public void SetFlagImage()
         {
             if (_RoomImages != null)
-                _Flat = true;
+                _FlagImage = true;
             else
             {
-                _Flat = false;
+                _FlagImage = false;
             }
-            OnPropertyChanged(nameof(Flat));
+            OnPropertyChanged(nameof(FlagImage));
         }
 
-
+        public void SetFlagFurniture()
+        {
+            if(_SelectListViewFurniture != null)
+            {
+                _FlagFurniture = true;
+            }
+            else
+            {
+                _FlagFurniture = false;
+            }
+            OnPropertyChanged(nameof(FlagFurniture));
+        }
 
 
 
@@ -246,7 +274,10 @@ namespace AM.UI.ViewModelUI.RoomDetails
             DeleteImageCommand = new RelayCommand(DeleteImage);
             DeleteImageConfirmCommand = new DeleleRoomImageCommand(navigator, ViewModelFactory, apartmentStore, this);
             ShowLargeImageNav = new RelayCommand(ShowLargeImage);
-            RoomDetailsNav = new UpdateCurrentViewModelCommand(navigator, ViewModelFactory);
+            RoomDetailsAddImageNav = new RelayCommand(AddImage);
+
+
+
             AddFurnitureSuccess = new RoomFurnitureAddCommand(this,navigator, ViewModelFactory,apartmentStore);
             AddFurnitureConFirm = new RelayCommand(AddFurniture);
             DeleteFurnitureSuccess = new RoomFurnitureDeleteCommand(navigator, ViewModelFactory,apartmentStore,this);
@@ -257,6 +288,7 @@ namespace AM.UI.ViewModelUI.RoomDetails
             _roomdetails.CollectionChanged += OnReservationsChanged;
             _apartmentStore.RoomImageDelete += DeleteImage_Store;
             _apartmentStore.RoomFurnitureCreate += AddFurniture_Store;
+            _apartmentStore.RoomFurnitureDelete += DeleteFurniture_Store;
 
 
 
@@ -304,8 +336,12 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
                 }
                 DeleteImageConfirmCommand.Execute(null);
-                LoadDataBase.Execute(null);
             }
+        }
+
+        public void AddImage(object parameter)
+        {
+                _navigator.CurrentViewModel = new RoomDetailsAddImageVMUI(_navigator, _ViewModelFactory, _apartmentStore, _RoomImages);
         }
 
         public void DeleteFurniture(object parameter)

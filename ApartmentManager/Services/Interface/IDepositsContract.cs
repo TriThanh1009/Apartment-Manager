@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,11 @@ namespace Services.Interface
 {
     public interface IDepositsContract
     {
-        Task<int> CreateDepositsContract(DepositsContractCreateViewModel model);
+        Task<DepositsContract> CreateDepositsContract(DepositsContractCreateViewModel model);
 
-        Task<int> UpdateDepositsContract(DepositsContractUpdateViewModel model);
+        Task<DepositsContract> UpdateDepositsContract(DepositsContractUpdateViewModel model);
 
-        Task<int> DeleteDepositsContract(int depositsId);
+        Task<bool> DeleteDepositsContract(int depositsId);
 
         Task<PagedResult<DepositsContractVm>> GetAllPage(RequestPaging request);
     }

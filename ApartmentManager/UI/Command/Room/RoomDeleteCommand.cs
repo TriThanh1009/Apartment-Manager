@@ -34,7 +34,7 @@ namespace AM.UI.Command.Room
 
         public override async Task ExecuteAsync(object parameter)
         {
-            var result = await _apartmentStore.DeleteRoom(_roomvmui.ID);
+            var result = await _apartmentStore.DeleteRoom(_roomvmui.SelectRoom.ID);
             if(result == true)
             {
                 new MessageBoxCustom("Delete Successed", MessageType.Success, MessageButtons.Ok).ShowDialog();

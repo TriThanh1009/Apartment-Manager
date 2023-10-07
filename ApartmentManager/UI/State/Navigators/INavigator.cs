@@ -16,7 +16,7 @@ namespace AM.UI.State.Navigators
         Furnitures, FurnituresAdd, FurnitureUpdate,
         RentalContract, RentalContractAdd, RentalContractUpdate,
         Bill, BillAdd, BillUpdate,
-        DepositContract,
+        DepositContract,DepositContractAdd,DepositContractUpdate,
         RoomImagesAdd
     }
 

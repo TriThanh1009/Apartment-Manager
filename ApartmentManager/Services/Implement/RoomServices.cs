@@ -32,7 +32,7 @@ namespace Services.Implement
         {
             var room = new Data.Entity.Room()
             {
-                IDLeader = model.IDLeader,
+                IDLeader = model.customer.ID,
                 Name = model.Name,
                 Quantity = model.Quantity,
             };
@@ -124,30 +124,33 @@ namespace Services.Implement
 
         }
 
+        public async Task<List<RoomForCombobox>> GetIdNameRoom()
+        {
+            List<Room> result;
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                result = await _context.Room.ToListAsync();
+            }
+            var result1 = result.Select(e => new RoomForCombobox
+            {
+                ID = e.ID,
+                Name = e.Name
+
+            }).ToList();
+            return result1;
+        }
+
         public async Task<Room> Update(RoomUpdateViewModel model)
         {
             var room = new Data.Entity.Room();
             room.ID = model.ID;
-            room.IDLeader = model.IDLeader;
+            room.IDLeader = model.customer.ID;
             room.Name = model.Name;
             room.Quantity = model.Quantity;
             return await _base.Update(model.ID, room);
         }
 
-        public async Task<int> UpdateRoom(RoomUpdateViewModel model)
-        {
-            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
-            {
-                var room = await _context.Room.FindAsync(model.ID);
-                room.ID = model.ID;
-                room.IDLeader = model.IDLeader;
-                room.Name = model.Name;
-                room.Quantity = model.Quantity;
-                _context.Room.Update(room);
-                return await _context.SaveChangesAsync();
-            }
 
-        }
 
 
     }

@@ -36,8 +36,7 @@ namespace AM.UI.Command.LoadDataBase
 
                 List<RoomDetailsImage> roomimage = new List<RoomDetailsImage>();
                 List<RoomDetailsFurniture> room = new List<RoomDetailsFurniture>();
-                List<FurnitureVm> furniture = new List<FurnitureVm>();
-                List<RoomVm> LoadInforRoom = new List<RoomVm>();
+                List<FurnitureVm> furniture = new List<FurnitureVm>();;
                 room = await _roomdetails.LoadRoomDetailsFurniture(_id);
                 roomimage = await _roomdetails.LoadRoomDetailsImage(_id);
                 furniture = await _roomdetails.LoadFurniture();

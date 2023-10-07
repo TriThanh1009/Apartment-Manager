@@ -6,6 +6,7 @@ using AM.UI.ViewModelUI.Customer;
 using AM.UI.ViewModelUI.DepositContract;
 using AM.UI.ViewModelUI.Factory;
 using AM.UI.ViewModelUI.Furnitures;
+using AM.UI.ViewModelUI.RentalContract;
 using AM.UI.ViewModelUI.Room;
 using AM.UI.ViewModelUI.RoomDetails;
 using Data.Entity;
@@ -52,6 +53,10 @@ namespace AM.UI.HostBuilderExtension
                 services.AddTransient<RoomDetailsEnlarge>();
                 services.AddTransient<FurnitureAddVMUI>();
                 services.AddTransient<FurnitureUpdateVMUI>();
+                services.AddTransient<RentalContractAddVMUI>();
+                services.AddTransient<RentalContractUpdateVMUI>();
+                services.AddTransient<DepositContractAddVMUI>();
+                services.AddTransient<DepositContractUpdateVMUI>();
 
                 /*-------------------------------------------------------------------------------*/
                 services.AddSingleton<INavigator, Navigator>();
@@ -72,6 +77,10 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<CreateViewModel<RoomDetailsEnlarge>>(services => () => services.GetRequiredService<RoomDetailsEnlarge>());
                 services.AddSingleton<CreateViewModel<FurnitureAddVMUI>>(services => () => services.GetRequiredService<FurnitureAddVMUI>());
                 services.AddSingleton<CreateViewModel<FurnitureUpdateVMUI>>(services => () => services.GetRequiredService<FurnitureUpdateVMUI>());
+                services.AddSingleton<CreateViewModel<RentalContractAddVMUI>>(services => () => services.GetRequiredService<RentalContractAddVMUI>());
+                services.AddSingleton<CreateViewModel<RentalContractUpdateVMUI>>(services => () => services.GetRequiredService<RentalContractUpdateVMUI>());
+                services.AddSingleton<CreateViewModel<DepositContractAddVMUI>>(services => () => services.GetRequiredService<DepositContractAddVMUI>());
+                services.AddSingleton<CreateViewModel<DepositContractUpdateVMUI>>(services => () => services.GetRequiredService<DepositContractUpdateVMUI>());
 
                 /*-------------------------------------------------------------------------------*/
                 services.AddSingleton<ViewModelDelegateRenavigator<RoomHomeVMUI>>();
@@ -90,6 +99,10 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<ViewModelDelegateRenavigator<RoomDetailsEnlarge>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<FurnitureAddVMUI>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<FurnitureUpdateVMUI>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<RentalContractAddVMUI>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<RentalContractUpdateVMUI>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<DepositContractAddVMUI>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<DepositContractUpdateVMUI>>();
 
                 services.AddScoped<RoomUpdateViewModel>();
             });

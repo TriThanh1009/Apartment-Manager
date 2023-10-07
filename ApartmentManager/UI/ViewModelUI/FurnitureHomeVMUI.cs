@@ -45,8 +45,6 @@ namespace AM.UI.ViewModelUI
         public ICommand FurnitureNav { get; }
 
         public ICommand FurnitureUpdateNav { get; }
-
-        public ICommand DeleteSuccess { get; }
         public ICommand DeleteConFirm { get; }
 
         //Properties
@@ -99,6 +97,18 @@ namespace AM.UI.ViewModelUI
         }
 
 
+        private FurnitureVm _SelectFurniture;
+        public FurnitureVm SelectFurniture
+        {
+            get { return _SelectFurniture; }
+            set
+            {
+                _SelectFurniture = value;
+                OnPropertyChanged(nameof(SelectFurniture));
+            }
+        }
+
+
 
         public bool HasMessageError => !string.IsNullOrEmpty(MessageError);
 
@@ -113,8 +123,7 @@ namespace AM.UI.ViewModelUI
             LoadDataBase.Execute(null);
             FurnitureNav = new UpdateCurrentViewModelCommand(navigator, ViewModelFactory);
             FurnitureUpdateNav = new RelayCommand(FurnitureUpdateNavDef);
-            DeleteSuccess = new FurnitureDeleteCommand(this, apartmentStore, navigator, ViewModelFactory);
-            DeleteConFirm = new RelayCommand(DeleteFurniture);
+            DeleteConFirm = new FurnitureDeleteCommand(this, apartmentStore, navigator, ViewModelFactory);
             _apartmentStore.FurnitureAdd += Store_Add;
 
 
@@ -125,19 +134,6 @@ namespace AM.UI.ViewModelUI
 
 
 
-        //Add, Update, Delete
-        public void DeleteFurniture(object parameter)
-        {
-            if (parameter is FurnitureVm furniture)
-            {
-                bool? Confirm = new MessageBoxCustom($"Do you want to delete customer :{furniture.ID} ", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
-                if (Confirm == true)
-                {
-                    _ID = furniture.ID;
-                    DeleteSuccess.Execute(null);
-                }
-            }
-        }
 
         public void FurnitureUpdateNavDef(object parameter)
         {

@@ -34,8 +34,6 @@ namespace AM.UI.Command.RoomFurniture
             if (result)
             {
                 new MessageBoxCustom("Delete Successed", MessageType.Success, MessageButtons.Ok).ShowDialog();
-
-               
             }
             else
             {

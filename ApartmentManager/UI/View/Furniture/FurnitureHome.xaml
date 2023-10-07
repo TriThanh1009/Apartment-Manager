@@ -35,7 +35,7 @@
                     Content="Add" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top" />
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="4" x:Name="main">
-            <DataGrid ItemsSource="{Binding Fur}" Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
+            <DataGrid ItemsSource="{Binding Fur}" SelectedItem="{Binding SelectFurniture,UpdateSourceTrigger=PropertyChanged}" Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ID}"/>
                     <DataGridTextColumn Header="Name" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding Name}"/>
@@ -59,8 +59,5 @@
             </DataGrid>
         </StackPanel>
 
-        <Button Style="{StaticResource DetailsButton}" Content="Room Details" HorizontalAlignment="Left" Margin="554,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.216,0.131" />
-        <Button Style="{StaticResource DetailsButton}" Content="Contract" HorizontalAlignment="Left" Margin="172,35,0,0" VerticalAlignment="Top" />
-        <Button Style="{StaticResource DetailsButton}" Content="Bill" HorizontalAlignment="Left" Margin="365,35,0,0" VerticalAlignment="Top" />
     </Grid>
 </UserControl>

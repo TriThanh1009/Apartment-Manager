@@ -1,12 +1,15 @@
 ﻿using AM.UI.Model;
 using Data.Entity;
 using Data.Relationships;
+using Microsoft.Identity.Client;
 using Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using ViewModel.Furniture;
+using ViewModel.People;
+using ViewModel.RentalContract;
 using ViewModel.Room;
 using ViewModel.RoomDetails;
 using ViewModel.RoomImage;
@@ -16,11 +19,14 @@ namespace AM.UI.State.Store
     public class RoomStore
     {
         private readonly Apartment _apartment;
+
         private readonly List<RoomVm> _roomvm;
 
         private readonly IRoom _room;
         private readonly IRoomDetails _roomdetails;
         private readonly IFurniture _ifur;
+        private readonly IRentalContract _irental;
+        private readonly IPeople _ipeople;
 
         private Lazy<Task> _initializeLazyRoom;
         public List<RoomVm> roomvm => _roomvm;
@@ -38,6 +44,10 @@ namespace AM.UI.State.Store
 
         public event Action<RoomVm> RoomUpdate;
 
+        public event Action<RoomVm> LoadAgainForRentalContract;
+
+        public event Action<RoomVm> LoadAgainForDepositContract;
+
         public event Action<int> RoomDelete;
 
         public event Action<RoomImageCreateViewModel> RoomImageAdd;
@@ -48,7 +58,7 @@ namespace AM.UI.State.Store
 
         public event Action<int> RoomFurnitureDelete;
 
-        public RoomStore(Apartment apartment, IRoom room, IRoomDetails roomimages, IFurniture ifur)
+        public RoomStore(Apartment apartment, IRoom room, IRoomDetails roomimages, IFurniture ifur, IRentalContract irental, IPeople ipeople)
         {
             _apartment = apartment;
             _roomvm = new List<RoomVm>();
@@ -59,6 +69,8 @@ namespace AM.UI.State.Store
             _furniturecreatevm = new List<RoomDetailsVm>();
             _initializeLazyRoom = new Lazy<Task>(InitializeRoom);
             _ifur = ifur;
+            _irental = irental;
+            _ipeople = ipeople;
         }
 
         public async Task LoadRoom()
@@ -87,7 +99,7 @@ namespace AM.UI.State.Store
             RoomVm create = new RoomVm
             {
                 ID = result.ID,
-                NameLeader = result.IDLeader.ToString(),
+                NameLeader = request.customer.Name,
                 Name = result.Name,
                 Quantity = result.Quantity,
             };
@@ -102,10 +114,11 @@ namespace AM.UI.State.Store
             RoomVm update = new RoomVm
             {
                 ID = result.ID,
-                NameLeader = result.IDLeader.ToString(),
+                NameLeader = request.customer.Name,
                 Name = result.Name,
                 Quantity = result.Quantity,
             };
+
             var currentIndex = _roomvm.FindIndex(x => x.ID == result.ID);
             if (currentIndex != -1)
             {
@@ -116,6 +129,8 @@ namespace AM.UI.State.Store
                 _roomvm.Add(update);
             }
             RoomUpdate?.Invoke(update);
+            LoadAgainForRentalContract?.Invoke(update);
+            LoadAgainForDepositContract?.Invoke(update);
             return result;
         }
 
@@ -191,6 +206,12 @@ namespace AM.UI.State.Store
         public async Task<List<FurnitureVm>> LoadFurniture()
         {
             return await _ifur.GetAll();
+        }
+
+
+        public async Task<List<CustomerForCombobox>> LoadCustomerForCombobox()
+        {
+            return await _ipeople.GetIdNameForCombobox();
         }
 
         public async Task<List<RoomVm>> LoadInformationRoom()

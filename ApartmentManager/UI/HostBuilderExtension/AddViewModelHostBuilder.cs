@@ -30,6 +30,7 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<RentalContractStore>();
                 services.AddSingleton<RoomStore>();
                 services.AddSingleton<HomeStore>();
+                services.AddSingleton<ComboboxStore>();
                 services.AddSingleton<NavigationVM>();
             });
 

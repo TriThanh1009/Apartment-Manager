@@ -135,5 +135,21 @@ namespace Services.Implement
                 return pagedView;
             }
         }
+
+        public async Task<List<CustomerForCombobox>> GetIdNameForCombobox()
+        {
+            List<People> result;
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                result = await _context.People.ToListAsync();
+            }
+            var result1 = result.Select(e => new CustomerForCombobox
+            {
+                ID = e.ID,
+                Name = e.Name
+
+            }).ToList();
+            return result1;
+        }
     }
 }

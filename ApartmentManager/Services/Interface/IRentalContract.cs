@@ -17,7 +17,8 @@ namespace Services.Interface
 
         Task<RentalContract> Create(RentalContractCreateViewModel model);
 
-        Task<RentalContract> Update(int id, RentalContractUpdateViewModel model);
+        Task<RentalContract> Update(RentalContractUpdateViewModel model);
+
 
         Task<bool> Delete(int id);
 

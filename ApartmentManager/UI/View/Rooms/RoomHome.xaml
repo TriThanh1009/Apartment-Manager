@@ -40,24 +40,23 @@
                     CommandParameter="{x:Static nav:ViewType.RoomAdd}"
                     Content="Add" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top" />
         </StackPanel>
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="5">
-            <Button  Style="{StaticResource DetailsButton}"
-                     Command="{Binding RoomNavCommand}"
-                     CommandParameter="{x:Static nav:ViewType.RoomDetails}"
-                     Content="Room Details"  Margin="190,57,0,0" />
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Margin="0,0,104,0">
-            <Button Style="{StaticResource DetailsButton}"
-                    Command="{Binding RoomNavCommand}"
-                    CommandParameter="{x:Static nav:ViewType.RentalContract}"
-                    HorizontalAlignment="Left" VerticalAlignment="Top" Content="Contract"  Margin="30,30,0,0" />
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="5">
-            <Button Style="{StaticResource DetailsButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Bill"  Margin="230,30,0,0" />
-        </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="4" Margin="104,0,0,0">
-            <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}" Width="257" Text="{Binding IDFind}" />
+
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="4">
+            <TextBlock Text="Search here :" HorizontalAlignment="Left" FontSize="15" Margin="10 2 0 0" Foreground="#b0b9c6" />
+            <Grid Width="300" HorizontalAlignment="Left" Margin="10 2 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="39*" />
+                    <ColumnDefinition Width="241*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="0,0,20,0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
+                           Panel.ZIndex="1"  Text="search by id......" x:Name="textblock"
+                           Visibility="{Binding IsText, Converter={StaticResource BoolToVis}}" Grid.ColumnSpan="2" Grid.Column="1" />
+
+                <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}" Text="{Binding search,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" Height="35"  Width="300" Grid.ColumnSpan="3" HorizontalAlignment="Left"  />
+
+            </Grid>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.ColumnSpan="8" Grid.RowSpan="4" x:Name="main">
@@ -71,7 +70,7 @@
                     Foreground="Red"
                     Text="{Binding MessageError}"
                     Visibility="{Binding HasErrorMessage, Converter={StaticResource BoolToVis}}" />
-            <DataGrid ItemsSource="{Binding Room}" Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}"  
+            <DataGrid ItemsSource="{Binding Room}" SelectedItem="{Binding SelectRoom,UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}"  
                       Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ID}" />
@@ -87,9 +86,9 @@
                                         <iconPacks:PackIconMaterial Kind="PencilOutline" Style="{StaticResource ButtonIcon}" />
                                     </Button>
                                     <Button Style="{StaticResource EditButton}"
-                                        Command="{Binding DataContext.RoomDeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                        Command="{Binding DataContext.RoomDeleteCommandConfirm, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                         <iconPacks:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource ButtonIcon}" />
-                                    </Button> 
+                                    </Button>
                                     <Button Style="{StaticResource EditButton}"
                                              Command="{Binding DataContext.RoomDetailsCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                         <iconPacks:PackIconMaterial Kind="Home" Style="{StaticResource ButtonIcon}" />

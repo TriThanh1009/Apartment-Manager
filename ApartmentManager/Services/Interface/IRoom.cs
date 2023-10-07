@@ -18,6 +18,8 @@ namespace Services.Interface
 
         Task<List<RoomVm>> GetAll();
 
+        Task<List<RoomForCombobox>> GetIdNameRoom();
+
         Task<Room> Create(RoomCreateViewModel model);
 
         Task<Room> Update(RoomUpdateViewModel model);
