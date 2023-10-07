@@ -345,3 +345,5 @@ D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\DepositContract\DepositContractAdd.g.cs
 D:\GitHub\Apartment-Manager\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\DepositContract\DepositContractAdd.baml
 >>>>>>> RoomDetails
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\DepositContract\DepositContractAdd.g.cs
+D:\GitHub\Apartment-Manager\ApartmentManager\UI\obj\Debug\net7.0-windows\View\DepositContract\DepositContractUpdate.g.cs

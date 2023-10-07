@@ -111,7 +111,7 @@ namespace AM.UI.View.Dialog {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AM.UI;V1.0.0.0;component/view/dialog/inputmessage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AM.UI;component/view/dialog/inputmessage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\Dialog\InputMessage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

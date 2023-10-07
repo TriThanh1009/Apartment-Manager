@@ -88,7 +88,7 @@ namespace AM.UI.State.Store
 
         private async Task InitializeRoom()
         {
-            List<RoomVm> room = await _room.GetAll();
+            List<RoomVm> room = await _apartment.GettAllRoom();
             _roomvm.Clear();
             _roomvm.AddRange(room);
         }
@@ -157,7 +157,6 @@ namespace AM.UI.State.Store
             return result;
         }
 
-
         public async Task<bool> CreateFurniture(RoomDetailsVm request)
         {
             var result = await _roomdetails.CreateFurniture(request);
@@ -174,11 +173,10 @@ namespace AM.UI.State.Store
         public async Task<bool> DeleteFurniture(int id)
         {
             var result = await _roomdetails.DeleteRoomFurniture(id);
-            _roomdetailsvmfur.RemoveAll(x=>x.IdFur == id);
+            _roomdetailsvmfur.RemoveAll(x => x.IdFur == id);
             RoomFurnitureDelete?.Invoke(id);
             return result;
         }
-
 
         public async Task<int> DeteleImage(int id)
         {
@@ -200,6 +198,21 @@ namespace AM.UI.State.Store
         {
             List<RoomDetailsFurniture> roomdetails = await _apartment.GetAllRoomDetailsFurniture(id);
             return roomdetails;
+        }
+
+        public async Task<List<FurnitureVm>> LoadFurniture()
+        {
+            return await _ifur.GetAll();
+        }
+
+        public async Task<List<CustomerForCombobox>> LoadCustomerForCombobox()
+        {
+            return await _ipeople.GetIdNameForCombobox();
+        }
+
+        public async Task<List<RoomVm>> LoadInformationRoom()
+        {
+            return await _room.GetAll();
         }
     }
 }

@@ -18,10 +18,10 @@ namespace AM.UI.Command.LoadDataBase
     {
         private readonly RoomDetailsHomeVMUI _roomdetailhomevm;
         private readonly RoomStore _roomdetails;
-        
+
         public int _id;
 
-        public LoadRoomDetailsView(RoomDetailsHomeVMUI roomdetailhomevm, RoomStore roomdetails,int id)
+        public LoadRoomDetailsView(RoomDetailsHomeVMUI roomdetailhomevm, RoomStore roomdetails, int id)
         {
             _roomdetailhomevm = roomdetailhomevm;
             _roomdetails = roomdetails;
@@ -33,17 +33,15 @@ namespace AM.UI.Command.LoadDataBase
             _roomdetailhomevm.IsLoading = true;
             try
             {
-
                 List<RoomDetailsImage> roomimage = new List<RoomDetailsImage>();
                 List<RoomDetailsFurniture> room = new List<RoomDetailsFurniture>();
-                List<FurnitureVm> furniture = new List<FurnitureVm>();;
+                List<FurnitureVm> furniture = new List<FurnitureVm>(); ;
                 room = await _roomdetails.LoadRoomDetailsFurniture(_id);
                 roomimage = await _roomdetails.LoadRoomDetailsImage(_id);
-                furniture = await _roomdetails.LoadFurniture();
+                // furniture = await _roomdetails.LoadFurniture();
                 _roomdetailhomevm.UpdateDataFurniture(room);
                 _roomdetailhomevm.UpdateDataImage(roomimage);
                 _roomdetailhomevm.UpdateDataComboBoxFurniture(furniture);
-
             }
             catch (Exception)
             {

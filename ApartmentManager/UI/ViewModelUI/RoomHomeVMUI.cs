@@ -49,8 +49,6 @@ namespace AM.UI.ViewModelUI
         private readonly ApartmentDbContextFactory _factory;
         private readonly RoomDetailsHomeVMUI _roomDetailsHomeVMUI;
         private readonly RoomStore _apartmentStore;
-        
-
 
         private readonly INavigator _navigator;
         public ICommand RoomNavCommand { get; }
@@ -92,9 +90,18 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-        
+        private string _search;
 
-        
+        public string search
+        {
+            get { return _search; }
+            set
+            {
+                _search = value;
+                ChangedString(nameof(search));
+            }
+        }
+
         private string _messageError;
 
         public string MessageError
@@ -107,6 +114,19 @@ namespace AM.UI.ViewModelUI
                 OnPropertyChanged(nameof(HasErrorMessage));
             }
         }
+
+        private RoomVm _SelectRoom;
+
+        public RoomVm SelectRoom
+        {
+            get { return _SelectRoom; }
+            set
+            {
+                _SelectRoom = value;
+                OnPropertyChanged(nameof(SelectRoom));
+            }
+        }
+
         public bool HasErrorMessage => !string.IsNullOrEmpty(MessageError);
 
         private bool _isText;
@@ -153,9 +173,7 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-
-
-        public RoomHomeVMUI(IRoom iroom, INavigator navigator, IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore,ApartmentDbContextFactory factory)
+        public RoomHomeVMUI(IRoom iroom, INavigator navigator, IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore, ApartmentDbContextFactory factory, RentalContractHomeVMUI rentalVMUI)
         {
             _iroom = iroom;
             _viewModelFactory = viewModelFactory;
@@ -172,42 +190,23 @@ namespace AM.UI.ViewModelUI
             _room.CollectionChanged += OnReservationsChanged;
             _apartmentStore.RoomAdd += Store_Add;
             _apartmentStore.RoomDelete += Delete_Store;
-
-
-
         }
 
+        public void Test(object parameter)
+        {
+            MessageBox.Show(_SelectRoom.NameLeader);
+        }
 
         private void Store_Add(RoomVm data)
         {
             _room.Add(data);
         }
 
-
         public void ShowRoomDetails(object parameter)
         {
-
-            if(parameter is RoomVm room)
+            if (parameter is RoomVm room)
             {
                 _navigator.CurrentViewModel = new RoomDetailsHomeVMUI(room, _navigator, _viewModelFactory, _apartmentStore);
-            }
-
-
-            
-
-
-        }
-
-        public void DeleteRoom(object parameter)
-        {
-            if(parameter is RoomVm room)
-            {
-                bool? Confirm = new MessageBoxCustom($"Do you want to delete customer :{room.ID} ", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
-                if(Confirm == true)
-                {
-                    _ID = room.ID;
-                    RoomDeleteCommandConfirm.Execute(null);
-                }
             }
         }
 
@@ -235,8 +234,39 @@ namespace AM.UI.ViewModelUI
 
         private void ChangedString(string _Search)
         {
-           
+            IsText = false;
 
+            if (search.Equals(""))
+            {
+                if (_room.Any())
+                    _room.Clear();
+                LoadDataBase.Execute(null);
+                IsText = true;
+            }
+            else
+            {
+                if (int.TryParse(search, out int intValue))
+                {
+                    IsLoading = true;
+                    if (_room.Any())
+                        _room.Clear();
+                    LoadDataBase.Execute(null);
+                    ObservableCollection<RoomVm> find = new ObservableCollection<RoomVm>();
+                    foreach (RoomVm item in _room)
+                        if (item.ID == intValue)
+                            find.Add(item);
+                    if (_room.Any())
+                        _room.Clear();
+                    foreach (RoomVm item in find)
+                    {
+                        _room.Add(item);
+                    }
+
+                    IsLoading = false;
+                }
+                else if (_room.Any()) _room.Clear();
+            }
+            OnPropertyChanged(nameof(search));
         }
 
         private void OnReservationsChanged(object sender, NotifyCollectionChangedEventArgs e)
