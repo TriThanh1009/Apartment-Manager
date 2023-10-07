@@ -9,12 +9,13 @@ using Microsoft.EntityFrameworkCore;
 namespace Data.Relationships
 {
     [Keyless]
-    public class RoomDetails
+    public class RoomDetails 
     {
         public int IDFur { get; set; }
         public int IDRoom { get; set; }
 
         public Furniture? Furniture { get; set; }
         public Room? Room { get; set; }
+
     }
 }

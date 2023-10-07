@@ -1,36 +1,55 @@
 ﻿using Data;
 using Data.Entity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using ViewModel.Dtos;
 using ViewModel.People;
 using ViewModel.RentalContract;
-using ViewModel.Room;
 
 namespace Services.Implement
 {
     public class RentalContractServices : IRentalContract
     {
         private readonly ApartmentDbContextFactory _contextfactory;
-        public RentalContractServices(ApartmentDbContextFactory contextfactory)
+        private readonly IBaseControl<RentalContract> _base;
+
+        public RentalContractServices(ApartmentDbContextFactory contextfactory, IBaseControl<RentalContract> baseControl)
         {
             _contextfactory = contextfactory;
+            _base = baseControl;
         }
 
-        public Task<RentalContract> Create(RentalContractCreateViewModel model)
+        public async Task<RentalContract> Create(RentalContractCreateViewModel model)
         {
-            throw new NotImplementedException();
+            var rental = new Data.Entity.RentalContract
+            {
+                ID = model.ID,
+                IDroom = model.RoomCombobox.ID,
+                IDLeader = model.CustomerCombobox.ID,
+                ReceiveDate = model.ReceiveDate,
+                CheckOutDate = model.CheckOutDate,
+                RoomMoney = model.RoomMoney,
+                ElectricMoney = model.ElectricMoney,
+                WaterMoney = model.WaterMoney,
+                ServiceMoney = model.ServiceMoney
+            };
+            return await _base.Create(rental);
         }
 
-        public Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            throw new NotImplementedException();
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                var result = _context.RentalContract.FirstOrDefault(x => x.ID == id);
+                if (result == null) return false;
+                _context.RentalContract.Remove(result);
+                await _context.SaveChangesAsync();
+                return true;
+            }
         }
 
         public Task<List<RentalContractVm>> GetAll()
@@ -78,9 +97,19 @@ namespace Services.Implement
             throw new NotImplementedException();
         }
 
-        public Task<RentalContract> Update(int id, RentalContractUpdateViewModel model)
+        public async Task<RentalContract> Update(RentalContractUpdateViewModel model)
         {
-            throw new NotImplementedException();
+            var update = new Data.Entity.RentalContract();
+            update.ID = model.ID;
+            update.IDroom = model.RoomCombobox.ID;
+            update.IDLeader = model.CustomerCombobox.ID;
+            update.ReceiveDate = model.ReceiveDate;
+            update.CheckOutDate = model.CheckOutDate;
+            update.RoomMoney = model.RoomMoney;
+            update.ElectricMoney = model.ElectricMoney;
+            update.WaterMoney = model.WaterMoney;
+            update.ServiceMoney = model.ServiceMoney;
+            return await _base.Update(model.ID, update);
         }
     }
 }

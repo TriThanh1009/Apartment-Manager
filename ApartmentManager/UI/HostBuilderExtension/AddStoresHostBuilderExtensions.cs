@@ -6,6 +6,7 @@ using AM.UI.ViewModelUI.Customer;
 using AM.UI.ViewModelUI.DepositContract;
 using AM.UI.ViewModelUI.Factory;
 using AM.UI.ViewModelUI.Furnitures;
+using AM.UI.ViewModelUI.RentalContract;
 using AM.UI.ViewModelUI.Room;
 using AM.UI.ViewModelUI.RoomDetails;
 using Data.Entity;
@@ -52,6 +53,11 @@ namespace AM.UI.HostBuilderExtension
                 services.AddTransient<RoomDetailsEnlarge>();
                 services.AddTransient<FurnitureAddVMUI>();
                 services.AddTransient<FurnitureUpdateVMUI>();
+                services.AddTransient<RentalContractAddVMUI>();
+                services.AddTransient<RentalContractUpdateVMUI>();
+                services.AddTransient<DepositContractAddVMUI>();
+                services.AddTransient<DepositContractUpdateVMUI>();
+
                 services.AddTransient<PaymentExtensionHomeVMUI>();
                 /*-------------------------------------------------------------------------------*/
                 services.AddSingleton<INavigator, Navigator>();
@@ -72,7 +78,6 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<CreateViewModel<RoomDetailsEnlarge>>(services => () => services.GetRequiredService<RoomDetailsEnlarge>());
                 services.AddSingleton<CreateViewModel<FurnitureAddVMUI>>(services => () => services.GetRequiredService<FurnitureAddVMUI>());
                 services.AddSingleton<CreateViewModel<FurnitureUpdateVMUI>>(services => () => services.GetRequiredService<FurnitureUpdateVMUI>());
-                services.AddSingleton<CreateViewModel<PaymentExtensionHomeVMUI>>(services => () => services.GetRequiredService<PaymentExtensionHomeVMUI>());
 
                 /*-------------------------------------------------------------------------------*/
                 services.AddSingleton<ViewModelDelegateRenavigator<RoomHomeVMUI>>();
@@ -91,7 +96,6 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<ViewModelDelegateRenavigator<RoomDetailsEnlarge>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<FurnitureAddVMUI>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<FurnitureUpdateVMUI>>();
-                services.AddSingleton<ViewModelDelegateRenavigator<PaymentExtensionHomeVMUI>>();
 
                 services.AddScoped<RoomUpdateViewModel>();
             });

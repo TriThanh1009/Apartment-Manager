@@ -7,6 +7,8 @@
                     xmlns:vmrf="clr-namespace:AM.UI.ViewModelUI.Furnitures"
                     xmlns:vmpeople="clr-namespace:AM.UI.ViewModelUI.Customer"
                     xmlns:vmdeposit="clr-namespace:AM.UI.ViewModelUI.DepositContract"
+                    xmlns:vmrental="clr-namespace:AM.UI.ViewModelUI.RentalContract"
+                    
 
                     xmlns:people="clr-namespace:ViewModel.People;assembly=ViewModel"
                     xmlns:room="clr-namespace:ViewModel.Room;assembly=ViewModel"
@@ -78,6 +80,15 @@
         <furnitureview:FurnitureAdd />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vmrental:RentalContractAddVMUI}">
+        <rentalview:RentalContractAdd />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vmrental:RentalContractUpdateVMUI}">
+        <rentalview:RentalContractUpdate />
+    </DataTemplate>
+
+
     <DataTemplate DataType="{x:Type vm:BillHomeVMUI}">
         <billview:BillHome />
     </DataTemplate>
@@ -96,4 +107,15 @@
     <DataTemplate DataType="{x:Type vm:PaymentExtensionHomeVMUI}">
         <view:PEHomeView />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vmdeposit:DepositContractAddVMUI}">
+        <depositview:DepositContractAdd />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vmdeposit:DepositContractUpdateVMUI}">
+        <depositview:DepositContractUpdate />
+    </DataTemplate>
+
+
+
 </ResourceDictionary>

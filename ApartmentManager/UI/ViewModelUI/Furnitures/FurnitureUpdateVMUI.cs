@@ -22,7 +22,7 @@ namespace AM.UI.ViewModelUI.Furnitures
         private readonly IAparmentViewModelFactory _viewModelFactory;
         private readonly IFurniture _ifur;
         private readonly FurnitureStore _apartmentStore;
-        private readonly FurnitureVm _furnitureViewModel;
+        private  FurnitureVm _furnitureViewModel;
 
         public ICommand UpdateSuccess { get; }
         public ICommand UpdateConFirm { get; }

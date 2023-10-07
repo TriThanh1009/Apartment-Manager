@@ -19,7 +19,7 @@ namespace Services.Interface
 
         Task<List<RoomVm>> GetAll();
 
-        Task<List<RoomVm>> GetAllEmptyRom();
+        Task<List<RoomForCombobox>> GetIdNameRoom();
 
         Task<Room> Create(RoomCreateViewModel model);
 

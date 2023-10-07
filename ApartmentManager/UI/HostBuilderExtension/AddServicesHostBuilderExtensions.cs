@@ -36,6 +36,8 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<IBaseControl<Room>, BaseControlServices<Room>>();
                 services.AddSingleton<IBaseControl<RoomImage>, BaseControlServices<RoomImage>>();
                 services.AddSingleton<IBaseControl<Furniture>, BaseControlServices<Furniture>>();
+                services.AddSingleton<IBaseControl<DepositsContract>, BaseControlServices<DepositsContract>>();
+                services.AddSingleton<IBaseControl<RentalContract>, BaseControlServices<RentalContract>>();
                 services.AddSingleton<IStorageService, FileStorageService>();
             });
 

@@ -17,7 +17,7 @@ namespace AM.UI.State.Navigators
         RentalContract, RentalContractAdd, RentalContractUpdate,
         PaymentExtensionHome, PaymentExtensionAdd, PaymentExtensionUpdate,
         Bill, BillAdd, BillUpdate,
-        DepositContract,
+        DepositContract,DepositContractAdd,DepositContractUpdate,
         RoomImagesAdd
     }
 

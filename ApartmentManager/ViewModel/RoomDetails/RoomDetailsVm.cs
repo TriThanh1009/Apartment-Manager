@@ -9,8 +9,8 @@ namespace ViewModel.RoomDetails
 {
     public class RoomDetailsVm
     {
-        public string FurName { get; set; }
-        public string RoomName { get; set; }
+        public int IDFur { get; set; }
+        public int IDRoom { get; set; }
 
         //public string RoomImage { get; set; }
    

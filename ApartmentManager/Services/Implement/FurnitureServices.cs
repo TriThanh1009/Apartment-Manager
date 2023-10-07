@@ -3,6 +3,7 @@ using Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using Services.Interface;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -46,6 +47,17 @@ namespace Services.Implement
             }
         }
 
+        public async Task<List<FurnitureVm>> GetAll()
+        {
+            List<Furniture> result = await _base.GetAll();
+            var FurResult = result.Select(x => new FurnitureVm()
+            {
+                ID = x.ID,
+                Name = x.Name
+            }).ToList();
+            return FurResult;
+        }
+
         public async Task<PagedResult<FurnitureVm>> GetAllPage(RequestPaging request)
         {
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
@@ -70,6 +82,9 @@ namespace Services.Implement
                 return pagedView;
             }
         }
+
+        
+
 
         public async Task<Furniture> UpdateFurniture(FurnitureUpdateViewModel model)
         {

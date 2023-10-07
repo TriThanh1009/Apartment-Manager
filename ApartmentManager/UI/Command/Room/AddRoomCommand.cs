@@ -35,7 +35,7 @@ namespace AM.UI.Command.Room
         {
             RoomCreateViewModel create = new RoomCreateViewModel
             {
-                IDLeader = _roomvmui.iDLeader,
+                customer = _roomvmui.SelectCustomer,
                 Name = _roomvmui.name,
                 Quantity = _roomvmui.quantity
             };

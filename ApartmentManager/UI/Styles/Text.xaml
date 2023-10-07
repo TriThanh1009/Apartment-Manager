@@ -31,6 +31,14 @@
                 Value="#DBDBDB" />
     </Style>
 
+    <Style x:Key="HeaderOfListView" TargetType="GridViewColumnHeader">
+        <Setter Property="Foreground" Value="HotPink"/>
+        <Setter Property="Margin" Value="50,0,0,0"/>
+        <Setter Property="Width" Value="auto"/>
+        <Setter Property="FontSize" Value="15"/>
+    </Style>
+    
+
     <Style x:Key="textboxSearch" TargetType="TextBox">
         <Setter Property="Background" Value="#ffffff" />
         <Setter Property="Foreground" Value="#b0b9c6" />

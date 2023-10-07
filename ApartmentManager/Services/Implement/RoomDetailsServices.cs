@@ -1,5 +1,6 @@
 ﻿using Data;
 using Data.Entity;
+using Data.Relationships;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Services.Common;
@@ -26,14 +27,12 @@ namespace Services.Implement
     {
         private readonly ApartmentDbContextFactory _contextfactory;
         private readonly IBaseControl<RoomImage> _base;
-        private readonly IBaseControl<Furniture> _Basefurniture;
         private const string FolderName = @"../../../Images/ImageOfRoom/";
 
-        public RoomDetailsServices(ApartmentDbContextFactory contextfactory, IBaseControl<RoomImage> baseControl, IBaseControl<Furniture> basefurniture)
+        public RoomDetailsServices(ApartmentDbContextFactory contextfactory, IBaseControl<RoomImage> baseControl)
         {
             _contextfactory = contextfactory;
             _base = baseControl;
-            _Basefurniture = basefurniture;
         }
 
         public async Task DeleteFileAsync(string fileName)
@@ -137,57 +136,7 @@ namespace Services.Implement
         }
 
 
-        public async Task<PagedResult<RoomDetailsVm>> GetAllRoom(RequestPaging request)
-        {
-            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
-            {
-                var query = from p in _context.RoomDetail
-                            join px in _context.Room on p.IDRoom equals px.ID
-                            select new { p, px };
-                int totalRow = await query.CountAsync();
-                var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
-                    .Take(request.PageSize)
-                    .Select(x => new RoomDetailsVm()
-                    {
-                        RoomName = x.px.Name
-                    }).ToListAsync();
-                var pagedView = new PagedResult<RoomDetailsVm>()
-                {
-                    TotalRecords = totalRow,
-                    PageIndex = request.PageIndex,
-                    PageSize = request.PageSize,
-                    Items = data
-                };
-                return pagedView;
-            }
-        }
 
-        public async Task<PagedResult<RoomDetailsVm>> GetAllPage(RequestPaging request)
-        {
-            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
-            {
-                var query = from p in _context.RoomDetail
-                            join pt in _context.Furniture on p.IDFur equals pt.ID
-                            join px in _context.Room on p.IDRoom equals px.ID
-                            select new { p, pt, px };
-                int totalRow = await query.CountAsync();
-                var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
-                    .Take(request.PageSize)
-                    .Select(x => new RoomDetailsVm()
-                    {
-                        FurName = x.pt.Name,
-                        RoomName = x.px.Name
-                    }).ToListAsync();
-                var pagedView = new PagedResult<RoomDetailsVm>()
-                {
-                    TotalRecords = totalRow,
-                    PageIndex = request.PageIndex,
-                    PageSize = request.PageSize,
-                    Items = data
-                };
-                return pagedView;
-            }
-        }
 
         public async Task<bool> CreateImage(RoomImageCreateViewModel model, string NameFile)
         {
@@ -220,28 +169,37 @@ namespace Services.Implement
 
         }
 
-        public async Task<bool> CreateFurniture(FurnitureCreateViewModel model)
+        public async Task<bool> CreateFurniture(RoomDetailsVm model)
         {
-            try
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
-                Furniture fur = new Furniture
-                {
-                    ID = model.ID,
-                    Name = model.Name,
-                };
-                var result = await _Basefurniture.Create(fur);
-                if (result != null)
-                {
-                    return true;
-                }
-                else return false;
 
+
+                var fur = new RoomDetails
+                {
+                    IDFur = model.IDFur,
+                    IDRoom = model.IDRoom,
+                };
+                _context.RoomDetail.Add(fur);
+                await _context.SaveChangesAsync();
+                return true;
             }
-            catch (IOException e)
+        }
+
+        public async Task<bool> DeleteRoomFurniture(int id)
+        {
+            using(AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
-                MessageBox.Show($"Error: {e.Message}");
-                return false;
+                var result =await _context.RoomDetail.FirstOrDefaultAsync((x)=>x.IDFur == id);
+                if (result == null) return false;
+                _context.RoomDetail.Remove(result);
+                await _context.SaveChangesAsync();
+                return true;
             }
         }
     }
 }
+
+
+
+
