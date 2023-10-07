@@ -35,7 +35,7 @@
                 IsLoading="{Binding IsLoading}"
                 Thickness="5"
                 Color="Black" />
-            <DataGrid ItemsSource="{Binding ListPE}" SelectedItem="{Binding SelectedPE}" Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 20 0 0" x:Name="homedata">
+            <DataGrid ItemsSource="{Binding ListPE}" SelectedItem="{Binding SelectedPE,UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 20 0 0" x:Name="homedata">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding ID}" />
                     <DataGridTextColumn Header="IDBill" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding IDBill}" />

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using ViewModel.Dtos;
 using ViewModel.Furniture;
 using ViewModel.PaymentExtension;
@@ -20,10 +21,12 @@ namespace Services.Implement
     public class PaymentExtensionServices : IPaymentExtension
     {
         private readonly ApartmentDbContextFactory _contextfactory;
+        private readonly IBill _Ibill;
 
-        public PaymentExtensionServices(ApartmentDbContextFactory contextfactory)
+        public PaymentExtensionServices(ApartmentDbContextFactory contextfactory, IBill ibill)
         {
             _contextfactory = contextfactory;
+            _Ibill=ibill;
         }
 
         public async Task<PaymentExtension> CreatePaymentExtension(PaymentExtensionCreateViewModel model)
@@ -50,12 +53,11 @@ namespace Services.Implement
                 int result = 0;
                 if (entity != null)
                 {
-                    Bill _bill = await _context.Bill.FirstOrDefaultAsync(x => x.ID == entity.IDBill);
-                    _bill.Active = Data.Enum.Active.Yes;
-                    _context.Bill.Update(_bill);
+                    var resultupdate = await _Ibill.UpdateActiveBill(entity.IDBill);
                     _context.PaymentExtension.Remove(entity);
-                    await _context.SaveChangesAsync();
-                    result=1;
+                    var resulremove = await _context.SaveChangesAsync();
+                    if (resulremove == resultupdate)
+                        result=resulremove;
                 }
                 return result;
             }

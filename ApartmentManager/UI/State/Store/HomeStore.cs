@@ -53,7 +53,9 @@ namespace AM.UI.State.Store
 
         public event Action EventDeleteNumberPayment;
 
-        public event Action<HomeItemVM> EventDeleteBillListtingPayment;
+        public event Action<List<HomeItemVM>> EventDeleteBillListtingPayment;
+
+        public event Action<HomeItemVM> EventEditActive;
 
         public DateTime date { get; set; }
 
@@ -172,6 +174,13 @@ namespace AM.UI.State.Store
             return result.result;
         }
 
+        public async Task<Bill> EditActive(HomeItemVM request)
+        {
+            var result = await _Ihome.updateActive(request);
+            EventEditActive?.Invoke(request);
+            return result;
+        }
+
         public async Task<int> AddPayment(PaymentExtensionCreateViewModel request)
         {
             PaymentExtension result = await _Ipayment.CreatePaymentExtension(request);
@@ -205,10 +214,16 @@ namespace AM.UI.State.Store
         public async Task<int> DeletePayment(int ID, int IDBill)
         {
             var result = await _Ipayment.DeletePaymentExtension(ID);
-            var HomeBillItem = await _Ihome.GetByIDBill(IDBill, date);
-            EventDeleteNumberPayment?.Invoke();
-            EventDeleteBillListtingPayment?.Invoke(HomeBillItem);
-            EventDeletePaymentStore?.Invoke(ID);
+            var HomeBillItem = await _Ihome.GetDataBase(date);
+            if (result==1)
+            {
+                homeItemVMs.Clear();
+                HomeBillItem.ForEach(x => homeItemVMs.Add(x));
+                _HomePEVM.RemoveAll(x => x.ID==ID);
+                EventDeleteNumberPayment?.Invoke();
+                EventDeleteBillListtingPayment?.Invoke(HomeBillItem);
+                EventDeletePaymentStore?.Invoke(ID);
+            }
             return result;
         }
     }

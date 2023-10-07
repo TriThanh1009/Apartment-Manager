@@ -1,4 +1,5 @@
 ﻿using Data;
+using Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Services.Interface;
@@ -17,7 +18,9 @@ namespace Services.Implement
     public class BillServices : IBill
     {
         private readonly ApartmentDbContextFactory _contextfactory;
-        public BillServices(ApartmentDbContextFactory contextfactory) {
+
+        public BillServices(ApartmentDbContextFactory contextfactory)
+        {
             _contextfactory = contextfactory;
         }
 
@@ -49,7 +52,6 @@ namespace Services.Implement
                         Active = x.p.Active,
                         PayDate = x.p.PayDate,
                         TotalMoney = x.p.TotalMoney
-                        
                     }).ToListAsync();
                 var pagedView = new PagedResult<BillVm>()
                 {
@@ -59,6 +61,17 @@ namespace Services.Implement
                     Items = data
                 };
                 return pagedView;
+            }
+        }
+
+        public async Task<int> UpdateActiveBill(int model)
+        {
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                Bill _bill = await _context.Bill.FirstOrDefaultAsync(x => x.ID == model);
+                _bill.Active = Data.Enum.Active.Yes;
+                _context.Bill.Update(_bill);
+                return await _context.SaveChangesAsync();
             }
         }
 

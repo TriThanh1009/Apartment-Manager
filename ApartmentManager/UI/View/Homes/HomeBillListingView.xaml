@@ -32,7 +32,8 @@
                 IsLoading="{Binding IsLoading}"
                 Thickness="5"
                 Color="Black" />
-                <DataGrid ItemsSource="{Binding listhome}" SelectedItem="{Binding selectItem,UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 20 0 0" x:Name="homedata">
+                <DataGrid   Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}"
+                    ItemsSource="{Binding listhome}" SelectedItem="{Binding selectItem,UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 20 0 0" x:Name="homedata">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding ID}" />
                         <DataGridTextColumn Header="Room" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding NameRoom}" />

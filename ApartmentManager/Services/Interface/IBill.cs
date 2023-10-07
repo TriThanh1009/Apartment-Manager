@@ -15,6 +15,8 @@ namespace Services.Interface
 
         Task<int> UpdateBill(BillUpdateViewModel model);
 
+        Task<int> UpdateActiveBill(int model);
+
         Task<int> DeleteBill(int BillID);
 
         Task<PagedResult<BillVm>> GetAllPage(RequestPaging request);

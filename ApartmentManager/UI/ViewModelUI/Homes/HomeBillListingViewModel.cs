@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 using ViewModel.Home;
 
@@ -93,24 +94,28 @@ namespace AM.UI.ViewModelUI
             _factory=factory;
             _listhome = new ObservableCollection<HomeItemVM>();
             _selectItem = new HomeItemVM();
-            _listhome.CollectionChanged += OnReservationsChanged;
             LoadDatabase = new LoadBillListingCommand(this, homeStore);
             AutoAddCommand = new AutoAddBillCommand(this, homeStore);
             ConfirmUpdate = new EditElectricCommand(this, homeStore);
             AddPE = new AddPaymentCommand(this, homeStore);
             EditElectric = new RelayCommand(EditElec);
-            ActiveCommand = new RelayCommand(testthu);
+            ActiveCommand = new EditActiveCommand(this, homeStore);
             TestClick = new RelayCommand(DisposeDataCommand);
             LoadDatabase.Execute(null);
             _HomeStore.AddPaymentStore +=AddPaymentHome_Store;
             _HomeStore.HomeAdd += Store_Add;
             _HomeStore.EventDeleteBillListtingPayment +=EventDeleteBillListtingPayment;
+            _HomeStore.EventEditActive+=testthu;
+            _listhome.CollectionChanged += OnReservationsChanged;
         }
 
-        public void EventDeleteBillListtingPayment(HomeItemVM itemVM)
+        public void EventDeleteBillListtingPayment(List<HomeItemVM> itemVM)
         {
-            LoadDatabase.Execute(null);
-            _listhome.Add(itemVM);
+            _listhome.Clear();
+            foreach (var item in itemVM)
+            {
+                _listhome.Add(item);
+            }
         }
 
         public void AddPaymentHome_Store(int id)
@@ -121,6 +126,7 @@ namespace AM.UI.ViewModelUI
             {
                 _listhome.Remove(object1);
             }
+            DisposeDataCommand(null);
         }
 
         public void DisposeDataCommand(object parameter)
@@ -131,7 +137,10 @@ namespace AM.UI.ViewModelUI
 
         protected override void Dispose()
         {
+            _HomeStore.AddPaymentStore -=AddPaymentHome_Store;
             _HomeStore.HomeAdd -= Store_Add;
+            _HomeStore.EventDeleteBillListtingPayment -= EventDeleteBillListtingPayment;
+            _HomeStore.EventEditActive -= testthu;
             base.Dispose();
         }
 
@@ -144,27 +153,18 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-        public async void testthu(object parameter)
+        public void testthu(HomeItemVM items)
         {
-            if (parameter is HomeItemVM items)
+            var currentIndex = _listhome.ToList().FindIndex(x => x.IsActive == items.IsActive);
+            if (currentIndex != -1)
             {
-                items.IsActive = items.IsActive;
-                var bill = await _Ihome.updateActive(items);
-                if (bill != null)
-                {
-                    new MessageBoxCustom("Upadate Active Successed", MessageType.Success, MessageButtons.Ok).ShowDialog();
-                    var currentIndex = _listhome.ToList().FindIndex(x => x.IsActive == items.IsActive);
-                    if (currentIndex != -1)
-                    {
-                        _listhome[currentIndex] = items;
-                    }
-                    else
-                    {
-                        _listhome.Add(items);
-                    }
-                }
-                else MessageBox.Show("fail");
+                _listhome[currentIndex] = items;
             }
+            else
+            {
+                _listhome.Add(items);
+            }
+            DisposeDataCommand(null);
         }
 
         public void EditElec(object parameter)

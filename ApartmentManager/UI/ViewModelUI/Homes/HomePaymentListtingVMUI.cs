@@ -12,6 +12,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using ViewModel.PaymentExtension;
 using ViewModel.Room;
@@ -68,10 +69,18 @@ namespace AM.UI.ViewModelUI
             ReturnBillHomeVM = new UpdateCurrentHomeViewModelCommand(home, homeStore, navigator, factory);
             DeletePECommnad = new DeletePaymentCommand(homeStore, this, navigator, factory);
             LoadDataCommand = new LoadPaymentEListingCommand(this, homeStore);
-            LoadDataCommand.Execute(null);
+            if (!ListPE.Any())
+                LoadDataCommand.Execute(null);
             _HomeStore.UpdatePaymentStore+=UpdatePayment_Store;
             _HomeStore.EventDeletePaymentStore += EventDeletePayment_Store;
             _Listpayment.CollectionChanged +=OnReservationsChanged;
+        }
+
+        protected override void Dispose()
+        {
+            _HomeStore.UpdatePaymentStore -= UpdatePayment_Store;
+            //_HomeStore.EventDeletePaymentStore -= EventDeletePayment_Store;
+            base.Dispose();
         }
 
         public void EventDeletePayment_Store(int ID)
