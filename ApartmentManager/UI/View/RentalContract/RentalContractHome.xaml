@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:nav="clr-namespace:AM.UI.State.Navigators"
              xmlns:local="clr-namespace:AM.UI.View.RentalContract" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" xmlns:converters="clr-namespace:AM.UI.Converters" xmlns:custom="clr-namespace:AM.UI.Utilities"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="AM.UI.View.RentalContract.RentalContractHome"
@@ -33,7 +34,8 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="4" Margin="0,0,104,0">
             <Button Style="{StaticResource DetailsButton}"
-                    Command="{Binding RoomNavCommand}"
+                    Command="{Binding RentalNav}"
+                    CommandParameter="{x:Static nav:ViewType.RentalContractAdd}"
                     Content="Add" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top" />
         </StackPanel>
 
@@ -47,8 +49,8 @@
             <TextBlock
                     Foreground="Red"
                     Text="{Binding ErrorMessage}"
-                    Visibility="{Binding HasErrorMessage, Converter={StaticResource BoolToVis}}" />
-            <DataGrid ItemsSource="{Binding Rental}"  
+                    Visibility="{Binding HasMessageError, Converter={StaticResource BoolToVis}}" />
+            <DataGrid ItemsSource="{Binding Rental}"  SelectedItem="{Binding SelectRentalContract,UpdateSourceTrigger=PropertyChanged}"
                       Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}"
                       Height="350" Style="{DynamicResource DataGridStyle1}" 
                       CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
@@ -67,10 +69,12 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <Button Style="{StaticResource EditButton}"
-                                            Command="{Binding RoomUpdateNavCommand}">
+                                             Command="{Binding DataContext.RentalUpdateNavCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                         <iconPacks:PackIconMaterial Kind="PencilOutline" Style="{StaticResource ButtonIcon}" />
                                     </Button>
-                                    <Button Style="{StaticResource EditButton}">
+                                    <Button Style="{StaticResource EditButton}"
+                                             Command="{Binding DataContext.RentalDeleteConFirm, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                        
                                         <iconPacks:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource ButtonIcon}" />
                                     </Button>
                                 </StackPanel>
@@ -80,9 +84,6 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <materialDesign:DialogHost Margin="18,64,18,40" Grid.Column="3" Grid.RowSpan="2">
-            <Button Content="Button" HorizontalAlignment="Center" Margin="0,52,0,0" VerticalAlignment="Top" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" />
-        </materialDesign:DialogHost>
 
     </Grid>
 </UserControl>

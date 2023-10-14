@@ -14,6 +14,8 @@ namespace Services.Interface
         Task<PagedResult<CustomerVM>> GetAllPage(RequestPaging request);
 
         Task<List<CustomerVM>> GetAll();
+        
+        Task<List<CustomerForCombobox>> GetIdNameForCombobox();
 
         Task<People> Edit(int id, PeopleUpdateViewModel request);
 

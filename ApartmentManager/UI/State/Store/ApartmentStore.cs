@@ -88,7 +88,7 @@ namespace AM.UI.State
             CustomerVM create = new CustomerVM
             {
                 ID = result.ID,
-                IDroom = request.IDroom,
+                //IDroom = request.IDroom,
                 Name = request.Name,
                 Sex = request.Sex,
                 Birthday= request.Birthday,
@@ -108,7 +108,7 @@ namespace AM.UI.State
             CustomerVM create = new CustomerVM
             {
                 ID = result.ID,
-                IDroom = request.IDroom,
+                //IDroom = request.IDroom,
                 Name = request.Name,
                 Sex = request.Sex,
                 Birthday= request.Birthday,

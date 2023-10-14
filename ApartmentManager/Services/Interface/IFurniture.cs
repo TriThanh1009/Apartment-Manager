@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ViewModel.Dtos;
 using ViewModel.Furniture;
 using ViewModel.People;
+using ViewModel.Room;
 
 namespace Services.Interface
 {
@@ -19,5 +20,7 @@ namespace Services.Interface
         Task<bool> DeleteFurniture(int FurnitureId);
 
         Task<PagedResult<FurnitureVm>> GetAllPage(RequestPaging request);
+
+        Task<List<FurnitureVm>> GetAll();
     }
 }

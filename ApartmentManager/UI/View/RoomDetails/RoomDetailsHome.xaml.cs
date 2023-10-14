@@ -23,6 +23,7 @@ namespace AM.UI.View.RoomDetails
         public RoomDetailsHome()
         {
             InitializeComponent();
+
         }
     }
 }

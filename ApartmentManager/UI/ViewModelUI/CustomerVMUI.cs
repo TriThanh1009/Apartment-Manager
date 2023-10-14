@@ -167,6 +167,7 @@ namespace AM.UI.ViewModelUI
 
         private void Store_Update(CustomerVM Data)
         {
+
         }
 
         private void NavigateUpdateCustomerVM(object parameter)

@@ -30,7 +30,7 @@ namespace AM.UI.Command.Furniture
 
         public override async Task ExecuteAsync(object parameter)
         {
-            var result = await _Store.DeleteFurniture(_furniturevmui.ID);
+            var result = await _Store.DeleteFurniture(_furniturevmui.SelectFurniture.ID);
             if (result == true)
             {
                 new MessageBoxCustom("Delete Successed", MessageType.Success, MessageButtons.Ok).ShowDialog();

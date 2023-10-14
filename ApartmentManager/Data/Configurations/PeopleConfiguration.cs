@@ -17,7 +17,6 @@ namespace Data.Configurations
             builder.ToTable("People");
             builder.HasKey(x => x.ID);
             builder.Property(x=>x.ID).IsRequired();
-            builder.HasOne(x=>x.Room).WithMany(x=>x.People).HasForeignKey(x=>x.IDroom);
             builder.Property(x=>x.Name).IsRequired().HasMaxLength(50);
             builder.Property(x => x.Sex).HasDefaultValue(Sex.Male);
             builder.Property(x=>x.Birthday).HasDefaultValue(DateTime.Now);

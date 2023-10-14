@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ViewModel.People;
 using ViewModel.Room;
 
 namespace AM.UI.Command.Room
@@ -34,17 +35,19 @@ namespace AM.UI.Command.Room
         }
         public override async Task ExecuteAsync(object parameter)
         {
+
             RoomUpdateViewModel update = new RoomUpdateViewModel
             {
+
                 ID = _roomvmui.Room.ID,
-                IDLeader = int.Parse(_roomvmui.Room.NameLeader),
+                customer = _roomvmui.SelectCustomer,
                 Name = _roomvmui.Room.Name,
                 Quantity = _roomvmui.Room.Quantity,
             };
             var result = await _apartmentstore.UpdateRoom(update);
             if(result != null)
             {
-                new MessageBoxCustom("Update Successe", MessageType.Success, MessageButtons.Ok).ShowDialog();
+                new MessageBoxCustom("Update Succeses", MessageType.Success, MessageButtons.Ok).ShowDialog();
                 RoomHomeNav.Execute(ViewType.Room);
             }
             else

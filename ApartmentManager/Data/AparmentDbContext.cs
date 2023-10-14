@@ -21,7 +21,7 @@ namespace Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new AccountConfiguration());
+            modelBuilder.ApplyConfiguration(new StatisticsConfiguration());
             modelBuilder.ApplyConfiguration(new BillConfiguration());
             modelBuilder.ApplyConfiguration(new DepositsContractConfigurations());
             modelBuilder.ApplyConfiguration(new FurnitureConfiguration());
@@ -31,11 +31,12 @@ namespace Data
             modelBuilder.ApplyConfiguration(new RoomConfiguration());
             modelBuilder.ApplyConfiguration(new RoomDetailsConfiguration());
             modelBuilder.ApplyConfiguration(new RoomImageConfiguration());
+            modelBuilder.ApplyConfiguration(new PeopleRentalConfiguration());
             modelBuilder.Seed();
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<Account> Account { get; set; }
+        public DbSet<Statistics> Account { get; set; }
         public DbSet<Bill> Bill { get; set; }
         public DbSet<DepositsContract> DepositsContract { get; set; }
         public DbSet<Furniture> Furniture { get; set; }
@@ -45,5 +46,7 @@ namespace Data
         public DbSet<Room> Room { get; set; }
         public DbSet<RoomDetails> RoomDetail { get; set; }
         public DbSet<RoomImage> RoomImage { get; set; }
+
+        public DbSet<PeopleRental> PeopleRental { get; set; }
     }
 }

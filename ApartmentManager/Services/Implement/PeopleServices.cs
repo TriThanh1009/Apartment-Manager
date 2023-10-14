@@ -30,7 +30,6 @@ namespace Services.Implement
             MessageBox.Show(request.ID.ToString());
             People people = new People
             {
-                IDroom = request.IDroom,
                 Name = request.Name,
                 Sex = request.Sex,
                 Birthday= request.Birthday,
@@ -62,7 +61,6 @@ namespace Services.Implement
                 People people = new People
                 {
                     ID = id,
-                    IDroom = request.IDroom,
                     Name = request.Name,
                     Sex = request.Sex,
                     Birthday= request.Birthday,
@@ -80,24 +78,28 @@ namespace Services.Implement
 
         public async Task<List<CustomerVM>> GetAll()
         {
-            List<People> result;
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
-                result = await _context.People.ToListAsync();
-            }
-            var result1 = result.Select(e => new CustomerVM
-            {
-                ID = e.ID,
-                IDroom = e.IDroom,
-                Name = e.Name,
-                Sex = e.Sex,
-                Birthday= e.Birthday,
-                PhoneNumber = e.PhoneNumber,
-                Email = e.Email,
-                IDCard = e.IDCard,
-                Address = e.Address,
-            }).ToList();
-            return result1;
+                var query = from p in _context.People
+                            join pt in _context.PeopleRental on p.ID equals pt.IDPeople
+                            join px in _context.RentalContract on pt.IDRental equals px.ID
+                            join pp in _context.Room on px.IDroom equals pp.ID
+                            select new { p, pp };
+                 var result = await query.Select(e => new CustomerVM
+                 {
+                     ID = e.p.ID,
+                     RoomName = e.pp.Name,
+                     Name = e.p.Name,
+                     Sex = e.p.Sex,
+                     Birthday = e.p.Birthday,
+                     PhoneNumber = e.p.PhoneNumber,
+                     Email = e.p.Email,
+                     IDCard = e.p.IDCard,
+                     Address = e.p.Address,
+                 }).ToListAsync();
+                return result;
+            }      
+           
         }
 
         public async Task<PagedResult<CustomerVM>> GetAllPage(RequestPaging request)
@@ -121,7 +123,6 @@ namespace Services.Implement
                         Address = x.Address,
                         Birthday = x.Birthday,
                         Email = x.Email,
-                        IDroom = x.IDroom,
                         IDCard =x.IDCard,
                         PhoneNumber = x.PhoneNumber,
                     }).ToListAsync();
@@ -134,6 +135,22 @@ namespace Services.Implement
                 };
                 return pagedView;
             }
+        }
+
+        public async Task<List<CustomerForCombobox>> GetIdNameForCombobox()
+        {
+            List<People> result;
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                result = await _context.People.ToListAsync();
+            }
+            var result1 = result.Select(e => new CustomerForCombobox
+            {
+                ID = e.ID,
+                Name = e.Name
+
+            }).ToList();
+            return result1;
         }
     }
 }

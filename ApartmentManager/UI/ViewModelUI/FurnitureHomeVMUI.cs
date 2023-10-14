@@ -22,6 +22,8 @@ using ViewModel.Dtos;
 using ViewModel.Furniture;
 using ViewModel.People;
 using ViewModel.Room;
+using AM.UI.Mediator;
+using AM.UI.ViewModelUI.RoomDetails;
 
 namespace AM.UI.ViewModelUI
 {
@@ -34,19 +36,18 @@ namespace AM.UI.ViewModelUI
         public IFurniture _ifur;
         public IEnumerable<FurnitureVm> Fur => _fur;
 
+        public ICommand TransferDataCommand { get; private set; }
 
 
-
+        //Command
         public ICommand LoadDataBase { get; }
 
         public ICommand FurnitureNav { get; }
 
         public ICommand FurnitureUpdateNav { get; }
-
-        public ICommand DeleteSuccess { get; }
         public ICommand DeleteConFirm { get; }
 
-
+        //Properties
         public bool _IsLoading;
         public bool IsLoading
         {
@@ -96,6 +97,18 @@ namespace AM.UI.ViewModelUI
         }
 
 
+        private FurnitureVm _SelectFurniture;
+        public FurnitureVm SelectFurniture
+        {
+            get { return _SelectFurniture; }
+            set
+            {
+                _SelectFurniture = value;
+                OnPropertyChanged(nameof(SelectFurniture));
+            }
+        }
+
+
 
         public bool HasMessageError => !string.IsNullOrEmpty(MessageError);
 
@@ -110,26 +123,17 @@ namespace AM.UI.ViewModelUI
             LoadDataBase.Execute(null);
             FurnitureNav = new UpdateCurrentViewModelCommand(navigator, ViewModelFactory);
             FurnitureUpdateNav = new RelayCommand(FurnitureUpdateNavDef);
-            DeleteSuccess = new FurnitureDeleteCommand(this, apartmentStore, navigator, ViewModelFactory);
-            DeleteConFirm = new RelayCommand(DeleteFurniture);
+            DeleteConFirm = new FurnitureDeleteCommand(this, apartmentStore, navigator, ViewModelFactory);
             _apartmentStore.FurnitureAdd += Store_Add;
 
 
+
+
         }
 
 
-        public void DeleteFurniture(object parameter)
-        {
-            if (parameter is FurnitureVm furniture)
-            {
-                bool? Confirm = new MessageBoxCustom($"Do you want to delete customer :{furniture.ID} ", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
-                if (Confirm == true)
-                {
-                    _ID = furniture.ID;
-                    DeleteSuccess.Execute(null);
-                }
-            }
-        }
+
+
 
         public void FurnitureUpdateNavDef(object parameter)
         {
@@ -152,6 +156,12 @@ namespace AM.UI.ViewModelUI
         {
             _fur.Add(data);
         }
+
+
+        /*public void UpdateSelectedFurniture(FurnitureVm data)
+        {
+            Mediators.Instance.Send("FurnitureSelected", data);
+        }*/
 
     }
 }

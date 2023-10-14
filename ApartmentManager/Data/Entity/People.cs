@@ -1,7 +1,9 @@
 ﻿using Data.Enum;
+using Data.Relationships;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +11,6 @@ namespace Data.Entity
 {
     public class People : DomainObject
     {
-        public int IDroom { get; set; }
         public string Name { get; set; }
         public Sex Sex { get; set; }
         public DateTime Birthday { get; set; }
@@ -19,7 +20,8 @@ namespace Data.Entity
         public string IDCard { get; set; }
         public string Address { get; set; }
 
-        public Room? Room { get; set; }
+
+        public ICollection<PeopleRental> PeopleRental { get; } = new List<PeopleRental>();
 
         public ICollection<RentalContract> RentalContracts { get; } = new List<RentalContract>();
     }

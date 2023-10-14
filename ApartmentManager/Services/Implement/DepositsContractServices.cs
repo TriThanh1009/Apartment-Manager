@@ -1,4 +1,5 @@
 ﻿using Data;
+using Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Services.Interface;
@@ -17,18 +18,37 @@ namespace Services.Implement
     public class DepositsContractServices : IDepositsContract
     {
         private readonly ApartmentDbContextFactory _contextfactory;
-        public DepositsContractServices(ApartmentDbContextFactory contextfactory)
+        private readonly IBaseControl<DepositsContract> _baseControl;
+        public DepositsContractServices(ApartmentDbContextFactory contextfactory, IBaseControl<DepositsContract> baseControl)
         {
             _contextfactory = contextfactory;
+            _baseControl = baseControl;
         }
-        public Task<int> CreateDepositsContract(DepositsContractCreateViewModel model)
+        public async Task<DepositsContract> CreateDepositsContract(DepositsContractCreateViewModel model)
         {
-            throw new NotImplementedException();
+            var create = new DepositsContract
+            {
+                ID = model.ID,
+                IDRoom = model.Room.ID,
+                DepositsDate = model.DepositsDate,
+                ReceiveDate = model.ReceiveDate,
+                CheckOutDate = model.CheckOutDate,
+                Money = model.Money
+            };
+            return await _baseControl.Create(create);
+             
         }
 
-        public Task<int> DeleteDepositsContract(int depositsId)
+        public async Task<bool> DeleteDepositsContract(int depositsId)
         {
-            throw new NotImplementedException();
+            using(AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                DepositsContract deposit = await _context.DepositsContract.FirstOrDefaultAsync(x=>x.ID  == depositsId);
+                if (deposit == null) return false;
+                _context.DepositsContract.Remove(deposit);
+                await _context.SaveChangesAsync();
+                return true;
+            }
         }
 
         public async Task<PagedResult<DepositsContractVm>> GetAllPage(RequestPaging request)
@@ -62,9 +82,16 @@ namespace Services.Implement
             }
         }
 
-        public Task<int> UpdateDepositsContract(DepositsContractUpdateViewModel model)
+        public async Task<DepositsContract> UpdateDepositsContract(DepositsContractUpdateViewModel model)
         {
-            throw new NotImplementedException();
+            var result = new DepositsContract();
+            result.ID = model.ID;
+            result.IDRoom = model.Room.ID;
+            result.DepositsDate = model.DepositsDate;
+            result.ReceiveDate = model.ReceiveDate;
+            result.CheckOutDate = model.CheckOutDate;
+            result.Money = model.Money;
+            return await _baseControl.Update(model.ID, result);
         }
     }
 }

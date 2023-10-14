@@ -1,8 +1,11 @@
-﻿using AM.UI.Command.LoadDataBase;
+﻿using AM.UI.Command;
+using AM.UI.Command.Bill;
+using AM.UI.Command.LoadDataBase;
 using AM.UI.State;
 using AM.UI.State.Navigators;
 using AM.UI.State.Store;
 using AM.UI.Utilities;
+using AM.UI.ViewModelUI.Bills;
 using AM.UI.ViewModelUI.Factory;
 using Data.Entity;
 using Services.Interface;
@@ -13,6 +16,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using ViewModel.Bill;
 using ViewModel.Dtos;
@@ -26,10 +30,16 @@ namespace AM.UI.ViewModelUI
         private readonly INavigator _navigator;
         private readonly IAparmentViewModelFactory _ViewModelFactory;
         private readonly BillStore _apartmentStore;
+        private readonly ComboboxStore _comboboxStore;
         private ObservableCollection<BillVm> _bill;
         public IEnumerable<BillVm> Bill => _bill;
 
         public ICommand LoadDataBase { get; }
+
+        public ICommand BillUpdateNav { get; }
+
+        public ICommand BillNav { get; }
+        public ICommand DeleteConFirm { get; }
 
         public bool HasData => _bill.Any();
 
@@ -44,7 +54,7 @@ namespace AM.UI.ViewModelUI
                 OnPropertyChanged(nameof(HasMessageError));
             }
         }
-
+        
         public bool _Isloading;
         public bool Isloading
         {
@@ -56,33 +66,52 @@ namespace AM.UI.ViewModelUI
             }
         }
 
+        private int _ID;
+
+        public int ID
+        {
+            get { return _ID; }
+            set
+            {
+                _ID = value;
+                OnPropertyChanged(nameof(ID));
+            }
+        }
 
         public bool HasMessageError => !string.IsNullOrEmpty(MessageError);
 
-        public BillHomeVMUI(IBill ibill,INavigator navigator,IAparmentViewModelFactory ViewModelFactory, BillStore apartmentStore)
+        public BillHomeVMUI(IBill ibill,INavigator navigator,IAparmentViewModelFactory ViewModelFactory, BillStore apartmentStore,ComboboxStore comboboxStore)
         {
             _ibill = ibill;
             _navigator = navigator;
             _ViewModelFactory = ViewModelFactory;
             _apartmentStore = apartmentStore;
-            
+            _comboboxStore = comboboxStore;
+            BillNav = new UpdateCurrentViewModelCommand(_navigator, _ViewModelFactory);
             _bill = new ObservableCollection<BillVm>();
             LoadDataBase = new LoadBillView(this, apartmentStore);
             LoadDataBase.Execute(null);
             _bill.CollectionChanged += OnReservationsChanged;
-        }
-        public static BillHomeVMUI BillHomeViewModel(IBill ibill, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, BillStore apartmentStore)
-        {
-            BillHomeVMUI bill = new BillHomeVMUI(ibill, navigator, ViewModelFactory, apartmentStore);
-            bill.LoadDataBase.Execute(null);
-            return bill;
+            BillUpdateNav = new RelayCommand(NavToBillUpdate);
+            DeleteConFirm = new BillDeleteCommand(_navigator, _ViewModelFactory,_apartmentStore,this);
         }
         public void UpdateData(List<BillVm> data)
         {
+            MessageBox.Show(data.Count().ToString());
             foreach(var bill in data)
             {
                 _bill.Add(bill);
             }
+        }
+
+
+        public void NavToBillUpdate(object parameter)
+        {
+            if(parameter is BillVm bill)
+            {
+                _navigator.CurrentViewModel = new BillUpdateVMUI(_navigator, _ViewModelFactory, _apartmentStore, _comboboxStore,bill);
+            }
+           
         }
 
         private void OnReservationsChanged(object sender, NotifyCollectionChangedEventArgs e)

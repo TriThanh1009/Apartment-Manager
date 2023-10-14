@@ -20,7 +20,7 @@ namespace AM.UI.Command.Furniture
         private readonly FurnitureUpdateVMUI _furniturevmui;
         private readonly FurnitureStore _apartmentstore;
 
-        public ICommand RoomHomeNav { get; }
+        public ICommand FurnitureHomeNav { get; }
 
         public FurnitureUpdateCommand(FurnitureUpdateVMUI furniturevmui, FurnitureStore apartmentstore)
         {
@@ -39,7 +39,7 @@ namespace AM.UI.Command.Furniture
             if (result != null)
             {
                 new MessageBoxCustom("Update Successed", MessageType.Success, MessageButtons.Ok).ShowDialog();
-                RoomHomeNav.Execute(ViewType.Furnitures);
+                FurnitureHomeNav.Execute(ViewType.Furnitures);
             }
             else
             {

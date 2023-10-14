@@ -1,8 +1,10 @@
 ﻿using AM.UI.State.Navigators;
 using AM.UI.Utilities;
+using AM.UI.ViewModelUI.Bills;
 using AM.UI.ViewModelUI.Customer;
 using AM.UI.ViewModelUI.DepositContract;
 using AM.UI.ViewModelUI.Furnitures;
+using AM.UI.ViewModelUI.RentalContract;
 using AM.UI.ViewModelUI.Room;
 using AM.UI.ViewModelUI.RoomDetails;
 using System;
@@ -31,7 +33,13 @@ namespace AM.UI.ViewModelUI.Factory
         private readonly CreateViewModel<FurnitureAddVMUI> _createFurnitureAddVM;
         private readonly CreateViewModel<FurnitureUpdateVMUI> _createFurnitureUpdateVM;
         private readonly CreateViewModel<PaymentExtensionHomeVMUI> _createPaymentExtensionHomeVMUI;
-
+        private readonly CreateViewModel<RentalContractAddVMUI> _createRentalAddVM;
+        private readonly CreateViewModel<RentalContractUpdateVMUI> _createRentalUpdateVM;
+        private readonly CreateViewModel<DepositContractAddVMUI> _createDepositAddVM;
+        private readonly CreateViewModel<DepositContractUpdateVMUI> _createDepositUpdateVM;
+        private readonly CreateViewModel<RoomDetailsInformationCustomerVMUI> _createRoomDetailsInformationCustomer;
+        private readonly CreateViewModel<BillAddVMUI> _createBillAddVM;
+        private readonly CreateViewModel<BillUpdateVMUI> _createBillUpdateVM;
         public AparmentViewModelFactory(CreateViewModel<HomeVM> createhomeVM, CreateViewModel<CustomerVMUI> createCustomerVM,
                                         CreateViewModel<RoomHomeVMUI> createRoomVM, CreateViewModel<RoomAddVMUI> createRoomAddVM,
                                         CreateViewModel<RoomUpdateVMUI> createRoomUpdateVM, CreateViewModel<RoomDetailsHomeVMUI> createRoomDetailsVM,
@@ -39,7 +47,10 @@ namespace AM.UI.ViewModelUI.Factory
                                         CreateViewModel<BillHomeVMUI> createBillVM, CreateViewModel<DepositContractHomeVMUI> createDepositContractVM,
                                         CreateViewModel<AddCustomerVMUI> createAddCustomerVM, CreateViewModel<RoomDetailsAddImageVMUI> createRoomDeatailsAddImageVM,
                                         CreateViewModel<FurnitureAddVMUI> createFurnitureAddVM, CreateViewModel<FurnitureUpdateVMUI> createFurnitureUpdateVM,
-                                        CreateViewModel<PaymentExtensionHomeVMUI> createPaymentExtensionHomeVMUI)
+                                        CreateViewModel<RentalContractAddVMUI> createRentalContractAddVM,CreateViewModel<RentalContractUpdateVMUI> createRentalContractUpdateVM,
+                                        CreateViewModel<DepositContractAddVMUI> createDepositContractAddVM,CreateViewModel<DepositContractUpdateVMUI> createDepositContractUpdateVM,
+                                        CreateViewModel<RoomDetailsInformationCustomerVMUI> createRoomDetailsInformationCustomer,CreateViewModel<BillAddVMUI> createBillAddVM,
+                                        CreateViewModel<BillUpdateVMUI> createBillUpdateVM)
         {
             _createCustomerVM = createCustomerVM;
             _createHomeVM = createhomeVM;
@@ -55,7 +66,14 @@ namespace AM.UI.ViewModelUI.Factory
             _createRoomDeatailsAddImageVM = createRoomDeatailsAddImageVM;
             _createFurnitureAddVM = createFurnitureAddVM;
             _createFurnitureUpdateVM = createFurnitureUpdateVM;
-            _createPaymentExtensionHomeVMUI = createPaymentExtensionHomeVMUI;
+            _createRoomDetailsInformationCustomer = createRoomDetailsInformationCustomer;
+            _createRentalAddVM = createRentalContractAddVM;
+            _createRentalUpdateVM = createRentalContractUpdateVM;
+            _createDepositAddVM = createDepositContractAddVM;
+            _createDepositUpdateVM = createDepositContractUpdateVM;
+            _createRoomDetailsInformationCustomer = createRoomDetailsInformationCustomer;
+            _createBillAddVM = createBillAddVM;
+            _createBillUpdateVM = createBillUpdateVM;
         }
 
         public ViewModelBase CreateViewModel(ViewType viewType)
@@ -104,9 +122,26 @@ namespace AM.UI.ViewModelUI.Factory
                 case ViewType.FurnitureUpdate:
                     return _createFurnitureUpdateVM();
 
-                case ViewType.PaymentExtensionHome:
-                    return _createPaymentExtensionHomeVMUI();
+                case ViewType.RentalContractAdd: 
+                    return _createRentalAddVM();
 
+                case ViewType.RentalContractUpdate: 
+                    return _createRentalUpdateVM();
+
+                case ViewType.DepositContractAdd:
+                    return _createDepositAddVM();
+
+                case ViewType.DepositContractUpdate:
+                    return _createDepositUpdateVM();
+
+                case ViewType.RoomDetailsInformationCustomer:
+                    return _createRoomDetailsInformationCustomer();
+
+                case ViewType.BillAdd:
+                    return _createBillAddVM();
+
+                case ViewType.BillUpdate:
+                    return _createBillUpdateVM();
                 default:
                     throw new ArgumentException("The ViewType does not have a ViewModel.", "viewType");
             }

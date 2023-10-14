@@ -1,4 +1,5 @@
 ﻿using Data.Entity;
+using Data.Relationships;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +20,14 @@ namespace Services.Interface
 
         Task<DeleteImageViewModel> Delete(int id);
 
-        Task<bool> CreateImage(RoomImageCreateViewModel request, string NameFile);
-        Task<bool> CreateFurniture(FurnitureCreateViewModel request);
+        Task<bool> DeleteRoomFurniture(int id);
 
-        Task<PagedResult<RoomDetailsVm>> GetAllPage(RequestPaging request);
+        Task<bool> CreateImage(RoomImageCreateViewModel request, string NameFile);
+        Task<bool> CreateFurniture(RoomDetailsVm request);
+
+        Task<List<CustomerVM>> GetAllCustomerInRoom(int IDroom);
+
         Task<PagedResult<RoomDetailsFurniture>> GetAllFurniture(RequestPaging request, int id);
-        Task<PagedResult<RoomDetailsVm>> GetAllRoom(RequestPaging request);
         Task<PagedResult<RoomDetailsImage>> GetAllImage(RequestPaging request, int id);
     }
 }

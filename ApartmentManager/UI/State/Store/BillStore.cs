@@ -1,4 +1,6 @@
 ﻿using AM.UI.Model;
+using Data.Entity;
+using Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +14,17 @@ namespace AM.UI.State.Store
     {
         private readonly Apartment _apartment;
         private readonly List<BillVm> _billvm;
+        private readonly IBill _ibill;
         private Lazy<Task> _initializeLazyBill;
+        
+        private event Action<BillVm> BillAdd;
+        private event Action<BillVm> BillUpdate;
+        private event Action<int> BillDelete;
         public List<BillVm> billvm => _billvm;
-        public BillStore()
+        public BillStore(Apartment apartment,IBill ibill)
         {
+            _apartment =apartment;
+            _ibill = ibill;
             _billvm = new List<BillVm>();
             _initializeLazyBill = new Lazy<Task>(InitializeBill);
         }
@@ -37,6 +46,53 @@ namespace AM.UI.State.Store
                 _initializeLazyBill = new Lazy<Task>(InitializeBill);
                 throw;
             }
+        }
+
+
+        public async Task<Bill> AddBill(BillCreateViewModel model)
+        {
+            var result = await _ibill.CreateBill(model);
+            BillVm create = new BillVm
+            {
+                ID = result.ID,
+                IDRTC = model.Rental.IDRental,
+                ElectricQuantity = result.ElectricQuantity,
+                Active = result.Active,
+                PayDate = result.PayDate,
+                TotalMoney = result.TotalMoney
+            };
+            _billvm.Add(create);
+            BillAdd?.Invoke(create);
+            return result;
+        }
+
+        public async Task<Bill> UpdateBill(BillUpdateViewModel model)
+        {
+            var result = await _ibill.UpdateBill(model);
+            BillVm update = new BillVm
+            {
+                ID = result.ID,
+                IDRTC = model.Rental.IDRental,
+                ElectricQuantity = result.ElectricQuantity,
+                Active = result.Active,
+                PayDate = result.PayDate,
+                TotalMoney = result.TotalMoney
+            };
+            var current = _billvm.FindIndex(x=>x.ID == update.ID);
+            if(current != -1)
+            {
+                _billvm[current] = update;
+            }
+            else _billvm.Add(update);
+            BillUpdate?.Invoke(update);
+            return result;
+        }
+        public async Task<bool> DeleteBill(int ID)
+        {
+            var result = await _ibill.DeleteBill(ID);
+            _billvm.RemoveAll(x=>x.ID == ID);
+            BillDelete?.Invoke(ID);
+            return result;
         }
 
     }

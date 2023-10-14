@@ -11,6 +11,6 @@ namespace Data.Entity
     {
         public string Name { get; set; }
 
-        public List<RoomDetails> RoomDeltails { get; } = new();
+        public List<RoomDetails> RoomDeltails { get; } = new List<RoomDetails>();
     }
 }

@@ -18,22 +18,41 @@ namespace Services.Implement
     public class BillServices : IBill
     {
         private readonly ApartmentDbContextFactory _contextfactory;
+        private readonly IBaseControl<Bill> _baseControl;
 
-        public BillServices(ApartmentDbContextFactory contextfactory)
+        public BillServices(ApartmentDbContextFactory contextfactory, IBaseControl<Bill> baseControl)
         {
             _contextfactory = contextfactory;
+            _baseControl = baseControl;
         }
 
-        public Task<int> CreateBill(BillCreateViewModel model)
+        public async Task<Bill> CreateBill(BillCreateViewModel model)
         {
-            throw new NotImplementedException();
+            var bill = new Bill
+            {
+                ID = model.ID,
+                IDRTC = model.Rental.IDRental,
+                ElectricQuantity = model.ElectricQuantity,
+                Active = model.Active,
+                PayDate = model.PayDate,
+                TotalMoney = model.TotalMoney,
+            };
+            return await _baseControl.Create(bill);
+            
         }
 
-        public Task<int> DeleteBill(int BillID)
+        public async Task<bool> DeleteBill(int ID)
         {
-            throw new NotImplementedException();
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                var result = await _context.Bill.FirstOrDefaultAsync(x => x.ID == ID);
+                if (result == null) return false;
+                _context.Bill.Remove(result);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            
         }
-
         public async Task<PagedResult<BillVm>> GetAllPage(RequestPaging request)
         {
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
@@ -75,9 +94,17 @@ namespace Services.Implement
             }
         }
 
-        public Task<int> UpdateBill(BillUpdateViewModel model)
+        public async Task<Bill> UpdateBill(BillUpdateViewModel model)
         {
-            throw new NotImplementedException();
+            var bill = new Bill();
+            bill.ID = model.ID;
+            bill.IDRTC = model.Rental.IDRental;
+            bill.ElectricQuantity = model.ElectricQuantity;
+            bill.Active = model.Active;
+            bill.PayDate = model.PayDate;
+            bill.TotalMoney = model.TotalMoney;
+            return await _baseControl.Update(model.ID, bill);
         }
+       
     }
 }

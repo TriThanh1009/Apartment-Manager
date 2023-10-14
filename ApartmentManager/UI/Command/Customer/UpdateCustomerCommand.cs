@@ -33,7 +33,7 @@ namespace AM.UI.Command.Customer
             PeopleUpdateViewModel viewModel = new PeopleUpdateViewModel
             {
                 ID = _updateCustomerVMUI.customerVM.ID,
-                IDroom =_updateCustomerVMUI.customerVM.IDroom,
+               // IDroom =_updateCustomerVMUI.customerVM.IDroom,
                 Name = _updateCustomerVMUI.customerVM.Name,
                 Sex = _updateCustomerVMUI.customerVM.Sex,
                 Birthday= _updateCustomerVMUI.customerVM.Birthday,

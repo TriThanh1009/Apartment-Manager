@@ -1,19 +1,17 @@
-﻿using AM.UI.State.Navigators;
-using AM.UI.State;
+﻿using AM.UI.Command.RoomImages;
+using AM.UI.State.Navigators;
+using AM.UI.State.Store;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI.Factory;
-using System;
+using Microsoft.Win32;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using ViewModel.RoomDetails;
-using ViewModel.RoomImage;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using AM.UI.Command;
-using AM.UI.State.Store;
+using System.Linq;
+using System.Windows.Input;
+using ViewModel.Room;
+using ViewModel.RoomDetails;
+using ViewModel.RoomImage;
 
 namespace AM.UI.ViewModelUI.RoomDetails
 {
@@ -23,20 +21,18 @@ namespace AM.UI.ViewModelUI.RoomDetails
         private readonly IAparmentViewModelFactory _viewModelFactory;
         private readonly RoomStore _apartmentStore;
 
-
-
         private ObservableCollection<RoomImageCreateViewModel> _tempimages;
         public IEnumerable<RoomImageCreateViewModel> tempimages => _tempimages;
 
-        private RoomDetailsImage _detailsImage;
+        private RoomVm _detailsImage;
 
-        public RoomDetailsImage detailsImage
+        public RoomVm detailsImage
         {
             get { return _detailsImage; }
             set
             {
                 detailsImage = value;
-                OnPropertyChanged(nameof(RoomDetailsImage));
+                OnPropertyChanged(nameof(RoomVm));
             }
         }
 
@@ -49,6 +45,7 @@ namespace AM.UI.ViewModelUI.RoomDetails
                 OnPropertyChanged(nameof(tempimages));
             }
         }
+
         public ICommand SelectedFile { get; }
 
         public ICommand SelectedFileSuccessCommand { get; }
@@ -57,9 +54,8 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         public ICommand RemoveItem { get; }
 
-
-
         private int _ID;
+
         public int ID
         {
             get { return _ID; }
@@ -72,6 +68,7 @@ namespace AM.UI.ViewModelUI.RoomDetails
         }
 
         private int _IDroom;
+
         public int IDRoom
         {
             get { return _IDroom; }
@@ -83,6 +80,7 @@ namespace AM.UI.ViewModelUI.RoomDetails
         }
 
         private string _Name;
+
         public string Name
         {
             get { return _Name; }
@@ -94,6 +92,7 @@ namespace AM.UI.ViewModelUI.RoomDetails
         }
 
         private string _name;
+
         public string name
         {
             get { return _name; }
@@ -121,26 +120,24 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         public bool HasData => _tempimages.Any();
 
-        public RoomDetailsAddImageVMUI(INavigator navigator, IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore, RoomDetailsImage image)
+        public RoomDetailsAddImageVMUI(INavigator navigator, IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore, RoomVm image)
         {
             _navigator = navigator;
             _viewModelFactory = viewModelFactory;
             _apartmentStore = apartmentStore;
+            _detailsImage = image;
             SelectedFile = new RelayCommand(SelectFile);
             RemoveItem = new RelayCommand(RemoveImageItem);
             _tempimages = new ObservableCollection<RoomImageCreateViewModel>();
             SelectedFileConfirm = new AddRoomImageCommand(this, navigator, viewModelFactory, apartmentStore);
             _tempimages.CollectionChanged += OnReservationsChanged;
-         }
-
-
+        }
 
         public void RemoveImageItem(object parameter)
         {
             var item = _tempimages.FirstOrDefault(x => x.Name.Equals(name));
             _tempimages.Remove(item);
         }
-
 
         public void SelectFile(object parameter)
         {
@@ -155,32 +152,22 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
             if (result == true)
             {
-                
                 SelectedFilePath = openFileDialog.FileName;
-                
+
                 RoomImageCreateViewModel roomimage = new RoomImageCreateViewModel
                 {
-                    IDroom = IDRoom,
+                    IDroom = detailsImage.ID,
                     Name = Name,
                     FileName = openFileDialog.SafeFileName,
                     Url = SelectedFilePath
                 };
                 _tempimages.Add(roomimage);
-
-
             }
-
-
-            
         }
 
         private void OnReservationsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChanged(nameof(HasData));
         }
-
-
-
-
     }
 }
