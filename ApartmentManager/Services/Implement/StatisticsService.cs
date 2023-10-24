@@ -32,7 +32,8 @@ namespace Services.Implement
                 var query = from p in _context.Bill
                             join pt in _context.RentalContract on p.IDRTC equals pt.ID
                             join px in _context.Room on pt.IDroom equals px.ID
-                            join pp in _context.People on pt.IDLeader equals pp.ID
+                            join pe in _context.PeopleRental on pt.ID equals pe.IDRental
+                            join pp in _context.People on pe.IDPeople equals pp.ID
                             where p.PayDate.Month == Month
                             select new { p, pt, px, pp };
                 int totalRow = await query.CountAsync();

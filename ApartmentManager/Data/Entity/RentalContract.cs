@@ -11,7 +11,7 @@ namespace Data.Entity
     public class RentalContract : DomainObject
     {
         public int IDroom { get; set; }
-        public int IDLeader { get; set; }
+
         public DateTime ReceiveDate { get; set; }
         public DateTime CheckOutDate { get; set; }
         public int RoomMoney { get; set; }

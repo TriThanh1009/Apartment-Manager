@@ -20,8 +20,7 @@
           "Microsoft.Extensions.Hosting": "7.0.1",
           "Microsoft.Extensions.Hosting.Abstractions": "7.0.0",
           "Microsoft.Xaml.Behaviors.Wpf": "1.1.39",
-          "Services": "1.0.0",
-          "System.Windows.Interactivity.WPF": "2.0.20525"
+          "Services": "1.0.0"
         },
         "runtime": {
           "AM.UI.dll": {}
@@ -944,8 +943,7 @@
           "Microsoft.Extensions.Configuration.FileExtensions": "7.0.0",
           "Microsoft.Extensions.Configuration.Json": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39",
-          "System.Windows.Interactivity.WPF": "2.0.20525"
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39"
         },
         "runtime": {
           "Data.dll": {}

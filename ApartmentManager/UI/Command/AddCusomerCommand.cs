@@ -38,7 +38,7 @@ namespace AM.UI.Command
         {
             PeopleCreateViewModel create = new PeopleCreateViewModel
             {
-                IDroom = _customer.IDRoom,
+                IDRental = _customer.IDRT,
                 Name = _customer.name,
                 Sex = _customer.sex,
                 Birthday= _customer.birthday,

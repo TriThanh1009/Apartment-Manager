@@ -1,6 +1,7 @@
 ﻿using AM.UI.Command;
 using AM.UI.State;
 using AM.UI.State.Navigators;
+using AM.UI.State.Store;
 using AM.UI.Utilities;
 using AM.UI.View.Dialog;
 using AM.UI.ViewModelUI.Customer;
@@ -17,6 +18,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using ViewModel.Dtos;
 using ViewModel.People;
@@ -29,6 +31,15 @@ namespace AM.UI.ViewModelUI
         private readonly IPeople _people;
         private readonly IAparmentViewModelFactory _factory;
         private readonly ApartmentStore _apartmentStore;
+        private readonly ComboboxStore _combobox;
+
+        private CustomerVM _customer;
+
+        public CustomerVM Customer
+        {
+            get { return _customer; }
+            set { _customer = value; OnPropertyChanged(nameof(Customer)); }
+        }
 
         private int _ID;
 
@@ -116,7 +127,7 @@ namespace AM.UI.ViewModelUI
         public ICommand DeleteCustomerCommand { get; }
         public ICommand ConfirmDeleteCustomerCommand { get; }
 
-        public CustomerVMUI(INavigator navigator, IPeople people, IAparmentViewModelFactory aparmentViewModelFactory, ApartmentStore apartmentStore)
+        public CustomerVMUI(INavigator navigator, IPeople people, IAparmentViewModelFactory aparmentViewModelFactory, ApartmentStore apartmentStore, ComboboxStore comboboxStore)
         {
             UpdateNavCustomer = new RelayCommand(NavigateUpdateCustomerVM);
             DeleteCustomerCommand = new RelayCommand(DeleteCustomer);
@@ -131,9 +142,11 @@ namespace AM.UI.ViewModelUI
             _apartmentStore = apartmentStore;
             _navigator =navigator;
             _factory = aparmentViewModelFactory;
+            _combobox = comboboxStore;
             _test.CollectionChanged += OnReservationsChanged;
             _apartmentStore.YouTubeViewerDeleted += Store_Delete;
             _apartmentStore.CustomerAdd+=  Store_Add;
+            _apartmentStore.CreatePeopleInRental+= Store_Add_Rental;
             _apartmentStore.CustomerUpdate += Store_Update;
         }
 
@@ -155,6 +168,14 @@ namespace AM.UI.ViewModelUI
             _test.Add(Data);
         }
 
+        private void Store_Add_Rental(List<CustomerVM> Data)
+        {
+            Data.ForEach(x =>
+            {
+                _test.Add(x);
+            });
+        }
+
         private void Store_Delete(int id)
         {
             var object1 = _test.FirstOrDefault(y => y.ID == id);
@@ -167,11 +188,11 @@ namespace AM.UI.ViewModelUI
 
         private void Store_Update(CustomerVM Data)
         {
-
         }
 
         private void NavigateUpdateCustomerVM(object parameter)
         {
+            _navigator.CurrentViewModel = new UpdateCustomerVMUI(_apartmentStore, Customer, _navigator, _factory);
         }
 
         private void ChangedString(string _search)

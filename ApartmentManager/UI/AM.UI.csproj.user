@@ -187,6 +187,9 @@
     <Page Update="View\People\Home.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\RentalContract\AddCustomerInRental.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\RentalContract\RentalContractAdd.xaml">
       <SubType>Designer</SubType>
     </Page>

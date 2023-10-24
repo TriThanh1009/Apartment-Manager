@@ -27,7 +27,7 @@ namespace Data.Extensions
                 new People() { ID = 4, Name = "Anna Johnson", Birthday = new DateTime(new Random().Next(1990, 2001), new Random().Next(1, 13), new Random().Next(1, 29)), Email = "anna@gmail.com", PhoneNumber = "1415", IDCard = "14151617", Address = "Australia" },
                 new People() { ID = 5, Name = "Michael Brown", Birthday = new DateTime(new Random().Next(1990, 2001), new Random().Next(1, 13), new Random().Next(1, 29)), Email = "michael@gmail.com", PhoneNumber = "1819", IDCard = "18192021", Address = "UK" });
             modelbuilder.Entity<RentalContract>().HasData(
-                new RentalContract { ID = 1, IDroom = 1, IDLeader = 1, ReceiveDate = DateTime.Now, CheckOutDate = DateTime.Now, RoomMoney = 100, ElectricMoney = 100, WaterMoney = 100, ServiceMoney = 100 });
+                new RentalContract { ID = 1, IDroom = 1, ReceiveDate = DateTime.Now, CheckOutDate = DateTime.Now, RoomMoney = 100, ElectricMoney = 100, WaterMoney = 100, ServiceMoney = 100 });
             modelbuilder.Entity<Room>().HasData(
                 new Room { ID = 1, Name = "A201", Quantity = 4 },
                 new Room { ID = 2, Name = "A202", Quantity = 5 },

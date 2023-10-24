@@ -1,6 +1,7 @@
 ﻿using AM.UI.State.Navigators;
 using AM.UI.State.Store;
 using AM.UI.View.Dialog;
+using AM.UI.ViewModelUI;
 using AM.UI.ViewModelUI.Factory;
 using AM.UI.ViewModelUI.RentalContract;
 using AM.UI.ViewModelUI.Room;
@@ -10,6 +11,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using ViewModel.RentalContract;
 
 namespace AM.UI.Command.RentalContract
@@ -46,14 +48,23 @@ namespace AM.UI.Command.RentalContract
             var result = await _Store.CreateRentalContract(create);
             if (result != null)
             {
-                new MessageBoxCustom("Add Successed", MessageType.Success, MessageButtons.Ok).ShowDialog();
-                _navigator.CurrentViewModel = _viewModelFactory.CreateViewModel(ViewType.RentalContract);
+                MessageBoxCustom resultconfirm = new MessageBoxCustom("Add Successed! Do You Want to Add Customer", MessageType.Success, MessageButtons.OkCancel);
+                resultconfirm.ShowDialog();
+                if (resultconfirm.DialogResult==true)
+                {
+                    RentalContractVm a = _Store.rentalvm.LastOrDefault();
+                    var IDpeople = await _Store.GetlastIDpeople();
+                    _navigator.CurrentViewModel = new AddCustomerInRentalVMUI(a.ID, IDpeople, _navigator, _viewModelFactory, _Store);
+                }
+                else
+                    _navigator.CurrentViewModel = _viewModelFactory.CreateViewModel(ViewType.RentalContract);
             }
             else
             {
                 new MessageBoxCustom("Fail", MessageType.Success, MessageButtons.Ok).ShowDialog();
             }
         }
+
         private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             OnCanExecutedChanged();

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pdPnBqaUC2HCFxrvM5Da9DsJHTwZF5GZSLKMlLAKVS2/YodEH0QmRE+Vv0o7T8nne1Vwn1MDMv4uV4/fODEJpQ==",
+  "dgSpecHash": "RMSutLsA5j3E5JxJY+NeDLLwOVuM9ZvfJ33XDxhDFatBo9JCftnTr6/MaqkFt7qzGsrFLWDPb7TDupFlqZpdTw==",
   "success": true,
   "projectFilePath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj",
   "expectedPackageFiles": [
@@ -78,19 +78,7 @@
     "C:\\Users\\THANH\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
     "C:\\Users\\THANH\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\THANH\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\THANH\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512",
-    "C:\\Users\\THANH\\.nuget\\packages\\system.windows.interactivity.wpf\\2.0.20525\\system.windows.interactivity.wpf.2.0.20525.nupkg.sha512"
+    "C:\\Users\\THANH\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Windows.Interactivity.WPF 2.0.20525' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0-windows7.0'. This package may not be fully compatible with your project.",
-      "libraryId": "System.Windows.Interactivity.WPF",
-      "targetGraphs": [
-        "net7.0-windows7.0"
-      ]
-    }
-  ]
+  "logs": []
 }

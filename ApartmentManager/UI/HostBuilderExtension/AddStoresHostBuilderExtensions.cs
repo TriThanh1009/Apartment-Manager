@@ -69,7 +69,6 @@ namespace AM.UI.HostBuilderExtension
                 services.AddTransient<FurnitureUpdateVMUI>();
                 services.AddTransient<RentalContractAddVMUI>();
                 services.AddTransient<RentalContractUpdateVMUI>();
-                services.AddTransient<DepositContractAddVMUI>();
                 services.AddTransient<DepositContractUpdateVMUI>();
                 services.AddTransient<RoomDetailsInformationCustomerVMUI>();
                 services.AddTransient<PaymentExtensionHomeVMUI>();
@@ -94,7 +93,6 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<CreateViewModel<FurnitureAddVMUI>>(services => () => services.GetRequiredService<FurnitureAddVMUI>());
                 services.AddSingleton<CreateViewModel<RentalContractAddVMUI>>(services => () => services.GetRequiredService<RentalContractAddVMUI>());
                 services.AddSingleton<CreateViewModel<RentalContractUpdateVMUI>>(services => () => services.GetRequiredService<RentalContractUpdateVMUI>());
-                services.AddSingleton<CreateViewModel<DepositContractAddVMUI>>(services => () => services.GetRequiredService<DepositContractAddVMUI>());
                 services.AddSingleton<CreateViewModel<DepositContractUpdateVMUI>>(services => () => services.GetRequiredService<DepositContractUpdateVMUI>());
                 services.AddSingleton<CreateViewModel<FurnitureUpdateVMUI>>(services => () => services.GetRequiredService<FurnitureUpdateVMUI>());
                 services.AddSingleton<CreateViewModel<RoomDetailsInformationCustomerVMUI>>(services => () => services.GetRequiredService<RoomDetailsInformationCustomerVMUI>());
@@ -121,7 +119,6 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<ViewModelDelegateRenavigator<FurnitureUpdateVMUI>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<RentalContractAddVMUI>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<RentalContractUpdateVMUI>>();
-                services.AddSingleton<ViewModelDelegateRenavigator<DepositContractAddVMUI>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<DepositContractUpdateVMUI>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<BillAddVMUI>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<BillUpdateVMUI>>();

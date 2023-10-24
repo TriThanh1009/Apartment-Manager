@@ -39,7 +39,7 @@ namespace AM.UI.ViewModelUI.Factory
         private readonly CreateViewModel<PaymentExtensionHomeVMUI> _createPaymentExtensionHomeVMUI;
         private readonly CreateViewModel<RentalContractAddVMUI> _createRentalAddVM;
         private readonly CreateViewModel<RentalContractUpdateVMUI> _createRentalUpdateVM;
-        private readonly CreateViewModel<DepositContractAddVMUI> _createDepositAddVM;
+
         private readonly CreateViewModel<DepositContractUpdateVMUI> _createDepositUpdateVM;
         private readonly CreateViewModel<RoomDetailsInformationCustomerVMUI> _createRoomDetailsInformationCustomer;
         private readonly CreateViewModel<BillAddVMUI> _createBillAddVM;
@@ -55,7 +55,7 @@ namespace AM.UI.ViewModelUI.Factory
                                         CreateViewModel<AddCustomerVMUI> createAddCustomerVM, CreateViewModel<RoomDetailsAddImageVMUI> createRoomDeatailsAddImageVM,
                                         CreateViewModel<FurnitureAddVMUI> createFurnitureAddVM, CreateViewModel<FurnitureUpdateVMUI> createFurnitureUpdateVM,
                                         CreateViewModel<RentalContractAddVMUI> createRentalContractAddVM, CreateViewModel<RentalContractUpdateVMUI> createRentalContractUpdateVM,
-                                        CreateViewModel<DepositContractAddVMUI> createDepositContractAddVM, CreateViewModel<DepositContractUpdateVMUI> createDepositContractUpdateVM,
+                                        CreateViewModel<DepositContractUpdateVMUI> createDepositContractUpdateVM,
                                         CreateViewModel<RoomDetailsInformationCustomerVMUI> createRoomDetailsInformationCustomer, CreateViewModel<BillAddVMUI> createBillAddVM,
                                         CreateViewModel<BillUpdateVMUI> createBillUpdateVM, CreateViewModel<StatisticsHomeVMUI> createStatisticsHomeVM)
         {
@@ -76,7 +76,6 @@ namespace AM.UI.ViewModelUI.Factory
             _createRoomDetailsInformationCustomer = createRoomDetailsInformationCustomer;
             _createRentalAddVM = createRentalContractAddVM;
             _createRentalUpdateVM = createRentalContractUpdateVM;
-            _createDepositAddVM = createDepositContractAddVM;
             _createDepositUpdateVM = createDepositContractUpdateVM;
             _createRoomDetailsInformationCustomer = createRoomDetailsInformationCustomer;
             _createBillAddVM = createBillAddVM;
@@ -148,9 +147,6 @@ namespace AM.UI.ViewModelUI.Factory
 
                 case ViewType.RentalContractUpdate:
                     return _createRentalUpdateVM();
-
-                case ViewType.DepositContractAdd:
-                    return _createDepositAddVM();
 
                 case ViewType.DepositContractUpdate:
                     return _createDepositUpdateVM();

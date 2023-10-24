@@ -40,7 +40,7 @@
                       Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding ID}" />
-                    <DataGridTextColumn Header="IDroom" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding IDroom}" />
+                    <DataGridTextColumn Header="RoomName" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding RoomName}" />
                     <DataGridTextColumn Header="Name" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Name}" />
                     <DataGridTextColumn Header="Sex" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Sex}" />
                     <DataGridTextColumn Header="Birthday" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Birthday}" />

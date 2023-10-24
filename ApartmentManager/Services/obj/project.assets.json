@@ -1225,8 +1225,7 @@
           "Microsoft.Extensions.Configuration.FileExtensions": "7.0.0",
           "Microsoft.Extensions.Configuration.Json": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39",
-          "System.Windows.Interactivity.WPF": "2.0.20525"
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39"
         },
         "compile": {
           "bin/placeholder/Data.dll": {}

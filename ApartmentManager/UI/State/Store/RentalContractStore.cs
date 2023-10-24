@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModel.People;
 using ViewModel.RentalContract;
 
 namespace AM.UI.State.Store
@@ -16,6 +17,8 @@ namespace AM.UI.State.Store
         private readonly Apartment _apartment;
         private readonly List<RentalContractVm> _rentalvm;
         private readonly IRentalContract _irental;
+        private readonly IPeople _Ipeople;
+        private readonly ApartmentStore _apartmentStore;
         public List<RentalContractVm> rentalvm => _rentalvm;
 
         private Lazy<Task> _initialLazyRental;
@@ -25,19 +28,24 @@ namespace AM.UI.State.Store
         public event Action<RentalContractVm> RentalContractUpdate;
 
         public event Action<int> RentalContractDelete;
-        public RentalContractStore(Apartment apartment,IRentalContract irental)
+
+        public RentalContractStore(Apartment apartment, ApartmentStore apartmentStore, IPeople people, IRentalContract irental)
         {
             _irental = irental;
+            _Ipeople = people;
             _apartment = apartment;
+            _apartmentStore = apartmentStore;
             _rentalvm = new List<RentalContractVm>();
             _initialLazyRental = new Lazy<Task>(InitializeRentalContract);
         }
+
         private async Task InitializeRentalContract()
         {
             List<RentalContractVm> rental = await _apartment.GetAllRentalContract();
             _rentalvm.Clear();
             _rentalvm.AddRange(rental);
         }
+
         public async Task LoadeRentalContract()
         {
             try
@@ -58,7 +66,6 @@ namespace AM.UI.State.Store
             {
                 ID = result.ID,
                 RoomName = model.RoomCombobox.Name,
-                LeaderName = model.CustomerCombobox.Name,
                 ReceiveDate = result.ReceiveDate,
                 CheckOutDate = result.CheckOutDate,
                 RoomMoney = result.RoomMoney,
@@ -102,8 +109,20 @@ namespace AM.UI.State.Store
         public async Task<bool> DeleteRentalContract(int id)
         {
             var result = await _irental.Delete(id);
-            _rentalvm.RemoveAll(x=>x.ID == id);
+            _rentalvm.RemoveAll(x => x.ID == id);
             RentalContractDelete?.Invoke(id);
+            return result;
+        }
+
+        public async Task<int> GetlastIDpeople()
+        {
+            var result = await _apartmentStore.GetlastIDpeople();
+            return result;
+        }
+
+        public async Task<int> CreateManyCustomer(List<PeopleCreateViewModel> request)
+        {
+            var result = await _apartmentStore.CreateManyCustomer(request);
             return result;
         }
     }

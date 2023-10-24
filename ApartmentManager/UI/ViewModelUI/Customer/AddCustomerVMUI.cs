@@ -1,6 +1,8 @@
 ﻿using AM.UI.Command;
+using AM.UI.Command.LoadDataBase.LoadCombobox;
 using AM.UI.State;
 using AM.UI.State.Navigators;
+using AM.UI.State.Store;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI.Factory;
 using Azure.Core;
@@ -19,6 +21,7 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
 using ViewModel.People;
+using ViewModel.RentalContract;
 
 namespace AM.UI.ViewModelUI.Customer
 {
@@ -26,22 +29,25 @@ namespace AM.UI.ViewModelUI.Customer
     {
         private readonly IPeople _Ipeople;
 
-        private int _IDRoom;
+        private int _IDRT;
 
-        public int IDRoom
+        public int IDRT
         {
-            get { return _IDRoom; }
+            get { return _IDRT; }
             set
             {
-                _IDRoom = value;
-                OnPropertyChanged(nameof(IDRoom));
+                _IDRT = value;
+                OnPropertyChanged(nameof(IDRT));
             }
         }
 
-        private ObservableCollection<string> _combosex;
+        private ObservableCollection<Sex> _combosex;
 
-        public IEnumerable<string> ComboSex => _combosex;
+        public IEnumerable<Sex> ComboSex => _combosex;
 
+        private ObservableCollection<RentalContractForCombobox> _ListRT;
+
+        public IEnumerable<RentalContractForCombobox> ListRT => _ListRT;
         private string _name;
 
         public string name
@@ -141,6 +147,7 @@ namespace AM.UI.ViewModelUI.Customer
         public ICommand Cancel { get; }
         public ICommand Confirm { get; }
         public ICommand Succeccd { get; }
+        public ICommand LoadComboboxRental { get; }
 
         private readonly Dictionary<string, List<string>> _propertyNameToErrorsDictionary;
 
@@ -148,15 +155,13 @@ namespace AM.UI.ViewModelUI.Customer
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
-        public AddCustomerVMUI(IPeople people, INavigator navigator, IAparmentViewModelFactory factory, ApartmentStore apartmentStore)
+        public AddCustomerVMUI(IPeople people, INavigator navigator, IAparmentViewModelFactory factory, ApartmentStore apartmentStore, ComboboxStore comboboxStore)
         {
-            _combosex = new ObservableCollection<string>();
             _propertyNameToErrorsDictionary = new Dictionary<string, List<string>>();
-            foreach (Sex sex in Enum.GetValues(typeof(Sex)))
-            {
-                _combosex.Add(sex.ToString());
-            }
+            _ListRT = new ObservableCollection<RentalContractForCombobox>();
+            _combosex = new ObservableCollection<Sex> { Sex.Male, Sex.Female };
             _Ipeople = people;
+
             Cancel = new UpdateCurrentViewModelCommand(navigator, factory);
             Succeccd = new AddCusomerCommand(this, apartmentStore, navigator, factory);
             Confirm = new RelayAsyncCommand(Addcustomer);
@@ -173,7 +178,7 @@ namespace AM.UI.ViewModelUI.Customer
             {
                 _propertyNameToErrorsDictionary.Add(propertyName, new List<string>());
             }
-             
+
             _propertyNameToErrorsDictionary[propertyName].Add(errorMessage);
 
             OnErrorsChanged(propertyName);
@@ -182,6 +187,11 @@ namespace AM.UI.ViewModelUI.Customer
         public async Task Addcustomer()
         {
             Succeccd.Execute(null);
+        }
+
+        public void AddCombobox(List<RentalContractForCombobox> data)
+        {
+            data.ForEach(x => _ListRT.Add(x));
         }
 
         private void ClearErrors(string propertyName)

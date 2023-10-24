@@ -27,9 +27,9 @@ namespace AM.UI.ViewModelUI.Customer
         private readonly ApartmentStore _people;
         public string a = "";
         private CustomerVM _customerVM;
-        private ObservableCollection<string> _combosex;
+        private ObservableCollection<Sex> _combosex;
 
-        public IEnumerable<string> ComboSex => _combosex;
+        public IEnumerable<Sex> ComboSex => _combosex;
 
         public CustomerVM customerVM
         {
@@ -47,13 +47,9 @@ namespace AM.UI.ViewModelUI.Customer
 
         public UpdateCustomerVMUI(ApartmentStore people, CustomerVM customer, INavigator navigator, IAparmentViewModelFactory factory)
         {
-            _combosex = new ObservableCollection<string>();
-            foreach (Sex sex in Enum.GetValues(typeof(Sex)))
-            {
-                _combosex.Add(sex.ToString());
-            }
-            _people = people;
+            _combosex = new ObservableCollection<Sex> { Sex.Male, Sex.Female };
             customerVM = customer;
+            _people = people;
             Cancel = new UpdateCurrentViewModelCommand(navigator, factory);
             Succeccd = new UpdateCustomerCommand(this, people, navigator, factory);
             Confirm = new RelayAsyncCommand(Updatecustomer);

@@ -33,7 +33,7 @@ namespace AM.UI.ViewModelUI.DepositContract
         private readonly DepositContractStore _apartmentStore;
         private readonly ComboboxStore _comboboxStore;
         private ObservableCollection<DepositsContractVm> _deposit;
-        
+
         public ICommand LoadDataBase { get; }
 
         public ICommand DepositContractUpdateNav { get; }
@@ -44,11 +44,10 @@ namespace AM.UI.ViewModelUI.DepositContract
 
         public IEnumerable<DepositsContractVm> Deposit => _deposit;
 
-
-
         public bool HasData => _deposit.Any();
 
         public bool _IsLoading;
+
         public bool IsLoading
         {
             get { return _IsLoading; }
@@ -60,6 +59,7 @@ namespace AM.UI.ViewModelUI.DepositContract
         }
 
         public string _MessageError;
+
         public string MessageError
         {
             get { return _MessageError; }
@@ -70,8 +70,8 @@ namespace AM.UI.ViewModelUI.DepositContract
             }
         }
 
-
         private DepositsContractVm _SelectDeposits;
+
         public DepositsContractVm SelectDeposits
         {
             get { return _SelectDeposits; }
@@ -82,9 +82,7 @@ namespace AM.UI.ViewModelUI.DepositContract
             }
         }
 
-
         public bool HasMessageError => !string.IsNullOrEmpty(MessageError);
-
 
         public DepositContractHomeVMUI(IDepositsContract ideposit, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, DepositContractStore apartmentStore, ComboboxStore comboboxStore)
         {
@@ -92,23 +90,19 @@ namespace AM.UI.ViewModelUI.DepositContract
             _navigator = navigator;
             _ViewModelFactory = ViewModelFactory;
             _apartmentStore = apartmentStore;
-            DepositNav = new UpdateCurrentViewModelCommand(_navigator, _ViewModelFactory);
+            DepositNav = new RelayCommand(NavToadd);
             _deposit = new ObservableCollection<DepositsContractVm>();
             LoadDataBase = new LoadDepositContractview(this, apartmentStore);
             LoadDataBase.Execute(null);
             _deposit.CollectionChanged += OnReservationsChanged;
             _comboboxStore = comboboxStore;
-            DepositNav = new UpdateCurrentViewModelCommand(_navigator, _ViewModelFactory); 
             DepositContractUpdateNav = new RelayCommand(NavToDepositUpdate);
-            DeleteConFirm = new DepositContractDeleteCommand(this,_apartmentStore,_navigator, _ViewModelFactory);
+            DeleteConFirm = new DepositContractDeleteCommand(this, _apartmentStore, _navigator, _ViewModelFactory);
         }
 
-        public void NavToUpdate(object parameter)
+        public void NavToadd(object parameter)
         {
-            if(parameter is DepositsContractVm deposit)
-            {
-                _navigator.CurrentViewModel = new DepositContractUpdateVMUI(_navigator,_ViewModelFactory,_ideposit,_apartmentStore,deposit, _comboboxStore);
-            }
+            _navigator.CurrentViewModel = new DepositContractAddVMUI(0, _apartmentStore, _navigator, _ViewModelFactory, _comboboxStore);
         }
 
         public void UpdateData(List<DepositsContractVm> data)
@@ -131,18 +125,15 @@ namespace AM.UI.ViewModelUI.DepositContract
 
         public void NavToDepositUpdate(object parameter)
         {
-            if(parameter is DepositsContractVm deposit)
+            if (parameter is DepositsContractVm deposit)
             {
-                _navigator.CurrentViewModel = new DepositContractUpdateVMUI(_navigator,_ViewModelFactory,_ideposit,_apartmentStore,deposit, _comboboxStore);
+                _navigator.CurrentViewModel = new DepositContractUpdateVMUI(_navigator, _ViewModelFactory, _ideposit, _apartmentStore, deposit, _comboboxStore);
             }
         }
-
 
         private void OnReservationsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChanged(nameof(HasData));
         }
-
     }
-    
 }

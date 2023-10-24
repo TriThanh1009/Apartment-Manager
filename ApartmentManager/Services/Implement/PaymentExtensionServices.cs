@@ -71,7 +71,9 @@ namespace Services.Implement
                             join pc in _context.Bill on p.IDBill equals pc.ID
                             join pt in _context.RentalContract on pc.IDRTC equals pt.ID
                             join px in _context.Room on pt.IDroom equals px.ID
-                            join pz in _context.People on pt.IDLeader equals pz.ID
+                            join er in _context.PeopleRental on pt.ID equals er.IDRental
+                            join pz in _context.People on er.IDPeople equals pz.ID
+                            where er.Membership == Data.Enum.Membership.Leader
                             select new { pc, p, px, pz };
                 var data = await
                     query.Select(x => new PaymentExtensionVm()
@@ -95,8 +97,9 @@ namespace Services.Implement
                             join pc in _context.Bill on p.IDBill equals pc.ID
                             join pt in _context.RentalContract on pc.IDRTC equals pt.ID
                             join px in _context.Room on pt.IDroom equals px.ID
-                            join pz in _context.People on pt.IDLeader equals pz.ID
-                            where p.Days.Month == date.Month && p.Days.Year == date.Year
+                            join er in _context.PeopleRental on pt.ID equals er.IDRental
+                            join pz in _context.People on er.IDPeople equals pz.ID
+                            where p.Days.Month == date.Month && p.Days.Year == date.Year && er.Membership == Data.Enum.Membership.Leader
                             select new { pc, p, px, pz };
                 var data = await
                     query.Select(x => new PaymentExtensionVm()

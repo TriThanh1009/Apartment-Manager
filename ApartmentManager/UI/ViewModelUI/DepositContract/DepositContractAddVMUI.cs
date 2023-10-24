@@ -93,7 +93,7 @@ namespace AM.UI.ViewModelUI.DepositContract
             }
         }
 
-        public DepositContractAddVMUI(DepositContractStore store, INavigator navigator, IAparmentViewModelFactory viewModelFactory, ComboboxStore comboboxStore)
+        public DepositContractAddVMUI(int idRoom, DepositContractStore store, INavigator navigator, IAparmentViewModelFactory viewModelFactory, ComboboxStore comboboxStore)
         {
             _store = store;
             _navigator = navigator;

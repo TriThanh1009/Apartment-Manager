@@ -50,7 +50,12 @@ namespace AM.UI.ViewModelUI.RentalContract
         public DateTime CheckOutDate
         {
             get { return _CheckOutDate; }
-            set { _ReceiveDate = value; OnPropertyChanged(nameof(CheckOutDate)); }
+            set
+            {
+                _CheckOutDate = value;
+
+                OnPropertyChanged(nameof(CheckOutDate));
+            }
         }
 
         private int _RoomMoney;

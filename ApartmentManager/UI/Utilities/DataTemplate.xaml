@@ -117,12 +117,13 @@
     <DataTemplate DataType="{x:Type vmdeposit:DepositContractHomeVMUI}">
         <depositview:DepositContractHome />
     </DataTemplate>
-    <DataTemplate DataType="{x:Type vm:PaymentExtensionHomeVMUI}">
-        <view:PEHomeView />
-    </DataTemplate>
 
     <DataTemplate DataType="{x:Type vmdeposit:DepositContractAddVMUI}">
         <depositview:DepositContractAdd />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:PaymentExtensionHomeVMUI}">
+        <view:PEHomeView />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type vmdeposit:DepositContractUpdateVMUI}">
