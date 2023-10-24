@@ -31,7 +31,7 @@ namespace AM.UI.Command.Bill
 
         public override async Task ExecuteAsync(object parameter)
         {
-            var result = await _store.DeleteBill(_billvm.ID);
+            var result = await _store.DeleteBill(_billvm.SelectBill.ID);
             if (result == true)
             {
                 new MessageBoxCustom("Delete Successed", MessageType.Success, MessageButtons.Ok).ShowDialog();
@@ -41,7 +41,6 @@ namespace AM.UI.Command.Bill
             {
                 new MessageBoxCustom("Delete Fail", MessageType.Warning, MessageButtons.Ok).ShowDialog();
             }
-
         }
 
         private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)

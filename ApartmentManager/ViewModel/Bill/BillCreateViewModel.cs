@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ViewModel.RentalContract;
+using ViewModel.Room;
 
 namespace ViewModel.Bill
 {

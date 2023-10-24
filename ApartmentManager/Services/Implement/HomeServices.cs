@@ -143,9 +143,6 @@ namespace Services.Implement
             {
                 
                 var querycus = await _context.People.ToListAsync();
-                ///<summary>
-                /// có thể sai
-                ///</summary >
                 var queryroom = from p in _context.Room
                                 join pt in _context.RentalContract on p.ID equals pt.IDroom into grouping
                                 from px in grouping.DefaultIfEmpty()

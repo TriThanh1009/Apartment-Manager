@@ -35,7 +35,8 @@ namespace Services.Implement
                 RoomMoney = model.RoomMoney,
                 ElectricMoney = model.ElectricMoney,
                 WaterMoney = model.WaterMoney,
-                ServiceMoney = model.ServiceMoney
+                ServiceMoney = model.ServiceMoney,
+                Active = model.Active,
             };
             return await _base.Create(rental);
         }
@@ -79,7 +80,8 @@ namespace Services.Implement
                         RoomMoney = x.p.RoomMoney,
                         ElectricMoney = x.p.ElectricMoney,
                         WaterMoney = x.p.WaterMoney,
-                        ServiceMoney = x.p.ServiceMoney
+                        ServiceMoney = x.p.ServiceMoney,
+                        Active = x.p.Active
                     }).ToListAsync();
                 var pagedView = new PagedResult<RentalContractVm>()
                 {
@@ -101,8 +103,9 @@ namespace Services.Implement
             }
             var result1 = result.Select(e => new RentalContractForCombobox
             {
-                IDRental = e.ID
-
+                IDRental = e.ID,
+                ElectricMoney = e.ElectricMoney,
+                WaterMoney = e.WaterMoney
             }).ToList();
             return result1;
         }
@@ -124,6 +127,7 @@ namespace Services.Implement
             update.ElectricMoney = model.ElectricMoney;
             update.WaterMoney = model.WaterMoney;
             update.ServiceMoney = model.ServiceMoney;
+            update.Active = model.Active;
             return await _base.Update(model.ID, update);
         }
     }

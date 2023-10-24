@@ -98,6 +98,9 @@
     <Compile Update="View\Navigation.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Statistics\StatisticsHomeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
@@ -218,6 +221,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Navigation.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Statistics\StatisticsHomeView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

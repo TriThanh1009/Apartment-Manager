@@ -35,10 +35,10 @@ namespace AM.UI.ViewModelUI.Room
         private readonly IRoom _iroom;
         private readonly RoomStore _apartmentStore;
         private readonly RoomVm _roomUpdateViewModel;
+        private readonly ComboboxStore _comboboxStore;
         private readonly RentalContractHomeVMUI rental;
         private ObservableCollection<CustomerVM> _room;
         public IEnumerable<CustomerVM> Roomm => _room;
-
 
         public ICommand LoadCustomerData { get; }
         public ICommand UpdateConfirm { get; }
@@ -54,40 +54,34 @@ namespace AM.UI.ViewModelUI.Room
         public ObservableCollection<CustomerForCombobox> _comboboxforCustomer;
         public IEnumerable<CustomerForCombobox> comboboxforCustomer => _comboboxforCustomer;
 
-
         private CustomerForCombobox _SelectCustomer;
+
         public CustomerForCombobox SelectCustomer
         {
             get { return _SelectCustomer; }
             set
             {
-                
-                _SelectCustomer = value;     
+                _SelectCustomer = value;
                 OnPropertyChanged(nameof(SelectCustomer));
             }
         }
 
-
-
-        public RoomUpdateVMUI(IRoom iroom, RoomVm model,INavigator navigator,IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore)
+        public RoomUpdateVMUI(IRoom iroom, RoomVm model, INavigator navigator, IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore, ComboboxStore ComboboxStore)
         {
             _viewModelFactory = viewModelFactory;
             _iroom = iroom;
             _roomUpdateViewModel = model;
+            _comboboxStore = ComboboxStore;
             _navigator = navigator;
             _apartmentStore = apartmentStore;
-            LoadCustomerData = new LoadComboboxRoomForRoomUpdate(this, _apartmentStore);
+            LoadCustomerData = new LoadAllCombobox(_comboboxStore, this);
             LoadCustomerData.Execute(null);
             _comboboxforCustomer = new ObservableCollection<CustomerForCombobox>();
             UpdateSuccess = new UpdateRoomCommand(this, navigator, viewModelFactory, apartmentStore);
             UpdateConfirm = new RelayCommand(UpdateRoom);
             RoomHomeNav = new UpdateCurrentViewModelCommand(_navigator, _viewModelFactory);
-             _comboboxforCustomer.CollectionChanged += OnReservationsChanged;
-
+            _comboboxforCustomer.CollectionChanged += OnReservationsChanged;
         }
-
-
-
 
         public void UpdateDataCustomer(List<CustomerForCombobox> data)
         {
@@ -98,7 +92,6 @@ namespace AM.UI.ViewModelUI.Room
         {
             UpdateSuccess.Execute(null);
         }
-
 
         public RoomVm Room
         {

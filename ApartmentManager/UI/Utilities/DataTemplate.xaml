@@ -9,6 +9,7 @@
                     xmlns:vmdeposit="clr-namespace:AM.UI.ViewModelUI.DepositContract"
                     xmlns:vmrental="clr-namespace:AM.UI.ViewModelUI.RentalContract"
                     xmlns:vmbill="clr-namespace:AM.UI.ViewModelUI.Bills"
+                    xmlns:vmstatistics="clr-namespace:AM.UI.ViewModelUI.Statistics"
 
                     xmlns:people="clr-namespace:ViewModel.People;assembly=ViewModel"
                     xmlns:room="clr-namespace:ViewModel.Room;assembly=ViewModel"
@@ -18,6 +19,7 @@
                     xmlns:depositview="clr-namespace:AM.UI.View.DepositContract"
                     xmlns:billview="clr-namespace:AM.UI.View.Bills"
                     xmlns:furnitureview="clr-namespace:AM.UI.View.Furniture"
+                    xmlns:statistics="clr-namespace:AM.UI.View.Statistics"
                     xmlns:view="clr-namespace:AM.UI.View"
                     xmlns:viewpeople="clr-namespace:AM.UI.View.People"
                     xmlns:vh="clr-namespace:AM.UI.View.Homes">
@@ -43,7 +45,7 @@
     <DataTemplate DataType="{x:Type vm:CustomerVMUI}">
         <viewpeople:Home />
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type vmpeople:AddCustomerVMUI}">
         <viewpeople:AddCustomer />
     </DataTemplate>
@@ -59,11 +61,10 @@
     <DataTemplate DataType="{x:Type vmbill:BillAddVMUI}">
         <billview:BillAdd />
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type vmbill:BillUpdateVMUI}">
         <billview:BillUpdate />
     </DataTemplate>
-    
 
     <DataTemplate DataType="{x:Type vm:RoomHomeVMUI}">
         <roomview:RoomHome />
@@ -88,8 +89,7 @@
     <DataTemplate DataType="{x:Type vmrd:RoomDetailsInformationCustomerVMUI}">
         <roomdetailsview:RoomDetailsInformationCustomer />
     </DataTemplate>
-    
-    
+
     <DataTemplate DataType="{x:Type vmrf:FurnitureUpdateVMUI}">
         <furnitureview:FurnitureUpdate />
     </DataTemplate>
@@ -105,7 +105,6 @@
     <DataTemplate DataType="{x:Type vmrental:RentalContractUpdateVMUI}">
         <rentalview:RentalContractUpdate />
     </DataTemplate>
-
 
     <DataTemplate DataType="{x:Type vm:FurnitureHomeVMUI}">
         <furnitureview:FurnitureHome />
@@ -130,6 +129,7 @@
         <depositview:DepositContractUpdate />
     </DataTemplate>
 
-
-
+    <DataTemplate DataType="{x:Type vmstatistics:StatisticsHomeVMUI}">
+        <statistics:StatisticsHomeView />
+    </DataTemplate>
 </ResourceDictionary>

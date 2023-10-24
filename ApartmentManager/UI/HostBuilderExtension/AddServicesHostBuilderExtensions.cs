@@ -28,6 +28,7 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<IBill, BillServices>();
                 services.AddSingleton<IDepositsContract, DepositsContractServices>();
                 services.AddSingleton<IPaymentExtension, PaymentExtensionServices>();
+                services.AddSingleton<IStatistics, StatisticsService>();
                 services.AddSingleton<IRentalContract, RentalContractServices>();
                 services.AddSingleton<IBill, BillServices>();
                 services.AddSingleton<IHome, HomeServices>();
@@ -38,6 +39,7 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<IBaseControl<Furniture>, BaseControlServices<Furniture>>();
                 services.AddSingleton<IBaseControl<DepositsContract>, BaseControlServices<DepositsContract>>();
                 services.AddSingleton<IBaseControl<RentalContract>, BaseControlServices<RentalContract>>();
+
                 services.AddSingleton<IStorageService, FileStorageService>();
             });
 

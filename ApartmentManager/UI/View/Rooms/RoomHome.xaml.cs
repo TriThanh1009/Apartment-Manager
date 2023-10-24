@@ -24,5 +24,9 @@ namespace AM.UI.View.Rooms
         {
             InitializeComponent();
         }
+
+        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+        }
     }
 }

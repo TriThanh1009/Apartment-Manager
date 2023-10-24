@@ -30,21 +30,16 @@ namespace AM.UI.ViewModelUI.DepositContract
 
         public ICommand LoadDataForCombobox { get; }
 
-
-
-
-
         public ObservableCollection<RoomForCombobox> _comboboxforRoom;
         public IEnumerable<RoomForCombobox> comboboxforRoom => _comboboxforRoom;
 
-
         private RoomForCombobox _SelectRoom;
+
         public RoomForCombobox SelectRoom
         {
             get { return _SelectRoom; }
             set
             {
-
                 _SelectRoom = value;
                 OnPropertyChanged(nameof(SelectRoom));
             }
@@ -74,8 +69,6 @@ namespace AM.UI.ViewModelUI.DepositContract
             }
         }
 
-
-
         private DateTime _CheckOutDate = DateTime.Now;
 
         public DateTime CheckOutDate
@@ -88,10 +81,8 @@ namespace AM.UI.ViewModelUI.DepositContract
             }
         }
 
-
-
-
         private int _Money;
+
         public int Money
         {
             get { return _Money; }
@@ -102,8 +93,6 @@ namespace AM.UI.ViewModelUI.DepositContract
             }
         }
 
-
-
         public DepositContractAddVMUI(DepositContractStore store, INavigator navigator, IAparmentViewModelFactory viewModelFactory, ComboboxStore comboboxStore)
         {
             _store = store;
@@ -111,24 +100,20 @@ namespace AM.UI.ViewModelUI.DepositContract
             _viewModelFactory = viewModelFactory;
             _comboboxStore = comboboxStore;
             _comboboxforRoom = new ObservableCollection<RoomForCombobox>();
-            LoadDataForCombobox = new LoadComboboxForDepositContractAdd(_comboboxStore, this);
+            LoadDataForCombobox = new LoadAllCombobox(_comboboxStore, this);
             LoadDataForCombobox.Execute(null);
-            AddSuccess = new DepositContractAddCommand(_store, this,_navigator,_viewModelFactory);
+            AddSuccess = new DepositContractAddCommand(_store, this, _navigator, _viewModelFactory);
             AddConFirm = new RelayCommand(AddDeposit);
         }
 
-
-
         public void AddDeposit(object parameter)
         {
-
             AddSuccess.Execute(null);
         }
 
-
         public void UpdateDataForRoomCombobox(List<RoomForCombobox> data)
         {
-            data.ForEach(x=> _comboboxforRoom.Add(x));
+            data.ForEach(x => _comboboxforRoom.Add(x));
         }
     }
 }

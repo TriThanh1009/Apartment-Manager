@@ -30,29 +30,28 @@ namespace AM.UI.ViewModelUI.Room
         private readonly IAparmentViewModelFactory _viewModelFactory;
         private readonly IRoom _iroom;
         private readonly RoomStore _apartmentStore;
+        private readonly ComboboxStore _comboboxStore;
+
         private readonly RoomCreateViewModel _room;
         private ObservableCollection<CustomerForCombobox> _roomHasData;
         public IEnumerable<CustomerForCombobox> roomHasData => _roomHasData;
-
 
         public bool HasData => _roomHasData.Any();
 
         public ObservableCollection<CustomerForCombobox> _comboboxforCustomer;
         public IEnumerable<CustomerForCombobox> comboboxforCustomer => _comboboxforCustomer;
 
-
         private CustomerForCombobox _SelectCustomer;
+
         public CustomerForCombobox SelectCustomer
         {
             get { return _SelectCustomer; }
             set
             {
-
                 _SelectCustomer = value;
                 OnPropertyChanged(nameof(SelectCustomer));
             }
         }
-
 
         public ICommand RoomCreateSuccess { get; }
         public ICommand RoomCreateConFirm { get; }
@@ -60,6 +59,7 @@ namespace AM.UI.ViewModelUI.Room
         public ICommand RoomHomeNav { get; }
 
         private int _iD;
+
         public int iD
         {
             get { return _iD; }
@@ -70,8 +70,8 @@ namespace AM.UI.ViewModelUI.Room
             }
         }
 
-
         private string _name;
+
         public string name
         {
             get { return _name; }
@@ -81,7 +81,9 @@ namespace AM.UI.ViewModelUI.Room
                 OnPropertyChanged(nameof(name));
             }
         }
+
         private int _quantity;
+
         public int quantity
         {
             get { return _quantity; }
@@ -92,35 +94,32 @@ namespace AM.UI.ViewModelUI.Room
             }
         }
 
-
-
-         
-        public RoomAddVMUI(IRoom iroom ,INavigator navigator,IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore) {
+        public RoomAddVMUI(IRoom iroom, INavigator navigator, IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore, ComboboxStore ComboboxStore)
+        {
             _iroom = iroom;
             _navigator = navigator;
             _viewModelFactory = viewModelFactory;
             _apartmentStore = apartmentStore;
-            LoadCustomerData = new LoadComboboxCustomerForRoomAdd(this, _apartmentStore);
+            _comboboxStore = ComboboxStore;
+            LoadCustomerData = new LoadAllCombobox(_comboboxStore, this);
             LoadCustomerData.Execute(null);
-            RoomCreateSuccess = new AddRoomCommand(this,apartmentStore,navigator,viewModelFactory);
+            RoomCreateSuccess = new AddRoomCommand(this, apartmentStore, navigator, viewModelFactory);
             _comboboxforCustomer = new ObservableCollection<CustomerForCombobox>();
             RoomCreateConFirm = new RelayCommand(CreateRoom);
             _comboboxforCustomer.CollectionChanged += OnReservationsChanged;
             RoomHomeNav = new UpdateCurrentViewModelCommand(_navigator, _viewModelFactory);
-            
         }
 
+        public void CreateRoom(object parameter)
+        {
+            RoomCreateSuccess.Execute(null);
+        }
 
         public void LoadCustomerCombobox(List<CustomerForCombobox> data)
         {
             data.ForEach(x => _comboboxforCustomer.Add(x));
         }
 
-
-        public void CreateRoom(object parameter)
-        {
-            RoomCreateSuccess.Execute(null);
-        }
         public RoomCreateViewModel Room
         {
             get => _room;

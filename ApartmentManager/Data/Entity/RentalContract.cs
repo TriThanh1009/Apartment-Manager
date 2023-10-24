@@ -1,4 +1,5 @@
-﻿using Data.Relationships;
+﻿using Data.Enum;
+using Data.Relationships;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace Data.Entity
         public int ElectricMoney { get; set; }
         public int WaterMoney { get; set; }
         public int ServiceMoney { get; set; }
+
+        public Active Active { get; set; }
         public Room? Room { get; set; }
 
         public ICollection<PeopleRental> PeopleRental { get; } = new List<PeopleRental>();

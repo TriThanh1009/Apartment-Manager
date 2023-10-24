@@ -19,6 +19,7 @@ namespace AM.UI.Command.Bill
         private readonly IAparmentViewModelFactory _viewModel;
         private readonly BillStore _store;
         private readonly BillAddVMUI _billvm;
+
         public BillAddCommand(INavigator navigator, IAparmentViewModelFactory viewModel, BillStore store, BillAddVMUI billvm)
         {
             _navigator = navigator;
@@ -35,8 +36,8 @@ namespace AM.UI.Command.Bill
                 Rental = _billvm.SelectRental,
                 Active = _billvm.Active,
                 ElectricQuantity = _billvm.ElectricQuantity,
-                PayDate = _billvm.PayDate,    
                 TotalMoney = _billvm.TotalMoney,
+                PayDate = _billvm.PayDate,
             };
             var result = await _store.AddBill(create);
             if (result != null)
@@ -49,6 +50,7 @@ namespace AM.UI.Command.Bill
                 new MessageBoxCustom("Fail", MessageType.Success, MessageButtons.Ok).ShowDialog();
             }
         }
+
         private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             OnCanExecutedChanged();

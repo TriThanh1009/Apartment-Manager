@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:nav="clr-namespace:AM.UI.State.Navigators"
              xmlns:local="clr-namespace:AM.UI.View.Bills"
-             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" xmlns:converters="clr-namespace:AM.UI.Converters" xmlns:custom="clr-namespace:AM.UI.Utilities" 
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" xmlns:converters="clr-namespace:AM.UI.Converters" xmlns:custom="clr-namespace:AM.UI.Utilities"
              mc:Ignorable="d"
              Style="{StaticResource Page_Style}"
              d:DesignHeight="630" d:DesignWidth="730">
@@ -37,7 +37,7 @@
                     CommandParameter="{x:Static nav:ViewType.BillAdd}"
                     Content="Add" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top" />
         </StackPanel>
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="4"/>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="4" />
         <StackPanel Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="4" x:Name="main">
             <custom:LoadingSpinner
 
@@ -49,16 +49,16 @@
                     Foreground="Red"
                     Text="{Binding MessageError}"
                     Visibility="{Binding HasMessageError, Converter={StaticResource BoolToVis}}" />
-            <DataGrid ItemsSource="{Binding Bill}" Height="350" Style="{DynamicResource DataGridStyle1}" 
+            <DataGrid ItemsSource="{Binding Bill}" SelectedItem="{Binding SelectBill,UpdateSourceTrigger=PropertyChanged}" Height="350" Style="{DynamicResource DataGridStyle1}"
                       Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}"
                       CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ID}" />
                     <DataGridTextColumn Header="ID RTC" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding IDRTC}" />
-                    <DataGridTextColumn Header="ElectricQ" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ElectricQuantity}"/>
-                    <DataGridTextColumn Header="Active" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Active}"/>
-                    <DataGridTextColumn Header="PayDate" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding PayDate}"/>
-                    <DataGridTextColumn Header="TotalMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding TotalMoney}"/>
+                    <DataGridTextColumn Header="ElectricQ" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ElectricQuantity}" />
+                    <DataGridTextColumn Header="Active" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Active}" />
+                    <DataGridTextColumn Header="PayDate" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding PayDate}" />
+                    <DataGridTextColumn Header="TotalMoney" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding TotalMoney}" />
                     <DataGridTemplateColumn Header="Operation" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

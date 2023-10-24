@@ -44,18 +44,6 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBlock HorizontalAlignment="Left" Margin="390,180,0,0" TextWrapping="Wrap" Text="TotalMoney" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <TextBox HorizontalAlignment="Left" Margin="543,181,0,0" TextWrapping="Wrap" Text="{Binding TotalMoney}" VerticalAlignment="Top" Width="150" Height="24" />
-        <TextBox HorizontalAlignment="Left" Margin="543,211,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="2" RenderTransformOrigin="0.5,0.5">
-            <TextBox.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleY="-1" />
-                    <SkewTransform />
-                    <RotateTransform />
-                    <TranslateTransform />
-                </TransformGroup>
-            </TextBox.RenderTransform>
-        </TextBox>
         <TextBlock HorizontalAlignment="Left" Margin="36,120,0,0" TextWrapping="Wrap" Text="ID Rental" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
         <TextBox HorizontalAlignment="Left" Margin="215,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
@@ -67,9 +55,9 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <ComboBox ItemsSource="{Binding comboboxforRental}" SelectedItem="{Binding SelectRental, UpdateSourceTrigger=PropertyChanged}" Foreground="White" DisplayMemberPath="IDRental" HorizontalAlignment="Left" Margin="215,124,0,0" VerticalAlignment="Top" Width="150"/>
+        <ComboBox ItemsSource="{Binding comboboxforRental}" SelectedItem="{Binding SelectRental, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="IDRental" HorizontalAlignment="Left" Margin="215,124,0,0" VerticalAlignment="Top" Width="150" />
         <TextBlock HorizontalAlignment="Left" Margin="391,56,0,0" TextWrapping="Wrap" Text="Active" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <ComboBox ItemsSource="{Binding comboboxActive}" SelectedItem="{Binding Active, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="543,56,0,0" VerticalAlignment="Top" Width="150"/>
+        <ComboBox ItemsSource="{Binding comboboxActive}" SelectedItem="{Binding Active, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="543,56,0,0" VerticalAlignment="Top" Width="150" />
         <TextBox HorizontalAlignment="Left" Margin="543,88,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="2" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>

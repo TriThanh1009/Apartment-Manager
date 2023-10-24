@@ -39,6 +39,23 @@ namespace AM.UI.State.Navigators
             }
         }
 
+        // private ComboboxBase _CurrentCombobox;
+
         public event Action StateChanged;
+
+        /*public ComboboxBase CurrentCombobox
+        {
+            get { return _CurrentCombobox; }
+            set
+            {
+                _CurrentCombobox = value;
+                StateChanged?.Invoke();
+            }
+        }
+
+        public object LoadCurrentComboBox(ComboBoxType ComboboxType)
+        {
+            throw new NotImplementedException();
+        }*/
     }
 }

@@ -101,7 +101,7 @@ namespace Services.Implement
                             join pp in _context.RentalContract on p.ID equals pp.IDroom
                             join px in _context.PeopleRental on pp.ID equals px.IDRental
                             join pt in _context.People on px.IDPeople equals pt.ID
-                            where px.Membership == Data.Enum.Membership.Leader
+                            where px.Membership == Data.Enum.Membership.Leader && pp.Active == Data.Enum.Active.Yes
                             select new { p, pt, px, pp };
                 var query1 = await _context.Room.ToListAsync();
                 var data1 = query1.Select(x => new RoomVm()

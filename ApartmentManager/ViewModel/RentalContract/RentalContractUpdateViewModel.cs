@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,5 +21,7 @@ namespace ViewModel.RentalContract
         public int ElectricMoney { get; set; }
         public int WaterMoney { get; set; }
         public int ServiceMoney { get; set; }
+
+        public Active Active { get; set; }
     }
 }

@@ -26,6 +26,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -35,6 +36,7 @@ using ViewModel.Furniture;
 using ViewModel.People;
 using ViewModel.Room;
 using ViewModel.RoomDetails;
+using System.Windows.Interactivity;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace AM.UI.ViewModelUI
@@ -49,6 +51,7 @@ namespace AM.UI.ViewModelUI
         private readonly ApartmentDbContextFactory _factory;
         private readonly RoomDetailsHomeVMUI _roomDetailsHomeVMUI;
         private readonly RoomStore _apartmentStore;
+        private readonly ComboboxStore _ComboboxStore;
 
         private readonly INavigator _navigator;
         public ICommand RoomNavCommand { get; }
@@ -63,6 +66,10 @@ namespace AM.UI.ViewModelUI
         public ICommand FindingRoomCommand { get; }
 
         public ICommand LoadDataBase { get; }
+
+        public ICommand MouseEnterCommand { get; set; }
+
+        public ICommand MouseLeaveCommand { get; set; }
 
         public string _Search = "...";
 
@@ -173,13 +180,38 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-        public RoomHomeVMUI(IRoom iroom, INavigator navigator, IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore, ApartmentDbContextFactory factory, RentalContractHomeVMUI rentalVMUI)
+        private bool _ShowComment = true;
+
+        public bool ShowComment
+        {
+            get { return _ShowComment; }
+            set
+            {
+                _ShowComment = value;
+                OnPropertyChanged(nameof(ShowComment));
+            }
+        }
+
+        private string _TextForMouseEnter;
+
+        public string TextForMouseEnter
+        {
+            get { return _TextForMouseEnter; }
+            set
+            {
+                _TextForMouseEnter = value;
+                OnPropertyChanged(nameof(TextForMouseEnter));
+            }
+        }
+
+        public RoomHomeVMUI(IRoom iroom, INavigator navigator, IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore, ApartmentDbContextFactory factory, RentalContractHomeVMUI rentalVMUI, ComboboxStore comboboxStore)
         {
             _iroom = iroom;
             _viewModelFactory = viewModelFactory;
             _navigator = navigator;
             _room = new ObservableCollection<RoomVm>();
             _factory = factory;
+            _ComboboxStore = comboboxStore;
             LoadDataBase = new LoadRoomView(this, apartmentStore);
             LoadDataBase.Execute(null);
             RoomNavCommand = new UpdateCurrentViewModelCommand(navigator, viewModelFactory);
@@ -190,6 +222,19 @@ namespace AM.UI.ViewModelUI
             _room.CollectionChanged += OnReservationsChanged;
             _apartmentStore.RoomAdd += Store_Add;
             _apartmentStore.RoomDelete += Delete_Store;
+            MouseEnterCommand = new RelayCommand(SetShowCommentTrue);
+            MouseLeaveCommand = new RelayCommand(SetShowCommentFalse);
+        }
+
+        public void SetShowCommentTrue(object parameter)
+        {
+            _TextForMouseEnter = "This is Details";
+            _ShowComment = true;
+        }
+
+        public void SetShowCommentFalse(object parameter)
+        {
+            _ShowComment = false;
         }
 
         public void Test(object parameter)
@@ -228,7 +273,7 @@ namespace AM.UI.ViewModelUI
         {
             if (parameter is RoomVm r)
             {
-                _navigator.CurrentViewModel = new RoomUpdateVMUI(_iroom, r, _navigator, _viewModelFactory, _apartmentStore);
+                _navigator.CurrentViewModel = new RoomUpdateVMUI(_iroom, r, _navigator, _viewModelFactory, _apartmentStore, _ComboboxStore);
             }
         }
 

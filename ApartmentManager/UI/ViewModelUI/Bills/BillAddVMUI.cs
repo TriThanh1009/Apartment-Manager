@@ -36,33 +36,29 @@ namespace AM.UI.ViewModelUI.Bills
 
         public ICommand LoadComboBoxCommand { get; }
 
-
         public bool HasData => _BillForCollection.Any();
 
         private ObservableCollection<RentalContractForCombobox> _comboboxforRental;
         public IEnumerable<RentalContractForCombobox> comboboxforRental => _comboboxforRental;
 
-
-
-
         private ObservableCollection<string> _comboboxActive;
 
         public IEnumerable<string> comboboxActive => _comboboxActive;
 
-
         private RentalContractForCombobox _SelectRental;
+
         public RentalContractForCombobox SelectRental
         {
             get { return _SelectRental; }
             set
             {
-
                 _SelectRental = value;
                 OnPropertyChanged(nameof(SelectRental));
             }
         }
 
         private int _ID;
+
         public int ID
         {
             get { return _ID; }
@@ -74,6 +70,7 @@ namespace AM.UI.ViewModelUI.Bills
         }
 
         private int _ElectricQuantity;
+
         public int ElectricQuantity
         {
             get { return _ElectricQuantity; }
@@ -85,6 +82,7 @@ namespace AM.UI.ViewModelUI.Bills
         }
 
         private Active _Active = Active.Yes;
+
         public Active Active
         {
             get { return _Active; }
@@ -95,7 +93,8 @@ namespace AM.UI.ViewModelUI.Bills
             }
         }
 
-        private DateTime _PayDate;
+        private DateTime _PayDate = DateTime.Now;
+
         public DateTime PayDate
         {
             get { return _PayDate; }
@@ -107,6 +106,7 @@ namespace AM.UI.ViewModelUI.Bills
         }
 
         private int _TotalMoney;
+
         public int TotalMoney
         {
             get { return _TotalMoney; }
@@ -117,9 +117,6 @@ namespace AM.UI.ViewModelUI.Bills
             }
         }
 
-
-
-
         public BillAddVMUI(INavigator navigator, IAparmentViewModelFactory viewmodel, BillStore billStore, ComboboxStore comboboxStore)
         {
             _comboboxActive = new ObservableCollection<string>();
@@ -127,18 +124,17 @@ namespace AM.UI.ViewModelUI.Bills
             _viewmodel = viewmodel;
             _billStore = billStore;
             _comboboxStore = comboboxStore;
-            foreach(Active active in Enum.GetValues(typeof(Active)))
+            foreach (Active active in Enum.GetValues(typeof(Active)))
             {
                 _comboboxActive.Add(active.ToString());
             }
             _comboboxforRental = new ObservableCollection<RentalContractForCombobox>();
-            LoadComboBoxCommand = new LoadComboboxForBillAdd(this, _comboboxStore);
+            LoadComboBoxCommand = new LoadAllCombobox(_comboboxStore, this);
             LoadComboBoxCommand.Execute(null);
-            AddSuccess = new BillAddCommand(_navigator, _viewmodel,_billStore,this);
+            AddSuccess = new BillAddCommand(_navigator, _viewmodel, _billStore, this);
             AddConFirm = new RelayCommand(AddBill);
             _comboboxforRental.CollectionChanged += OnReservationsChanged;
         }
-
 
         public void AddBill(object parameter)
         {
@@ -147,7 +143,7 @@ namespace AM.UI.ViewModelUI.Bills
 
         public void UpdateRentalForCombobox(List<RentalContractForCombobox> data)
         {
-            data.ForEach(x=> _comboboxforRental.Add(x));
+            data.ForEach(x => _comboboxforRental.Add(x));
         }
 
         private void OnReservationsChanged(object sender, NotifyCollectionChangedEventArgs e)

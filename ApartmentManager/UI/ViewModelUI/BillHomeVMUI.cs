@@ -44,6 +44,7 @@ namespace AM.UI.ViewModelUI
         public bool HasData => _bill.Any();
 
         private string _MessageError;
+
         public string MessageError
         {
             get { return _MessageError; }
@@ -54,8 +55,9 @@ namespace AM.UI.ViewModelUI
                 OnPropertyChanged(nameof(HasMessageError));
             }
         }
-        
+
         public bool _Isloading;
+
         public bool Isloading
         {
             get { return _Isloading; }
@@ -78,9 +80,21 @@ namespace AM.UI.ViewModelUI
             }
         }
 
+        private BillVm _SelectBill;
+
+        public BillVm SelectBill
+        {
+            get { return _SelectBill; }
+            set
+            {
+                _SelectBill = value;
+                OnPropertyChanged(nameof(SelectBill));
+            }
+        }
+
         public bool HasMessageError => !string.IsNullOrEmpty(MessageError);
 
-        public BillHomeVMUI(IBill ibill,INavigator navigator,IAparmentViewModelFactory ViewModelFactory, BillStore apartmentStore,ComboboxStore comboboxStore)
+        public BillHomeVMUI(IBill ibill, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, BillStore apartmentStore, ComboboxStore comboboxStore)
         {
             _ibill = ibill;
             _navigator = navigator;
@@ -93,32 +107,28 @@ namespace AM.UI.ViewModelUI
             LoadDataBase.Execute(null);
             _bill.CollectionChanged += OnReservationsChanged;
             BillUpdateNav = new RelayCommand(NavToBillUpdate);
-            DeleteConFirm = new BillDeleteCommand(_navigator, _ViewModelFactory,_apartmentStore,this);
+            DeleteConFirm = new BillDeleteCommand(_navigator, _ViewModelFactory, _apartmentStore, this);
         }
+
         public void UpdateData(List<BillVm> data)
         {
-            MessageBox.Show(data.Count().ToString());
-            foreach(var bill in data)
+            foreach (var bill in data)
             {
                 _bill.Add(bill);
             }
         }
 
-
         public void NavToBillUpdate(object parameter)
         {
-            if(parameter is BillVm bill)
+            if (parameter is BillVm bill)
             {
-                _navigator.CurrentViewModel = new BillUpdateVMUI(_navigator, _ViewModelFactory, _apartmentStore, _comboboxStore,bill);
+                _navigator.CurrentViewModel = new BillUpdateVMUI(_navigator, _ViewModelFactory, _apartmentStore, _comboboxStore, bill);
             }
-           
         }
 
         private void OnReservationsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChanged(nameof(HasData));
         }
-
-
     }
 }

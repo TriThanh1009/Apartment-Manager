@@ -27,28 +27,24 @@ namespace AM.UI.ViewModelUI.DepositContract
         private readonly ComboboxStore _comboboxStore;
         private DepositsContractVm _depositViewmodel;
 
-
         public ICommand UpdateSuccess { get; }
         public ICommand UpdateConFirm { get; }
         public ICommand LoadDataForCombobox { get; }
 
-
         public ObservableCollection<RoomForCombobox> _comboboxforRoom;
         public IEnumerable<RoomForCombobox> comboboxforRoom => _comboboxforRoom;
 
-
         private RoomForCombobox _SelectRoom;
+
         public RoomForCombobox SelectRoom
         {
             get { return _SelectRoom; }
             set
             {
-
                 _SelectRoom = value;
                 OnPropertyChanged(nameof(SelectRoom));
             }
         }
-
 
         public DepositsContractVm DepositViewmodel
         {
@@ -65,27 +61,20 @@ namespace AM.UI.ViewModelUI.DepositContract
             _apartmentStore = apartmentStore;
             _depositViewmodel = depositViewmodel;
             _comboboxStore = comboboxStore;
-            LoadDataForCombobox = new LoadComboboxForDepositContractUpdate(_comboboxStore, this);
+            LoadDataForCombobox = new LoadAllCombobox(_comboboxStore, this);
             LoadDataForCombobox.Execute(null);
-            UpdateSuccess = new DepositContractUpdateCommand(this, _apartmentStore,_viewModelFactory,_navigator);
+            UpdateSuccess = new DepositContractUpdateCommand(this, _apartmentStore, _viewModelFactory, _navigator);
             UpdateConFirm = new RelayCommand(UpdateDeposit);
-
         }
-
 
         public void UpdateDeposit(object parameter)
         {
             UpdateSuccess.Execute(null);
         }
 
-
         public void UpdateDataForRoomCombobox(List<RoomForCombobox> data)
         {
             data.ForEach(x => _comboboxforRoom.Add(x));
         }
-
-
-
-
     }
 }

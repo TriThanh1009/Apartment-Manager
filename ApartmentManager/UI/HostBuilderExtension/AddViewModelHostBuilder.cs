@@ -31,6 +31,7 @@ namespace AM.UI.HostBuilderExtension
                 services.AddSingleton<RoomStore>();
                 services.AddSingleton<HomeStore>();
                 services.AddSingleton<ComboboxStore>();
+                services.AddSingleton<StatisticsStore>();
                 services.AddSingleton<NavigationVM>();
             });
 

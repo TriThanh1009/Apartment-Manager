@@ -13,7 +13,9 @@
          xmlns:nav="clr-namespace:AM.UI.State.Navigators"
         xmlns:converters="clr-namespace:AM.UI.Converters"
         xmlns:vm="clr-namespace:AM.UI.ViewModelUI"
+        xmlns:vmstatistics="clr-namespace:AM.UI.ViewModelUI.Statistics"
         xmlns:vmdeposit="clr-namespace:AM.UI.ViewModelUI.DepositContract"
+
         mc:Ignorable="d"
         Title="MainWindow"
         Height="680"
@@ -169,6 +171,22 @@
                                    Style="{StaticResource Image_Style}" />
 
                             <TextBlock Text="DepositContract"
+                                       Style="{StaticResource Text_Style}" />
+                        </Grid>
+                    </Menu:Btn>
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                               Command="{Binding UpdateCurrentViewModelCommand}"
+                              CommandParameter="{x:Static nav:ViewType.Statistics}"
+
+                              IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vmstatistics:StatisticsHomeVMUI}}">
+
+                        <Grid>
+
+                            <Image Source="/Images/img_setting.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Statistics"
                                        Style="{StaticResource Text_Style}" />
                         </Grid>
                     </Menu:Btn>
