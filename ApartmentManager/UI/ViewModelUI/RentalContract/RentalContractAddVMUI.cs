@@ -28,7 +28,6 @@ namespace AM.UI.ViewModelUI.RentalContract
         private ObservableCollection<RentalContractVm> _rentalforColection;
         public IEnumerable<RentalContractVm> rentalforColection => _rentalforColection;
 
-
         public ICommand CreateSuccess { get; }
 
         public ICommand CreateConFirm { get; }
@@ -37,9 +36,8 @@ namespace AM.UI.ViewModelUI.RentalContract
 
         //Properties
 
-
-
         private DateTime _ReceiveDate = DateTime.Now;
+
         public DateTime ReceiveDate
         {
             get { return _ReceiveDate; }
@@ -47,12 +45,17 @@ namespace AM.UI.ViewModelUI.RentalContract
         }
 
         private DateTime _CheckOutDate = DateTime.Now;
+
         public DateTime CheckOutDate
         {
             get { return _CheckOutDate; }
-            set { _ReceiveDate = value; OnPropertyChanged(nameof(CheckOutDate)); }
-        }
+            set
+            {
+                _CheckOutDate = value;
 
+                OnPropertyChanged(nameof(CheckOutDate));
+            }
+        }
 
         private int _RoomMoney;
 
@@ -81,7 +84,6 @@ namespace AM.UI.ViewModelUI.RentalContract
             { _WaterMoney = value; OnPropertyChanged(nameof(WaterMoney)); }
         }
 
-
         private int _ServiceMoney;
 
         public int ServiceMoney
@@ -93,40 +95,35 @@ namespace AM.UI.ViewModelUI.RentalContract
 
         public bool HasData => _rentalforColection.Any();
 
-
         public ObservableCollection<CustomerForCombobox> _comboboxforCustomer;
         public IEnumerable<CustomerForCombobox> comboboxforCustomer => _comboboxforCustomer;
 
-
         private CustomerForCombobox _SelectCustomer;
+
         public CustomerForCombobox SelectCustomer
         {
             get { return _SelectCustomer; }
             set
             {
-
                 _SelectCustomer = value;
                 OnPropertyChanged(nameof(SelectCustomer));
             }
         }
 
-
         public ObservableCollection<RoomForCombobox> _comboboxforRoom;
         public IEnumerable<RoomForCombobox> comboboxforRoom => _comboboxforRoom;
 
-
         private RoomForCombobox _SelectRoom;
+
         public RoomForCombobox SelectRoom
         {
             get { return _SelectRoom; }
             set
             {
-
                 _SelectRoom = value;
                 OnPropertyChanged(nameof(SelectRoom));
             }
         }
-
 
         public RentalContractAddVMUI(INavigator navigator, IAparmentViewModelFactory viewModelFactory, RentalContractStore apartmentStore, ComboboxStore comboboxStore)
         {
@@ -138,12 +135,11 @@ namespace AM.UI.ViewModelUI.RentalContract
             _comboboxforRoom = new ObservableCollection<RoomForCombobox>();
             CreateConFirm = new RelayCommand(AddRentalContract);
             CreateSuccess = new AddRentalContractCommand(this, _apartmentStore, _navigator, _viewModelFactory);
-            
+
             LoadDataForCombobox = new LoadComboxForRentalContractAdd(this, _comboboxStore);
             LoadDataForCombobox.Execute(null);
             _comboboxforRoom.CollectionChanged += OnReservationsChanged;
             _comboboxforCustomer.CollectionChanged += OnReservationsChanged;
-
         }
 
         public void AddRentalContract(object parameter)
@@ -165,6 +161,5 @@ namespace AM.UI.ViewModelUI.RentalContract
         {
             OnPropertyChanged(nameof(HasData));
         }
-
     }
 }

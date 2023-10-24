@@ -19,6 +19,8 @@ namespace Services.Interface
 
         Task<RentalContract> Update(RentalContractUpdateViewModel model);
 
+        Task<List<RentalContractForCombobox>> GetAllRental();
+
 
         Task<bool> Delete(int id);
 

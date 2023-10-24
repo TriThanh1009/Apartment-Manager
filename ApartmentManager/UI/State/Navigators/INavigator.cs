@@ -18,7 +18,7 @@ namespace AM.UI.State.Navigators
         PaymentExtensionHome, PaymentExtensionAdd, PaymentExtensionUpdate,
         Bill, BillAdd, BillUpdate,
         DepositContract,DepositContractAdd,DepositContractUpdate,
-        RoomImagesAdd
+        RoomImagesAdd,RoomDetailsInformationCustomer
     }
 
     public interface INavigator

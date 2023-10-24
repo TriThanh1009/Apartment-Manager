@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Entity
 {
-    public class Account
+    public class Account : DomainObject
     {
         public string Acc { get; set; }
         public string Pass { get; set; }

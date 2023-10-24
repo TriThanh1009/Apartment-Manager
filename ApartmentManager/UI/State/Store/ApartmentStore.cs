@@ -28,15 +28,11 @@ namespace AM.UI.State
         private readonly Apartment _apartment;
         private readonly List<CustomerVM> _customervm;
 
-
         private readonly IPeople _people;
-
 
         private Lazy<Task> _initializeLazy;
 
-
         public List<CustomerVM> customervm => _customervm;
-       
 
         public event Action<int> YouTubeViewerDeleted;
 
@@ -44,19 +40,17 @@ namespace AM.UI.State
 
         public event Action<CustomerVM> CustomerUpdate;
 
+        public event Action<List<CustomerVM>> CreatePeopleInRental;
 
-
-        public ApartmentStore(Apartment apartment, IPeople people,IRoom room,IRoomDetails roomimage)
+        public ApartmentStore(Apartment apartment, IPeople people, IRoom room, IRoomDetails roomimage)
         {
             _apartment = apartment;
             _people = people;
-           
-            _initializeLazy = new Lazy<Task>(Initialize);
-            
-            _customervm = new List<CustomerVM>();
-            
-        }
 
+            _initializeLazy = new Lazy<Task>(Initialize);
+
+            _customervm = new List<CustomerVM>();
+        }
 
         //----------------------------------------Customer
         public async Task Load()
@@ -72,11 +66,8 @@ namespace AM.UI.State
             }
         }
 
-
-
         private async Task Initialize()
         {
-            
             List<CustomerVM> customer = await _apartment.GetAllcustomer();
             _customervm.Clear();
             _customervm.AddRange(customer);
@@ -88,7 +79,7 @@ namespace AM.UI.State
             CustomerVM create = new CustomerVM
             {
                 ID = result.ID,
-                IDroom = request.IDroom,
+                //IDroom = request.IDroom,
                 Name = request.Name,
                 Sex = request.Sex,
                 Birthday= request.Birthday,
@@ -108,7 +99,7 @@ namespace AM.UI.State
             CustomerVM create = new CustomerVM
             {
                 ID = result.ID,
-                IDroom = request.IDroom,
+                //IDroom = request.IDroom,
                 Name = request.Name,
                 Sex = request.Sex,
                 Birthday= request.Birthday,
@@ -138,6 +129,42 @@ namespace AM.UI.State
             _customervm.RemoveAll(y => y.ID == id);
 
             YouTubeViewerDeleted?.Invoke(id);
+            return result;
+        }
+
+        public async Task<int> GetlastIDpeople()
+        {
+            var result = await _people.GetLast();
+            return result;
+        }
+
+        public async Task<int> CreateManyCustomer(List<PeopleCreateViewModel> request)
+        {
+            var lastid = await GetlastIDpeople();
+            var result = await _people.Createmany(request);
+            List<CustomerVM> resultList = new List<CustomerVM>();
+
+            request.ForEach(async x =>
+            {
+                lastid++;
+                var findid = await _people.GetByID(lastid);
+                CustomerVM add = new CustomerVM
+                {
+                    ID= lastid,
+                    RoomName = findid.RoomName,
+                    Name = findid.Name,
+                    Sex = findid.Sex,
+                    Birthday= findid.Birthday,
+                    PhoneNumber = findid.PhoneNumber,
+                    Email = findid.Email,
+                    IDCard = findid.IDCard,
+                    Address = findid.Address,
+                };
+                resultList.Add(add);
+            });
+
+            _customervm.AddRange(resultList);
+            CreatePeopleInRental?.Invoke(resultList);
             return result;
         }
     }

@@ -71,7 +71,7 @@ namespace AM.UI.ViewModelUI
             {
                 _ErrorMessage = value;
                 OnPropertyChanged(nameof(ErrorMessage));
-                OnPropertyChanged(nameof(HasMessageEroor));
+                OnPropertyChanged(nameof(HasMessageError));
             }
         }
 
@@ -95,7 +95,7 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-        public bool HasMessageEroor => !string.IsNullOrEmpty(ErrorMessage);
+        public bool HasMessageError => !string.IsNullOrEmpty(ErrorMessage);
 
         public RentalContractHomeVMUI(INavigator navigator, IAparmentViewModelFactory ViewModel, RentalContractStore apartmentStore, IRentalContract irental, RoomStore roomStore, ComboboxStore comboboxStore)
         {

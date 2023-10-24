@@ -11,9 +11,6 @@
     <Compile Update="View\Bills\BillAdd.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\Bills\BillDelete.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="View\Bills\BillHome.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -36,9 +33,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\Furniture\FurnitureAdd.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="View\Furniture\FurnitureDelete.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\Furniture\FurnitureHome.xaml.cs">
@@ -80,16 +74,13 @@
     <Compile Update="View\RoomDetails\RoomDetailsAdd.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\RoomDetails\RoomDetailsDelete.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="View\RoomDetails\RoomDetailsHome.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\RoomDetails\RoomDetailsShowLargeImage.xaml.cs">
+    <Compile Update="View\RoomDetails\RoomDetailsInformationCustomer.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\RoomDetails\RoomDetailsUpdate.xaml.cs">
+    <Compile Update="View\RoomDetails\RoomDetailsShowLargeImage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\Rooms\RoomAdd.xaml.cs">
@@ -136,9 +127,6 @@
     <Page Update="View\Bills\BillAdd.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\Bills\BillDelete.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="View\Bills\BillHome.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -164,9 +152,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Furniture\FurnitureAdd.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\Furniture\FurnitureDelete.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Furniture\FurnitureHome.xaml">
@@ -199,6 +184,9 @@
     <Page Update="View\People\Home.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\RentalContract\AddCustomerInRental.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\RentalContract\RentalContractAdd.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -211,16 +199,13 @@
     <Page Update="View\RoomDetails\RoomDetailsAdd.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\RoomDetails\RoomDetailsDelete.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="View\RoomDetails\RoomDetailsHome.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\RoomDetails\RoomDetailsShowLargeImage.xaml">
+    <Page Update="View\RoomDetails\RoomDetailsInformationCustomer.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\RoomDetails\RoomDetailsUpdate.xaml">
+    <Page Update="View\RoomDetails\RoomDetailsShowLargeImage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Rooms\RoomAdd.xaml">

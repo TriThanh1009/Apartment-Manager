@@ -29,18 +29,17 @@ namespace AM.UI.Model
         private readonly IPaymentExtension _IpaymentExtension;
         private readonly IRentalContract _IrentalContract;
 
-        public Apartment(IPeople Ipeople, IRoom iroom, IRoomDetails iroomdetail, IDepositsContract idepositContract,IBill ibill, IFurniture ifurniture, IPaymentExtension ipaymentExtension, IRentalContract irentalContract)
+        public Apartment(IPeople Ipeople, IRoom iroom, IRoomDetails iroomdetail, IDepositsContract idepositContract, IBill ibill, IFurniture ifurniture, IPaymentExtension ipaymentExtension, IRentalContract irentalContract)
         {
             _Ipeople = Ipeople;
             _Iroom = iroom;
             _iroomdetail = iroomdetail;
             _IdepositContract = idepositContract;
             _Ifurniture = ifurniture;
-            _Ibill = ibill; 
+            _Ibill = ibill;
             _IpaymentExtension = ipaymentExtension;
             _IrentalContract = irentalContract;
         }
-
 
         //RentalContract
         public async Task<List<RentalContractVm>> GetAllRentalContract()
@@ -49,7 +48,6 @@ namespace AM.UI.Model
             PagedResult<RentalContractVm> rental = await _IrentalContract.GetAllPage(paged);
             List<RentalContractVm> data = rental.Items;
             return data;
-
         }
 
         //Furniture
@@ -59,9 +57,7 @@ namespace AM.UI.Model
             PagedResult<FurnitureVm> furniture = await _Ifurniture.GetAllPage(paged);
             List<FurnitureVm> data = furniture.Items;
             return data;
-
         }
-
 
         //PaymentExtension
 
@@ -71,9 +67,7 @@ namespace AM.UI.Model
             PagedResult<PaymentExtensionVm> payment = await _IpaymentExtension.GetAllPage(paged);
             List<PaymentExtensionVm> data = payment.Items;
             return data;
-
         }
-
 
         //DepositContract
         public async Task<List<DepositsContractVm>> GetAllDepositContract()
@@ -82,7 +76,6 @@ namespace AM.UI.Model
             PagedResult<DepositsContractVm> deposit = await _IdepositContract.GetAllPage(paged);
             List<DepositsContractVm> data = deposit.Items;
             return data;
-
         }
 
         //Bill
@@ -92,18 +85,15 @@ namespace AM.UI.Model
             PagedResult<BillVm> bill = await _Ibill.GetAllPage(paged);
             List<BillVm> data = bill.Items;
             return data;
-
         }
-
 
         //Room Details
         public async Task<List<RoomDetailsFurniture>> GetAllRoomDetailsFurniture(int id)
         {
             RequestPaging paged = new RequestPaging { Keyword = null, PageIndex = 1, PageSize = 40 };
-            PagedResult<RoomDetailsFurniture> roomdetails = await _iroomdetail.GetAllFurniture(paged,id);
+            PagedResult<RoomDetailsFurniture> roomdetails = await _iroomdetail.GetAllFurniture(paged, id);
             List<RoomDetailsFurniture> data = roomdetails.Items;
             return data;
-
         }
 
         public async Task<List<RoomDetailsImage>> GetAllRoomDetailsImage(int id)
@@ -112,8 +102,8 @@ namespace AM.UI.Model
             PagedResult<RoomDetailsImage> roomdetailsImage = await _iroomdetail.GetAllImage(paged, id);
             List<RoomDetailsImage> data = roomdetailsImage.Items;
             return data;
-
         }
+
         // Room
         public async Task<List<RoomVm>> GettAllRoom()
         {
@@ -126,13 +116,8 @@ namespace AM.UI.Model
         //Customer
         public async Task<List<CustomerVM>> GetAllcustomer()
         {
-            RequestPaging a = new RequestPaging();
-            a.Keyword=null;
-            a.PageSize=100;
-            a.PageIndex=1;
-            PagedResult<CustomerVM> tes = await _Ipeople.GetAllPage(a);
-            List<CustomerVM> data = tes.Items;
-            return data;
+            List<CustomerVM> tes = await _Ipeople.GetAll();
+            return tes;
         }
     }
 }

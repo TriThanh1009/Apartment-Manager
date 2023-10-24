@@ -16,7 +16,6 @@ namespace Data.Configurations
             builder.ToTable("Room");
             builder.HasKey(x => x.ID);
             builder.Property(x => x.ID).IsRequired();
-            builder.Property(x => x.IDLeader).IsRequired();
             builder.Property(x => x.Quantity).IsRequired();
         }
     }

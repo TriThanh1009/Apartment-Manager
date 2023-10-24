@@ -75,6 +75,7 @@ namespace Services.Implement
                             join px in _context.Room on pt.IDroom equals px.ID
                             where p.PayDate.Month == date.Month && p.PayDate.Year == date.Year
                             select new { p, pt, px };
+
                 var payment = from p in _context.PaymentExtension
                               join pt in _context.Bill on p.IDBill equals pt.ID
                               where pt.PayDate.Month == date.Month &&    pt.PayDate.Year == date.Year
@@ -142,9 +143,15 @@ namespace Services.Implement
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var querycus = await _context.People.ToListAsync();
+                ///<summary>
+                /// có thể sai
+                ///</summary >
                 var queryroom = from p in _context.Room
-                                where p.IDLeader != 1
+                                join pt in _context.RentalContract on p.ID equals pt.IDroom into grouping
+                                from px in grouping.DefaultIfEmpty()
+                                where px == null
                                 select p;
+
                 var queryBill = from p in _context.Bill
                                 join pt in _context.PaymentExtension on p.ID equals pt.IDBill
                                 where p.PayDate.Month == date.Month && p.PayDate.Year == date.Year

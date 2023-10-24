@@ -23,6 +23,12 @@ namespace AM.UI.View.Bills
         public BillAdd()
         {
             InitializeComponent();
+            Elec.Text = "";
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

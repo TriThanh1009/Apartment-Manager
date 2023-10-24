@@ -14,7 +14,11 @@ namespace Services.Interface
         Task<PagedResult<CustomerVM>> GetAllPage(RequestPaging request);
 
         Task<List<CustomerVM>> GetAll();
-        
+
+        Task<CustomerVM> GetByID(int id);
+
+        Task<int> GetLast();
+
         Task<List<CustomerForCombobox>> GetIdNameForCombobox();
 
         Task<People> Edit(int id, PeopleUpdateViewModel request);
@@ -22,5 +26,7 @@ namespace Services.Interface
         Task<bool> Delete(int id);
 
         Task<People> Create(PeopleCreateViewModel request);
+
+        Task<int> Createmany(List<PeopleCreateViewModel> request);
     }
 }

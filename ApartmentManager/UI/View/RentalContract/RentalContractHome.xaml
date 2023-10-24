@@ -49,7 +49,7 @@
             <TextBlock
                     Foreground="Red"
                     Text="{Binding ErrorMessage}"
-                    Visibility="{Binding HasErrorMessage, Converter={StaticResource BoolToVis}}" />
+                    Visibility="{Binding HasMessageError, Converter={StaticResource BoolToVis}}" />
             <DataGrid ItemsSource="{Binding Rental}"  SelectedItem="{Binding SelectRentalContract,UpdateSourceTrigger=PropertyChanged}"
                       Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}"
                       Height="350" Style="{DynamicResource DataGridStyle1}" 

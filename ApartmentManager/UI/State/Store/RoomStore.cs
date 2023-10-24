@@ -21,6 +21,7 @@ namespace AM.UI.State.Store
         private readonly Apartment _apartment;
 
         private readonly List<RoomVm> _roomvm;
+        private readonly List<CustomerVM> _customerVM;
 
         private readonly IRoom _room;
         private readonly IRoomDetails _roomdetails;
@@ -30,6 +31,7 @@ namespace AM.UI.State.Store
 
         private Lazy<Task> _initializeLazyRoom;
         public List<RoomVm> roomvm => _roomvm;
+        public List<CustomerVM> customerVM => _customerVM;
 
         private readonly List<RoomDetailsFurniture> _roomdetailsvmfur;
 
@@ -62,6 +64,7 @@ namespace AM.UI.State.Store
         {
             _apartment = apartment;
             _roomvm = new List<RoomVm>();
+            _customerVM = new List<CustomerVM>();
             _room = room;
             _roomdetails = roomimages;
             _roomimagevms = new List<RoomImageCreateViewModel>();
@@ -188,6 +191,15 @@ namespace AM.UI.State.Store
             return 1;
         }
 
+
+        public async Task<List<CustomerVM>> GetAllCustomerInRoomByIDRoom(int IDroom)
+        {
+            return await _roomdetails.GetAllCustomerInRoom(IDroom);
+        }
+
+
+
+        
         public async Task<List<RoomDetailsImage>> LoadRoomDetailsImage(int id)
         {
             List<RoomDetailsImage> roomdetailsImage = await _apartment.GetAllRoomDetailsImage(id);

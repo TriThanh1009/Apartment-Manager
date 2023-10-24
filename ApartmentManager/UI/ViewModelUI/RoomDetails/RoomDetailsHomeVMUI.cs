@@ -36,9 +36,6 @@ namespace AM.UI.ViewModelUI.RoomDetails
 {
     public class RoomDetailsHomeVMUI : ViewModelBase
     {
-
-
-
         private readonly RoomVm _LoadInformationRoom;
         private ObservableCollection<RoomDetailsFurniture> _roomdetails;
         private ObservableCollection<RoomDetailsImage> _roomdetailsimage;
@@ -46,12 +43,13 @@ namespace AM.UI.ViewModelUI.RoomDetails
         private readonly IAparmentViewModelFactory _ViewModelFactory;
         private readonly RoomStore _apartmentStore;
         public ObservableCollection<string> ComboBoxItems { get; set; }
-        
+
         //command
         public ICommand LoadDataBase { get; }
 
         public ICommand RoomDetailsAddImageNav { get; }
 
+        public ICommand RoomDetailsNavToCustomerInfor { get; }
 
         public ICommand DeleteImageCommand { get; }
         public ICommand DeleteImageConfirmCommand { get; }
@@ -73,35 +71,30 @@ namespace AM.UI.ViewModelUI.RoomDetails
             {
                 LoadInformationRoom = value;
                 OnPropertyChanged(nameof(RoomVm));
-
             }
         }
-
-
 
         public bool HasData => _roomdetailsimage.Any();
 
         private bool _FlagImage = false;
+
         public bool FlagImage
         {
             get { return _FlagImage; }
             set
             {
-
                 _FlagImage = value;
                 OnPropertyChanged(nameof(FlagImage));
             }
         }
 
-
-
         private bool _FlagFurniture = false;
+
         public bool FlagFurniture
         {
             get { return _FlagFurniture; }
             set
             {
-
                 _FlagFurniture = value;
                 OnPropertyChanged(nameof(FlagFurniture));
             }
@@ -133,11 +126,9 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         public bool HasMessageError => !string.IsNullOrEmpty(MessageError);
 
-
         public ObservableCollection<FurnitureVm> _comboBoxfurniture;
 
         public IEnumerable<FurnitureVm> comboBoxfurniture => _comboBoxfurniture;
-
 
         public IEnumerable<RoomDetailsFurniture> RoomDetails => _roomdetails;
 
@@ -150,17 +141,14 @@ namespace AM.UI.ViewModelUI.RoomDetails
             get { return _RoomImages; }
             set
             {
-                
-                _RoomImages = value; 
+                _RoomImages = value;
                 OnPropertyChanged(nameof(RoomImages));
                 SetFlagImage();
-
-
             }
         }
 
-
         private RoomDetailsFurniture _SelectListViewFurniture;
+
         public RoomDetailsFurniture SelectListViewFurniture
         {
             get { return _SelectListViewFurniture; }
@@ -172,10 +160,8 @@ namespace AM.UI.ViewModelUI.RoomDetails
             }
         }
 
-
-
-
         private FurnitureVm _SelectedFurniture;
+
         public FurnitureVm SelectedFurniture
         {
             get { return _SelectedFurniture; }
@@ -200,7 +186,7 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         public void SetFlagFurniture()
         {
-            if(_SelectListViewFurniture != null)
+            if (_SelectListViewFurniture != null)
             {
                 _FlagFurniture = true;
             }
@@ -210,9 +196,6 @@ namespace AM.UI.ViewModelUI.RoomDetails
             }
             OnPropertyChanged(nameof(FlagFurniture));
         }
-
-
-
 
         private int _ID;
 
@@ -225,8 +208,6 @@ namespace AM.UI.ViewModelUI.RoomDetails
                 OnPropertyChanged(nameof(ID));
             }
         }
-
-
 
         private int _IdDelete;
 
@@ -241,6 +222,7 @@ namespace AM.UI.ViewModelUI.RoomDetails
         }
 
         private Furniture _Furniture;
+
         public Furniture Furniture
         {
             get { return _Furniture; }
@@ -251,11 +233,8 @@ namespace AM.UI.ViewModelUI.RoomDetails
             }
         }
 
-
-
         public RoomDetailsHomeVMUI(RoomVm id, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, RoomStore apartmentStore)
         {
-           
             _navigator = navigator;
             _ViewModelFactory = ViewModelFactory;
             _apartmentStore = apartmentStore;
@@ -263,41 +242,29 @@ namespace AM.UI.ViewModelUI.RoomDetails
             _roomdetails = new ObservableCollection<RoomDetailsFurniture>();
             _LoadInformationRoom = id;
 
-
             _roomdetailsimage = new ObservableCollection<RoomDetailsImage>();
             _comboBoxfurniture = new ObservableCollection<FurnitureVm>();
             LoadDataBase = new LoadRoomDetailsView(this, apartmentStore, id.ID);
             LoadDataBase.Execute(null);
-
-
+            RoomDetailsNavToCustomerInfor = new RelayCommand(NavToCusInfor);
 
             DeleteImageCommand = new RelayCommand(DeleteImage);
             DeleteImageConfirmCommand = new DeleleRoomImageCommand(navigator, ViewModelFactory, apartmentStore, this);
             ShowLargeImageNav = new RelayCommand(ShowLargeImage);
             RoomDetailsAddImageNav = new RelayCommand(AddImage);
 
-
-
-            AddFurnitureSuccess = new RoomFurnitureAddCommand(this,navigator, ViewModelFactory,apartmentStore);
+            AddFurnitureSuccess = new RoomFurnitureAddCommand(this, navigator, ViewModelFactory, apartmentStore);
             AddFurnitureConFirm = new RelayCommand(AddFurniture);
-            DeleteFurnitureSuccess = new RoomFurnitureDeleteCommand(navigator, ViewModelFactory,apartmentStore,this);
+            DeleteFurnitureSuccess = new RoomFurnitureDeleteCommand(navigator, ViewModelFactory, apartmentStore, this);
             DeleteFurnitureConFirm = new RelayCommand(DeleteFurniture);
-
-
 
             _roomdetails.CollectionChanged += OnReservationsChanged;
             _apartmentStore.RoomImageDelete += DeleteImage_Store;
             _apartmentStore.RoomFurnitureCreate += AddFurniture_Store;
             _apartmentStore.RoomFurnitureDelete += DeleteFurniture_Store;
 
-
-
             _comboBoxfurniture.Add(new FurnitureVm { ID = 0, Name = "None" });
             _comboBoxfurniture.CollectionChanged += OnReservationsChanged;
-            
-
-
-
         }
 
         public RoomVm _IdRoom;
@@ -306,8 +273,6 @@ namespace AM.UI.ViewModelUI.RoomDetails
         {
             new RoomDetailsShowLargeImage(BitmapImageFromFile(RoomImages.Url)).Show();
         }
-
-
 
         public static BitmapSource BitmapImageFromFile(string filepath)
         {
@@ -324,16 +289,12 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         public void DeleteImage(object parameter)
         {
-
             bool? Confirm = new MessageBoxCustom($"Do you want to delete Image :{RoomImages.IDImage} ", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
             if (Confirm == true)
             {
-
                 if (File.Exists(_RoomImages.Url))
                 {
-
                     File.Delete(_RoomImages.Url);
-
                 }
                 DeleteImageConfirmCommand.Execute(null);
             }
@@ -341,41 +302,34 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         public void AddImage(object parameter)
         {
-                _navigator.CurrentViewModel = new RoomDetailsAddImageVMUI(_navigator, _ViewModelFactory, _apartmentStore, _RoomImages);
+            _navigator.CurrentViewModel = new RoomDetailsAddImageVMUI(_navigator, _ViewModelFactory, _apartmentStore, _LoadInformationRoom);
         }
 
         public void DeleteFurniture(object parameter)
         {
             bool? Confirm = new MessageBoxCustom($"Do you want to delete Furniture :{SelectListViewFurniture.IdFur} ", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
-            if(Confirm == true) {
-
+            if (Confirm == true)
+            {
                 DeleteFurnitureSuccess.Execute(null);
             }
         }
-
 
         public void AddFurniture(object parameter)
         {
             AddFurnitureSuccess.Execute(null);
         }
 
-
-
         ///Store
-
-
 
         public async void DeleteFurniture_Store(int id)
         {
             var object1 = _roomdetails.FirstOrDefault(x => x.IdFur == id);
-            if(object1 != null)
+            if (object1 != null)
             {
                 _roomdetails.Remove(object1);
             }
         }
 
-
-        
         public async void DeleteImage_Store(int id)
         {
             var object1 = _roomdetailsimage.FirstOrDefault(x => x.IDImage == id);
@@ -384,6 +338,7 @@ namespace AM.UI.ViewModelUI.RoomDetails
                 _roomdetailsimage.Remove(object1);
             }
         }
+
         public void UpdateDataImage(List<RoomDetailsImage> data)
         {
             _roomdetailsimage.Clear();
@@ -393,8 +348,10 @@ namespace AM.UI.ViewModelUI.RoomDetails
             }
         }
 
-
-
+        public void NavToCusInfor(object parameter)
+        {
+            _navigator.CurrentViewModel = new RoomDetailsInformationCustomerVMUI(_navigator, _ViewModelFactory, _apartmentStore, _LoadInformationRoom);
+        }
 
         public void AddFurniture_Store(RoomDetailsFurniture data)
         {
@@ -413,8 +370,6 @@ namespace AM.UI.ViewModelUI.RoomDetails
                 _roomdetails.Add(roomdetail);
             }
         }
-
-        
 
         private void OnReservationsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,13 +12,13 @@ namespace Services.Interface
 {
     public interface IBill
     {
-        Task<int> CreateBill(BillCreateViewModel model);
+        Task<Bill> CreateBill(BillCreateViewModel model);
 
-        Task<int> UpdateBill(BillUpdateViewModel model);
+        Task<Bill> UpdateBill(BillUpdateViewModel model);
 
         Task<int> UpdateActiveBill(int model);
 
-        Task<int> DeleteBill(int BillID);
+        Task<bool> DeleteBill(int ID);
 
         Task<PagedResult<BillVm>> GetAllPage(RequestPaging request);
     }

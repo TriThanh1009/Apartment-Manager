@@ -8,6 +8,7 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -32,7 +33,6 @@ namespace Services.Implement
         {
             var room = new Data.Entity.Room()
             {
-                IDLeader = model.customer.ID,
                 Name = model.Name,
                 Quantity = model.Quantity,
             };
@@ -58,7 +58,9 @@ namespace Services.Implement
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.Room
-                            join pt in _context.People on p.IDLeader equals pt.ID
+                            join pp in _context.RentalContract on p.ID equals pp.IDroom
+                            join px in _context.PeopleRental on pp.ID equals px.IDRental
+                            join pt in _context.People on px.IDPeople equals pt.ID
                             select new { p, pt };
                 var data = await query.Select(x => new RoomVm()
                 {
@@ -76,12 +78,14 @@ namespace Services.Implement
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.Room
-                            where p.IDLeader ==0
+                            join pt in _context.RentalContract on p.ID equals pt.IDroom into grouping
+                            from px in grouping.DefaultIfEmpty()
+                            where px == null
                             select p;
+
                 var data = await query.Select(x => new RoomVm()
                 {
                     ID = x.ID,
-                    NameLeader = x.IDLeader.ToString(),
                     Name = x.Name,
                     Quantity = x.Quantity
                 }).ToListAsync();
@@ -94,24 +98,44 @@ namespace Services.Implement
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
                 var query = from p in _context.Room
-                            join pt in _context.People on p.IDLeader equals pt.ID
-                            select new { p, pt };
+                            join pp in _context.RentalContract on p.ID equals pp.IDroom
+                            join px in _context.PeopleRental on pp.ID equals px.IDRental
+                            join pt in _context.People on px.IDPeople equals pt.ID
+                            where px.Membership == Data.Enum.Membership.Leader
+                            select new { p, pt, px, pp };
+                var query1 = await _context.Room.ToListAsync();
+                var data1 = query1.Select(x => new RoomVm()
+                {
+                    ID = x.ID,
+                    NameLeader = "None",
+                    Name = x.Name,
+                    Quantity = x.Quantity
+                }).ToList();
                 int totalRow = await query.CountAsync();
-                var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
-                    .Take(request.PageSize)
-                    .Select(x => new RoomVm()
+                var data = await query.Select(x => new RoomVm()
+                {
+                    ID = x.p.ID,
+                    NameLeader = x.pt.Name,
+                    Name = x.p.Name,
+                    Quantity = x.p.Quantity
+                }).ToListAsync();
+                foreach (var result in data1)
+                {
+                    foreach (var result1 in data)
                     {
-                        ID = x.p.ID,
-                        NameLeader = x.pt.Name,
-                        Name = x.p.Name,
-                        Quantity = x.p.Quantity
-                    }).ToListAsync();
+                        if (result.ID == result1.ID)
+                        {
+                            result.NameLeader = result1.NameLeader;
+                        }
+                    }
+                }
+
                 var pagedView = new PagedResult<RoomVm>()
                 {
                     TotalRecords = totalRow,
                     PageIndex = request.PageIndex,
                     PageSize = request.PageSize,
-                    Items = data
+                    Items = data1
                 };
                 return pagedView;
             }
@@ -138,7 +162,6 @@ namespace Services.Implement
             {
                 ID = e.ID,
                 Name = e.Name
-
             }).ToList();
             return result1;
         }
@@ -147,14 +170,9 @@ namespace Services.Implement
         {
             var room = new Data.Entity.Room();
             room.ID = model.ID;
-            room.IDLeader = model.customer.ID;
             room.Name = model.Name;
             room.Quantity = model.Quantity;
             return await _base.Update(model.ID, room);
         }
-
-
-
-
     }
 }

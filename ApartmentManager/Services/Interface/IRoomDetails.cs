@@ -25,6 +25,8 @@ namespace Services.Interface
         Task<bool> CreateImage(RoomImageCreateViewModel request, string NameFile);
         Task<bool> CreateFurniture(RoomDetailsVm request);
 
+        Task<List<CustomerVM>> GetAllCustomerInRoom(int IDroom);
+
         Task<PagedResult<RoomDetailsFurniture>> GetAllFurniture(RequestPaging request, int id);
         Task<PagedResult<RoomDetailsImage>> GetAllImage(RequestPaging request, int id);
     }

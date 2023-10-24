@@ -1,5 +1,7 @@
 ﻿using Data;
 using Data.Entity;
+using Data.Enum;
+using Data.Relationships;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Services.Interface;
@@ -27,20 +29,75 @@ namespace Services.Implement
 
         public async Task<People> Create(PeopleCreateViewModel request)
         {
-            MessageBox.Show(request.ID.ToString());
-            People people = new People
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
-                IDroom = request.IDroom,
-                Name = request.Name,
-                Sex = request.Sex,
-                Birthday= request.Birthday,
-                PhoneNumber = request.PhoneNumber,
-                Email = request.Email,
-                IDCard = request.IDCard,
-                Address = request.Address,
-            };
-            var result = await _baseControl.Create(people);
-            return result;
+                PeopleRental peopleRental = new PeopleRental
+                {
+                    IDPeople =request.ID,
+                    IDRental = request.IDRental,
+                };
+                _context.PeopleRental.Add(peopleRental);
+                var rs = await _context.SaveChangesAsync();
+                People people = new People
+                {
+                    Name = request.Name,
+                    Sex = request.Sex,
+                    Birthday= request.Birthday,
+                    PhoneNumber = request.PhoneNumber,
+                    Email = request.Email,
+                    IDCard = request.IDCard,
+                    Address = request.Address,
+                };
+                var result = await _baseControl.Create(people);
+                if (result !=null && rs==1)
+                {
+                    return result;
+                }
+                return null;
+            }
+        }
+
+        public async Task<int> Createmany(List<PeopleCreateViewModel> request)
+        {
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                List<PeopleRental> pr = new List<PeopleRental>();
+                // List<People> peoples = new List<People>();
+                bool flag = true;
+                foreach (var person in request)
+                {
+                    People people = new People
+                    {
+                        Name = person.Name,
+                        Sex = person.Sex,
+                        Birthday= person.Birthday,
+                        PhoneNumber = person.PhoneNumber,
+                        Email = person.Email,
+                        IDCard = person.IDCard,
+                        Address = person.Address,
+                    };
+                    PeopleRental peopleRental = new PeopleRental
+                    {
+                        IDPeople =person.ID,
+                        IDRental = person.IDRental,
+                        People = people,
+                        Membership = Membership.Member
+                    };
+                    if (flag)
+                    {
+                        peopleRental.Membership = Membership.Leader;
+                    }
+                    flag=false;
+                    pr.Add(peopleRental);
+                    // peoples.Add(people);
+                }
+
+                //  _context.People.AddRange(peoples);
+                //  await _context.SaveChangesAsync();
+                _context.PeopleRental.AddRange(pr);
+                var result = await _context.SaveChangesAsync();
+                return result;
+            }
         }
 
         public async Task<bool> Delete(int id)
@@ -49,6 +106,8 @@ namespace Services.Implement
             {
                 People entity = await _context.People.FirstOrDefaultAsync((x) => x.ID==id);
                 if (entity == null) return false;
+                PeopleRental peopleRental = await _context.PeopleRental.FirstOrDefaultAsync((x) => x.IDPeople==id);
+                _context.PeopleRental.Remove(peopleRental);
                 _context.People.Remove(entity);
                 await _context.SaveChangesAsync();
                 return true;
@@ -62,7 +121,6 @@ namespace Services.Implement
                 People people = new People
                 {
                     ID = id,
-                    IDroom = request.IDroom,
                     Name = request.Name,
                     Sex = request.Sex,
                     Birthday= request.Birthday,
@@ -80,24 +138,27 @@ namespace Services.Implement
 
         public async Task<List<CustomerVM>> GetAll()
         {
-            List<People> result;
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
-                result = await _context.People.ToListAsync();
+                var query = from p in _context.People
+                            join pt in _context.PeopleRental on p.ID equals pt.IDPeople
+                            join px in _context.RentalContract on pt.IDRental equals px.ID
+                            join pp in _context.Room on px.IDroom equals pp.ID
+                            select new { p, pp };
+                var result = await query.Select(e => new CustomerVM
+                {
+                    ID = e.p.ID,
+                    RoomName = e.pp.Name,
+                    Name = e.p.Name,
+                    Sex = e.p.Sex,
+                    Birthday = e.p.Birthday,
+                    PhoneNumber = e.p.PhoneNumber,
+                    Email = e.p.Email,
+                    IDCard = e.p.IDCard,
+                    Address = e.p.Address,
+                }).ToListAsync();
+                return result;
             }
-            var result1 = result.Select(e => new CustomerVM
-            {
-                ID = e.ID,
-                IDroom = e.IDroom,
-                Name = e.Name,
-                Sex = e.Sex,
-                Birthday= e.Birthday,
-                PhoneNumber = e.PhoneNumber,
-                Email = e.Email,
-                IDCard = e.IDCard,
-                Address = e.Address,
-            }).ToList();
-            return result1;
         }
 
         public async Task<PagedResult<CustomerVM>> GetAllPage(RequestPaging request)
@@ -121,7 +182,6 @@ namespace Services.Implement
                         Address = x.Address,
                         Birthday = x.Birthday,
                         Email = x.Email,
-                        IDroom = x.IDroom,
                         IDCard =x.IDCard,
                         PhoneNumber = x.PhoneNumber,
                     }).ToListAsync();
@@ -136,6 +196,32 @@ namespace Services.Implement
             }
         }
 
+        public async Task<CustomerVM> GetByID(int id)
+        {
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                var query = from p in _context.People
+                            join pt in _context.PeopleRental on p.ID equals pt.IDPeople
+                            join px in _context.RentalContract on pt.IDRental equals px.ID
+                            join pp in _context.Room on px.IDroom equals pp.ID
+                            where p.ID == id
+                            select new { p, pp };
+                var result = await query.FirstOrDefaultAsync();
+                var rs = new CustomerVM
+                {
+                    ID = result.p.ID,
+                    Name = result.pp.Name,
+                    Sex = result.p.Sex,
+                    Address = result.p.Address,
+                    Birthday = result.p.Birthday,
+                    Email = result.p.Email,
+                    IDCard =result.p.IDCard,
+                    PhoneNumber = result.p.PhoneNumber,
+                };
+                return rs;
+            }
+        }
+
         public async Task<List<CustomerForCombobox>> GetIdNameForCombobox()
         {
             List<People> result;
@@ -147,9 +233,19 @@ namespace Services.Implement
             {
                 ID = e.ID,
                 Name = e.Name
-
             }).ToList();
             return result1;
+        }
+
+        public async Task<int> GetLast()
+        {
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                var lastEntity = await _context.People
+                                .OrderByDescending(e => e.ID)
+                                .FirstOrDefaultAsync();
+                return lastEntity == null ? 0 : lastEntity.ID;
+            }
         }
     }
 }

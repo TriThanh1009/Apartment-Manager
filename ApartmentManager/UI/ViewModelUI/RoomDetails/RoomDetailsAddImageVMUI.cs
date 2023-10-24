@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
+using ViewModel.Room;
 using ViewModel.RoomDetails;
 using ViewModel.RoomImage;
 
@@ -23,15 +24,15 @@ namespace AM.UI.ViewModelUI.RoomDetails
         private ObservableCollection<RoomImageCreateViewModel> _tempimages;
         public IEnumerable<RoomImageCreateViewModel> tempimages => _tempimages;
 
-        private RoomDetailsImage _detailsImage;
+        private RoomVm _detailsImage;
 
-        public RoomDetailsImage detailsImage
+        public RoomVm detailsImage
         {
             get { return _detailsImage; }
             set
             {
                 detailsImage = value;
-                OnPropertyChanged(nameof(RoomDetailsImage));
+                OnPropertyChanged(nameof(RoomVm));
             }
         }
 
@@ -119,7 +120,7 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
         public bool HasData => _tempimages.Any();
 
-        public RoomDetailsAddImageVMUI(INavigator navigator, IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore, RoomDetailsImage image)
+        public RoomDetailsAddImageVMUI(INavigator navigator, IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore, RoomVm image)
         {
             _navigator = navigator;
             _viewModelFactory = viewModelFactory;
@@ -155,7 +156,7 @@ namespace AM.UI.ViewModelUI.RoomDetails
 
                 RoomImageCreateViewModel roomimage = new RoomImageCreateViewModel
                 {
-                    IDroom = IDRoom,
+                    IDroom = detailsImage.ID,
                     Name = Name,
                     FileName = openFileDialog.SafeFileName,
                     Url = SelectedFilePath
