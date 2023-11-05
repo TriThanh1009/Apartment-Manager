@@ -32,7 +32,6 @@ namespace AM.UI.View.People
     public partial class Home : UserControl
     {
         private Button current = null;
-        private Regex regex = new Regex();
         private ControlObject co = new ControlObject();
         private int Pagecount = 16;
         private int Pagesize = 8;

@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:AM.UI.View.Rooms"
+             xmlns:local="clr-namespace:AM.UI.View.Rooms" xmlns:rules="clr-namespace:AM.UI.State.Rules"
              mc:Ignorable="d"
              d:DesignHeight="630" d:DesignWidth="730">
     <Grid>
-        <Button Command="{Binding UpdateConfirm}"  Style="{StaticResource DetailsButton}" Content="Update Confirm" HorizontalAlignment="Left" Margin="185,280,0,0" VerticalAlignment="Top" />
+        <Button Command="{Binding UpdateConfirm}"  Style="{StaticResource DetailsButton}" IsEnabled="{Binding Room.IsValid}" Content="Update Confirm" HorizontalAlignment="Left" Margin="185,280,0,0" VerticalAlignment="Top" />
         <Button Command="{Binding Checkcombo}" Style="{StaticResource DetailsButton}" Content="Cancel" HorizontalAlignment="Left" Margin="416,280,0,0" VerticalAlignment="Top" />
         <TextBlock HorizontalAlignment="Left" Margin="58,96,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
         <TextBox Text="{Binding Room.ID}"  HorizontalAlignment="Left" Margin="185,96,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="150" Height="25" />
@@ -33,7 +33,16 @@
             </TextBox.RenderTransform>
         </TextBox>
         <TextBlock HorizontalAlignment="Left" Margin="393,95,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <TextBox HorizontalAlignment="Left" Margin="520,99,0,0" TextWrapping="Wrap" Text="{Binding Room.Name}" VerticalAlignment="Top" Width="150" Height="25" />
+        <TextBox HorizontalAlignment="Left" Validation.ErrorTemplate="{StaticResource errorTemplate}" Margin="520,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="25">
+            <TextBox.Text>
+                <Binding Path="Name" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <rules:WrongName />
+                        <rules:MinimumCharacterRule MinimumCharacters="25" Characters="2" nameofrule="Name" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <TextBox HorizontalAlignment="Left" Margin="520,129,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
@@ -45,7 +54,15 @@
             </TextBox.RenderTransform>
         </TextBox>
         <TextBlock HorizontalAlignment="Left" Margin="393,158,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <TextBox HorizontalAlignment="Left" Margin="520,158,0,0" TextWrapping="Wrap" Text="{Binding Room.Quantity}" VerticalAlignment="Top" Width="150" Height="25" />
+        <TextBox HorizontalAlignment="Left" Validation.ErrorTemplate="{StaticResource errorTemplate}" Margin="520,158,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="150" Height="25">
+            <TextBox.Text>
+                <Binding Path="Quantity" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <rules:WrongNumber  NameofRule="Quantity" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <TextBox HorizontalAlignment="Left" Margin="520,188,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
@@ -56,6 +73,6 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <ComboBox ItemsSource="{Binding comboboxforCustomer}" SelectedItem="{Binding SelectCustomer,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="185,158,0,0" VerticalAlignment="Top" Width="150"/>
+        <ComboBox ItemsSource="{Binding comboboxforCustomer}" SelectedItem="{Binding SelectCustomer,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="185,158,0,0" VerticalAlignment="Top" Width="150" />
     </Grid>
 </UserControl>

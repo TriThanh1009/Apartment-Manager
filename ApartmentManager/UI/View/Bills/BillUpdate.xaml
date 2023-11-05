@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:AM.UI.View.Bills"
+             xmlns:local="clr-namespace:AM.UI.View.Bills" xmlns:rules="clr-namespace:AM.UI.State.Rules"
              mc:Ignorable="d"
              d:DesignHeight="630" d:DesignWidth="730">
     <Grid>
@@ -22,7 +22,15 @@
             </TextBox.RenderTransform>
         </TextBox>
         <TextBlock HorizontalAlignment="Left" Margin="34,185,0,0" TextWrapping="Wrap" Text="ElectricQuantity" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <TextBox HorizontalAlignment="Left" Margin="215,187,0,0" TextWrapping="Wrap" Text="{Binding BillVm.ElectricQuantity}" VerticalAlignment="Top" Width="150" Height="25" />
+        <TextBox HorizontalAlignment="Left" Validation.ErrorTemplate="{StaticResource errorTemplate}" Margin="215,187,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="150" Height="25">
+            <TextBox.Text>
+                <Binding Path="BillVm.ElectricQuantity" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <rules:WrongNumber  NameofRule="Electric Quantity " />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <TextBox HorizontalAlignment="Left" Margin="215,217,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
@@ -68,9 +76,9 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <ComboBox ItemsSource="{Binding comboboxforRental}" SelectedItem="{Binding SelectRental, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFEEEEEE" DisplayMemberPath="IDRental" HorizontalAlignment="Left" Margin="195,122,0,0" VerticalAlignment="Top" Width="150"/>
+        <ComboBox ItemsSource="{Binding comboboxforRental}" SelectedItem="{Binding SelectRental, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFEEEEEE" DisplayMemberPath="IDRental" HorizontalAlignment="Left" Margin="195,122,0,0" VerticalAlignment="Top" Width="150" />
         <TextBlock HorizontalAlignment="Left" Margin="391,56,0,0" TextWrapping="Wrap" Text="Active" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <ComboBox ItemsSource="{Binding comboboxActive}" SelectedItem="{Binding Active, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="543,56,0,0" VerticalAlignment="Top" Width="150"/>
+        <ComboBox ItemsSource="{Binding comboboxActive}" SelectedItem="{Binding Active, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="543,56,0,0" VerticalAlignment="Top" Width="150" />
         <TextBox HorizontalAlignment="Left" Margin="543,88,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="2" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>

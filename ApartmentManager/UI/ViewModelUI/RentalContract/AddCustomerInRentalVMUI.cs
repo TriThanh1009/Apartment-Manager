@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,6 +78,8 @@ namespace AM.UI.ViewModelUI
 
         private string _name;
 
+        [Required(ErrorMessage = "Tên là bắt buộc.")]
+        [RegularExpression("^[^0-9]*$", ErrorMessage = "Tên không được chứa số.")]
         public string name
         {
             get { return _name; }
@@ -113,6 +116,7 @@ namespace AM.UI.ViewModelUI
 
         private string _phoneNumber;
 
+        [RegularExpression(@"^\d{11}$", ErrorMessage = "The phoneNumber must be exactly 11 digits.")]
         public string phoneNumber
         {
             get { return _phoneNumber; }
@@ -125,6 +129,7 @@ namespace AM.UI.ViewModelUI
 
         private string _email;
 
+        [RegularExpression(@"^[a-zA-Z0-9.]+@gmail\.com$", ErrorMessage = "Email must be a Gmail address.")]
         public string email
         {
             get { return _email; }
@@ -137,6 +142,8 @@ namespace AM.UI.ViewModelUI
 
         private string _idcard;
 
+        [Required]
+        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "")]
         public string idcard
         {
             get { return _idcard; }
@@ -149,6 +156,8 @@ namespace AM.UI.ViewModelUI
 
         private string _address;
 
+        [Required]
+        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "")]
         public string address
         {
             get { return _address; }
@@ -159,16 +168,18 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-        private bool Hasname => !string.IsNullOrEmpty(name);
-        private bool Hasemail => !string.IsNullOrEmpty(email);
-        private bool Hasphone => !string.IsNullOrEmpty(phoneNumber);
-        private bool Hasidcard => !string.IsNullOrEmpty(idcard);
-        private bool Hasaddress => !string.IsNullOrEmpty(address);
-        private readonly Dictionary<string, List<string>> _propertyNameToErrorsDictionary;
+        public bool IsValid
+        {
+            get
+            {
+                var context = new ValidationContext(this);
+                var results = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
 
-        public bool HasErrors => _propertyNameToErrorsDictionary.Any();
+                bool isValid = Validator.TryValidateObject(this, context, results, true);
 
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+                return isValid;
+            }
+        }
 
         public ICommand AddList { get; }
         public ICommand DeleteCustomerCommand { get; }
@@ -210,35 +221,6 @@ namespace AM.UI.ViewModelUI
             message.ShowDialog();
             if (message.DialogResult==true)
                 _peoples.Remove(SelectedPeople);
-        }
-
-        public IEnumerable GetErrors(string propertyName)
-        {
-            return _propertyNameToErrorsDictionary.GetValueOrDefault(propertyName, new List<string>());
-        }
-
-        private void AddError(string errorMessage, string propertyName)
-        {
-            if (!_propertyNameToErrorsDictionary.ContainsKey(propertyName))
-            {
-                _propertyNameToErrorsDictionary.Add(propertyName, new List<string>());
-            }
-
-            _propertyNameToErrorsDictionary[propertyName].Add(errorMessage);
-
-            OnErrorsChanged(propertyName);
-        }
-
-        private void ClearErrors(string propertyName)
-        {
-            _propertyNameToErrorsDictionary.Remove(propertyName);
-
-            OnErrorsChanged(propertyName);
-        }
-
-        private void OnErrorsChanged(string propertyName)
-        {
-            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
 
         private void OnPeopleChanged(string propertyName)

@@ -5,6 +5,7 @@ using AM.UI.Utilities;
 using AM.UI.ViewModelUI.Factory;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.RightsManagement;
 using System.Text;
@@ -26,8 +27,8 @@ namespace AM.UI.ViewModelUI.Furnitures
 
         public ICommand Cancel { get; }
 
-
         public int _ID;
+
         public int ID
         {
             get { return _ID; }
@@ -39,6 +40,9 @@ namespace AM.UI.ViewModelUI.Furnitures
         }
 
         public string _Name;
+
+        [Required]
+        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "")]
         public string Name
         {
             get { return _Name; }
@@ -46,6 +50,19 @@ namespace AM.UI.ViewModelUI.Furnitures
             {
                 _Name = value;
                 OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        public bool IsValid
+        {
+            get
+            {
+                var context = new ValidationContext(this);
+                var results = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+
+                bool isValid = Validator.TryValidateObject(this, context, results, true);
+
+                return isValid;
             }
         }
 
@@ -62,9 +79,5 @@ namespace AM.UI.ViewModelUI.Furnitures
         {
             AddSuccess.Execute(null);
         }
-
-
-
-
     }
 }

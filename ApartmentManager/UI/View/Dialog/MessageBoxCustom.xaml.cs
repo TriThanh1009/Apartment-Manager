@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -103,8 +104,8 @@ namespace AM.UI.View.Dialog
         private void btnYes_Click(object sender, RoutedEventArgs e)
         {
             Input= textbox.Text;
-            this.DialogResult = true;
-            this.Close();
+            Regex regex = new Regex(@"^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$");
+            if (regex.IsMatch(Input)) { this.Close(); this.DialogResult = true; }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

@@ -16,6 +16,8 @@ using System.Windows;
 using AM.UI.ViewModelUI;
 using AM.UI.HostBuilderExtension;
 using Microsoft.EntityFrameworkCore;
+using ViewModel.People;
+using System.Net;
 
 namespace AM.UI
 {

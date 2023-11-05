@@ -8,6 +8,7 @@ using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -83,6 +84,8 @@ namespace AM.UI.ViewModelUI.DepositContract
 
         private int _Money;
 
+        [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "ElectricQuantity must be a positive number.")]
         public int Money
         {
             get { return _Money; }
@@ -90,6 +93,19 @@ namespace AM.UI.ViewModelUI.DepositContract
             {
                 _Money = value;
                 OnPropertyChanged(nameof(Money));
+            }
+        }
+
+        public bool IsValid
+        {
+            get
+            {
+                var context = new ValidationContext(this);
+                var results = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+
+                bool isValid = Validator.TryValidateObject(this, context, results, true);
+
+                return isValid;
             }
         }
 

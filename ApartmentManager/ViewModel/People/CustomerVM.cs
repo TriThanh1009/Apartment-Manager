@@ -11,6 +11,7 @@ namespace ViewModel.People
     public class CustomerVM
     {
         public int ID { get; set; }
+        public int IDRT { get; set; }
         public string RoomName { get; set; }
         public string Name { get; set; }
         public Sex Sex { get; set; }
