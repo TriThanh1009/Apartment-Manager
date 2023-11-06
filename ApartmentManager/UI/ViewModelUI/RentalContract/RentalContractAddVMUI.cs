@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -60,6 +61,7 @@ namespace AM.UI.ViewModelUI.RentalContract
 
         private int _RoomMoney;
 
+        [Range(0, int.MaxValue, ErrorMessage = "RoomMoney must be a positive number.")]
         public int RoomMoney
         {
             get { return _RoomMoney; }
@@ -69,6 +71,7 @@ namespace AM.UI.ViewModelUI.RentalContract
 
         private int _ELectricMoney;
 
+        [Range(0, int.MaxValue, ErrorMessage = "RoomMoney must be a positive number.")]
         public int ELectricMoney
         {
             get { return _ELectricMoney; }
@@ -78,6 +81,7 @@ namespace AM.UI.ViewModelUI.RentalContract
 
         private int _WaterMoney;
 
+        [Range(0, int.MaxValue, ErrorMessage = "RoomMoney must be a positive number.")]
         public int WaterMoney
         {
             get { return _WaterMoney; }
@@ -87,11 +91,25 @@ namespace AM.UI.ViewModelUI.RentalContract
 
         private int _ServiceMoney;
 
+        [Range(0, int.MaxValue, ErrorMessage = "RoomMoney must be a positive number.")]
         public int ServiceMoney
         {
             get { return _ServiceMoney; }
             set
             { _ServiceMoney = value; OnPropertyChanged(nameof(ServiceMoney)); }
+        }
+
+        public bool IsValid
+        {
+            get
+            {
+                var context = new ValidationContext(this);
+                var results = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+
+                bool isValid = Validator.TryValidateObject(this, context, results, true);
+
+                return isValid;
+            }
         }
 
         public bool HasData => _rentalforColection.Any();

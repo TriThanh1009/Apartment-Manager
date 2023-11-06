@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,9 +90,33 @@ namespace AM.UI.ViewModelUI.Room
             get { return _quantity; }
             set
             {
-                _quantity = value;
                 OnPropertyChanged(nameof(quantity));
+                _quantity = value;
             }
+        }
+
+        private bool _isvalid = true;
+
+        public bool IsValid
+        {
+            get
+            {
+                return _isvalid;
+            }
+            set
+            {
+                _isvalid = value;
+                OnPropertyChanged(nameof(IsValid));
+            }
+        }
+
+        private void validation()
+        {
+            var context = new ValidationContext(this);
+            var results = new List<ValidationResult>();
+
+            IsValid= Validator.TryValidateObject(this, context, results, true);
+            OnPropertyChanged(nameof(IsValid));
         }
 
         public RoomAddVMUI(IRoom iroom, INavigator navigator, IAparmentViewModelFactory viewModelFactory, RoomStore apartmentStore, ComboboxStore ComboboxStore)
@@ -112,7 +137,7 @@ namespace AM.UI.ViewModelUI.Room
 
         public void CreateRoom(object parameter)
         {
-            RoomCreateSuccess.Execute(null);
+            //RoomCreateSuccess.Execute(null);
         }
 
         public void LoadCustomerCombobox(List<CustomerForCombobox> data)

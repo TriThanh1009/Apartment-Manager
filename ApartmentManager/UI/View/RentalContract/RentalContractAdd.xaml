@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:AM.UI.View.RentalContract"
+             xmlns:local="clr-namespace:AM.UI.View.RentalContract" xmlns:rules="clr-namespace:AM.UI.State.Rules"
              mc:Ignorable="d"
              d:DesignHeight="630" d:DesignWidth="730">
     <Grid>
@@ -34,7 +34,15 @@
             </TextBox.RenderTransform>
         </TextBox>
         <TextBlock HorizontalAlignment="Left" Margin="390,118,0,0" TextWrapping="Wrap" Text="Room Money" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <TextBox HorizontalAlignment="Left" Margin="570,124,0,0" TextWrapping="Wrap" Text="{Binding RoomMoney}" Foreground="#FFEEEEEE" VerticalAlignment="Top" Width="150" Height="24" />
+        <TextBox HorizontalAlignment="Left" Validation.ErrorTemplate="{StaticResource errorTemplate}" Margin="570,124,0,0" TextWrapping="Wrap"  Foreground="#FFEEEEEE" VerticalAlignment="Top" Width="150" Height="24">
+            <TextBox.Text>
+                <Binding Path="RoomMoney" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <rules:WrongNumber  NameofRule="Water Money" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <TextBox HorizontalAlignment="Left" Margin="570,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="2" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
@@ -46,7 +54,15 @@
             </TextBox.RenderTransform>
         </TextBox>
         <TextBlock HorizontalAlignment="Left" Margin="390,180,0,0" TextWrapping="Wrap" Text="Electric Money" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <TextBox HorizontalAlignment="Left" Margin="570,186,0,0" TextWrapping="Wrap" Text="{Binding ELectricMoney}" Foreground="#FFEEEEEE" VerticalAlignment="Top" Width="150" Height="24" />
+        <TextBox HorizontalAlignment="Left" Margin="570,186,0,0" TextWrapping="Wrap" Validation.ErrorTemplate="{StaticResource errorTemplate}"  Foreground="#FFEEEEEE" VerticalAlignment="Top" Width="150" Height="24">
+            <TextBox.Text>
+                <Binding Path="ELectricMoney" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <rules:WrongNumber  NameofRule="ELectric Money" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <TextBox HorizontalAlignment="Left" Margin="570,216,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="2" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
@@ -58,7 +74,15 @@
             </TextBox.RenderTransform>
         </TextBox>
         <TextBlock HorizontalAlignment="Left" Margin="35,264,0,0" TextWrapping="Wrap" Text="Water Money" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <TextBox HorizontalAlignment="Left" Margin="195,266,0,0" TextWrapping="Wrap" Text="{Binding WaterMoney}" Foreground="#FFEEEEEE" VerticalAlignment="Top" Width="150" Height="25" />
+        <TextBox HorizontalAlignment="Left" Validation.ErrorTemplate="{StaticResource errorTemplate}" Margin="195,266,0,0" TextWrapping="Wrap"  Foreground="#FFEEEEEE" VerticalAlignment="Top" Width="150" Height="25">
+            <TextBox.Text>
+                <Binding Path="WaterMoney" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <rules:WrongNumber  NameofRule="Water Money" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <TextBox HorizontalAlignment="Left" Margin="195,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
@@ -70,7 +94,15 @@
             </TextBox.RenderTransform>
         </TextBox>
         <TextBlock HorizontalAlignment="Left" Margin="390,257,0,0" TextWrapping="Wrap" Text="Service Money" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <TextBox HorizontalAlignment="Left" Margin="570,263,0,0" TextWrapping="Wrap" Text="{Binding ServiceMoney}" Foreground="#FFEEEEEE" VerticalAlignment="Top" Width="150" Height="24" />
+        <TextBox HorizontalAlignment="Left" Margin="570,263,0,0" Validation.ErrorTemplate="{StaticResource errorTemplate}" TextWrapping="Wrap"  Foreground="#FFEEEEEE" VerticalAlignment="Top" Width="150" Height="24">
+            <TextBox.Text>
+                <Binding Path="ServiceMoney" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <rules:WrongNumber  NameofRule="Service Money" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <TextBox HorizontalAlignment="Left" Margin="570,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="2" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
