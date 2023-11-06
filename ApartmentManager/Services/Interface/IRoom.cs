@@ -23,7 +23,7 @@ namespace Services.Interface
 
         Task<List<RoomForCombobox>> GetIdNameRoom();
 
-        
+        Task<int> GetQuantity();
 
         Task<Room> Create(RoomCreateViewModel model);
 

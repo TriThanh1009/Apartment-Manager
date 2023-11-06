@@ -36,7 +36,6 @@ using ViewModel.Furniture;
 using ViewModel.People;
 using ViewModel.Room;
 using ViewModel.RoomDetails;
-using System.Windows.Interactivity;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace AM.UI.ViewModelUI
@@ -177,6 +176,18 @@ namespace AM.UI.ViewModelUI
             {
                 _ID = value;
                 OnPropertyChanged(nameof(ID));
+            }
+        }
+
+        private string _LeaderNameToToolTip;
+
+        public string LeaderNameToToolTip
+        {
+            get { return _LeaderNameToToolTip; }
+            set
+            {
+                _LeaderNameToToolTip = value;
+                OnPropertyChanged(nameof(LeaderNameToToolTip));
             }
         }
 

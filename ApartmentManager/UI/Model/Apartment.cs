@@ -131,10 +131,10 @@ namespace AM.UI.Model
 
         //Statistics
 
-        public async Task<List<StatisticsVm>> GetAllStaticstis(int Month)
+        public async Task<List<StatisticsVm>> GetAllStaticstis(int Month, int Year)
         {
             RequestPaging paged = new RequestPaging { Keyword = null, PageIndex = 1, PageSize = 100 };
-            PagedResult<StatisticsVm> statistics = await _IStatistics.GetAllPage(paged, Month);
+            PagedResult<StatisticsVm> statistics = await _IStatistics.GetAllPage(paged, Month, Year);
             List<StatisticsVm> data = statistics.Items;
             return data;
         }

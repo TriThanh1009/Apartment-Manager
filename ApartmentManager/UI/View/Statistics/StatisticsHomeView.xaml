@@ -10,6 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*" />
             <RowDefinition Height="0.5*" />
+            <RowDefinition Height="0.5*" />
             <RowDefinition Height="0.3*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -21,39 +22,73 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0"  Grid.ColumnSpan="2">
-            <Label Margin="0,20,100,0" Content="Electric Money of this Month"  Width="165" Foreground="White" />
-            <TextBox HorizontalAlignment="Left" Margin="30,20,0,0" Text="{Binding TotalElectric}" TextWrapping="Wrap" Height="50" Width="200" Background="White" VerticalAlignment="Center"  TextAlignment="Center" />
+            <Label Margin="0,20,170,0" Content="Electric Money of this Month"  Width="165" Foreground="White" />
+            <TextBox HorizontalAlignment="Left" Margin="20,20,0,0" Text="{Binding StatisticsTotal.ElectricMoney,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" TextWrapping="Wrap" Height="40" Width="150" Background="White" VerticalAlignment="Center"  TextAlignment="Center" />
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-            <Label Margin="0,20,100,0" Content="Electric Money of Government"  Width="170" Foreground="White" />
-            <Button Content="{Binding Content}" HorizontalAlignment="Left" Margin="30,20,0,0"  Height="50" Width="200" Background="White" VerticalAlignment="Center">
+            <Label Margin="0,20,170,0" Content="Electric Money of Government"  Width="170" Foreground="White" />
+            <Button Command="{Binding ElectricInputCommand,UpdateSourceTrigger=PropertyChanged}"  Margin="17,20,0,0"  Content="{Binding GovernmentMoney.ElectricMoneyOfGovernment,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" HorizontalAlignment="Left" Height="40" Width="150" Background="White" VerticalAlignment="Center">
             </Button>
         </StackPanel>
 
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
-            <Label Margin="0,20,0,0" Content="Water Money of this Month"  Width="165" Foreground="White" />
-            <TextBox HorizontalAlignment="Left" Margin="90,20,0,0" TextWrapping="Wrap" Text="{Binding TotalWater}"  Height="50" Width="200" Background="White" VerticalAlignment="Center" TextAlignment="Center" />
+            <Label Margin="0,20,170,0" Content="Water Money of this Month"  Width="165" Foreground="White" />
+            <TextBox HorizontalAlignment="Left" Margin="20,20,0,0" TextWrapping="Wrap" Text="{Binding StatisticsTotal.WaterMoney,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Height="40" Width="150" Background="White" VerticalAlignment="Center" TextAlignment="Center" />
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
-            <Label Margin="0,20,0,0" Content="Water Money of Government"  Width="165" Foreground="White" />
-            <Button HorizontalAlignment="Left" Margin="90,20,0,0" Height="50" Width="200" Background="White" VerticalAlignment="Center" />
+            <Label Margin="0,20,170,0" Content="Water Money of Government"  Width="165" Foreground="White" />
+            <Button Command="{Binding WaterInputCommand}" HorizontalAlignment="Left" Foreground="Black" Margin="17,20,0,0" Height="40" Content="{Binding GovernmentMoney.WaterMoneyOfGovernment,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Width="150" Background="White" VerticalAlignment="Center" />
         </StackPanel>
 
-        <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="3">
-            <Button Style="{StaticResource DetailsButton}" Grid.Column="3" Content="Add Statistics" HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" />
+        <StackPanel Grid.Row="0" Grid.Column="2">
+            <Label Margin="15,20,0,0" Content="Service Money of this Month"  Width="165" Foreground="White" />
+            <TextBlock Width="150" Text="{Binding StatisticsTotal.ServiceMoney,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" Height="40" Background="White" Margin="17,20,20,0" VerticalAlignment="Center"  TextAlignment="Center" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <Label Margin="30,20,0,0" Content="Service Money Paid"  Width="165" Foreground="White" />
+            <Button Command="{Binding ServiceInputCommand}" Width="150" Height="40" Content="{Binding GovernmentMoney.ServiceOfGovernment,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Foreground="Black" Background="White" Margin="17,20,20,0"  VerticalAlignment="Center" />
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="1">
-            <ComboBox ItemsSource="{Binding ComboboxForMonth}" SelectedItem="{Binding MonthForStatistics,UpdateSourceTrigger=PropertyChanged}" Margin="0,15,0,0" Background="White" Width="150" />
+        <StackPanel Grid.Row="2">
+            <Label Margin="5,10,0,0" Content="Total Electric Money"  Width="115" Foreground="White" />
+            <TextBlock Width="150" Text="{Binding StatisticsProfitVM.ElectricMoney}" Foreground="Black" Height="40" Background="White" Margin="17,20,20,0" VerticalAlignment="Center"  TextAlignment="Center" />
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Grid.Column="3">
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Label Margin="5,10,0,0" Content="Total Water Money"  Width="115" Foreground="White" />
+            <TextBlock Width="150" Height="40" Text="{Binding StatisticsProfitVM.WaterMoney}" Foreground="Black" Background="White" Margin="17,20,20,0"  VerticalAlignment="Center"  TextAlignment="Center" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="2">
+            <Label Margin="5,10,0,0" Content="Total Service Money"  Width="115" Foreground="White" />
+            <TextBlock Width="150" Height="40" Text="{Binding StatisticsProfitVM.ServiceMoney}" Foreground="Black" Background="White" Margin="17,20,20,0"  VerticalAlignment="Center"  TextAlignment="Center" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="3">
+            <Button Command="{Binding AddConFirm}" Style="{StaticResource DetailsButton}" Grid.Column="3" Content="Create the Profit" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="1">
+            <Label Margin="60,5,0,0" Content="Month"  Width="115" Foreground="White" />
+            <ComboBox ItemsSource="{Binding ComboboxForMonth}" SelectedItem="{Binding MonthForStatistics,UpdateSourceTrigger=PropertyChanged}" Margin="17,0,0,0" Background="White" Width="150" />
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <Label Margin="60,5,0,0" Content="Year"  Width="115" Foreground="White" />
+            <ComboBox ItemsSource="{Binding ComboboxForYear}" SelectedItem="{Binding SelectedYear,UpdateSourceTrigger=PropertyChanged}" Margin="17,0,0,0" Background="White" Width="150" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="2">
+            <Label Margin="60,5,0,0" Content="Total Profit"  Width="115" Foreground="White" />
+            <TextBlock Width="150" Height="40" Text="{Binding TotalProfitMoney}" Foreground="Black" Background="White" Margin="17,0,0,0" VerticalAlignment="Center"  TextAlignment="Center" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="3">
             <Button Margin="0,10,0,0" Style="{StaticResource DetailsButton}" Content="Print Bill" />
         </StackPanel>
 
-        <StackPanel Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="4">
+        <StackPanel Grid.Row="4" Grid.RowSpan="3" Grid.ColumnSpan="4">
             <DataGrid ItemsSource="{Binding Statistics}" Height="350" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0 0 0 0" x:Name="homedata">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Room  Name" IsReadOnly="True" CanUserResize="False" Width="1.2*" Binding="{Binding RoomName}" />

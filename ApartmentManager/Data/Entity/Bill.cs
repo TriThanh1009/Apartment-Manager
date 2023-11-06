@@ -13,7 +13,7 @@ namespace Data.Entity
         public int ElectricQuantity { get; set; }
         public Active Active { get; set; }
         public DateTime PayDate { get; set; }
-        public int TotalMoney { get; set; }
+        public double TotalMoney { get; set; }
 
         public RentalContract? RentalContract { get; set; }
         public ICollection<PaymentExtension> PaymentExtensions { get; } = new List<PaymentExtension>();

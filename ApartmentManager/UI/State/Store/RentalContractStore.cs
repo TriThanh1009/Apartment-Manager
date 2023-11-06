@@ -91,7 +91,8 @@ namespace AM.UI.State.Store
                 RoomMoney = result.RoomMoney,
                 ElectricMoney = result.ElectricMoney,
                 WaterMoney = result.WaterMoney,
-                ServiceMoney = result.ServiceMoney
+                ServiceMoney = result.ServiceMoney,
+                Active = result.Active
             };
             var current = _rentalvm.FindIndex(x => x.ID == result.ID);
             if (current != -1)

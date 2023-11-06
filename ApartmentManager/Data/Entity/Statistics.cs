@@ -8,10 +8,11 @@ namespace Data.Entity
 {
     public class Statistics : DomainObject
     {
-        public int ElectricMoney { get; set; }
+        public int ElectricMoneyOfGovernment { get; set; }
+        public int WaterMoneyOfGovernment { get; set; }
+        public int ServiceOfGovernment { get; set; }
 
-        public int WaterMoney { get; set; }
-
-        public DateTime Date { get; set; }
+        public int Month { get; set; }
+        public int Year { get; set; }
     }
 }

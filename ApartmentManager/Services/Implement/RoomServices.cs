@@ -12,6 +12,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using ViewModel.Bill;
 using ViewModel.Dtos;
 using ViewModel.People;
 using ViewModel.Room;
@@ -35,6 +36,7 @@ namespace Services.Implement
             {
                 Name = model.Name,
                 Quantity = model.Quantity,
+                Staked = model.Staked
             };
 
             var result = await _base.Create(room);
@@ -67,6 +69,7 @@ namespace Services.Implement
                     ID = x.p.ID,
                     NameLeader = x.pt.Name,
                     Name = x.p.Name,
+                    Staked = x.p.Staked,
                     Quantity = x.p.Quantity
                 }).ToListAsync();
                 return data;
@@ -101,15 +104,17 @@ namespace Services.Implement
                             join pp in _context.RentalContract on p.ID equals pp.IDroom
                             join px in _context.PeopleRental on pp.ID equals px.IDRental
                             join pt in _context.People on px.IDPeople equals pt.ID
+                            join pd in _context.DepositsContract on p.ID equals pd.IDRoom
                             where px.Membership == Data.Enum.Membership.Leader && pp.Active == Data.Enum.Active.Yes
-                            select new { p, pt, px, pp };
+                            select new { p, pt, px, pp, pd };
                 var query1 = await _context.Room.ToListAsync();
                 var data1 = query1.Select(x => new RoomVm()
                 {
                     ID = x.ID,
                     NameLeader = "None",
                     Name = x.Name,
-                    Quantity = x.Quantity
+                    Quantity = x.Quantity,
+                    Staked = 0
                 }).ToList();
                 int totalRow = await query.CountAsync();
                 var data = await query.Select(x => new RoomVm()
@@ -117,7 +122,8 @@ namespace Services.Implement
                     ID = x.p.ID,
                     NameLeader = x.pt.Name,
                     Name = x.p.Name,
-                    Quantity = x.p.Quantity
+                    Quantity = x.p.Quantity,
+                    Staked = x.pd.Money
                 }).ToListAsync();
                 foreach (var result in data1)
                 {
@@ -126,6 +132,7 @@ namespace Services.Implement
                         if (result.ID == result1.ID)
                         {
                             result.NameLeader = result1.NameLeader;
+                            result.Staked = result1.Staked;
                         }
                     }
                 }
@@ -164,6 +171,18 @@ namespace Services.Implement
                 Name = e.Name
             }).ToList();
             return result1;
+        }
+
+        public async Task<int> GetQuantity()
+        {
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+                var query = from p in _context.Bill
+                            join pt in _context.RentalContract on p.IDRTC equals pt.ID
+                            join px in _context.Room on pt.IDroom equals px.ID
+                            select px.Quantity;
+                return await query.FirstOrDefaultAsync();
+            }
         }
 
         public async Task<Room> Update(RoomUpdateViewModel model)

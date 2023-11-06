@@ -12,7 +12,7 @@ namespace ViewModel.PaymentExtension
         public int IDBill { get; set; }
         public string NameRoom { get; set; }
         public string NameLeader { get; set; }
-        public int TotalMoney { get; set; }
+        public double TotalMoney { get; set; }
         public DateTime Days { get; set; }
     }
 }

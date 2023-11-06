@@ -75,6 +75,13 @@
                     <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ID}" />
                     <DataGridTextColumn Header="Leader Name" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding NameLeader}" />
                     <DataGridTextColumn Header="Name" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Staked" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding Staked}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding LeaderNameToToolTip}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
                     <DataGridTextColumn Header="Quantity" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding Quantity}" />
                     <DataGridTemplateColumn Header="Operation" IsReadOnly="True" Width="*">
                         <DataGridTemplateColumn.CellTemplate>

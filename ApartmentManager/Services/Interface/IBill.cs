@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ViewModel.Bill;
 using ViewModel.Dtos;
 using ViewModel.People;
+using ViewModel.Room;
 
 namespace Services.Interface
 {

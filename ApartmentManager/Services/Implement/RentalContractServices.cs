@@ -118,7 +118,10 @@ namespace Services.Implement
             }
             var result1 = result.Select(e => new RentalContractForCombobox
             {
-                IDRental = e.ID
+                IDRental = e.ID,
+                ElectricMoney = e.ElectricMoney,
+                WaterMoney = e.WaterMoney,
+                ServiceMoney = e.ServiceMoney
             }).ToList();
             return result1;
         }

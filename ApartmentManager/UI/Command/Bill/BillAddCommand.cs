@@ -36,7 +36,6 @@ namespace AM.UI.Command.Bill
                 Rental = _billvm.SelectRental,
                 Active = _billvm.Active,
                 ElectricQuantity = _billvm.ElectricQuantity,
-                TotalMoney = _billvm.TotalMoney,
                 PayDate = _billvm.PayDate,
             };
             var result = await _store.AddBill(create);

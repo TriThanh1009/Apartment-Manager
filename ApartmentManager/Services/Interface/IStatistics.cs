@@ -12,8 +12,16 @@ namespace Services.Interface
 {
     public interface IStatistics
     {
-        Task<PagedResult<StatisticsVm>> GetAllPage(RequestPaging request, int Month);
+        Task<PagedResult<StatisticsVm>> GetAllPage(RequestPaging request, int Month, int Year);
 
-        Task<List<StatisticTotalMoney>> GetElectricAndWater(int Month);
+        Task<StatisticTotalMoney> GetElectricAndWater(int Month, int Year);
+
+        Task<MoneyOfGovernment> GetGovermentMoney(int Month, int Year);
+
+        Task<Statistics> CreateGovermentMoney(int Month, int Year);
+
+        Task<Statistics> EditGovernmentMoney(EditGorvernmentMoney edit);
+
+        Task<StatisticsProfitVm> GetProfitMoney(int Month, int Year);
     }
 }

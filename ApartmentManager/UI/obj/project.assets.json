@@ -1693,37 +1693,27 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "LoadingSpinner.WPF": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.8",
-          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.8",
-          "Microsoft.EntityFrameworkCore.Relational": "7.0.8",
-          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.8",
-          "Microsoft.Extensions.Configuration": "7.0.0",
-          "Microsoft.Extensions.Configuration.FileExtensions": "7.0.0",
-          "Microsoft.Extensions.Configuration.Json": "7.0.0",
-          "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39"
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.8"
         },
         "compile": {
           "bin/placeholder/Data.dll": {}
         },
         "runtime": {
           "bin/placeholder/Data.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WPF"
-        ]
+        }
       },
       "Services/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "Data": "1.0.0",
           "LoadingSpinner.WPF": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.8",
           "Microsoft.Extensions.Configuration.Json": "7.0.0",
+          "Microsoft.Extensions.Hosting.Abstractions": "7.0.0",
           "Microsoft.Xaml.Behaviors.Wpf": "1.1.39",
-          "System.Windows.Interactivity.WPF": "2.0.20525",
           "ViewModel": "1.0.0"
         },
         "compile": {
@@ -1742,8 +1732,8 @@
         "dependencies": {
           "Data": "1.0.0",
           "LoadingSpinner.WPF": "1.0.0",
-          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39",
-          "System.Windows.Interactivity.WPF": "2.0.20525"
+          "Microsoft.Extensions.Hosting.Abstractions": "7.0.0",
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39"
         },
         "compile": {
           "bin/placeholder/ViewModel.dll": {}
@@ -4858,6 +4848,7 @@
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
       "Caliburn.Micro.Core >= 4.0.212",
+      "Data >= 1.0.0",
       "LoadingSpinner.WPF >= 1.0.0",
       "MahApps.Metro.IconPacks.Material >= 4.11.0",
       "MaterialDesignThemes >= 4.9.0",
@@ -4869,7 +4860,9 @@
       "Microsoft.Extensions.Hosting >= 7.0.1",
       "Microsoft.Extensions.Hosting.Abstractions >= 7.0.0",
       "Microsoft.Xaml.Behaviors.Wpf >= 1.1.39",
-      "Services >= 1.0.0"
+      "Services >= 1.0.0",
+      "System.Windows.Interactivity.WPF >= 2.0.20525",
+      "ViewModel >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4899,8 +4892,14 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
+            "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj": {
+              "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj"
+            },
             "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj": {
               "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Services\\Services.csproj"
+            },
+            "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj": {
+              "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj"
             }
           }
         }
@@ -4964,6 +4963,10 @@
           "Microsoft.Xaml.Behaviors.Wpf": {
             "target": "Package",
             "version": "[1.1.39, )"
+          },
+          "System.Windows.Interactivity.WPF": {
+            "target": "Package",
+            "version": "[2.0.20525, )"
           }
         },
         "imports": [

@@ -57,6 +57,7 @@ namespace AM.UI.State.Store
         public async Task<Bill> AddBill(BillCreateViewModel model)
         {
             var result = await _ibill.CreateBill(model);
+            //MessageBox.Show(result.TotalMoney.ToString());
             BillVm create = new BillVm
             {
                 ID = result.ID,

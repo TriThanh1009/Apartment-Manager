@@ -12,6 +12,9 @@ namespace ViewModel.Statistic
 
         public int WaterMoney { get; set; }
 
-        public DateTime Date { get; set; }
+        public int ServiceMoney { get; set; }
+
+        public int Month { get; set; }
+        public int Year { get; set; }
     }
 }

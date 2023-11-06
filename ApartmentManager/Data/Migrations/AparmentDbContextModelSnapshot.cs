@@ -73,10 +73,10 @@ namespace Data.Migrations
                     b.Property<DateTime>("PayDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 24, 15, 25, 17, 960, DateTimeKind.Local).AddTicks(860));
+                        .HasDefaultValue(new DateTime(2023, 11, 6, 9, 27, 53, 550, DateTimeKind.Local).AddTicks(4854));
 
-                    b.Property<int>("TotalMoney")
-                        .HasColumnType("int");
+                    b.Property<double>("TotalMoney")
+                        .HasColumnType("float");
 
                     b.HasKey("ID");
 
@@ -91,8 +91,8 @@ namespace Data.Migrations
                             Active = 1,
                             ElectricQuantity = 150,
                             IDRTC = 1,
-                            PayDate = new DateTime(2023, 10, 24, 15, 25, 17, 963, DateTimeKind.Local).AddTicks(6926),
-                            TotalMoney = 1000000
+                            PayDate = new DateTime(2023, 11, 6, 9, 27, 53, 570, DateTimeKind.Local).AddTicks(9238),
+                            TotalMoney = 1000000.0
                         });
                 });
 
@@ -110,7 +110,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("DepositsDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 24, 15, 25, 17, 960, DateTimeKind.Local).AddTicks(4273));
+                        .HasDefaultValue(new DateTime(2023, 11, 6, 9, 27, 53, 553, DateTimeKind.Local).AddTicks(7831));
 
                     b.Property<int>("IDRoom")
                         .HasColumnType("int");
@@ -122,7 +122,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("ReceiveDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 24, 15, 25, 17, 960, DateTimeKind.Local).AddTicks(4568));
+                        .HasDefaultValue(new DateTime(2023, 11, 6, 9, 27, 53, 553, DateTimeKind.Local).AddTicks(8690));
 
                     b.HasKey("ID");
 
@@ -134,11 +134,11 @@ namespace Data.Migrations
                         new
                         {
                             ID = 1,
-                            CheckOutDate = new DateTime(2023, 10, 24, 15, 25, 17, 963, DateTimeKind.Local).AddTicks(6946),
-                            DepositsDate = new DateTime(2023, 10, 24, 15, 25, 17, 963, DateTimeKind.Local).AddTicks(6945),
+                            CheckOutDate = new DateTime(2023, 11, 6, 9, 27, 53, 570, DateTimeKind.Local).AddTicks(9277),
+                            DepositsDate = new DateTime(2023, 11, 6, 9, 27, 53, 570, DateTimeKind.Local).AddTicks(9275),
                             IDRoom = 1,
                             Money = 10000,
-                            ReceiveDate = new DateTime(2023, 10, 24, 15, 25, 17, 963, DateTimeKind.Local).AddTicks(6946)
+                            ReceiveDate = new DateTime(2023, 11, 6, 9, 27, 53, 570, DateTimeKind.Local).AddTicks(9276)
                         });
                 });
 
@@ -178,7 +178,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("Days")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 24, 15, 25, 17, 960, DateTimeKind.Local).AddTicks(9159));
+                        .HasDefaultValue(new DateTime(2023, 11, 6, 9, 27, 53, 556, DateTimeKind.Local).AddTicks(252));
 
                     b.Property<int>("IDBill")
                         .HasColumnType("int");
@@ -193,7 +193,7 @@ namespace Data.Migrations
                         new
                         {
                             ID = 1,
-                            Days = new DateTime(2023, 10, 24, 15, 25, 17, 963, DateTimeKind.Local).AddTicks(6972),
+                            Days = new DateTime(2023, 11, 6, 9, 27, 53, 570, DateTimeKind.Local).AddTicks(9326),
                             IDBill = 1
                         });
                 });
@@ -214,7 +214,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("Birthday")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 24, 15, 25, 17, 961, DateTimeKind.Local).AddTicks(561));
+                        .HasDefaultValue(new DateTime(2023, 11, 6, 9, 27, 53, 556, DateTimeKind.Local).AddTicks(4201));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -250,7 +250,7 @@ namespace Data.Migrations
                         {
                             ID = 1,
                             Address = "Vietnam",
-                            Birthday = new DateTime(2023, 10, 24, 15, 25, 17, 963, DateTimeKind.Local).AddTicks(6989),
+                            Birthday = new DateTime(2023, 11, 6, 9, 27, 53, 570, DateTimeKind.Local).AddTicks(9348),
                             Email = "thanh@gmail.com",
                             IDCard = "1234123",
                             Name = "Jonhny Deep",
@@ -261,7 +261,7 @@ namespace Data.Migrations
                         {
                             ID = 2,
                             Address = "USA",
-                            Birthday = new DateTime(1997, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Birthday = new DateTime(1998, 2, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "emily@gmail.com",
                             IDCard = "56781234",
                             Name = "Emily Stone",
@@ -272,7 +272,7 @@ namespace Data.Migrations
                         {
                             ID = 3,
                             Address = "Canada",
-                            Birthday = new DateTime(1996, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Birthday = new DateTime(2000, 2, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "robert@gmail.com",
                             IDCard = "910111213",
                             Name = "Robert Smith",
@@ -283,7 +283,7 @@ namespace Data.Migrations
                         {
                             ID = 4,
                             Address = "Australia",
-                            Birthday = new DateTime(1999, 7, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Birthday = new DateTime(1993, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "anna@gmail.com",
                             IDCard = "14151617",
                             Name = "Anna Johnson",
@@ -294,7 +294,7 @@ namespace Data.Migrations
                         {
                             ID = 5,
                             Address = "UK",
-                            Birthday = new DateTime(1995, 6, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Birthday = new DateTime(1999, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "michael@gmail.com",
                             IDCard = "18192021",
                             Name = "Michael Brown",
@@ -317,7 +317,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("CheckOutDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 24, 15, 25, 17, 961, DateTimeKind.Local).AddTicks(4570));
+                        .HasDefaultValue(new DateTime(2023, 11, 6, 9, 27, 53, 561, DateTimeKind.Local).AddTicks(352));
 
                     b.Property<int>("ElectricMoney")
                         .HasMaxLength(50)
@@ -332,7 +332,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("ReceiveDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 24, 15, 25, 17, 961, DateTimeKind.Local).AddTicks(4253));
+                        .HasDefaultValue(new DateTime(2023, 11, 6, 9, 27, 53, 560, DateTimeKind.Local).AddTicks(9155));
 
                     b.Property<int>("RoomMoney")
                         .HasMaxLength(50)
@@ -359,10 +359,10 @@ namespace Data.Migrations
                         {
                             ID = 1,
                             Active = 0,
-                            CheckOutDate = new DateTime(2023, 10, 24, 15, 25, 17, 963, DateTimeKind.Local).AddTicks(7087),
+                            CheckOutDate = new DateTime(2023, 11, 6, 9, 27, 53, 570, DateTimeKind.Local).AddTicks(9479),
                             ElectricMoney = 100,
                             IDroom = 1,
-                            ReceiveDate = new DateTime(2023, 10, 24, 15, 25, 17, 963, DateTimeKind.Local).AddTicks(7087),
+                            ReceiveDate = new DateTime(2023, 11, 6, 9, 27, 53, 570, DateTimeKind.Local).AddTicks(9479),
                             RoomMoney = 100,
                             ServiceMoney = 100,
                             WaterMoney = 100
@@ -384,6 +384,9 @@ namespace Data.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int>("Staked")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
                     b.ToTable("Room", (string)null);
@@ -393,241 +396,29 @@ namespace Data.Migrations
                         {
                             ID = 1,
                             Name = "A201",
-                            Quantity = 4
+                            Quantity = 4,
+                            Staked = 0
                         },
                         new
                         {
                             ID = 2,
                             Name = "A202",
-                            Quantity = 5
+                            Quantity = 5,
+                            Staked = 0
                         },
                         new
                         {
                             ID = 3,
                             Name = "A203",
-                            Quantity = 3
+                            Quantity = 3,
+                            Staked = 0
                         },
                         new
                         {
                             ID = 4,
-                            Name = "A204",
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            ID = 5,
-                            Name = "A205",
-                            Quantity = 4
-                        },
-                        new
-                        {
-                            ID = 6,
-                            Name = "A206",
-                            Quantity = 4
-                        },
-                        new
-                        {
-                            ID = 7,
-                            Name = "A207",
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            ID = 8,
-                            Name = "A208",
-                            Quantity = 5
-                        },
-                        new
-                        {
-                            ID = 9,
-                            Name = "A209",
-                            Quantity = 5
-                        },
-                        new
-                        {
-                            ID = 10,
-                            Name = "A210",
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            ID = 11,
-                            Name = "A211",
-                            Quantity = 5
-                        },
-                        new
-                        {
-                            ID = 12,
-                            Name = "A212",
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            ID = 13,
-                            Name = "A213",
-                            Quantity = 4
-                        },
-                        new
-                        {
-                            ID = 14,
-                            Name = "A214",
-                            Quantity = 4
-                        },
-                        new
-                        {
-                            ID = 15,
-                            Name = "A215",
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            ID = 16,
-                            Name = "A216",
-                            Quantity = 4
-                        },
-                        new
-                        {
-                            ID = 17,
-                            Name = "A217",
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            ID = 18,
-                            Name = "A218",
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            ID = 19,
-                            Name = "A219",
-                            Quantity = 5
-                        },
-                        new
-                        {
-                            ID = 20,
-                            Name = "A220",
-                            Quantity = 4
-                        },
-                        new
-                        {
-                            ID = 21,
-                            Name = "A221",
-                            Quantity = 4
-                        },
-                        new
-                        {
-                            ID = 22,
-                            Name = "A222",
-                            Quantity = 5
-                        },
-                        new
-                        {
-                            ID = 23,
-                            Name = "A223",
-                            Quantity = 5
-                        },
-                        new
-                        {
-                            ID = 24,
-                            Name = "A224",
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            ID = 25,
-                            Name = "A225",
-                            Quantity = 4
-                        },
-                        new
-                        {
-                            ID = 26,
-                            Name = "A226",
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            ID = 27,
-                            Name = "A227",
-                            Quantity = 5
-                        },
-                        new
-                        {
-                            ID = 28,
-                            Name = "A228",
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            ID = 29,
-                            Name = "A229",
-                            Quantity = 4
-                        },
-                        new
-                        {
-                            ID = 30,
-                            Name = "A230",
-                            Quantity = 5
-                        },
-                        new
-                        {
-                            ID = 31,
-                            Name = "A231",
-                            Quantity = 4
-                        },
-                        new
-                        {
-                            ID = 32,
-                            Name = "A232",
-                            Quantity = 5
-                        },
-                        new
-                        {
-                            ID = 33,
-                            Name = "A233",
-                            Quantity = 4
-                        },
-                        new
-                        {
-                            ID = 34,
-                            Name = "A234",
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            ID = 35,
-                            Name = "A235",
-                            Quantity = 4
-                        },
-                        new
-                        {
-                            ID = 36,
-                            Name = "A236",
-                            Quantity = 5
-                        },
-                        new
-                        {
-                            ID = 37,
-                            Name = "A237",
-                            Quantity = 4
-                        },
-                        new
-                        {
-                            ID = 38,
-                            Name = "A238",
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            ID = 39,
-                            Name = "A239",
-                            Quantity = 5
-                        },
-                        new
-                        {
-                            ID = 40,
                             Name = "A240",
-                            Quantity = 3
+                            Quantity = 3,
+                            Staked = 0
                         });
                 });
 
@@ -683,21 +474,40 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<DateTime>("Date")
-                        .HasMaxLength(50)
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ElectricMoney")
+                    b.Property<int>("ElectricMoneyOfGovernment")
                         .HasMaxLength(50)
                         .HasColumnType("int");
 
-                    b.Property<int>("WaterMoney")
+                    b.Property<int>("Month")
+                        .HasMaxLength(50)
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServiceOfGovernment")
+                        .HasMaxLength(50)
+                        .HasColumnType("int");
+
+                    b.Property<int>("WaterMoneyOfGovernment")
+                        .HasMaxLength(50)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Year")
                         .HasMaxLength(50)
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.ToTable("Statistics", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            ElectricMoneyOfGovernment = 90,
+                            Month = 10,
+                            ServiceOfGovernment = 90,
+                            WaterMoneyOfGovernment = 90,
+                            Year = 2023
+                        });
                 });
 
             modelBuilder.Entity("Data.Relationships.PeopleRental", b =>
@@ -769,43 +579,6 @@ namespace Data.Migrations
                     b.HasIndex("IDRoom");
 
                     b.ToTable("RoomDetails", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            IDFur = 1,
-                            IDRoom = 1
-                        },
-                        new
-                        {
-                            IDFur = 1,
-                            IDRoom = 2
-                        },
-                        new
-                        {
-                            IDFur = 1,
-                            IDRoom = 3
-                        },
-                        new
-                        {
-                            IDFur = 1,
-                            IDRoom = 4
-                        },
-                        new
-                        {
-                            IDFur = 1,
-                            IDRoom = 5
-                        },
-                        new
-                        {
-                            IDFur = 1,
-                            IDRoom = 6
-                        },
-                        new
-                        {
-                            IDFur = 1,
-                            IDRoom = 7
-                        });
                 });
 
             modelBuilder.Entity("Data.Entity.Bill", b =>

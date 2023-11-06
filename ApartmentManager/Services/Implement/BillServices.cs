@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using ViewModel.Bill;
 using ViewModel.Dtos;
 using ViewModel.People;
@@ -30,18 +31,17 @@ namespace Services.Implement
 
         public async Task<Bill> CreateBill(BillCreateViewModel model)
         {
-            //var room = await _Iroom.GetAll();
-            // var GetQuantity = room.FirstOrDefault(x => x.ID == model.Rental.ID);
-
+            int Quantity = await _Iroom.GetQuantity();
             var bill = new Bill
             {
                 ID = model.ID,
                 IDRTC = model.Rental.IDRental,
                 ElectricQuantity = model.ElectricQuantity,
                 Active = model.Active,
-                // TotalMoney = (model.Rental.ElectricMoney * GetQuantity.Quantity) + (model.Rental.WaterMoney * GetQuantity.Quantity),
+                TotalMoney = (model.Rental.ElectricMoney * model.ElectricQuantity) + (model.Rental.WaterMoney * Quantity) + (model.Rental.ServiceMoney * Quantity),
                 PayDate = model.PayDate
             };
+            MessageBox.Show(bill.TotalMoney.ToString());
             return await _baseControl.Create(bill);
         }
 

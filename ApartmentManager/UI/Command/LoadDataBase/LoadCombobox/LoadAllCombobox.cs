@@ -141,12 +141,6 @@ namespace AM.UI.Command.LoadDataBase.LoadCombobox
                 customer = await _comboboxStore.LoadCustomerForCombobox();
                 _RoomAddVM.LoadCustomerCombobox(customer);
             }
-            if (Flag == 8)
-            {
-                List<CustomerForCombobox> customer = new List<CustomerForCombobox>();
-                customer = await _comboboxStore.LoadCustomerForCombobox();
-                _RoomUpdateVM.UpdateDataCustomer(customer);
-            }
         }
     }
 }

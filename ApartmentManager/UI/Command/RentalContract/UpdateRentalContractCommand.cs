@@ -20,13 +20,15 @@ namespace AM.UI.Command.RentalContract
         private readonly RentalContractStore _store;
 
         public ICommand RentalHomeNav { get; }
-        public UpdateRentalContractCommand(RentalContractUpdateVMUI rental,INavigator navigator,IAparmentViewModelFactory viewmodel, RentalContractStore store)
+
+        public UpdateRentalContractCommand(RentalContractUpdateVMUI rental, INavigator navigator, IAparmentViewModelFactory viewmodel, RentalContractStore store)
         {
             _rental = rental;
             _store = store;
             RentalHomeNav = new UpdateCurrentViewModelCommand(navigator, viewmodel);
             _rental.PropertyChanged += OnViewModelPropertyChanged;
         }
+
         public override async Task ExecuteAsync(object parameter)
         {
             RentalContractUpdateViewModel rental = new RentalContractUpdateViewModel
@@ -39,7 +41,8 @@ namespace AM.UI.Command.RentalContract
                 RoomMoney = _rental.Rental.RoomMoney,
                 ElectricMoney = _rental.Rental.ElectricMoney,
                 WaterMoney = _rental.Rental.WaterMoney,
-                ServiceMoney = _rental.Rental.ServiceMoney
+                ServiceMoney = _rental.Rental.ServiceMoney,
+                Active = _rental.Active
             };
             var result = await _store.UpdateRentalContract(rental);
             if (result != null)
@@ -51,9 +54,8 @@ namespace AM.UI.Command.RentalContract
             {
                 new MessageBoxCustom("Update Fail", MessageType.Warning, MessageButtons.Ok).ShowDialog();
             }
-
-
         }
+
         public void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             OnCanExecutedChanged();

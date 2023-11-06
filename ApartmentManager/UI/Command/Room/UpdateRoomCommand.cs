@@ -25,27 +25,25 @@ namespace AM.UI.Command.Room
 
         public ICommand RoomHomeNav { get; }
 
-        
-        public UpdateRoomCommand(RoomUpdateVMUI roomvmui,INavigator navigator,IAparmentViewModelFactory factory, RoomStore apartmentStore)
+        public UpdateRoomCommand(RoomUpdateVMUI roomvmui, INavigator navigator, IAparmentViewModelFactory factory, RoomStore apartmentStore)
         {
             _roomvmui = roomvmui;
             _apartmentstore = apartmentStore;
             RoomHomeNav = new UpdateCurrentViewModelCommand(navigator, factory);
             _roomvmui.PropertyChanged += OnViewModelPropertyChanged;
         }
+
         public override async Task ExecuteAsync(object parameter)
         {
-
             RoomUpdateViewModel update = new RoomUpdateViewModel
             {
-
                 ID = _roomvmui.Room.ID,
-                customer = _roomvmui.SelectCustomer,
                 Name = _roomvmui.Room.Name,
+                Staked = _roomvmui.Room.Staked,
                 Quantity = _roomvmui.Room.Quantity,
             };
             var result = await _apartmentstore.UpdateRoom(update);
-            if(result != null)
+            if (result != null)
             {
                 new MessageBoxCustom("Update Succeses", MessageType.Success, MessageButtons.Ok).ShowDialog();
                 RoomHomeNav.Execute(ViewType.Room);

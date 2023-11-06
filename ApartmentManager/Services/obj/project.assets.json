@@ -438,6 +438,27 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+      "Microsoft.Extensions.Hosting.Abstractions/7.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
+          "Microsoft.Extensions.FileProviders.Abstractions": "7.0.0"
+        },
+        "compile": {
+          "lib/net7.0/Microsoft.Extensions.Hosting.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.Hosting.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
       "Microsoft.Extensions.Logging/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -1193,49 +1214,19 @@
           }
         }
       },
-      "System.Windows.Interactivity.WPF/2.0.20525": {
-        "type": "package",
-        "compile": {
-          "lib/net40/Microsoft.Expression.Interactions.dll": {
-            "related": ".xml"
-          },
-          "lib/net40/System.Windows.Interactivity.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net40/Microsoft.Expression.Interactions.dll": {
-            "related": ".xml"
-          },
-          "lib/net40/System.Windows.Interactivity.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "LoadingSpinner.WPF": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.8",
-          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.8",
-          "Microsoft.EntityFrameworkCore.Relational": "7.0.8",
-          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.8",
-          "Microsoft.Extensions.Configuration": "7.0.0",
-          "Microsoft.Extensions.Configuration.FileExtensions": "7.0.0",
-          "Microsoft.Extensions.Configuration.Json": "7.0.0",
-          "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39"
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.8"
         },
         "compile": {
           "bin/placeholder/Data.dll": {}
         },
         "runtime": {
           "bin/placeholder/Data.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WPF"
-        ]
+        }
       },
       "ViewModel/1.0.0": {
         "type": "project",
@@ -1243,8 +1234,8 @@
         "dependencies": {
           "Data": "1.0.0",
           "LoadingSpinner.WPF": "1.0.0",
-          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39",
-          "System.Windows.Interactivity.WPF": "2.0.20525"
+          "Microsoft.Extensions.Hosting.Abstractions": "7.0.0",
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39"
         },
         "compile": {
           "bin/placeholder/ViewModel.dll": {}
@@ -1850,6 +1841,35 @@
         "lib/netstandard2.0/Microsoft.Extensions.FileSystemGlobbing.xml",
         "microsoft.extensions.filesystemglobbing.7.0.0.nupkg.sha512",
         "microsoft.extensions.filesystemglobbing.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Hosting.Abstractions/7.0.0": {
+      "sha512": "43n9Je09z0p/7ViPxfRqs5BUItRLNVh5b6JH40F2Agkh2NBsY/jpNYTtbCcxrHCsA3oRmbR6RJBzUutB4VZvNQ==",
+      "type": "package",
+      "path": "microsoft.extensions.hosting.abstractions/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.Hosting.Abstractions.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Hosting.Abstractions.targets",
+        "lib/net462/Microsoft.Extensions.Hosting.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.Hosting.Abstractions.xml",
+        "lib/net6.0/Microsoft.Extensions.Hosting.Abstractions.dll",
+        "lib/net6.0/Microsoft.Extensions.Hosting.Abstractions.xml",
+        "lib/net7.0/Microsoft.Extensions.Hosting.Abstractions.dll",
+        "lib/net7.0/Microsoft.Extensions.Hosting.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.xml",
+        "lib/netstandard2.1/Microsoft.Extensions.Hosting.Abstractions.dll",
+        "lib/netstandard2.1/Microsoft.Extensions.Hosting.Abstractions.xml",
+        "microsoft.extensions.hosting.abstractions.7.0.0.nupkg.sha512",
+        "microsoft.extensions.hosting.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
@@ -3657,21 +3677,6 @@
         "version.txt"
       ]
     },
-    "System.Windows.Interactivity.WPF/2.0.20525": {
-      "sha512": "0r+Le4E7hCm4zToUvBzjSUyTcuU3rFeoPa7JyTdWIzR/F7wH6+O/pWkjHIG40hIA0z1wvRdZayvoizA4wcK1dg==",
-      "type": "package",
-      "path": "system.windows.interactivity.wpf/2.0.20525",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net40/Microsoft.Expression.Interactions.dll",
-        "lib/net40/Microsoft.Expression.Interactions.xml",
-        "lib/net40/System.Windows.Interactivity.dll",
-        "lib/net40/System.Windows.Interactivity.xml",
-        "system.windows.interactivity.wpf.2.0.20525.nupkg.sha512",
-        "system.windows.interactivity.wpf.nuspec"
-      ]
-    },
     "Data/1.0.0": {
       "type": "project",
       "path": "../Data/Data.csproj",
@@ -3685,12 +3690,13 @@
   },
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
+      "Data >= 1.0.0",
       "LoadingSpinner.WPF >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.8",
       "Microsoft.Extensions.Configuration.Json >= 7.0.0",
+      "Microsoft.Extensions.Hosting.Abstractions >= 7.0.0",
       "Microsoft.Xaml.Behaviors.Wpf >= 1.1.39",
-      "System.Windows.Interactivity.WPF >= 2.0.20525",
       "ViewModel >= 1.0.0"
     ]
   },
@@ -3721,6 +3727,9 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
+            "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj": {
+              "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj"
+            },
             "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj": {
               "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj"
             }
@@ -3753,13 +3762,13 @@
             "target": "Package",
             "version": "[7.0.0, )"
           },
+          "Microsoft.Extensions.Hosting.Abstractions": {
+            "target": "Package",
+            "version": "[7.0.0, )"
+          },
           "Microsoft.Xaml.Behaviors.Wpf": {
             "target": "Package",
             "version": "[1.1.39, )"
-          },
-          "System.Windows.Interactivity.WPF": {
-            "target": "Package",
-            "version": "[2.0.20525, )"
           }
         },
         "imports": [
@@ -3784,17 +3793,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Windows.Interactivity.WPF 2.0.20525' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0-windows7.0'. This package may not be fully compatible with your project.",
-      "libraryId": "System.Windows.Interactivity.WPF",
-      "targetGraphs": [
-        "net7.0-windows7.0"
-      ]
-    }
-  ]
+  }
 }

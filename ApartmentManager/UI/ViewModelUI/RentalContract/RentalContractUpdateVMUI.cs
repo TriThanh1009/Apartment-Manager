@@ -94,12 +94,18 @@ namespace AM.UI.ViewModelUI.RentalContract
             _apartmentStore = apartmentStore;
             _Rental = rentalViewModel;
             _comboboxStore = comboboxStore;
+            _comboboxActive = new ObservableCollection<string>();
             _comboboxforCustomer = new ObservableCollection<CustomerForCombobox>();
             _comboboxforRoom = new ObservableCollection<RoomForCombobox>();
             UpdateConFirm = new RelayCommand(RentalContractUpdate);
             UpdateSuccess = new UpdateRentalContractCommand(this, _navigator, _viewModelFactory, _apartmentStore);
             LoadDataForCombobox = new LoadAllCombobox(_comboboxStore, this);
             LoadDataForCombobox.Execute(null);
+
+            foreach (Active active in Enum.GetValues(typeof(Active)))
+            {
+                _comboboxActive.Add(active.ToString());
+            }
             _comboboxforRoom.CollectionChanged += OnReservationsChanged;
             _comboboxforCustomer.CollectionChanged += OnReservationsChanged;
         }

@@ -1,13 +1,17 @@
 ﻿using AM.UI.Command.LoadDataBase;
+using AM.UI.Command.Statistics;
 using AM.UI.State.Navigators;
 using AM.UI.State.Store;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI.Factory;
+using Data.Entity;
 using Data.Enum;
+using Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,30 +31,44 @@ namespace AM.UI.ViewModelUI.Statistics
         private ObservableCollection<StatisticsVm> _Statistics;
         public ObservableCollection<StatisticsVm> Statistics => _Statistics;
 
+        private ObservableCollection<StatisticsProfitVm> _StatisticsProfit;
+        public ObservableCollection<StatisticsProfitVm> StatisticsProfit => _StatisticsProfit;
+
         private ObservableCollection<Month> _ComboboxForMonth;
         public ObservableCollection<Month> ComboboxForMonth => _ComboboxForMonth;
 
-        private List<StatisticTotalMoney> _totalMoneyList;
+        private ObservableCollection<int> _ComboboxForYear;
+        public ObservableCollection<int> ComboboxForYear => _ComboboxForYear;
 
-        public List<StatisticTotalMoney> TotalMoneyList => _totalMoneyList;
-
-        public ICommand ContentButton { get; }
+        public ICommand ProfitButton { get; }
 
         public ICommand LoadDataBase { get; }
 
-        private string _Content;
+        public ICommand ElectricInputCommand { get; }
+        public ICommand WaterInputCommand { get; }
 
-        public string Content
+        public ICommand ServiceInputCommand { get; }
+
+        public ICommand EditGovernmentCommand { get; }
+
+        public ICommand AddSuccess { get; }
+
+        public ICommand AddConFirm { get; }
+
+        private MoneyOfGovernment _GovermentMoney;
+
+        public MoneyOfGovernment GovernmentMoney
         {
-            get { return _Content; }
+            get { return _GovermentMoney; }
             set
             {
-                _Content = value;
-                OnPropertyChanged(nameof(Content));
+                _GovermentMoney = value;
+                OnPropertyChanged(nameof(GovernmentMoney));
             }
         }
 
         public bool HasData => _Statistics.Any();
+
         private Month _MonthForStatistics = Month.October;
 
         public Month MonthForStatistics
@@ -66,27 +84,65 @@ namespace AM.UI.ViewModelUI.Statistics
             }
         }
 
-        private int _TotalElectric;
+        private int _SelectedYear = 2023;
 
-        public int TotalElectric
+        public int SelectedYear
         {
-            get { return _TotalElectric; }
+            get { return _SelectedYear; }
             set
             {
-                _TotalElectric = value;
-                OnPropertyChanged(nameof(TotalElectric));
+                _SelectedYear = value;
+                OnPropertyChanged(nameof(SelectedYear));
+                _Statistics.Clear();
+                LoadDataBase.Execute(null);
             }
         }
 
-        private int _TotalWater;
+        private StatisticTotalMoney _StatisticsTotal;
 
-        public int TotalWater
+        public StatisticTotalMoney StatisticsTotal
         {
-            get { return _TotalWater; }
+            get { return _StatisticsTotal; }
             set
             {
-                _TotalElectric = value;
-                OnPropertyChanged(nameof(TotalWater));
+                _StatisticsTotal = value;
+                OnPropertyChanged(nameof(StatisticsTotal));
+            }
+        }
+
+        private StatisticsProfitVm _StatisticsProfitVM;
+
+        public StatisticsProfitVm StatisticsProfitVM
+        {
+            get { return _StatisticsProfitVM; }
+            set
+            {
+                _StatisticsProfitVM = value;
+                OnPropertyChanged(nameof(StatisticsProfitVM));
+            }
+        }
+
+        private int _TotalProfitMoney;
+
+        public int TotalProfitMoney
+        {
+            get { return _TotalProfitMoney; }
+            set
+            {
+                _TotalProfitMoney = value;
+                OnPropertyChanged(nameof(TotalProfitMoney));
+            }
+        }
+
+        private DateTime _DateCreateProfit = DateTime.Now;
+
+        public DateTime DateCreateProfit
+        {
+            get { return _DateCreateProfit; }
+            set
+            {
+                _DateCreateProfit = value;
+                OnPropertyChanged(nameof(DateCreateProfit));
             }
         }
 
@@ -107,25 +163,88 @@ namespace AM.UI.ViewModelUI.Statistics
             _navigator = navigator;
             _viewModelFactory = viewModelFactory;
             _StatisticsStore = StatisticsStore;
-            GetTotal();
             _Statistics = new ObservableCollection<StatisticsVm>();
+            _GovermentMoney = new MoneyOfGovernment();
+            _StatisticsTotal = new StatisticTotalMoney();
+            _StatisticsProfitVM = new StatisticsProfitVm();
             LoadDataBase = new LoadStatisticsView(this, _StatisticsStore);
             LoadDataBase.Execute(null);
-            _ComboboxForMonth = new ObservableCollection<Month>();
 
+            EditGovernmentCommand = new EditGovernmentCommand(_navigator, _viewModelFactory, _StatisticsStore, this);
+            ElectricInputCommand = new RelayCommand(ShowElectricInput);
+            WaterInputCommand = new RelayCommand(ShowWaterInput);
+            ServiceInputCommand = new RelayCommand(ShowServiceInput);
+            _ComboboxForMonth = new ObservableCollection<Month>();
+            _ComboboxForYear = new ObservableCollection<int>();
+            _StatisticsStore.EditGovernmentMoney += Edit_Store;
+            AddSuccess = new CreateGovernmentCommand(_navigator, _viewModelFactory, _StatisticsStore, this);
+            AddConFirm = new RelayCommand(CreateStatistics);
             foreach (Month month in Enum.GetValues(typeof(Month)))
             {
                 _ComboboxForMonth.Add(month);
             }
+
+            for (int i = 2020; i <= 2050; i++)
+            {
+                _ComboboxForYear.Add(i);
+            }
             _Statistics.CollectionChanged += OnReservationsChanged;
         }
 
-        public async void GetTotal()
+        public void CreateStatistics(object parameter)
         {
-            _totalMoneyList = await _StatisticsStore.GetTotalMoney((int)_MonthForStatistics);
+            AddSuccess.Execute(null);
+        }
 
-            _TotalElectric = _totalMoneyList.Sum(x => x.ElectricMoney);
-            _TotalWater = _totalMoneyList.Sum(x => x.WaterMoney);
+        public void Edit_Store(MoneyOfGovernment data)
+        {
+            GovernmentMoney.ElectricMoneyOfGovernment = data.ElectricMoneyOfGovernment;
+            GovernmentMoney.WaterMoneyOfGovernment = data.WaterMoneyOfGovernment;
+            GovernmentMoney.ServiceOfGovernment = data.ServiceOfGovernment;
+            _Statistics.Clear();
+            LoadDataBase.Execute(null);
+        }
+
+        private void ShowElectricInput(object parameter)
+        {
+            string input = Microsoft.VisualBasic.Interaction.InputBox("Enter a number:", "Input", "", -1, -1);
+            if (int.TryParse(input, out int number))
+            {
+                GovernmentMoney.ElectricMoneyOfGovernment = number;
+                EditGovernmentCommand.Execute(null);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid number.");
+            }
+        }
+
+        private void ShowServiceInput(object parameter)
+        {
+            string input = Microsoft.VisualBasic.Interaction.InputBox("Enter a number:", "Input", "", -1, -1);
+            if (int.TryParse(input, out int number))
+            {
+                GovernmentMoney.ServiceOfGovernment = number;
+                EditGovernmentCommand.Execute(null);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid number.");
+            }
+        }
+
+        private void ShowWaterInput(object parameter)
+        {
+            string input = Microsoft.VisualBasic.Interaction.InputBox("Enter a number:", "Input", "", -1, -1);
+            if (int.TryParse(input, out int number))
+            {
+                GovernmentMoney.WaterMoneyOfGovernment = number;
+                EditGovernmentCommand.Execute(null);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid number.");
+            }
         }
 
         public void UpdateDataStatistics(List<StatisticsVm> data)

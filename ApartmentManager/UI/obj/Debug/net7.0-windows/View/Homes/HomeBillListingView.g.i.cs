@@ -64,7 +64,7 @@ namespace AM.UI.View.Homes {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AM.UI;component/view/homes/homebilllistingview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AM.UI;V1.0.0.0;component/view/homes/homebilllistingview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\Homes\HomeBillListingView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

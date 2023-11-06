@@ -3,7 +3,6 @@ using Data.Relationships;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,7 +18,6 @@ namespace Data.Entity
 
         public string IDCard { get; set; }
         public string Address { get; set; }
-
 
         public ICollection<PeopleRental> PeopleRental { get; } = new List<PeopleRental>();
 

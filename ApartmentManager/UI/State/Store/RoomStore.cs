@@ -102,7 +102,6 @@ namespace AM.UI.State.Store
             RoomVm create = new RoomVm
             {
                 ID = result.ID,
-                NameLeader = request.customer.Name,
                 Name = result.Name,
                 Quantity = result.Quantity,
             };
@@ -117,9 +116,9 @@ namespace AM.UI.State.Store
             RoomVm update = new RoomVm
             {
                 ID = result.ID,
-                NameLeader = request.customer.Name,
                 Name = result.Name,
                 Quantity = result.Quantity,
+                Staked = result.Staked,
             };
 
             var currentIndex = _roomvm.FindIndex(x => x.ID == result.ID);
@@ -191,15 +190,11 @@ namespace AM.UI.State.Store
             return 1;
         }
 
-
         public async Task<List<CustomerVM>> GetAllCustomerInRoomByIDRoom(int IDroom)
         {
             return await _roomdetails.GetAllCustomerInRoom(IDroom);
         }
 
-
-
-        
         public async Task<List<RoomDetailsImage>> LoadRoomDetailsImage(int id)
         {
             List<RoomDetailsImage> roomdetailsImage = await _apartment.GetAllRoomDetailsImage(id);

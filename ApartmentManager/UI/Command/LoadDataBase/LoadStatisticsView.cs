@@ -21,18 +21,47 @@ namespace AM.UI.Command.LoadDataBase
             _StatisticsStore = statisticsStore;
         }
 
+        private StatisticTotalMoney totalTask = new StatisticTotalMoney();
+        private MoneyOfGovernment governmentTask = new MoneyOfGovernment();
+        private StatisticsProfitVm profitTask = new StatisticsProfitVm();
+
         public override async Task ExecuteAsync(object parameter)
         {
             try
             {
-                List<StatisticsVm> statistics = new List<StatisticsVm>();
-                statistics = await _StatisticsStore.LoadStatistics((int)_StatisticsVM.MonthForStatistics);
+                List<StatisticsVm> statistics = await _StatisticsStore.LoadStatistics((int)_StatisticsVM.MonthForStatistics, _StatisticsVM.SelectedYear);
                 _StatisticsVM.UpdateDataStatistics(statistics);
+                await Task.Run(CreateGovernment);
+                await Task.WhenAll(TotalMoney(), GovernmentMoney(), ProfitMoney());
+                _StatisticsVM.TotalProfitMoney = profitTask.ElectricMoney + profitTask.WaterMoney + profitTask.ServiceMoney;
             }
             catch (Exception)
             {
                 _StatisticsVM.MessageError = "Error to load Statistics Data";
             }
+        }
+
+        public async Task TotalMoney()
+        {
+            totalTask = await _StatisticsStore.GetTotalMoney((int)_StatisticsVM.MonthForStatistics, _StatisticsVM.SelectedYear);
+            _StatisticsVM.StatisticsTotal = totalTask;
+        }
+
+        public async Task GovernmentMoney()
+        {
+            governmentTask = await _StatisticsStore.GetMoneyOfGovernment((int)_StatisticsVM.MonthForStatistics, _StatisticsVM.SelectedYear);
+            _StatisticsVM.GovernmentMoney = governmentTask;
+        }
+
+        public async Task ProfitMoney()
+        {
+            profitTask = await _StatisticsStore.GetProfitMoney((int)_StatisticsVM.MonthForStatistics, _StatisticsVM.SelectedYear);
+            _StatisticsVM.StatisticsProfitVM = profitTask;
+        }
+
+        public async Task CreateGovernment()
+        {
+            await _StatisticsStore.CreateGovernment((int)_StatisticsVM.MonthForStatistics, _StatisticsVM.SelectedYear);
         }
     }
 }

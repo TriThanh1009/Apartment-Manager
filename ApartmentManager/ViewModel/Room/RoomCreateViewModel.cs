@@ -10,8 +10,8 @@ namespace ViewModel.Room
 {
     public class RoomCreateViewModel
     {
-        public CustomerForCombobox customer { get; set; }
         public string Name { get; set; }
         public int Quantity { get; set; }
+        public int Staked { get; set; }
     }
 }

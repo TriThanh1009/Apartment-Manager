@@ -17,7 +17,7 @@ namespace ViewModel.Home
         public int WaterMoney { get; set; }
         public int ServiceMoney { get; set; }
         public DateTime PayDate { get; set; }
-        public int TotalMoney { get; set; }
+        public double TotalMoney { get; set; }
         public Active Active { get; set; }
         public bool IsActive { get; set; }
     }

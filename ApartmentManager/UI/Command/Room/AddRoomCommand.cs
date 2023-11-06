@@ -35,12 +35,11 @@ namespace AM.UI.Command.Room
         {
             RoomCreateViewModel create = new RoomCreateViewModel
             {
-                customer = _roomvmui.SelectCustomer,
                 Name = _roomvmui.name,
                 Quantity = _roomvmui.quantity
             };
             var result = await _room.AddRoom(create);
-            if (result!=null)
+            if (result != null)
             {
                 new MessageBoxCustom("Add Successed", MessageType.Success, MessageButtons.Ok).ShowDialog();
                 _navigator.CurrentViewModel = _viewModelFactory.CreateViewModel(ViewType.Room);

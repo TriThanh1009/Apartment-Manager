@@ -17,7 +17,7 @@ namespace AM.UI.Command
     {
         private readonly RoomHomeVMUI _roomhomevm;
         private readonly RoomStore _room;
-        
+
         public LoadRoomView(RoomHomeVMUI roomhomevm, RoomStore room)
         {
             _roomhomevm = roomhomevm;
@@ -26,19 +26,17 @@ namespace AM.UI.Command
 
         public override async Task ExecuteAsync(object parameter)
         {
-            
             _roomhomevm.IsLoading = true;
             try
             {
-                
                 await _room.LoadRoom();
                 _roomhomevm.UpdateData(_room.roomvm);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 _roomhomevm.MessageError = "Can't load Room Database";
             }
             _roomhomevm.IsLoading = false;
-            
         }
     }
 }

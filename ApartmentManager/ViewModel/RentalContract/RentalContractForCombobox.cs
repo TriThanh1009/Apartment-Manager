@@ -14,6 +14,6 @@ namespace ViewModel.RentalContract
         public int ElectricMoney { get; set; }
         public int WaterMoney { get; set; }
 
-        public int ID { get; set; }
+        public int ServiceMoney { get; set; }
     }
 }

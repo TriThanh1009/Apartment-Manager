@@ -17,8 +17,6 @@ namespace Data
         {
         }
 
-       
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new StatisticsConfiguration());
@@ -32,6 +30,7 @@ namespace Data
             modelBuilder.ApplyConfiguration(new RoomDetailsConfiguration());
             modelBuilder.ApplyConfiguration(new RoomImageConfiguration());
             modelBuilder.ApplyConfiguration(new PeopleRentalConfiguration());
+            modelBuilder.ApplyConfiguration(new StatisticsConfiguration());
             modelBuilder.Seed();
             base.OnModelCreating(modelBuilder);
         }
@@ -48,5 +47,7 @@ namespace Data
         public DbSet<RoomImage> RoomImage { get; set; }
 
         public DbSet<PeopleRental> PeopleRental { get; set; }
+
+        public DbSet<Statistics> Statistics { get; set; }
     }
 }

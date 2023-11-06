@@ -9,6 +9,7 @@
       "AM.UI/1.0.0": {
         "dependencies": {
           "Caliburn.Micro.Core": "4.0.212",
+          "Data": "1.0.0",
           "LoadingSpinner.WPF": "1.0.0",
           "MahApps.Metro.IconPacks.Material": "4.11.0",
           "MaterialDesignThemes": "4.9.0",
@@ -20,7 +21,9 @@
           "Microsoft.Extensions.Hosting": "7.0.1",
           "Microsoft.Extensions.Hosting.Abstractions": "7.0.0",
           "Microsoft.Xaml.Behaviors.Wpf": "1.1.39",
-          "Services": "1.0.0"
+          "Services": "1.0.0",
+          "System.Windows.Interactivity.WPF": "2.0.20525",
+          "ViewModel": "1.0.0"
         },
         "runtime": {
           "AM.UI.dll": {}
@@ -934,16 +937,8 @@
       },
       "Data/1.0.0": {
         "dependencies": {
-          "LoadingSpinner.WPF": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.8",
-          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.8",
-          "Microsoft.EntityFrameworkCore.Relational": "7.0.8",
-          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.8",
-          "Microsoft.Extensions.Configuration": "7.0.0",
-          "Microsoft.Extensions.Configuration.FileExtensions": "7.0.0",
-          "Microsoft.Extensions.Configuration.Json": "7.0.0",
-          "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39"
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.8"
         },
         "runtime": {
           "Data.dll": {}
@@ -951,12 +946,13 @@
       },
       "Services/1.0.0": {
         "dependencies": {
+          "Data": "1.0.0",
           "LoadingSpinner.WPF": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.8",
           "Microsoft.Extensions.Configuration.Json": "7.0.0",
+          "Microsoft.Extensions.Hosting.Abstractions": "7.0.0",
           "Microsoft.Xaml.Behaviors.Wpf": "1.1.39",
-          "System.Windows.Interactivity.WPF": "2.0.20525",
           "ViewModel": "1.0.0"
         },
         "runtime": {
@@ -967,8 +963,8 @@
         "dependencies": {
           "Data": "1.0.0",
           "LoadingSpinner.WPF": "1.0.0",
-          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39",
-          "System.Windows.Interactivity.WPF": "2.0.20525"
+          "Microsoft.Extensions.Hosting.Abstractions": "7.0.0",
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39"
         },
         "runtime": {
           "ViewModel.dll": {}
