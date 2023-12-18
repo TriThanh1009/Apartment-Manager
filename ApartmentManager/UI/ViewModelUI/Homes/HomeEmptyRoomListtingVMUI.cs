@@ -1,4 +1,5 @@
-﻿using AM.UI.Command.Home;
+﻿using AM.UI.Command;
+using AM.UI.Command.Home;
 using AM.UI.State.Navigators;
 using AM.UI.State.Store;
 using AM.UI.Utilities;
@@ -43,15 +44,17 @@ namespace AM.UI.ViewModelUI
         }
 
         public ICommand ReturnBillHomeVM { get; }
+        public ICommand NavtoDepositAdd { get; }
         public ICommand LoadDataCommand { get; }
 
         public HomeEmptyRoomListtingVMUI(IHome home, HomeStore homeStore, INavigator navigator, IAparmentViewModelFactory factory)
         {
-            _HomeStore=homeStore;
-            _navigator=navigator;
-            _factory=factory;
+            _HomeStore = homeStore;
+            _navigator = navigator;
+            _factory = factory;
             _listemptyroom = new ObservableCollection<RoomVm>();
             ReturnBillHomeVM = new UpdateCurrentHomeViewModelCommand(home, homeStore, navigator, factory);
+            NavtoDepositAdd = new UpdateCurrentViewModelCommand(_navigator, _factory);
             LoadDataCommand = new LoadEmptyRoomListtingCommand(this, homeStore);
             LoadDataCommand.Execute(null);
             _listemptyroom.CollectionChanged += OnReservationsChanged;

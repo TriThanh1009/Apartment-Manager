@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using ViewModel.Dtos;
 using ViewModel.People;
+using ViewModel.PeopleRental;
 
 namespace Services.Implement
 {
@@ -23,8 +24,8 @@ namespace Services.Implement
 
         public PeopleServices(ApartmentDbContextFactory contextfactory, IBaseControl<People> baseControl)
         {
-            _contextfactory=contextfactory;
-            _baseControl=baseControl;
+            _contextfactory = contextfactory;
+            _baseControl = baseControl;
         }
 
         public async Task<People> Create(PeopleCreateViewModel request)
@@ -33,7 +34,7 @@ namespace Services.Implement
             {
                 PeopleRental peopleRental = new PeopleRental
                 {
-                    IDPeople =request.ID,
+                    IDPeople = request.ID,
                     IDRental = request.IDRental,
                 };
                 _context.PeopleRental.Add(peopleRental);
@@ -42,14 +43,14 @@ namespace Services.Implement
                 {
                     Name = request.Name,
                     Sex = request.Sex,
-                    Birthday= request.Birthday,
+                    Birthday = request.Birthday,
                     PhoneNumber = request.PhoneNumber,
                     Email = request.Email,
                     IDCard = request.IDCard,
                     Address = request.Address,
                 };
                 var result = await _baseControl.Create(people);
-                if (result !=null && rs==1)
+                if (result != null && rs == 1)
                 {
                     return result;
                 }
@@ -70,7 +71,7 @@ namespace Services.Implement
                     {
                         Name = person.Name,
                         Sex = person.Sex,
-                        Birthday= person.Birthday,
+                        Birthday = person.Birthday,
                         PhoneNumber = person.PhoneNumber,
                         Email = person.Email,
                         IDCard = person.IDCard,
@@ -78,7 +79,7 @@ namespace Services.Implement
                     };
                     PeopleRental peopleRental = new PeopleRental
                     {
-                        IDPeople =person.ID,
+                        IDPeople = person.ID,
                         IDRental = person.IDRental,
                         People = people,
                         Membership = Membership.Member
@@ -87,7 +88,7 @@ namespace Services.Implement
                     {
                         peopleRental.Membership = Membership.Leader;
                     }
-                    flag=false;
+                    flag = false;
                     pr.Add(peopleRental);
                     // peoples.Add(people);
                 }
@@ -104,9 +105,9 @@ namespace Services.Implement
         {
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
-                People entity = await _context.People.FirstOrDefaultAsync((x) => x.ID==id);
+                People entity = await _context.People.FirstOrDefaultAsync((x) => x.ID == id);
                 if (entity == null) return false;
-                PeopleRental peopleRental = await _context.PeopleRental.FirstOrDefaultAsync((x) => x.IDPeople==id);
+                PeopleRental peopleRental = await _context.PeopleRental.FirstOrDefaultAsync((x) => x.IDPeople == id);
                 _context.PeopleRental.Remove(peopleRental);
                 _context.People.Remove(entity);
                 await _context.SaveChangesAsync();
@@ -123,7 +124,7 @@ namespace Services.Implement
                     ID = id,
                     Name = request.Name,
                     Sex = request.Sex,
-                    Birthday= request.Birthday,
+                    Birthday = request.Birthday,
                     PhoneNumber = request.PhoneNumber,
                     Email = request.Email,
                     IDCard = request.IDCard,
@@ -161,6 +162,13 @@ namespace Services.Implement
             }
         }
 
+        public async Task<PagedResult<PeopleRentalVm>> GetAllPageRole(RequestPaging request)
+        {
+            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
+            {
+            }
+        }
+
         public async Task<PagedResult<CustomerVM>> GetAllPage(RequestPaging request)
         {
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
@@ -182,7 +190,7 @@ namespace Services.Implement
                         Address = x.Address,
                         Birthday = x.Birthday,
                         Email = x.Email,
-                        IDCard =x.IDCard,
+                        IDCard = x.IDCard,
                         PhoneNumber = x.PhoneNumber,
                     }).ToListAsync();
                 var pagedView = new PagedResult<CustomerVM>()
@@ -215,7 +223,7 @@ namespace Services.Implement
                     Address = result.p.Address,
                     Birthday = result.p.Birthday,
                     Email = result.p.Email,
-                    IDCard =result.p.IDCard,
+                    IDCard = result.p.IDCard,
                     PhoneNumber = result.p.PhoneNumber,
                 };
                 return rs;

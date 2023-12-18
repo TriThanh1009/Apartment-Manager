@@ -22,7 +22,7 @@
             </TextBox.RenderTransform>
         </TextBox>
         <TextBlock HorizontalAlignment="Left" Margin="34,247,0,0" TextWrapping="Wrap" Text="Receive Date" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <DatePicker HorizontalAlignment="Left" Margin="194,249,0,0" SelectedDate="{Binding Rental.ReceiveDate}" Foreground="White" VerticalAlignment="Top" Width="150" Height="25"></DatePicker>
+        <DatePicker HorizontalAlignment="Left" Margin="194,249,0,0" SelectedDate="{Binding Rental.ReceiveDate}" VerticalAlignment="Top" Width="150" Height="25"></DatePicker>
         <TextBox HorizontalAlignment="Left" Margin="194,279,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
@@ -34,7 +34,7 @@
             </TextBox.RenderTransform>
         </TextBox>
         <TextBlock HorizontalAlignment="Left" Margin="389,58,0,0" TextWrapping="Wrap" Text="CheckOut Date" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <DatePicker HorizontalAlignment="Left" Margin="570,64,0,0" SelectedDate="{Binding Rental.CheckOutDate}" Foreground="White" VerticalAlignment="Top" Width="150" Height="24"></DatePicker>
+        <DatePicker HorizontalAlignment="Left" Margin="570,64,0,0" SelectedDate="{Binding Rental.CheckOutDate}"  VerticalAlignment="Top" Width="150" Height="24"></DatePicker>
         <TextBox HorizontalAlignment="Left" Margin="570,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="2" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>

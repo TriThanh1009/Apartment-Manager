@@ -22,5 +22,7 @@ namespace Data.Entity
         public ICollection<PeopleRental> PeopleRental { get; } = new List<PeopleRental>();
 
         public ICollection<RentalContract> RentalContracts { get; } = new List<RentalContract>();
+
+        public ICollection<DepositsContract> DepositsContracts { get; } = new List<DepositsContract>();
     }
 }

@@ -39,7 +39,6 @@ namespace AM.UI.Command.Room
             {
                 ID = _roomvmui.Room.ID,
                 Name = _roomvmui.Room.Name,
-                Staked = _roomvmui.Room.Staked,
                 Quantity = _roomvmui.Room.Quantity,
             };
             var result = await _apartmentstore.UpdateRoom(update);

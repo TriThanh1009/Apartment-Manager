@@ -76,7 +76,8 @@ namespace Services.Implement
                     RoomMoney = x.p.RoomMoney,
                     ElectricMoney = x.p.ElectricMoney,
                     WaterMoney = x.p.WaterMoney,
-                    ServiceMoney = x.p.ServiceMoney
+                    ServiceMoney = x.p.ServiceMoney,
+                    Active = x.p.Active
                 }).ToListAsync();
 
                 var query = from p in _context.RentalContract

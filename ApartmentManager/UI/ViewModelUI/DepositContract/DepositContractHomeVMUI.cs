@@ -6,6 +6,7 @@ using AM.UI.State.Navigators;
 using AM.UI.State.Store;
 using AM.UI.Utilities;
 using AM.UI.ViewModelUI.Factory;
+using Microsoft.Identity.Client;
 using Services.Interface;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ using ViewModel.DepositsContract;
 using ViewModel.Dtos;
 using ViewModel.Furniture;
 using ViewModel.People;
+using ViewModel.RentalContract;
 using ViewModel.Room;
 
 namespace AM.UI.ViewModelUI.DepositContract
@@ -32,6 +34,7 @@ namespace AM.UI.ViewModelUI.DepositContract
         private readonly IAparmentViewModelFactory _ViewModelFactory;
         private readonly DepositContractStore _apartmentStore;
         private readonly ComboboxStore _comboboxStore;
+        private readonly RoomStore _roomStore;
         private ObservableCollection<DepositsContractVm> _deposit;
 
         public ICommand LoadDataBase { get; }
@@ -55,6 +58,30 @@ namespace AM.UI.ViewModelUI.DepositContract
             {
                 _IsLoading = value;
                 OnPropertyChanged(nameof(IsLoading));
+            }
+        }
+
+        private string _search;
+
+        public string search
+        {
+            get { return _search; }
+            set
+            {
+                _search = value;
+                OnPropertyChanged(nameof(ChangedString));
+            }
+        }
+
+        private bool _isText;
+
+        public bool IsText
+        {
+            get { return _isText; }
+            set
+            {
+                _isText = value;
+                OnPropertyChanged(nameof(IsText));
             }
         }
 
@@ -84,7 +111,7 @@ namespace AM.UI.ViewModelUI.DepositContract
 
         public bool HasMessageError => !string.IsNullOrEmpty(MessageError);
 
-        public DepositContractHomeVMUI(IDepositsContract ideposit, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, DepositContractStore apartmentStore, ComboboxStore comboboxStore)
+        public DepositContractHomeVMUI(IDepositsContract ideposit, INavigator navigator, IAparmentViewModelFactory ViewModelFactory, DepositContractStore apartmentStore, ComboboxStore comboboxStore, RoomStore roomStore)
         {
             _ideposit = ideposit;
             _navigator = navigator;
@@ -98,11 +125,13 @@ namespace AM.UI.ViewModelUI.DepositContract
             _comboboxStore = comboboxStore;
             DepositContractUpdateNav = new RelayCommand(NavToDepositUpdate);
             DeleteConFirm = new DepositContractDeleteCommand(this, _apartmentStore, _navigator, _ViewModelFactory);
+            _roomStore = roomStore;
+            _roomStore.LoadAgainForDepositContract += UpdateDepositWhenRoomUpdate;
         }
 
         public void NavToadd(object parameter)
         {
-            _navigator.CurrentViewModel = new DepositContractAddVMUI(0, _apartmentStore, _navigator, _ViewModelFactory, _comboboxStore);
+            _navigator.CurrentViewModel = new DepositContractAddVMUI(_apartmentStore, _navigator, _ViewModelFactory, _comboboxStore);
         }
 
         public void UpdateData(List<DepositsContractVm> data)
@@ -129,6 +158,43 @@ namespace AM.UI.ViewModelUI.DepositContract
             {
                 _navigator.CurrentViewModel = new DepositContractUpdateVMUI(_navigator, _ViewModelFactory, _ideposit, _apartmentStore, deposit, _comboboxStore);
             }
+        }
+
+        private void ChangedString(string _Search)
+        {
+            IsText = false;
+
+            if (search.Equals(""))
+            {
+                if (_deposit.Any())
+                    _deposit.Clear();
+                LoadDataBase.Execute(null);
+                IsText = true;
+            }
+            else
+            {
+                if (int.TryParse(search, out int intValue))
+                {
+                    IsLoading = true;
+                    if (_deposit.Any())
+                        _deposit.Clear();
+                    LoadDataBase.Execute(null);
+                    ObservableCollection<DepositsContractVm> find = new ObservableCollection<DepositsContractVm>();
+                    foreach (DepositsContractVm item in _deposit)
+                        if (item.ID == intValue)
+                            find.Add(item);
+                    if (_deposit.Any())
+                        _deposit.Clear();
+                    foreach (DepositsContractVm item in find)
+                    {
+                        _deposit.Add(item);
+                    }
+
+                    IsLoading = false;
+                }
+                else if (_deposit.Any()) _deposit.Clear();
+            }
+            OnPropertyChanged(nameof(search));
         }
 
         private void OnReservationsChanged(object sender, NotifyCollectionChangedEventArgs e)

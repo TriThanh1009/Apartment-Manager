@@ -6,6 +6,7 @@
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
               xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:nav="clr-namespace:AM.UI.ViewModelUI"
+             xmlns:navDeosit="clr-namespace:AM.UI.State.Navigators"
              xmlns:custom="clr-namespace:AM.UI.Utilities"
              xmlns:local="clr-namespace:AM.UI.View.Homes"
              mc:Ignorable="d"
@@ -20,6 +21,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
+
             <Button  Style="{StaticResource AddButton}"
                      Width="100"
                      Command="{Binding ReturnBillHomeVM}"

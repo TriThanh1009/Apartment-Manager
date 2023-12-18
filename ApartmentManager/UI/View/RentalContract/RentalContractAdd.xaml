@@ -22,7 +22,7 @@
             </TextBox.RenderTransform>
         </TextBox>
         <TextBlock HorizontalAlignment="Left" Margin="389,58,0,0" TextWrapping="Wrap" Text="CheckOut Date" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <DatePicker HorizontalAlignment="Left" Margin="570,64,0,0"  SelectedDate="{Binding CheckOutDate,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150" Height="24"></DatePicker>
+        <DatePicker HorizontalAlignment="Left" Margin="570,64,0,0"  SelectedDate="{Binding CheckOutDate,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"  Height="24"></DatePicker>
         <TextBox HorizontalAlignment="Left" Margin="570,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="2" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
@@ -125,8 +125,8 @@
             </TextBox.RenderTransform>
         </TextBox>
         <ComboBox ItemsSource="{Binding comboboxforCustomer}" SelectedItem="{Binding SelectCustomer, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="195,122,0,0" VerticalAlignment="Top" Width="150" />
-        <TextBlock HorizontalAlignment="Left" Margin="35,59,0,0" TextWrapping="Wrap" Text="Room" VerticalAlignment="Top" FontSize="25" />
-        <TextBox HorizontalAlignment="Left" Margin="195,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
+        <TextBlock HorizontalAlignment="Left" Margin="35,59,0,0" TextWrapping="Wrap" Text="Room" Foreground="#FFEEEEEE" VerticalAlignment="Top" FontSize="25" />
+        <TextBox HorizontalAlignment="Left" Margin="195,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Foreground="#FFEEEEEE" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1" />

@@ -1,4 +1,5 @@
-﻿using AM.UI.Command.Home;
+﻿using AM.UI.Command;
+using AM.UI.Command.Home;
 using AM.UI.State.Navigators;
 using AM.UI.State.Store;
 using AM.UI.Utilities;

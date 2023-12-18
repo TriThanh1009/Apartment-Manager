@@ -20,8 +20,7 @@ namespace AM.UI.Command.DepositContract
         private readonly DepositContractAddVMUI _depositvm;
         public ICommand DepositNav { get; }
 
-
-        public DepositContractAddCommand(DepositContractStore store, DepositContractAddVMUI depositvm,INavigator navigator,IAparmentViewModelFactory viewModel)
+        public DepositContractAddCommand(DepositContractStore store, DepositContractAddVMUI depositvm, INavigator navigator, IAparmentViewModelFactory viewModel)
         {
             _Store = store;
             _depositvm = depositvm;
@@ -34,6 +33,7 @@ namespace AM.UI.Command.DepositContract
             DepositsContractCreateViewModel create = new DepositsContractCreateViewModel
             {
                 Room = _depositvm.SelectRoom,
+                Customer = _depositvm.SelectCustomer,
                 DepositsDate = _depositvm.DepositDate,
                 ReceiveDate = _depositvm.ReceiveDate,
                 CheckOutDate = _depositvm.CheckOutDate,
@@ -50,6 +50,7 @@ namespace AM.UI.Command.DepositContract
                 new MessageBoxCustom("Fail", MessageType.Success, MessageButtons.Ok).ShowDialog();
             }
         }
+
         public void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             OnCanExecutedChanged();

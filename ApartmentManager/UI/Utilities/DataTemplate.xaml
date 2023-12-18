@@ -102,6 +102,10 @@
         <rentalview:RentalContractAdd />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vmrental:AddCustomerInRentalVMUI}">
+        <rentalview:AddCustomerInRental />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type vmrental:RentalContractUpdateVMUI}">
         <rentalview:RentalContractUpdate />
     </DataTemplate>

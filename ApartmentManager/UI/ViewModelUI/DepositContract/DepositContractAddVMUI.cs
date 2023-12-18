@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using ViewModel.People;
 using ViewModel.Room;
 
 namespace AM.UI.ViewModelUI.DepositContract
@@ -46,7 +47,22 @@ namespace AM.UI.ViewModelUI.DepositContract
             }
         }
 
-        private DateTime _DepositsDate;
+        public ObservableCollection<CustomerForCombobox> _comboboxforCustomer;
+        public IEnumerable<CustomerForCombobox> comboboxforCustomer => _comboboxforCustomer;
+
+        private CustomerForCombobox _SelectCustomer;
+
+        public CustomerForCombobox SelectCustomer
+        {
+            get { return _SelectCustomer; }
+            set
+            {
+                _SelectCustomer = value;
+                OnPropertyChanged(nameof(SelectCustomer));
+            }
+        }
+
+        private DateTime _DepositsDate = DateTime.Now;
 
         public DateTime DepositDate
         {
@@ -109,12 +125,13 @@ namespace AM.UI.ViewModelUI.DepositContract
             }
         }
 
-        public DepositContractAddVMUI(int idRoom, DepositContractStore store, INavigator navigator, IAparmentViewModelFactory viewModelFactory, ComboboxStore comboboxStore)
+        public DepositContractAddVMUI(DepositContractStore store, INavigator navigator, IAparmentViewModelFactory viewModelFactory, ComboboxStore comboboxStore)
         {
             _store = store;
             _navigator = navigator;
             _viewModelFactory = viewModelFactory;
             _comboboxStore = comboboxStore;
+            _comboboxforCustomer = new ObservableCollection<CustomerForCombobox>();
             _comboboxforRoom = new ObservableCollection<RoomForCombobox>();
             LoadDataForCombobox = new LoadAllCombobox(_comboboxStore, this);
             LoadDataForCombobox.Execute(null);
@@ -130,6 +147,11 @@ namespace AM.UI.ViewModelUI.DepositContract
         public void UpdateDataForRoomCombobox(List<RoomForCombobox> data)
         {
             data.ForEach(x => _comboboxforRoom.Add(x));
+        }
+
+        public void UpdateDataForCustomerCombobox(List<CustomerForCombobox> data)
+        {
+            data.ForEach(x => _comboboxforCustomer.Add(x));
         }
     }
 }

@@ -108,14 +108,20 @@ namespace AM.UI.Command.LoadDataBase.LoadCombobox
             if (Flag == 3)
             {
                 List<RoomForCombobox> room = new List<RoomForCombobox>();
+                List<CustomerForCombobox> customer = new List<CustomerForCombobox>();
+                customer = await _comboboxStore.LoadCustomerForCombobox();
                 room = await _comboboxStore.LoadRoomForCombobox();
                 _DepositAddVM.UpdateDataForRoomCombobox(room);
+                _DepositAddVM.UpdateDataForCustomerCombobox(customer);
             }
             if (Flag == 4)
             {
                 List<RoomForCombobox> room = new List<RoomForCombobox>();
+                List<CustomerForCombobox> customer = new List<CustomerForCombobox>();
                 room = await _comboboxStore.LoadRoomForCombobox();
+                customer = await _comboboxStore.LoadCustomerForCombobox();
                 _DepositUpdateVM.UpdateDataForRoomCombobox(room);
+                _DepositUpdateVM.UpdateDataForCustomerCombobox(customer);
             }
             if (Flag == 5)
             {

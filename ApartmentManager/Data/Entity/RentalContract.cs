@@ -22,6 +22,8 @@ namespace Data.Entity
         public Active Active { get; set; }
         public Room? Room { get; set; }
 
+        public People? People { get; set; }
+
         public ICollection<PeopleRental> PeopleRental { get; } = new List<PeopleRental>();
 
         public ICollection<Bill> Bills { get; } = new List<Bill>();

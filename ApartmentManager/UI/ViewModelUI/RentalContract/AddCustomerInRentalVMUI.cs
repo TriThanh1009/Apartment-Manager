@@ -21,7 +21,7 @@ using ViewModel.People;
 using ViewModel.RentalContract;
 using ViewModel.Room;
 
-namespace AM.UI.ViewModelUI
+namespace AM.UI.ViewModelUI.RentalContract
 {
     public class AddCustomerInRentalVMUI : ViewModelBase
     {
@@ -32,7 +32,7 @@ namespace AM.UI.ViewModelUI
         public ObservableCollection<PeopleCreateViewModel> peoples
         {
             get { return _peoples; }
-            set { _peoples =value; OnPropertyChanged(nameof(peoples)); }
+            set { _peoples = value; OnPropertyChanged(nameof(peoples)); }
         }
 
         private PeopleCreateViewModel _SelectedPeople;
@@ -187,16 +187,16 @@ namespace AM.UI.ViewModelUI
 
         public AddCustomerInRentalVMUI(int IDrt, int IDpeople, INavigator navigator, IAparmentViewModelFactory viewModelFactory, RentalContractStore apartmentStore)
         {
-            _peoples= new ObservableCollection<PeopleCreateViewModel>();
+            _peoples = new ObservableCollection<PeopleCreateViewModel>();
             _combosex = new ObservableCollection<Sex> { Sex.Male, Sex.Female };
-            _IDP = IDpeople+1;
+            _IDP = IDpeople + 1;
             _IDRT = IDrt;
-            _navigator =navigator;
-            _viewModelFactory=viewModelFactory;
+            _navigator = navigator;
+            _viewModelFactory = viewModelFactory;
             AddList = new RelayCommand(AddlistCommand);
             DeleteCustomerCommand = new RelayCommand(DeleteList);
             Confirm = new AddCustomerInRentalCommand(apartmentStore, this, navigator, viewModelFactory);
-            _peoples.CollectionChanged+= ONchanged;
+            _peoples.CollectionChanged += ONchanged;
         }
 
         private void AddlistCommand(object parameter)
@@ -206,7 +206,7 @@ namespace AM.UI.ViewModelUI
                 IDRental = IDRT,
                 Name = name,
                 Sex = sex,
-                Birthday= birthday,
+                Birthday = birthday,
                 PhoneNumber = phoneNumber,
                 Email = email,
                 IDCard = idcard,
@@ -219,7 +219,7 @@ namespace AM.UI.ViewModelUI
         {
             var message = new MessageBoxCustom("Do You Wanna To Delete", MessageType.Confirmation, MessageButtons.YesNo);
             message.ShowDialog();
-            if (message.DialogResult==true)
+            if (message.DialogResult == true)
                 _peoples.Remove(SelectedPeople);
         }
 

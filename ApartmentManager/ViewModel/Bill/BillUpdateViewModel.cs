@@ -22,8 +22,8 @@ namespace ViewModel.Bill
         public DateTime PayDate { get; set; }
 
         [Required]
-        [Range(1, int.MaxValue, ErrorMessage = "ElectricQuantity must be a positive number.")]
-        public int TotalMoney { get; set; }
+        [Range(1, double.MaxValue, ErrorMessage = "ElectricQuantity must be a positive number.")]
+        public double TotalMoney { get; set; }
 
         public bool IsValid
         {

@@ -166,6 +166,11 @@ namespace AM.UI.ViewModelUI.RentalContract
             _viewModelFactory = viewModelFactory;
             _apartmentStore = apartmentStore;
             _comboboxStore = comboboxStore;
+            _comboboxActive = new ObservableCollection<string>();
+            foreach (Active active in Enum.GetValues(typeof(Active)))
+            {
+                _comboboxActive.Add(active.ToString());
+            }
             _comboboxforCustomer = new ObservableCollection<CustomerForCombobox>();
             _comboboxforRoom = new ObservableCollection<RoomForCombobox>();
             CreateConFirm = new RelayCommand(AddRentalContract);

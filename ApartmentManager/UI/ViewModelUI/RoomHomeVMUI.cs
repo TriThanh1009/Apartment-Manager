@@ -10,6 +10,7 @@ using AM.UI.View.Rooms;
 using AM.UI.ViewModelUI.Factory;
 using AM.UI.ViewModelUI.Room;
 using AM.UI.ViewModelUI.RoomDetails;
+using ClosedXML.Excel;
 using Data;
 using Data.Entity;
 using Data.Relationships;
@@ -22,6 +23,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -30,7 +32,9 @@ using System.Transactions;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 using System.Xml.Linq;
+using ViewModel.DepositsContract;
 using ViewModel.Dtos;
 using ViewModel.Furniture;
 using ViewModel.People;
@@ -70,17 +74,9 @@ namespace AM.UI.ViewModelUI
 
         public ICommand MouseLeaveCommand { get; set; }
 
-        public string _Search = "...";
+        public ICommand ExportExcelCommand { get; set; }
 
-        public string Search
-        {
-            get { return _Search; }
-            set
-            {
-                _Search = value;
-                ChangedString(nameof(Search));
-            }
-        }
+        public string _Search = "...";
 
         public bool HasData => _room.Any();
 
@@ -235,7 +231,15 @@ namespace AM.UI.ViewModelUI
             _apartmentStore.RoomDelete += Delete_Store;
             MouseEnterCommand = new RelayCommand(SetShowCommentTrue);
             MouseLeaveCommand = new RelayCommand(SetShowCommentFalse);
+
+            // ExportExcelCommand = new RelayCommand(Export);
         }
+
+        /*public void Export(object parameter)
+        {
+            DataTable RoomTable = convert.Convert(_room);
+            ExportExcel(RoomTable);
+        }*/
 
         public void SetShowCommentTrue(object parameter)
         {
@@ -288,6 +292,19 @@ namespace AM.UI.ViewModelUI
             }
         }
 
+        public void UpdateRoomWhenCreateDeposit(DepositsContractVm data)
+        {
+            RoomVm room = new RoomVm()
+            {
+                NameLeader = data.LeaderName
+            };
+            var current = _room.ToList().FindIndex(x => x.NameLeader == data.LeaderName);
+            if (current != -1)
+            {
+                _room[current].NameLeader = room.NameLeader;
+            }
+        }
+
         private void ChangedString(string _Search)
         {
             IsText = false;
@@ -323,6 +340,26 @@ namespace AM.UI.ViewModelUI
                 else if (_room.Any()) _room.Clear();
             }
             OnPropertyChanged(nameof(search));
+        }
+
+        public void ExportExcel(DataTable RoomTable)
+        {
+            using (var Workbook = new XLWorkbook())
+            {
+                var Worksheet = Workbook.Worksheets.Add("Room");
+                for (int i = 0; i < RoomTable.Columns.Count; i++)
+                {
+                    Worksheet.Cell(i, i + 1).Value = RoomTable.Columns[i].ColumnName;
+                }
+                for (int i = 0; i < RoomTable.Rows.Count; i++)
+                {
+                    for (int j = 0; i < RoomTable.Columns.Count; j++)
+                    {
+                        Worksheet.Cell(i + 2, j + 1).Value = (XLCellValue)RoomTable.Rows[i][j];
+                    }
+                }
+                Workbook.SaveAs("Roomdata.xlsx");
+            }
         }
 
         private void OnReservationsChanged(object sender, NotifyCollectionChangedEventArgs e)

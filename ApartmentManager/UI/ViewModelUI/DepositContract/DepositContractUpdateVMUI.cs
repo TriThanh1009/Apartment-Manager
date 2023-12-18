@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ViewModel.DepositsContract;
 using ViewModel.Furniture;
+using ViewModel.People;
 using ViewModel.Room;
 
 namespace AM.UI.ViewModelUI.DepositContract
@@ -33,6 +34,21 @@ namespace AM.UI.ViewModelUI.DepositContract
 
         public ObservableCollection<RoomForCombobox> _comboboxforRoom;
         public IEnumerable<RoomForCombobox> comboboxforRoom => _comboboxforRoom;
+
+        public ObservableCollection<CustomerForCombobox> _comboboxforCustomer;
+        public IEnumerable<CustomerForCombobox> comboboxforCustomer => _comboboxforCustomer;
+
+        private CustomerForCombobox _SelectCustomer;
+
+        public CustomerForCombobox SelectCustomer
+        {
+            get { return _SelectCustomer; }
+            set
+            {
+                _SelectCustomer = value;
+                OnPropertyChanged(nameof(SelectCustomer));
+            }
+        }
 
         private RoomForCombobox _SelectRoom;
 
@@ -61,6 +77,7 @@ namespace AM.UI.ViewModelUI.DepositContract
             _apartmentStore = apartmentStore;
             _depositViewmodel = depositViewmodel;
             _comboboxStore = comboboxStore;
+            _comboboxforCustomer = new ObservableCollection<CustomerForCombobox>();
             LoadDataForCombobox = new LoadAllCombobox(_comboboxStore, this);
             LoadDataForCombobox.Execute(null);
             UpdateSuccess = new DepositContractUpdateCommand(this, _apartmentStore, _viewModelFactory, _navigator);
@@ -75,6 +92,11 @@ namespace AM.UI.ViewModelUI.DepositContract
         public void UpdateDataForRoomCombobox(List<RoomForCombobox> data)
         {
             data.ForEach(x => _comboboxforRoom.Add(x));
+        }
+
+        public void UpdateDataForCustomerCombobox(List<CustomerForCombobox> data)
+        {
+            data.ForEach(x => _comboboxforCustomer.Add(x));
         }
     }
 }

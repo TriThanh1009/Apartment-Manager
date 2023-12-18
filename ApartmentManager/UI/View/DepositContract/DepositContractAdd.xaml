@@ -7,11 +7,11 @@
              mc:Ignorable="d"
              d:DesignHeight="630" d:DesignWidth="730">
     <Grid>
-        <Button Command="{Binding AddConFirm}" Style="{StaticResource DetailsButton}" Content="Add Confirm" HorizontalAlignment="Left" Margin="162,425,0,0" VerticalAlignment="Top" />
-        <Button Style="{StaticResource DetailsButton}" Content="Cancel" HorizontalAlignment="Left" Margin="464,420,0,0" VerticalAlignment="Top" />
-        <TextBlock HorizontalAlignment="Left" Margin="34,244,0,0" TextWrapping="Wrap" Text="Receive Date" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <DatePicker VerticalAlignment="Top" Margin="194,244,386,0" SelectedDate="{Binding ReceiveDate,UpdateSourceTrigger=PropertyChanged}" Foreground="White"  Width="150" Height="25"></DatePicker>
-        <TextBox HorizontalAlignment="Left" Margin="194,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
+        <Button Command="{Binding AddConFirm}" Style="{StaticResource DetailsButton}" Content="Add Confirm" HorizontalAlignment="Left" Margin="156,479,0,0" VerticalAlignment="Top" />
+        <Button Style="{StaticResource DetailsButton}" Content="Cancel" HorizontalAlignment="Left" Margin="458,474,0,0" VerticalAlignment="Top" />
+        <TextBlock HorizontalAlignment="Left" Margin="387,117,0,0" TextWrapping="Wrap" Text="Receive Date" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
+        <DatePicker VerticalAlignment="Top" Margin="547,117,33,0" SelectedDate="{Binding ReceiveDate, UpdateSourceTrigger=PropertyChanged}" Width="150" Height="25" />
+        <TextBox HorizontalAlignment="Left" Margin="214,482,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1" />
@@ -21,9 +21,9 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBlock HorizontalAlignment="Left" Margin="389,72,0,0" TextWrapping="Wrap" Text="CheckOut Date" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <DatePicker HorizontalAlignment="Left" Margin="570,78,0,0"  SelectedDate="{Binding CheckOutDate,UpdateSourceTrigger=PropertyChanged}" Foreground="White" VerticalAlignment="Top" Width="150" Height="24"></DatePicker>
-        <TextBox HorizontalAlignment="Left" Margin="570,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="2" RenderTransformOrigin="0.5,0.5">
+        <TextBlock HorizontalAlignment="Left" Margin="383,190,0,0" TextWrapping="Wrap" Text="CheckOut Date" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
+        <DatePicker HorizontalAlignment="Left" Margin="564,196,0,0"  SelectedDate="{Binding CheckOutDate, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="150" Height="24" />
+        <TextBox HorizontalAlignment="Left" Margin="564,226,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="2" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1" />
@@ -33,17 +33,15 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBlock HorizontalAlignment="Left" Margin="390,132,0,0" TextWrapping="Wrap" Text="Money" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <TextBox HorizontalAlignment="Left" Margin="570,138,0,0" Validation.ErrorTemplate="{StaticResource errorTemplate}" TextWrapping="Wrap"  Foreground="White" VerticalAlignment="Top" Width="150" Height="24">
-            <TextBox.Text>
-                <Binding Path="Money" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <rules:WrongNumber  NameofRule="Money" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
+        <TextBlock HorizontalAlignment="Left" Margin="384,270,0,0" TextWrapping="Wrap" Text="Money" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
+        <TextBox HorizontalAlignment="Left" Margin="564,276,0,0" Validation.ErrorTemplate="{StaticResource errorTemplate}" TextWrapping="Wrap"  Foreground="White" VerticalAlignment="Top" Width="150" Height="24">
+            <Binding Path="Money" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                    <rules:WrongNumber  NameofRule="Money" />
+                </Binding.ValidationRules>
+            </Binding>
         </TextBox>
-        <TextBox HorizontalAlignment="Left" Margin="570,168,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="2" RenderTransformOrigin="0.5,0.5">
+        <TextBox HorizontalAlignment="Left" Margin="564,306,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="2" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1" />
@@ -53,9 +51,9 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBlock HorizontalAlignment="Left" Margin="34,154,0,0" TextWrapping="Wrap" Text="Deposit Date" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <DatePicker VerticalAlignment="Top" Margin="194,150,386,0" SelectedDate="{Binding DepositDate,UpdateSourceTrigger=PropertyChanged}" Foreground="White" Width="150" Height="25"></DatePicker>
-        <TextBox HorizontalAlignment="Left" Margin="195,199,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
+        <TextBlock HorizontalAlignment="Left" Margin="29,275,0,0" TextWrapping="Wrap" Text="Deposit Date" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
+        <DatePicker VerticalAlignment="Top" Margin="189,271,391,0" SelectedDate="{Binding DepositDate, UpdateSourceTrigger=PropertyChanged}"  Width="150" Height="25" />
+        <TextBox HorizontalAlignment="Left" Margin="548,87,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1" />
@@ -65,8 +63,8 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBlock HorizontalAlignment="Left" Margin="35,59,0,0" TextWrapping="Wrap" Text="Room" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
-        <TextBox HorizontalAlignment="Left" Margin="195,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
+        <TextBlock HorizontalAlignment="Left" Margin="29,126,0,0" TextWrapping="Wrap" Text="Room" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
+        <TextBox HorizontalAlignment="Left" Margin="189,161,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1" />
@@ -76,6 +74,18 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <ComboBox ItemsSource="{Binding comboboxforRoom}" SelectedItem="{Binding SelectRoom, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" Foreground="White" HorizontalAlignment="Left" Margin="195,64,0,0" VerticalAlignment="Top" Width="150" />
+        <ComboBox ItemsSource="{Binding comboboxforRoom}" SelectedItem="{Binding SelectRoom, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="189,131,0,0" VerticalAlignment="Top" Width="150" />
+        <TextBlock HorizontalAlignment="Left" Margin="30,195,0,0" TextWrapping="Wrap" Text="Leader" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="25" />
+        <TextBox HorizontalAlignment="Left" Margin="189,227,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="3" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1" />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <ComboBox ItemsSource="{Binding comboboxforCustomer}" SelectedItem="{Binding SelectCustomer, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="189,197,0,0" VerticalAlignment="Top" Width="150" />
     </Grid>
 </UserControl>

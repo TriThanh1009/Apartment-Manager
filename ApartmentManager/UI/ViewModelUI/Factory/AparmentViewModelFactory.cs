@@ -39,7 +39,7 @@ namespace AM.UI.ViewModelUI.Factory
         private readonly CreateViewModel<PaymentExtensionHomeVMUI> _createPaymentExtensionHomeVMUI;
         private readonly CreateViewModel<RentalContractAddVMUI> _createRentalAddVM;
         private readonly CreateViewModel<RentalContractUpdateVMUI> _createRentalUpdateVM;
-
+        private readonly CreateViewModel<DepositContractAddVMUI> _createDepositAddVM;
         private readonly CreateViewModel<DepositContractUpdateVMUI> _createDepositUpdateVM;
         private readonly CreateViewModel<RoomDetailsInformationCustomerVMUI> _createRoomDetailsInformationCustomer;
         private readonly CreateViewModel<BillAddVMUI> _createBillAddVM;
@@ -57,7 +57,8 @@ namespace AM.UI.ViewModelUI.Factory
                                         CreateViewModel<RentalContractAddVMUI> createRentalContractAddVM, CreateViewModel<RentalContractUpdateVMUI> createRentalContractUpdateVM,
                                         CreateViewModel<DepositContractUpdateVMUI> createDepositContractUpdateVM,
                                         CreateViewModel<RoomDetailsInformationCustomerVMUI> createRoomDetailsInformationCustomer, CreateViewModel<BillAddVMUI> createBillAddVM,
-                                        CreateViewModel<BillUpdateVMUI> createBillUpdateVM, CreateViewModel<StatisticsHomeVMUI> createStatisticsHomeVM)
+                                        CreateViewModel<BillUpdateVMUI> createBillUpdateVM, CreateViewModel<StatisticsHomeVMUI> createStatisticsHomeVM,
+                                        CreateViewModel<DepositContractAddVMUI> createDepositAddVM)
         {
             _createCustomerVM = createCustomerVM;
             _createHomeVM = createhomeVM;
@@ -81,6 +82,7 @@ namespace AM.UI.ViewModelUI.Factory
             _createBillAddVM = createBillAddVM;
             _createBillUpdateVM = createBillUpdateVM;
             _createStatisticsHomeVM = createStatisticsHomeVM;
+            _createDepositAddVM = createDepositAddVM;
         }
 
         /*public async Task<ComboboxBase> ComboboxBase(ComboBoxType comboBoxType)
@@ -147,6 +149,9 @@ namespace AM.UI.ViewModelUI.Factory
 
                 case ViewType.RentalContractUpdate:
                     return _createRentalUpdateVM();
+
+                case ViewType.DepositContractAdd:
+                    return _createDepositAddVM();
 
                 case ViewType.DepositContractUpdate:
                     return _createDepositUpdateVM();

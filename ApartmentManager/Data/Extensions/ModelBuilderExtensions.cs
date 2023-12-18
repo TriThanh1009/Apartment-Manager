@@ -15,7 +15,7 @@ namespace Data.Extensions
             modelbuilder.Entity<Bill>().HasData(
                 new Bill() { ID = 1, IDRTC = 1, ElectricQuantity = 150, Active = Active.Yes, PayDate = DateTime.Now, TotalMoney = 1000000 });
             modelbuilder.Entity<DepositsContract>().HasData(
-                new DepositsContract { ID = 1, IDRoom = 1, DepositsDate = DateTime.Now, ReceiveDate = DateTime.Now, CheckOutDate = DateTime.Now, Money = 10000 });
+                new DepositsContract { ID = 1, IDRoom = 1, IDLeader = 1, DepositsDate = DateTime.Now, ReceiveDate = DateTime.Now, CheckOutDate = DateTime.Now, Money = 10000 });
             modelbuilder.Entity<Furniture>().HasData(
                 new Furniture { ID = 1, Name = "Chair" });
             modelbuilder.Entity<PaymentExtension>().HasData(
@@ -27,7 +27,8 @@ namespace Data.Extensions
                 new People() { ID = 4, Name = "Anna Johnson", Birthday = new DateTime(new Random().Next(1990, 2001), new Random().Next(1, 13), new Random().Next(1, 29)), Email = "anna@gmail.com", PhoneNumber = "1415", IDCard = "14151617", Address = "Australia" },
                 new People() { ID = 5, Name = "Michael Brown", Birthday = new DateTime(new Random().Next(1990, 2001), new Random().Next(1, 13), new Random().Next(1, 29)), Email = "michael@gmail.com", PhoneNumber = "1819", IDCard = "18192021", Address = "UK" });
             modelbuilder.Entity<RentalContract>().HasData(
-                new RentalContract { ID = 1, IDroom = 1, ReceiveDate = DateTime.Now, CheckOutDate = DateTime.Now, RoomMoney = 100, ElectricMoney = 100, WaterMoney = 100, ServiceMoney = 100 });
+                new RentalContract { ID = 1, IDroom = 1, ReceiveDate = DateTime.Now, CheckOutDate = DateTime.Now, RoomMoney = 100, ElectricMoney = 100, WaterMoney = 100, ServiceMoney = 100, Active = Active.Yes },
+                new RentalContract { ID = 2, IDroom = 2, ReceiveDate = DateTime.Now, CheckOutDate = DateTime.Now, RoomMoney = 100, ElectricMoney = 100, WaterMoney = 100, ServiceMoney = 100, Active = Active.Yes });
             modelbuilder.Entity<Room>().HasData(
                 new Room { ID = 1, Name = "A201", Quantity = 4, Staked = 0 },
                 new Room { ID = 2, Name = "A202", Quantity = 5, Staked = 0 },
@@ -40,7 +41,7 @@ namespace Data.Extensions
                 new PeopleRental { ID = 1, IDPeople = 2, IDRental = 1, Membership = Membership.Leader },
                 new PeopleRental { ID = 2, IDPeople = 3, IDRental = 1, Membership = Membership.Member },
                 new PeopleRental { ID = 3, IDPeople = 4, IDRental = 1, Membership = Membership.Member },
-                new PeopleRental { ID = 4, IDPeople = 5, IDRental = 1, Membership = Membership.Member }
+                new PeopleRental { ID = 4, IDPeople = 5, IDRental = 2, Membership = Membership.Leader }
                 );
             modelbuilder.Entity<Statistics>().HasData(
                 new Statistics { ID = 1, ElectricMoneyOfGovernment = 90, WaterMoneyOfGovernment = 90, ServiceOfGovernment = 90, Month = 10, Year = 2023 });

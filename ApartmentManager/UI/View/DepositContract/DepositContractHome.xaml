@@ -53,6 +53,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ID}" />
                     <DataGridTextColumn Header="Room" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding RoomName}" />
+                    <DataGridTextColumn Header="Leader" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding LeaderName}" />
                     <DataGridTextColumn Header="Deposits" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding DepositsDate}" />
                     <DataGridTextColumn Header="Receive" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding ReceiveDate}" />
                     <DataGridTextColumn Header="CheckOut" IsReadOnly="True" CanUserResize="False" Width="*"  Binding="{Binding CheckOutDate}" />

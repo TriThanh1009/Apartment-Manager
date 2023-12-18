@@ -71,9 +71,8 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("PayDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 6, 9, 27, 53, 550, DateTimeKind.Local).AddTicks(4854));
+                        .HasMaxLength(50)
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("TotalMoney")
                         .HasColumnType("float");
@@ -91,7 +90,7 @@ namespace Data.Migrations
                             Active = 1,
                             ElectricQuantity = 150,
                             IDRTC = 1,
-                            PayDate = new DateTime(2023, 11, 6, 9, 27, 53, 570, DateTimeKind.Local).AddTicks(9238),
+                            PayDate = new DateTime(2023, 12, 17, 23, 23, 34, 211, DateTimeKind.Local).AddTicks(6342),
                             TotalMoney = 1000000.0
                         });
                 });
@@ -108,9 +107,11 @@ namespace Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DepositsDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 6, 9, 27, 53, 553, DateTimeKind.Local).AddTicks(7831));
+                        .HasMaxLength(50)
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IDLeader")
+                        .HasColumnType("int");
 
                     b.Property<int>("IDRoom")
                         .HasColumnType("int");
@@ -120,11 +121,12 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ReceiveDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 6, 9, 27, 53, 553, DateTimeKind.Local).AddTicks(8690));
+                        .HasMaxLength(50)
+                        .HasColumnType("datetime2");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("IDLeader");
 
                     b.HasIndex("IDRoom");
 
@@ -134,11 +136,12 @@ namespace Data.Migrations
                         new
                         {
                             ID = 1,
-                            CheckOutDate = new DateTime(2023, 11, 6, 9, 27, 53, 570, DateTimeKind.Local).AddTicks(9277),
-                            DepositsDate = new DateTime(2023, 11, 6, 9, 27, 53, 570, DateTimeKind.Local).AddTicks(9275),
+                            CheckOutDate = new DateTime(2023, 12, 17, 23, 23, 34, 211, DateTimeKind.Local).AddTicks(6370),
+                            DepositsDate = new DateTime(2023, 12, 17, 23, 23, 34, 211, DateTimeKind.Local).AddTicks(6368),
+                            IDLeader = 1,
                             IDRoom = 1,
                             Money = 10000,
-                            ReceiveDate = new DateTime(2023, 11, 6, 9, 27, 53, 570, DateTimeKind.Local).AddTicks(9276)
+                            ReceiveDate = new DateTime(2023, 12, 17, 23, 23, 34, 211, DateTimeKind.Local).AddTicks(6369)
                         });
                 });
 
@@ -178,7 +181,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("Days")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 6, 9, 27, 53, 556, DateTimeKind.Local).AddTicks(252));
+                        .HasDefaultValue(new DateTime(2023, 12, 17, 23, 23, 34, 208, DateTimeKind.Local).AddTicks(6887));
 
                     b.Property<int>("IDBill")
                         .HasColumnType("int");
@@ -193,7 +196,7 @@ namespace Data.Migrations
                         new
                         {
                             ID = 1,
-                            Days = new DateTime(2023, 11, 6, 9, 27, 53, 570, DateTimeKind.Local).AddTicks(9326),
+                            Days = new DateTime(2023, 12, 17, 23, 23, 34, 211, DateTimeKind.Local).AddTicks(6393),
                             IDBill = 1
                         });
                 });
@@ -212,9 +215,8 @@ namespace Data.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("Birthday")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 6, 9, 27, 53, 556, DateTimeKind.Local).AddTicks(4201));
+                        .HasMaxLength(50)
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -250,7 +252,7 @@ namespace Data.Migrations
                         {
                             ID = 1,
                             Address = "Vietnam",
-                            Birthday = new DateTime(2023, 11, 6, 9, 27, 53, 570, DateTimeKind.Local).AddTicks(9348),
+                            Birthday = new DateTime(2023, 12, 17, 23, 23, 34, 211, DateTimeKind.Local).AddTicks(6408),
                             Email = "thanh@gmail.com",
                             IDCard = "1234123",
                             Name = "Jonhny Deep",
@@ -261,7 +263,7 @@ namespace Data.Migrations
                         {
                             ID = 2,
                             Address = "USA",
-                            Birthday = new DateTime(1998, 2, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Birthday = new DateTime(1995, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "emily@gmail.com",
                             IDCard = "56781234",
                             Name = "Emily Stone",
@@ -272,7 +274,7 @@ namespace Data.Migrations
                         {
                             ID = 3,
                             Address = "Canada",
-                            Birthday = new DateTime(2000, 2, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Birthday = new DateTime(1996, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "robert@gmail.com",
                             IDCard = "910111213",
                             Name = "Robert Smith",
@@ -283,7 +285,7 @@ namespace Data.Migrations
                         {
                             ID = 4,
                             Address = "Australia",
-                            Birthday = new DateTime(1993, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Birthday = new DateTime(2000, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "anna@gmail.com",
                             IDCard = "14151617",
                             Name = "Anna Johnson",
@@ -294,7 +296,7 @@ namespace Data.Migrations
                         {
                             ID = 5,
                             Address = "UK",
-                            Birthday = new DateTime(1999, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Birthday = new DateTime(1998, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "michael@gmail.com",
                             IDCard = "18192021",
                             Name = "Michael Brown",
@@ -315,9 +317,8 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CheckOutDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 6, 9, 27, 53, 561, DateTimeKind.Local).AddTicks(352));
+                        .HasMaxLength(50)
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("ElectricMoney")
                         .HasMaxLength(50)
@@ -330,9 +331,8 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ReceiveDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 6, 9, 27, 53, 560, DateTimeKind.Local).AddTicks(9155));
+                        .HasMaxLength(50)
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("RoomMoney")
                         .HasMaxLength(50)
@@ -358,11 +358,23 @@ namespace Data.Migrations
                         new
                         {
                             ID = 1,
-                            Active = 0,
-                            CheckOutDate = new DateTime(2023, 11, 6, 9, 27, 53, 570, DateTimeKind.Local).AddTicks(9479),
+                            Active = 1,
+                            CheckOutDate = new DateTime(2023, 12, 17, 23, 23, 34, 211, DateTimeKind.Local).AddTicks(6549),
                             ElectricMoney = 100,
                             IDroom = 1,
-                            ReceiveDate = new DateTime(2023, 11, 6, 9, 27, 53, 570, DateTimeKind.Local).AddTicks(9479),
+                            ReceiveDate = new DateTime(2023, 12, 17, 23, 23, 34, 211, DateTimeKind.Local).AddTicks(6548),
+                            RoomMoney = 100,
+                            ServiceMoney = 100,
+                            WaterMoney = 100
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Active = 1,
+                            CheckOutDate = new DateTime(2023, 12, 17, 23, 23, 34, 211, DateTimeKind.Local).AddTicks(6555),
+                            ElectricMoney = 100,
+                            IDroom = 2,
+                            ReceiveDate = new DateTime(2023, 12, 17, 23, 23, 34, 211, DateTimeKind.Local).AddTicks(6554),
                             RoomMoney = 100,
                             ServiceMoney = 100,
                             WaterMoney = 100
@@ -561,8 +573,8 @@ namespace Data.Migrations
                         {
                             ID = 4,
                             IDPeople = 5,
-                            IDRental = 1,
-                            Membership = 1
+                            IDRental = 2,
+                            Membership = 0
                         });
                 });
 
@@ -594,11 +606,19 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Entity.DepositsContract", b =>
                 {
+                    b.HasOne("Data.Entity.People", "People")
+                        .WithMany("DepositsContracts")
+                        .HasForeignKey("IDLeader")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Data.Entity.Room", "Room")
                         .WithMany("DepositsContracts")
                         .HasForeignKey("IDRoom")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("People");
 
                     b.Navigation("Room");
                 });
@@ -622,9 +642,11 @@ namespace Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.Entity.People", null)
+                    b.HasOne("Data.Entity.People", "People")
                         .WithMany("RentalContracts")
                         .HasForeignKey("PeopleID");
+
+                    b.Navigation("People");
 
                     b.Navigation("Room");
                 });
@@ -690,6 +712,8 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Entity.People", b =>
                 {
+                    b.Navigation("DepositsContracts");
+
                     b.Navigation("PeopleRental");
 
                     b.Navigation("RentalContracts");

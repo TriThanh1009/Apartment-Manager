@@ -16,9 +16,7 @@ namespace ViewModel.Room
 
         [Required]
         [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "")]
-        public string Name { get; set; }
 
-        [Required]
         [Range(1, int.MaxValue, ErrorMessage = "")]
         public int Quantity { get; set; }
 

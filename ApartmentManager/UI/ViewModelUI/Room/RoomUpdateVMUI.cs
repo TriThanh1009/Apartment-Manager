@@ -88,9 +88,9 @@ namespace AM.UI.ViewModelUI.Room
         {
             _viewModelFactory = viewModelFactory;
             _iroom = iroom;
-            _roomUpdateViewModel =  new RoomUpdateViewModel
+            _roomUpdateViewModel = new RoomUpdateViewModel
             {
-                ID=  model.ID,
+                ID = model.ID,
                 Name = model.Name,
                 Quantity = model.Quantity
             };
@@ -102,18 +102,12 @@ namespace AM.UI.ViewModelUI.Room
             UpdateSuccess = new UpdateRoomCommand(this, navigator, viewModelFactory, apartmentStore);
             UpdateConfirm = new RelayCommand(UpdateRoom);
             RoomHomeNav = new UpdateCurrentViewModelCommand(_navigator, _viewModelFactory);
-            _comboboxforCustomer.CollectionChanged += OnReservationsChanged;
         }
 
         private void Onchanged(string name)
         {
             OnPropertyChanged(nameof(name));
             OnPropertyChanged(nameof(Room));
-        }
-
-        public void UpdateDataCustomer(List<CustomerForCombobox> data)
-        {
-            data.ForEach(x => _comboboxforCustomer.Add(x));
         }
 
         public void UpdateRoom(object parameter)

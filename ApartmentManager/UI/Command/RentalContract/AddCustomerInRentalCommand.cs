@@ -3,6 +3,7 @@ using AM.UI.State.Store;
 using AM.UI.View.Dialog;
 using AM.UI.ViewModelUI;
 using AM.UI.ViewModelUI.Factory;
+using AM.UI.ViewModelUI.RentalContract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +21,16 @@ namespace AM.UI.Command.RentalContract
 
         public AddCustomerInRentalCommand(RentalContractStore store, AddCustomerInRentalVMUI vm, INavigator navigator, IAparmentViewModelFactory factory)
         {
-            this.store=store;
-            _vm=vm;
-            _navigator=navigator;
-            _factory=factory;
+            this.store = store;
+            _vm = vm;
+            _navigator = navigator;
+            _factory = factory;
         }
 
         public override async Task ExecuteAsync(object parameter)
         {
             var result = await store.CreateManyCustomer(_vm.peoples.ToList());
-            if (result !=null)
+            if (result != null)
             {
                 new MessageBoxCustom("Add Successed", MessageType.Success, MessageButtons.Ok).ShowDialog();
                 _navigator.CurrentViewModel = _factory.CreateViewModel(ViewType.RentalContract);

@@ -38,7 +38,6 @@ namespace AM.UI.ViewModelUI
 
         public ICommand TransferDataCommand { get; private set; }
 
-
         //Command
         public ICommand LoadDataBase { get; }
 
@@ -49,6 +48,7 @@ namespace AM.UI.ViewModelUI
 
         //Properties
         public bool _IsLoading;
+
         public bool IsLoading
         {
             get { return _IsLoading; }
@@ -59,9 +59,34 @@ namespace AM.UI.ViewModelUI
             }
         }
 
+        private string _search;
+
+        public string search
+        {
+            get { return _search; }
+            set
+            {
+                _search = value;
+                ChangedString(nameof(search));
+            }
+        }
+
+        private bool _isText;
+
+        public bool IsText
+        {
+            get { return _isText; }
+            set
+            {
+                _isText = value;
+                OnPropertyChanged(nameof(IsText));
+            }
+        }
+
         public bool HasData => _fur.Any();
 
         public string _MessageError;
+
         public string MessageError
         {
             get { return _MessageError; }
@@ -72,9 +97,8 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-
-
         public int _ID;
+
         public int ID
         {
             get { return _ID; }
@@ -86,6 +110,7 @@ namespace AM.UI.ViewModelUI
         }
 
         public string _Name;
+
         public string Name
         {
             get { return _Name; }
@@ -96,8 +121,8 @@ namespace AM.UI.ViewModelUI
             }
         }
 
-
         private FurnitureVm _SelectFurniture;
+
         public FurnitureVm SelectFurniture
         {
             get { return _SelectFurniture; }
@@ -107,8 +132,6 @@ namespace AM.UI.ViewModelUI
                 OnPropertyChanged(nameof(SelectFurniture));
             }
         }
-
-
 
         public bool HasMessageError => !string.IsNullOrEmpty(MessageError);
 
@@ -125,15 +148,7 @@ namespace AM.UI.ViewModelUI
             FurnitureUpdateNav = new RelayCommand(FurnitureUpdateNavDef);
             DeleteConFirm = new FurnitureDeleteCommand(this, apartmentStore, navigator, ViewModelFactory);
             _apartmentStore.FurnitureAdd += Store_Add;
-
-
-
-
         }
-
-
-
-
 
         public void FurnitureUpdateNavDef(object parameter)
         {
@@ -142,7 +157,6 @@ namespace AM.UI.ViewModelUI
                 _navigator.CurrentViewModel = new FurnitureUpdateVMUI(_ifur, fur, _navigator, _ViewModelFactory, _apartmentStore);
             }
         }
-
 
         public void UpdateData(List<FurnitureVm> data)
         {
@@ -157,11 +171,46 @@ namespace AM.UI.ViewModelUI
             _fur.Add(data);
         }
 
+        private void ChangedString(string _Search)
+        {
+            IsText = false;
+
+            if (search.Equals(""))
+            {
+                if (_fur.Any())
+                    _fur.Clear();
+                LoadDataBase.Execute(null);
+                IsText = true;
+            }
+            else
+            {
+                if (int.TryParse(search, out int intValue))
+                {
+                    IsLoading = true;
+                    if (_fur.Any())
+                        _fur.Clear();
+                    LoadDataBase.Execute(null);
+                    ObservableCollection<FurnitureVm> find = new ObservableCollection<FurnitureVm>();
+                    foreach (FurnitureVm item in _fur)
+                        if (item.ID == intValue)
+                            find.Add(item);
+                    if (_fur.Any())
+                        _fur.Clear();
+                    foreach (FurnitureVm item in find)
+                    {
+                        _fur.Add(item);
+                    }
+
+                    IsLoading = false;
+                }
+                else if (_fur.Any()) _fur.Clear();
+            }
+            OnPropertyChanged(nameof(search));
+        }
 
         /*public void UpdateSelectedFurniture(FurnitureVm data)
         {
             Mediators.Instance.Send("FurnitureSelected", data);
         }*/
-
     }
 }
