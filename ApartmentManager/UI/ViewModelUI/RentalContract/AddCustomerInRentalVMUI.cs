@@ -1,4 +1,5 @@
-﻿using AM.UI.Command.RentalContract;
+﻿using AM.UI.Command.LoadDataBase.LoadCombobox;
+using AM.UI.Command.RentalContract;
 using AM.UI.State;
 using AM.UI.State.Navigators;
 using AM.UI.State.Store;
@@ -16,6 +17,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using ViewModel.People;
 using ViewModel.RentalContract;
@@ -27,6 +29,7 @@ namespace AM.UI.ViewModelUI.RentalContract
     {
         private readonly INavigator _navigator;
         private readonly IAparmentViewModelFactory _viewModelFactory;
+        private readonly ComboboxStore _comboboxStore;
         private ObservableCollection<PeopleCreateViewModel> _peoples;
 
         public ObservableCollection<PeopleCreateViewModel> peoples
@@ -34,6 +37,8 @@ namespace AM.UI.ViewModelUI.RentalContract
             get { return _peoples; }
             set { _peoples = value; OnPropertyChanged(nameof(peoples)); }
         }
+
+        public ICommand LoadDataForCombobox { get; }
 
         private PeopleCreateViewModel _SelectedPeople;
 
@@ -87,6 +92,21 @@ namespace AM.UI.ViewModelUI.RentalContract
             {
                 _name = value;
                 OnPropertyChanged(nameof(name));
+            }
+        }
+
+        public ObservableCollection<CustomerForCombobox> _comboboxforCustomer;
+        public IEnumerable<CustomerForCombobox> comboboxforCustomer => _comboboxforCustomer;
+
+        private CustomerForCombobox _SelectCustomer;
+
+        public CustomerForCombobox SelectCustomer
+        {
+            get { return _SelectCustomer; }
+            set
+            {
+                _SelectCustomer = value;
+                OnPropertyChanged(nameof(SelectCustomer));
             }
         }
 
@@ -185,10 +205,11 @@ namespace AM.UI.ViewModelUI.RentalContract
         public ICommand DeleteCustomerCommand { get; }
         public ICommand Confirm { get; }
 
-        public AddCustomerInRentalVMUI(int IDrt, int IDpeople, INavigator navigator, IAparmentViewModelFactory viewModelFactory, RentalContractStore apartmentStore)
+        public AddCustomerInRentalVMUI(int IDrt, int IDpeople, INavigator navigator, IAparmentViewModelFactory viewModelFactory, RentalContractStore apartmentStore, ComboboxStore comboboxStore)
         {
             _peoples = new ObservableCollection<PeopleCreateViewModel>();
             _combosex = new ObservableCollection<Sex> { Sex.Male, Sex.Female };
+            _comboboxforCustomer = new ObservableCollection<CustomerForCombobox>();
             _IDP = IDpeople + 1;
             _IDRT = IDrt;
             _navigator = navigator;
@@ -197,6 +218,9 @@ namespace AM.UI.ViewModelUI.RentalContract
             DeleteCustomerCommand = new RelayCommand(DeleteList);
             Confirm = new AddCustomerInRentalCommand(apartmentStore, this, navigator, viewModelFactory);
             _peoples.CollectionChanged += ONchanged;
+            _comboboxStore = comboboxStore;
+            LoadDataForCombobox = new LoadAllCombobox(_comboboxStore, this);
+            LoadDataForCombobox.Execute(null);
         }
 
         private void AddlistCommand(object parameter)
@@ -204,7 +228,7 @@ namespace AM.UI.ViewModelUI.RentalContract
             PeopleCreateViewModel newobject = new PeopleCreateViewModel
             {
                 IDRental = IDRT,
-                Name = name,
+                Name = _SelectCustomer.Name,
                 Sex = sex,
                 Birthday = birthday,
                 PhoneNumber = phoneNumber,
@@ -221,6 +245,11 @@ namespace AM.UI.ViewModelUI.RentalContract
             message.ShowDialog();
             if (message.DialogResult == true)
                 _peoples.Remove(SelectedPeople);
+        }
+
+        public void UpdateDataForCustomerCombobox(List<CustomerForCombobox> data)
+        {
+            data.ForEach(x => _comboboxforCustomer.Add(x));
         }
 
         private void OnPeopleChanged(string propertyName)

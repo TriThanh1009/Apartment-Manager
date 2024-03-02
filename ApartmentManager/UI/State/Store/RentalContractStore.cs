@@ -121,7 +121,7 @@ namespace AM.UI.State.Store
             return result;
         }
 
-        public async Task<int> CreateManyCustomer(List<PeopleCreateViewModel> request)
+        public async Task<People> CreateManyCustomer(List<PeopleCreateViewModel> request)
         {
             var result = await _apartmentStore.CreateManyCustomer(request);
             return result;

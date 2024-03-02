@@ -27,6 +27,6 @@ namespace Services.Interface
 
         Task<People> Create(PeopleCreateViewModel request);
 
-        Task<int> Createmany(List<PeopleCreateViewModel> request);
+        Task<People> Createmany(List<PeopleCreateViewModel> request);
     }
 }

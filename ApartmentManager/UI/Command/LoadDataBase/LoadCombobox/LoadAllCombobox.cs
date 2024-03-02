@@ -1,4 +1,5 @@
-﻿using AM.UI.State.Store;
+﻿using AM.UI.Command.RentalContract;
+using AM.UI.State.Store;
 using AM.UI.ViewModelUI.Bills;
 using AM.UI.ViewModelUI.DepositContract;
 using AM.UI.ViewModelUI.RentalContract;
@@ -28,6 +29,7 @@ namespace AM.UI.Command.LoadDataBase.LoadCombobox
 
         private readonly RentalContractAddVMUI _RentalAddVM;
         private readonly RentalContractUpdateVMUI _RentalUpdateVM;
+        private readonly AddCustomerInRentalVMUI _AddCusInRen;
 
         private readonly RoomAddVMUI _RoomAddVM;
         private readonly RoomUpdateVMUI _RoomUpdateVM;
@@ -90,6 +92,13 @@ namespace AM.UI.Command.LoadDataBase.LoadCombobox
             Flag = 8;
         }
 
+        public LoadAllCombobox(ComboboxStore ComboboxStore, AddCustomerInRentalVMUI AddCustomerInRentalVM)
+        {
+            _comboboxStore = ComboboxStore;
+            _AddCusInRen = AddCustomerInRentalVM;
+            Flag = 9;
+        }
+
         public override async Task ExecuteAsync(object parameter)
 
         {
@@ -146,6 +155,19 @@ namespace AM.UI.Command.LoadDataBase.LoadCombobox
                 List<CustomerForCombobox> customer = new List<CustomerForCombobox>();
                 customer = await _comboboxStore.LoadCustomerForCombobox();
                 _RoomAddVM.LoadCustomerCombobox(customer);
+            }
+            /*if (Flag == 8)
+            {
+                List<CustomerForCombobox> customer = new List<CustomerForCombobox>();
+                customer = await _comboboxStore.LoadCustomerForCombobox();
+                _RoomUpdateVM.LoadCustomerCombobox(customer);
+            }*/
+
+            if (Flag == 9)
+            {
+                List<CustomerForCombobox> customer = new List<CustomerForCombobox>();
+                customer = await _comboboxStore.LoadCustomerForCombobox();
+                _AddCusInRen.UpdateDataForCustomerCombobox(customer);
             }
         }
     }

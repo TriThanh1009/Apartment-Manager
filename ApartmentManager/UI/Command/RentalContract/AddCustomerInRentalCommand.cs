@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace AM.UI.Command.RentalContract
 {
@@ -30,6 +31,7 @@ namespace AM.UI.Command.RentalContract
         public override async Task ExecuteAsync(object parameter)
         {
             var result = await store.CreateManyCustomer(_vm.peoples.ToList());
+
             if (result != null)
             {
                 new MessageBoxCustom("Add Successed", MessageType.Success, MessageButtons.Ok).ShowDialog();

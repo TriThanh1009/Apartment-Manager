@@ -174,7 +174,7 @@ namespace AM.UI.ViewModelUI.RentalContract
             _comboboxforCustomer = new ObservableCollection<CustomerForCombobox>();
             _comboboxforRoom = new ObservableCollection<RoomForCombobox>();
             CreateConFirm = new RelayCommand(AddRentalContract);
-            CreateSuccess = new AddRentalContractCommand(this, _apartmentStore, _navigator, _viewModelFactory);
+            CreateSuccess = new AddRentalContractCommand(this, _apartmentStore, _navigator, _viewModelFactory, _comboboxStore);
             LoadDataForCombobox = new LoadAllCombobox(_comboboxStore, this);
             LoadDataForCombobox.Execute(null);
             _comboboxforRoom.CollectionChanged += OnReservationsChanged;

@@ -42,6 +42,8 @@ namespace AM.UI.State
 
         public event Action<List<CustomerVM>> CreatePeopleInRental;
 
+        public event Action<CustomerVM> CreateCustomerByRental;
+
         public ApartmentStore(Apartment apartment, IPeople people, IRoom room, IRoomDetails roomimage)
         {
             _apartment = apartment;
@@ -82,7 +84,7 @@ namespace AM.UI.State
                 //IDroom = request.IDroom,
                 Name = request.Name,
                 Sex = request.Sex,
-                Birthday= request.Birthday,
+                Birthday = request.Birthday,
                 PhoneNumber = request.PhoneNumber,
                 Email = request.Email,
                 IDCard = request.IDCard,
@@ -102,7 +104,7 @@ namespace AM.UI.State
                 //IDroom = request.IDroom,
                 Name = request.Name,
                 Sex = request.Sex,
-                Birthday= request.Birthday,
+                Birthday = request.Birthday,
                 PhoneNumber = request.PhoneNumber,
                 Email = request.Email,
                 IDCard = request.IDCard,
@@ -138,7 +140,7 @@ namespace AM.UI.State
             return result;
         }
 
-        public async Task<int> CreateManyCustomer(List<PeopleCreateViewModel> request)
+        public async Task<People> CreateManyCustomer(List<PeopleCreateViewModel> request)
         {
             var lastid = await GetlastIDpeople();
             var result = await _people.Createmany(request);
@@ -150,11 +152,11 @@ namespace AM.UI.State
                 var findid = await _people.GetByID(lastid);
                 CustomerVM add = new CustomerVM
                 {
-                    ID= lastid,
+                    ID = lastid,
                     RoomName = findid.RoomName,
                     Name = findid.Name,
                     Sex = findid.Sex,
-                    Birthday= findid.Birthday,
+                    Birthday = findid.Birthday,
                     PhoneNumber = findid.PhoneNumber,
                     Email = findid.Email,
                     IDCard = findid.IDCard,

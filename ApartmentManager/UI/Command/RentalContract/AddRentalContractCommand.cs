@@ -22,13 +22,15 @@ namespace AM.UI.Command.RentalContract
         private readonly RentalContractStore _Store;
         private readonly INavigator _navigator;
         private readonly IAparmentViewModelFactory _viewModelFactory;
+        private readonly ComboboxStore _comboboxStore;
 
-        public AddRentalContractCommand(RentalContractAddVMUI rentalvmui, RentalContractStore store, INavigator navigator, IAparmentViewModelFactory viewModelFactory)
+        public AddRentalContractCommand(RentalContractAddVMUI rentalvmui, RentalContractStore store, INavigator navigator, IAparmentViewModelFactory viewModelFactory, ComboboxStore comboboxStore)
         {
             _rentalvmui = rentalvmui;
             _Store = store;
             _navigator = navigator;
             _viewModelFactory = viewModelFactory;
+            _comboboxStore = comboboxStore;
             _rentalvmui.PropertyChanged += OnViewModelPropertyChanged;
         }
 
@@ -50,11 +52,11 @@ namespace AM.UI.Command.RentalContract
             {
                 MessageBoxCustom resultconfirm = new MessageBoxCustom("Add Successed! Do You Want to Add Customer", MessageType.Success, MessageButtons.OkCancel);
                 resultconfirm.ShowDialog();
-                if (resultconfirm.DialogResult==true)
+                if (resultconfirm.DialogResult == true)
                 {
                     RentalContractVm a = _Store.rentalvm.LastOrDefault();
                     var IDpeople = await _Store.GetlastIDpeople();
-                    _navigator.CurrentViewModel = new AddCustomerInRentalVMUI(a.ID, IDpeople, _navigator, _viewModelFactory, _Store);
+                    _navigator.CurrentViewModel = new AddCustomerInRentalVMUI(a.ID, IDpeople, _navigator, _viewModelFactory, _Store, _comboboxStore);
                 }
                 else
                     _navigator.CurrentViewModel = _viewModelFactory.CreateViewModel(ViewType.RentalContract);

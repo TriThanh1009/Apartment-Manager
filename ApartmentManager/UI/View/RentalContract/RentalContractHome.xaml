@@ -91,19 +91,7 @@
                                     <Button Style="{StaticResource EditButton}"
                                              Command="{Binding DataContext.RentalDeleteConFirm, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
 
-                                        <iconPacks:PackIconMaterial Kind="Home" Style="{StaticResource ButtonIcon}" />
-                                    </Button>
-
-                                    <Button Style="{StaticResource EditButton}"
-                                             Command="{Binding DataContext.RentalDeleteConFirm, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
-
-                                        <iconPacks:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource ButtonIcon}" />
-                                    </Button>
-
-                                    <Button Style="{StaticResource EditButton}"
-                                             Command="{Binding DataContext.RentalDeleteConFirm, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
-
-                                        <iconPacks:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource ButtonIcon}" />
+                                        <iconPacks:PackIconMaterial Kind="Delete" Style="{StaticResource ButtonIcon}" />
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>

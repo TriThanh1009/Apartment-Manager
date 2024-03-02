@@ -29,7 +29,6 @@ namespace Services.Implement
         {
             var rental = new Data.Entity.RentalContract
             {
-                ID = model.ID,
                 IDroom = model.RoomCombobox.ID,
                 ReceiveDate = model.ReceiveDate,
                 CheckOutDate = model.CheckOutDate,

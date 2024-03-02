@@ -8,6 +8,7 @@ using Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,11 +22,13 @@ namespace Services.Implement
     {
         private readonly ApartmentDbContextFactory _contextfactory;
         private readonly IBaseControl<People> _baseControl;
+        private readonly IBaseControl<PeopleRental> _baseControlPeopleRental;
 
-        public PeopleServices(ApartmentDbContextFactory contextfactory, IBaseControl<People> baseControl)
+        public PeopleServices(ApartmentDbContextFactory contextfactory, IBaseControl<People> baseControl, IBaseControl<PeopleRental> baseControlPeopleRental)
         {
             _contextfactory = contextfactory;
             _baseControl = baseControl;
+            _baseControlPeopleRental = baseControlPeopleRental;
         }
 
         public async Task<People> Create(PeopleCreateViewModel request)
@@ -58,13 +61,12 @@ namespace Services.Implement
             }
         }
 
-        public async Task<int> Createmany(List<PeopleCreateViewModel> request)
+        public async Task<People> Createmany(List<PeopleCreateViewModel> request)
         {
             using (AparmentDbContext _context = _contextfactory.CreateDbContext())
             {
-                List<PeopleRental> pr = new List<PeopleRental>();
-                // List<People> peoples = new List<People>();
-                bool flag = true;
+                var pr = new PeopleRental();
+                var peoples = new People();
                 foreach (var person in request)
                 {
                     People people = new People
@@ -77,26 +79,23 @@ namespace Services.Implement
                         IDCard = person.IDCard,
                         Address = person.Address,
                     };
+                    peoples = people;
                     PeopleRental peopleRental = new PeopleRental
                     {
                         IDPeople = person.ID,
                         IDRental = person.IDRental,
                         People = people,
-                        Membership = Membership.Member
+                        Membership = Membership.Leader
                     };
-                    if (flag)
-                    {
-                        peopleRental.Membership = Membership.Leader;
-                    }
-                    flag = false;
-                    pr.Add(peopleRental);
-                    // peoples.Add(people);
+                    pr = peopleRental;
                 }
+                _context.People.Add(peoples);
+                await _context.SaveChangesAsync();
+                _context.PeopleRental.Add(pr);
+                await _context.SaveChangesAsync();
 
-                //  _context.People.AddRange(peoples);
-                //  await _context.SaveChangesAsync();
-                _context.PeopleRental.AddRange(pr);
-                var result = await _context.SaveChangesAsync();
+                await _baseControlPeopleRental.Create(pr);
+                var result = await _baseControl.Create(peoples);
                 return result;
             }
         }
@@ -159,13 +158,6 @@ namespace Services.Implement
                     Address = e.p.Address,
                 }).ToListAsync();
                 return result;
-            }
-        }
-
-        public async Task<PagedResult<PeopleRentalVm>> GetAllPageRole(RequestPaging request)
-        {
-            using (AparmentDbContext _context = _contextfactory.CreateDbContext())
-            {
             }
         }
 
