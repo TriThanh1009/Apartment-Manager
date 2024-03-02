@@ -1,32 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj": {}
+    "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj": {}
   },
   "projects": {
-    "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj": {
+    "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj",
+        "projectUniqueName": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj",
-        "packagesPath": "C:\\Users\\THANH\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\obj\\",
+        "projectPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj",
+        "packagesPath": "C:\\Users\\84768\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\THANH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\84768\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net7.0-windows"
+          "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net7.0-windows7.0": {
-            "targetAlias": "net7.0-windows",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -37,24 +37,18 @@
         }
       },
       "frameworks": {
-        "net7.0-windows7.0": {
-          "targetAlias": "net7.0-windows",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
+            "CacheManager.Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.102.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[7.0.8, )"
-            },
-            "Microsoft.EntityFrameworkCore.Abstractions": {
-              "target": "Package",
-              "version": "[7.0.8, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[7.0.8, )"
-            },
-            "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
               "version": "[7.0.8, )"
             },
@@ -68,19 +62,7 @@
               "target": "Package",
               "version": "[7.0.8, )"
             },
-            "Microsoft.Extensions.Configuration": {
-              "target": "Package",
-              "version": "[7.0.0, )"
-            },
-            "Microsoft.Extensions.Configuration.FileExtensions": {
-              "target": "Package",
-              "version": "[7.0.0, )"
-            },
-            "Microsoft.Extensions.Configuration.Json": {
-              "target": "Package",
-              "version": "[7.0.0, )"
-            },
-            "Microsoft.Extensions.DependencyInjection": {
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[7.0.0, )"
             }
@@ -99,26 +81,23 @@
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
-            },
-            "Microsoft.WindowsDesktop.App.WPF": {
-              "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj": {
+    "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj",
+        "projectUniqueName": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj",
         "projectName": "ViewModel",
-        "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj",
-        "packagesPath": "C:\\Users\\THANH\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\ViewModel\\obj\\",
+        "projectPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\ViewModel\\ViewModel.csproj",
+        "packagesPath": "C:\\Users\\84768\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\ViewModel\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\THANH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\84768\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -132,8 +111,8 @@
           "net7.0-windows7.0": {
             "targetAlias": "net7.0-windows",
             "projectReferences": {
-              "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj": {
-                "projectPath": "D:\\GitHub\\Apartment-Manager\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj"
+              "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj": {
+                "projectPath": "D:\\GitHub\\Apartment-Manager\\ApartmentManager\\Data\\Data.csproj"
               }
             }
           }
@@ -147,6 +126,28 @@
       "frameworks": {
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
+          "dependencies": {
+            "CacheManager.Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.102.1, )"
+            },
+            "LoadingSpinner.WPF": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Xaml.Behaviors.Wpf": {
+              "target": "Package",
+              "version": "[1.1.39, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -166,7 +167,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
